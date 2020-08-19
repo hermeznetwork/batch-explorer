@@ -74,6 +74,25 @@ mock.onGet(`${baseApiUrl}/tokens`)
     ]
   )
 
+mock.onGet(`${baseApiUrl}/batches`)
+  .reply(
+    200,
+    [
+      {
+        BatchID: 223,
+        numberOfTransactions: 88
+      },
+      {
+        BatchID: 222,
+        numberOfTransactions: 103
+      },
+      {
+        BatchID: 221,
+        numberOfTransactions: 23
+      }
+    ]
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -107,4 +126,10 @@ async function getTokens () {
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens }
+async function getBatches () {
+  const response = await axios.get(`${baseApiUrl}/batches`)
+
+  return response.data
+}
+
+export { getAccounts, getAccount, getTransactions, getTokens, getBatches }
