@@ -80,15 +80,23 @@ mock.onGet(`${baseApiUrl}/batches`)
     [
       {
         BatchID: 223,
-        numberOfTransactions: 88
+        numberOfTransactions: 88,
+        ForgerAddr: '0x0000000000000000000000000000000000000001'
       },
       {
         BatchID: 222,
-        numberOfTransactions: 103
+        numberOfTransactions: 103,
+        ForgerAddr: '0x0000000000000000000000000000000000000002'
       },
       {
         BatchID: 221,
-        numberOfTransactions: 23
+        numberOfTransactions: 23,
+        ForgerAddr: '0x0000000000000000000000000000000000000003'
+      },
+      {
+        BatchID: 220,
+        numberOfTransactions: 77,
+        ForgerAddr: '0x0000000000000000000000000000000000000004'
       }
     ]
   )
