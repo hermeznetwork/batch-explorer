@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import useBatchStyles from './batch.styles'
 
-function Batch ({ batchId, batchTxNum, ForgerAddr }) {
+function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp }) {
   const classes = useBatchStyles()
 
   return (
@@ -12,13 +12,13 @@ function Batch ({ batchId, batchTxNum, ForgerAddr }) {
             Batch: {batchId}
       </div>
       <div>
-            Age: {}
+            Age: {batchTimeStamp}
       </div>
       <div>
             Txs: {batchTxNum}
       </div>
       <div>
-            Coordinator: {ForgerAddr}
+            Coordinator: {batchForgerAddr}
       </div>
     </div>
   )
@@ -27,7 +27,8 @@ function Batch ({ batchId, batchTxNum, ForgerAddr }) {
 Batch.propTypes = {
   batchId: PropTypes.number.isRequired,
   batchTxNum: PropTypes.number.isRequired,
-  ForgerAddr: PropTypes.string.isRequired
+  batchForgerAddr: PropTypes.string.isRequired,
+  batchTimeStamp: PropTypes.number.isRequired
 }
 
 export default Batch

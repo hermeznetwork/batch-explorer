@@ -23,7 +23,8 @@ function BatchesList ({ batches }) {
             <Batch
               batchId={batch.BatchID}
               batchTxNum={getBatch(batch.BatchID).numberOfTransactions}
-              ForgerAddr={getBatch(batch.BatchID).ForgerAddr}
+              batchForgerAddr={getBatch(batch.BatchID).ForgerAddr}
+              batchTimeStamp={getBatch(batch.BatchID).timeStamp}
             />
           </div>
         )}
