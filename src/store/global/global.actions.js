@@ -1,7 +1,10 @@
 export const globalActionTypes = {
   LOAD_TOKENS: '[GLOBAL] LOAD TOKENS',
   LOAD_TOKENS_SUCCESS: '[GLOBAL] LOAD TOKENS SUCCESS',
-  LOAD_TOKENS_FAILURE: '[GLOBAL] LOAD TOKENS FAILURE'
+  LOAD_TOKENS_FAILURE: '[GLOBAL] LOAD TOKENS FAILURE',
+  LOAD_BATCHES: '[GLOBAL] LOAD BATCHES',
+  LOAD_BATCHES_SUCCESS: '[GLOBAL] LOAD BATCHES SUCCESS',
+  LOAD_BATCHES_FAILURE: '[GLOBAL] LOAD BATCHES FAILURE'
 }
 
 function loadTokens () {
@@ -23,8 +26,30 @@ function loadTokensFailure () {
   }
 }
 
+function loadBatches () {
+  return {
+    type: globalActionTypes.LOAD_BATCHES
+  }
+}
+
+function loadBatchesSuccess (batches) {
+  return {
+    type: globalActionTypes.LOAD_BATCHES_SUCCESS,
+    batches: batches
+  }
+}
+
+function loadBatchesFailure () {
+  return {
+    type: globalActionTypes.LOAD_BATCHES_FAILURE
+  }
+}
+
 export {
   loadTokens,
   loadTokensSuccess,
-  loadTokensFailure
+  loadTokensFailure,
+  loadBatches,
+  loadBatchesSuccess,
+  loadBatchesFailure
 }
