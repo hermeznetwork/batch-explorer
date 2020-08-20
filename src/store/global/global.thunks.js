@@ -11,4 +11,14 @@ function fetchTokens () {
   }
 }
 
-export { fetchTokens }
+function fetchBatches () {
+  return (dispatch) => {
+    dispatch(globalActions.loadBatches())
+
+    return rollupApi.getBatches()
+      .then(res => dispatch(globalActions.loadBatchesSuccess(res)))
+      .catch(err => dispatch(globalActions.loadBatchesFailure(err)))
+  }
+}
+
+export { fetchTokens, fetchBatches }

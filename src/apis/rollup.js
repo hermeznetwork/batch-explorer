@@ -74,6 +74,37 @@ mock.onGet(`${baseApiUrl}/tokens`)
     ]
   )
 
+mock.onGet(`${baseApiUrl}/batches`)
+  .reply(
+    200,
+    [
+      {
+        BatchID: 223,
+        numberOfTransactions: 88,
+        ForgerAddr: '0x0000000000000000000000000000000000000001',
+        timeStamp: 1597856265
+      },
+      {
+        BatchID: 222,
+        numberOfTransactions: 103,
+        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        timeStamp: 1597863005
+      },
+      {
+        BatchID: 221,
+        numberOfTransactions: 23,
+        ForgerAddr: '0x0000000000000000000000000000000000000003',
+        timeStamp: 1597855841
+      },
+      {
+        BatchID: 220,
+        numberOfTransactions: 77,
+        ForgerAddr: '0x0000000000000000000000000000000000000004',
+        timeStamp: 1597856212144
+      }
+    ]
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -107,4 +138,10 @@ async function getTokens () {
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens }
+async function getBatches () {
+  const response = await axios.get(`${baseApiUrl}/batches`)
+
+  return response.data
+}
+
+export { getAccounts, getAccount, getTransactions, getTokens, getBatches }
