@@ -55,7 +55,7 @@ Home.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  batchesTask: state.global.batchesTask
+  batchesTask: state.home.batchesTask
 })
 
 export default connect(mapStateToProps)(Home)

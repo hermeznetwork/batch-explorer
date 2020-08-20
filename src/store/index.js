@@ -2,9 +2,11 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 import globalReducer from './global/global.reducer'
+import homeReducer from './home/home.reducer'
 
 const rootReducer = combineReducers({
-  global: globalReducer
+  global: globalReducer,
+  home: homeReducer
 })
 
 const middlewares = [thunk]

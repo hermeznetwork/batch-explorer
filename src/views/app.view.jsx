@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import Layout from './shared/layout/layout.view'
 import routes from '../routing/routes'
-import { fetchBatches } from '../store/global/global.thunks'
+import { fetchBatches } from '../store/home/home.thunks'
 
 function App ({ onLoadBatches }) {
   React.useEffect(() => {
