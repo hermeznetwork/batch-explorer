@@ -106,6 +106,19 @@ mock.onGet(`${baseApiUrl}/batches`)
     ]
   )
 
+mock.onGet(`${baseApiUrl}/batches/${mockedBatchId}`)
+  .reply(
+    200,
+    [
+      {
+        BatchID: 223,
+        numberOfTransactions: 88,
+        ForgerAddr: '0x0000000000000000000000000000000000000001',
+        timeStamp: 1597856265
+      }
+    ]
+  )
+
 mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
   .reply(
     200,
@@ -189,8 +202,14 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches () {
-  const response = await axios.get(`${baseApiUrl}/batches`)
+async function getBatches (batchnum) {
+  const params = {
+    ...(batchnum ? { batchnum } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/batches`,
+    { params }
+  )
 
   return response.data
 }
