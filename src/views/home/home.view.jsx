@@ -13,9 +13,6 @@ function Home ({
 
   return (
     <div>
-      <div>
-        <h1 className={classes.title}>This is home page</h1>
-      </div>
       {(() => {
         switch (batchesTask.status) {
           case 'loading': {
