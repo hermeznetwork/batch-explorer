@@ -5,6 +5,7 @@ const mock = new MockAdapter(axios)
 const mockedEthereumAddress = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 const mockedTokenId = 0
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
+const mockedBatchId = 222
 
 mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}`)
   .reply(
@@ -74,6 +75,87 @@ mock.onGet(`${baseApiUrl}/tokens`)
     ]
   )
 
+mock.onGet(`${baseApiUrl}/batches`)
+  .reply(
+    200,
+    [
+      {
+        BatchID: 223,
+        numberOfTransactions: 88,
+        ForgerAddr: '0x0000000000000000000000000000000000000001',
+        timeStamp: 1597856265
+      },
+      {
+        BatchID: 222,
+        numberOfTransactions: 103,
+        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        timeStamp: 1597863005
+      },
+      {
+        BatchID: 221,
+        numberOfTransactions: 23,
+        ForgerAddr: '0x0000000000000000000000000000000000000003',
+        timeStamp: 1597855841
+      },
+      {
+        BatchID: 220,
+        numberOfTransactions: 77,
+        ForgerAddr: '0x0000000000000000000000000000000000000004',
+        timeStamp: 1597856212144
+      }
+    ]
+  )
+
+mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
+  .reply(
+    200,
+    {
+      L1Txs: [
+        {
+          TxID: 101,
+          TokenID: 2,
+          Amount: 243
+        },
+        {
+          TxID: 102,
+          TokenID: 2,
+          Amount: 116
+        },
+        {
+          TxID: 103,
+          TokenID: 1,
+          Amount: 535
+        }
+      ],
+      L2Txs: [
+        {
+          TxID: 307,
+          BatchNum: 222,
+          Amount: 540,
+          Fee: 115
+        },
+        {
+          TxID: 308,
+          BatchNum: 221,
+          Amount: 241,
+          Fee: 99
+        },
+        {
+          TxID: 310,
+          BatchNum: 221,
+          Amount: 999,
+          Fee: 90
+        },
+        {
+          TxID: 311,
+          BatchNum: 220,
+          Amount: 423,
+          Fee: 101
+        }
+      ]
+    }
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -107,4 +189,16 @@ async function getTokens () {
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens }
+async function getBatches () {
+  const response = await axios.get(`${baseApiUrl}/batches`)
+
+  return response.data
+}
+
+async function getBatch (batchnum) {
+  const response = await axios.get(`${baseApiUrl}/batch/${batchnum}/txs`)
+
+  return response.data
+}
+
+export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatch }
