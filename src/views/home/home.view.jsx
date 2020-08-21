@@ -5,10 +5,16 @@ import { connect } from 'react-redux'
 import useHomeStyles from './home.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import BatchesList from './components/batches-list/batches-list.view'
+import { fetchBatches } from '../../store/home/home.thunks'
 
 function Home ({
+  onLoadBatches,
   batchesTask
 }) {
+  React.useEffect(() => {
+    onLoadBatches()
+  }, [onLoadBatches])
+
   const classes = useHomeStyles()
 
   return (
@@ -43,6 +49,7 @@ function Home ({
 }
 
 Home.propTypes = {
+  onLoadBatches: PropTypes.func.isRequired,
   batchesTask: PropTypes.shape({
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
@@ -58,4 +65,8 @@ const mapStateToProps = (state) => ({
   batchesTask: state.home.batchesTask
 })
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = (dispatch) => ({
+  onLoadBatches: () => dispatch(fetchBatches())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
