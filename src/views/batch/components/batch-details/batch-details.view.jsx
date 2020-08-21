@@ -3,72 +3,50 @@ import PropTypes from 'prop-types'
 
 import useBatchDetailsStyles from './batch-details.styles'
 
-function BatchDetails ({
-  BatchID,
-  numberOfTransactions,
-  SlotNum,
-  EthTxHash,
-  EthBlockNum,
-  ExitRoot,
-  OldStateRoot,
-  NewStateRoot,
-  CollectedFees,
-  ForgerAddr,
-  timeStamp
-}) {
+function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
 
   return (
     <div className={classes.row}>
       <div>
-            Batch: {BatchID}
+            Batch: {batch.BatchID}
       </div>
       <div>
-            Number of transactions: {numberOfTransactions}
+            Number of transactions: {batch.numberOfTransactions}
       </div>
       <div>
-            Slot: {SlotNum}
+            Slot: {batch.SlotNum}
       </div>
       <div>
-            EthTxHash: {EthTxHash}
+            EthTxHash: {batch.EthTxHash}
       </div>
       <div>
-            EthBlockNum: {EthBlockNum}
+            EthBlockNum: {batch.EthBlockNum}
       </div>
       <div>
-            ExitRoot: {ExitRoot}
+            ExitRoot: {batch.ExitRoot}
       </div>
       <div>
-            OldStateRoot: {OldStateRoot}
+            OldStateRoot: {batch.OldStateRoot}
       </div>
       <div>
-            NewStateRoot: {NewStateRoot}
+            NewStateRoot: {batch.NewStateRoot}
       </div>
       <div>
-            CollectedFees: {CollectedFees}
+            CollectedFees: {batch.CollectedFees}
       </div>
       <div>
-            ForgerAddr: {ForgerAddr}
+            ForgerAddr: {batch.ForgerAddr}
       </div>
       <div>
-            timeStamp: {timeStamp}
+            timeStamp: {batch.timeStamp}
       </div>
     </div>
   )
 }
 
 BatchDetails.propTypes = {
-  BatchID: PropTypes.number.isRequired,
-  numberOfTransactions: PropTypes.number.isRequired,
-  SlotNum: PropTypes.string.isRequired,
-  EthTxHash: PropTypes.string.isRequired,
-  EthBlockNum: PropTypes.number.isRequired,
-  ExitRoot: PropTypes.string.isRequired,
-  OldStateRoot: PropTypes.string.isRequired,
-  NewStateRoot: PropTypes.string.isRequired,
-  CollectedFees: PropTypes.number.isRequired,
-  ForgerAddr: PropTypes.string.isRequired,
-  timeStamp: PropTypes.number.isRequired
+  batch: PropTypes.array.isRequired
 }
 
 export default BatchDetails

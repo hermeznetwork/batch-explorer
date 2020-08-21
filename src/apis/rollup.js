@@ -214,10 +214,10 @@ async function getBatches (batchnum) {
   return response.data
 }
 
-async function getBatch (batchnum) {
+async function getBatchTransactions (batchnum) {
   const response = await axios.get(`${baseApiUrl}/batch/${batchnum}/txs`)
 
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatch }
+export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatchTransactions }
