@@ -31,14 +31,12 @@ function Batch ({
           }
           case 'successful': {
             return (
-              <>
-                <section>
-                  <h4 className={classes.title}>Batch</h4>
-                  <BatchDetails
-                    batch={batchTask.data}
-                  />
-                </section>
-              </>
+              <section>
+                <h4 className={classes.title}>Batch</h4>
+                <BatchDetails
+                  batch={batchTask.data}
+                />
+              </section>
             )
           }
           default: {
@@ -57,14 +55,12 @@ function Batch ({
           }
           case 'successful': {
             return (
-              <>
-                <section>
-                  <h4 className={classes.title}>Batch transactions</h4>
-                  <BatchTransactionsList
-                    batchTransactionsList={batchTransactionsList.data}
-                  />
-                </section>
-              </>
+              <section>
+                <h4 className={classes.title}>Batch transactions</h4>
+                <BatchTransactionsList
+                  batchTransactionsList={batchTransactionsList.data}
+                />
+              </section>
             )
           }
           default: {
