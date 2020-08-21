@@ -11,4 +11,14 @@ function fetchBatch (batchNum) {
   }
 }
 
-export { fetchBatch }
+function fetchBatchTransactions () {
+  return (dispatch) => {
+    dispatch(batchActions.loadBatchTransactions())
+
+    return rollupApi.getBatchTransactions()
+      .then(res => dispatch(batchActions.loadBatchTransactionsSuccess(res)))
+      .catch(err => dispatch(batchActions.loadBatchTransactionsFailure(err)))
+  }
+}
+
+export { fetchBatch, fetchBatchTransactions }

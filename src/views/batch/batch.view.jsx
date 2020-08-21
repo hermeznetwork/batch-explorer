@@ -5,17 +5,21 @@ import { connect } from 'react-redux'
 import useBatchStyles from './batch.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import BatchDetails from './components/batch-details/batch-details.view'
-// import BatchTransactionsList from './components/batch-transactions-list/batch-transactions-list.view'
-import { fetchBatch } from '../../store/batch/batch.thunks'
+import BatchTransactionsList from './components/batch-transactions-list/batch-transactions-list.view'
+import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
 
 function Batch ({
   onLoadBatches,
-  batchTask
-//  batchTransactionsList
+  batchTask,
+  onLoadBatchTransactionsList,
+  batchTransactionsListTask
 }) {
   React.useEffect(() => {
     onLoadBatches()
   }, [onLoadBatches])
+  React.useEffect(() => {
+    onLoadBatchTransactionsList()
+  }, [onLoadBatchTransactionsList])
 
   const classes = useBatchStyles()
 
@@ -47,13 +51,13 @@ function Batch ({
         }
       })()}
 
-      {/* {(() => {
-        switch (batchTransactionsList.status) {
+      {(() => {
+        switch (batchTransactionsListTask.status) {
           case 'loading': {
             return <Spinner />
           }
           case 'failed': {
-            return <p>{batchTransactionsList.error}</p>
+            return <p>{batchTransactionsListTask.error}</p>
           }
           case 'successful': {
             return (
@@ -61,7 +65,7 @@ function Batch ({
                 <section>
                   <h4 className={classes.title}>Batch transactions</h4>
                   <BatchTransactionsList
-                    batchTransactionsList={batchTransactionsList.data}
+                    batchTransactionsList={batchTransactionsListTask.data}
                   />
                 </section>
               </>
@@ -71,7 +75,7 @@ function Batch ({
             return <></>
           }
         }
-      })()} */}
+      })()}
     </div>
   )
 }
@@ -86,25 +90,26 @@ Batch.propTypes = {
       })
     ),
     error: PropTypes.string
+  }),
+  batchTransactionsList: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        TxID: PropTypes.number.isRequired
+      })
+    ),
+    error: PropTypes.string
   })
-//   batchTransactionsList: PropTypes.shape({
-//     status: PropTypes.string.isRequired,
-//     data: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         TxID: PropTypes.number.isRequired
-//       })
-//     ),
-//     error: PropTypes.string
-//   })
 }
 
 const mapStateToProps = (state) => ({
-  batchTask: state.batch.batchTask
-//  batchTransactionsList: state.batch.batchTransactionsList
+  batchTask: state.batch.batchTask,
+  batchTransactionsListTask: state.batch.batchTransactionsListTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatches: () => dispatch(fetchBatch(222))
+  onLoadBatches: () => dispatch(fetchBatch(222)),
+  onLoadBatchTransactionsList: () => dispatch(fetchBatchTransactions())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Batch)

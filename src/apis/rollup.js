@@ -133,37 +133,44 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
       L1Txs: [
         {
           TxID: 101,
-          Amount: 243
+          Amount: 243,
+          Position: 1
         },
         {
           TxID: 102,
-          Amount: 116
+          Amount: 116,
+          Position: 5
         },
         {
           TxID: 103,
-          Amount: 535
+          Amount: 535,
+          Position: 9
         }
       ],
       L2Txs: [
         {
           TxID: 307,
           Amount: 540,
-          Fee: 115
+          Fee: 115,
+          Position: 2
         },
         {
           TxID: 308,
           Amount: 241,
-          Fee: 99
+          Fee: 99,
+          Position: 3
         },
         {
           TxID: 310,
           Amount: 999,
-          Fee: 90
+          Fee: 90,
+          Position: 15
         },
         {
           TxID: 311,
           Amount: 423,
-          Fee: 101
+          Fee: 101,
+          Position: 23
         }
       ]
     }

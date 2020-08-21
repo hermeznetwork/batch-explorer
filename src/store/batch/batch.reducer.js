@@ -34,6 +34,32 @@ function batchReducer (state = initialBatchState, action) {
         }
       }
     }
+    case batchActionTypes.LOAD_BATCH_TRANSACTIONS: {
+      return {
+        ...state,
+        batchTransactionsTask: {
+          status: 'loading'
+        }
+      }
+    }
+    case batchActionTypes.LOAD_BATCH_TRANSACTIONS_SUCCESS: {
+      return {
+        ...state,
+        batchTransactionsTask: {
+          status: 'successful',
+          data: action.transactions
+        }
+      }
+    }
+    case batchActionTypes.LOAD_BATCH_TRANSACTIONS_FAILURE: {
+      return {
+        ...state,
+        batchTransactionsTask: {
+          status: 'failed',
+          error: 'An error ocurred loading the batch transactions'
+        }
+      }
+    }
     default: {
       return state
     }
