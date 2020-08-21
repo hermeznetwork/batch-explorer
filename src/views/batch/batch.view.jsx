@@ -62,7 +62,7 @@ function Batch ({
               <section>
                 <h4 className={classes.title}>Batch transactions</h4>
                 <BatchTransactionsList
-                  batchTransactionsList={batchTransactionsTask.data}
+                  transactions={batchTransactionsTask.data}
                 />
               </section>
             )
@@ -105,7 +105,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatches: () => dispatch(fetchBatch(222)),
-  onLoadBatchTransactionsList: () => dispatch(fetchBatchTransactions())
+  onLoadBatchTransactionsList: () => dispatch(fetchBatchTransactions(222))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Batch)

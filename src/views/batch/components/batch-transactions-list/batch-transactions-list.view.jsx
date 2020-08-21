@@ -8,22 +8,41 @@ import useBatchTransactionsListStyles from './batch-transactions-list.styles'
 function BatchTransactionsList ({ transactions }) {
   const classes = useBatchTransactionsListStyles()
 
-  function getTransaction (transactionId) {
-    return transactions.find((transaction) => transaction.TxID === transactionId)
+  function getL1Transaction (transactionId) {
+    return transactions.L1Txs.find((transaction) => transaction.TxID === transactionId)
+  }
+  function getL2Transaction (transactionId) {
+    return transactions.L2Txs.find((transaction) => transaction.TxID === transactionId)
   }
 
   return (
     <div>
       <section>
-        {transactions.map((transaction, index) =>
+        <h4>L1 transactions</h4>
+        {transactions.L1Txs.map((transaction, index) =>
           <div
             key={transaction.TxID}
             className={clsx({ [classes.transaction]: index > 0 })}
           >
             <BatchTransaction
               transactionId={transaction.TxID}
-              amount={getTransaction(transaction.TxID).Amount}
-              fee={getTransaction(transaction.TxID).Fee}
+              amount={getL1Transaction(transaction.TxID).Amount}
+              fee={getL1Transaction(transaction.TxID).Fee}
+            />
+          </div>
+        )}
+      </section>
+      <section>
+        <h4>L2 transactions</h4>
+        {transactions.L2Txs.map((transaction, index) =>
+          <div
+            key={transaction.TxID}
+            className={clsx({ [classes.transaction]: index > 0 })}
+          >
+            <BatchTransaction
+              transactionId={transaction.TxID}
+              amount={getL2Transaction(transaction.TxID).Amount}
+              fee={getL2Transaction(transaction.TxID).Fee}
             />
           </div>
         )}

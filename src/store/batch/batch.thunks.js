@@ -11,11 +11,11 @@ function fetchBatch (batchNum) {
   }
 }
 
-function fetchBatchTransactions () {
+function fetchBatchTransactions (batchNum) {
   return (dispatch) => {
     dispatch(batchActions.loadBatchTransactions())
 
-    return rollupApi.getBatchTransactions()
+    return rollupApi.getBatchTransactions(batchNum)
       .then(res => dispatch(batchActions.loadBatchTransactionsSuccess(res)))
       .catch(err => dispatch(batchActions.loadBatchTransactionsFailure(err)))
   }
