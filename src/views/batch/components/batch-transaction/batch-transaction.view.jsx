@@ -9,7 +9,7 @@ function BatchTransaction ({ transactionId, amount, fee }) {
   return (
     <div className={classes.row}>
       <div>
-        TransactionID: {transactionId}
+        Tx ID: {transactionId}
       </div>
       <div>
         Amount: {amount}
@@ -24,7 +24,7 @@ function BatchTransaction ({ transactionId, amount, fee }) {
 BatchTransaction.propTypes = {
   transactionId: PropTypes.number.isRequired,
   amount: PropTypes.number.isRequired,
-  fee: PropTypes.number.isRequired
+  fee: PropTypes.number
 }
 
 export default BatchTransaction
