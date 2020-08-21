@@ -111,8 +111,8 @@ mock.onGet(`${baseApiUrl}/batches/${mockedBatchId}`)
     200,
     [
       {
-        BatchID: 223,
-        numberOfTransactions: 88,
+        BatchID: 222,
+        numberOfTransactions: 103,
         SlotNum: '45',
         EthTxHash: '0x0000000000000000000000000000000000000099',
         EthBlockNum: 10697921,
@@ -121,7 +121,7 @@ mock.onGet(`${baseApiUrl}/batches/${mockedBatchId}`)
         NewStateRoot: '0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553',
         CollectedFees: 5000504,
         ForgerAddr: '0x0000000000000000000000000000000000000001',
-        timeStamp: 1597856265
+        timeStamp: 1597863005
       }
     ]
   )
@@ -202,14 +202,14 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches (batchnum) {
-  const params = {
-    ...(batchnum ? { batchnum } : {})
-  }
-  const response = await axios.get(
-    `${baseApiUrl}/batches`,
-    { params }
-  )
+async function getBatches () {
+  const response = await axios.get(`${baseApiUrl}/batches`)
+
+  return response.data
+}
+
+async function getBatch (batchnum) {
+  const response = await axios.get(`${baseApiUrl}/batches/${batchnum}`)
 
   return response.data
 }
@@ -220,4 +220,4 @@ async function getBatchTransactions (batchnum) {
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatchTransactions }
+export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatch, getBatchTransactions }

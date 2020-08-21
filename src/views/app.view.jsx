@@ -4,11 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Layout from './shared/layout/layout.view'
 import routes from '../routing/routes'
 
-function App ({ onLoadBatches }) {
-  React.useEffect(() => {
-    onLoadBatches()
-  }, [onLoadBatches])
-
+function App () {
   return (
     <BrowserRouter>
       <Route>

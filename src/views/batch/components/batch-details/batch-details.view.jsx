@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import useBatchDetailsStyles from './batch-details.styles'
 
@@ -9,44 +8,40 @@ function BatchDetails ({ batch }) {
   return (
     <div className={classes.row}>
       <div>
-            Batch: {batch.BatchID}
+            Batch: {batch[0].BatchID}
       </div>
       <div>
-            Number of transactions: {batch.numberOfTransactions}
+            Number of transactions: {batch[0].numberOfTransactions}
       </div>
       <div>
-            Slot: {batch.SlotNum}
+            Slot: {batch[0].SlotNum}
       </div>
       <div>
-            EthTxHash: {batch.EthTxHash}
+            EthTxHash: {batch[0].EthTxHash}
       </div>
       <div>
-            EthBlockNum: {batch.EthBlockNum}
+            EthBlockNum: {batch[0].EthBlockNum}
       </div>
       <div>
-            ExitRoot: {batch.ExitRoot}
+            ExitRoot: {batch[0].ExitRoot}
       </div>
       <div>
-            OldStateRoot: {batch.OldStateRoot}
+            OldStateRoot: {batch[0].OldStateRoot}
       </div>
       <div>
-            NewStateRoot: {batch.NewStateRoot}
+            NewStateRoot: {batch[0].NewStateRoot}
       </div>
       <div>
-            CollectedFees: {batch.CollectedFees}
+            CollectedFees: {batch[0].CollectedFees}
       </div>
       <div>
-            ForgerAddr: {batch.ForgerAddr}
+            ForgerAddr: {batch[0].ForgerAddr}
       </div>
       <div>
-            timeStamp: {batch.timeStamp}
+            timeStamp: {batch[0].timeStamp}
       </div>
     </div>
   )
-}
-
-BatchDetails.propTypes = {
-  batch: PropTypes.array.isRequired
 }
 
 export default BatchDetails

@@ -5,7 +5,7 @@ function fetchBatch (batchNum) {
   return (dispatch) => {
     dispatch(batchActions.loadBatch())
 
-    return rollupApi.getBatches(batchNum)
+    return rollupApi.getBatch(batchNum)
       .then(res => dispatch(batchActions.loadBatchSuccess(res)))
       .catch(err => dispatch(batchActions.loadBatchFailure(err)))
   }
