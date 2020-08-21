@@ -3,6 +3,9 @@ import { batchActionTypes } from './batch.actions'
 const initialBatchState = {
   batchTask: {
     status: 'pending'
+  },
+  batchTransactionsTask: {
+    status: 'pending'
   }
 }
 

@@ -12,7 +12,7 @@ function Batch ({
   onLoadBatches,
   batchTask,
   onLoadBatchTransactionsList,
-  batchTransactionsListTask
+  batchTransactionsTask
 }) {
   React.useEffect(() => {
     onLoadBatches()
@@ -35,14 +35,12 @@ function Batch ({
           }
           case 'successful': {
             return (
-              <>
-                <section>
-                  <h4 className={classes.title}>Batch</h4>
-                  <BatchDetails
-                    batch={batchTask.data}
-                  />
-                </section>
-              </>
+              <section>
+                <h4 className={classes.title}>Batch</h4>
+                <BatchDetails
+                  batch={batchTask.data}
+                />
+              </section>
             )
           }
           default: {
@@ -52,23 +50,21 @@ function Batch ({
       })()}
 
       {(() => {
-        switch (batchTransactionsListTask.status) {
+        switch (batchTransactionsTask.status) {
           case 'loading': {
             return <Spinner />
           }
           case 'failed': {
-            return <p>{batchTransactionsListTask.error}</p>
+            return <p>{batchTransactionsTask.error}</p>
           }
           case 'successful': {
             return (
-              <>
-                <section>
-                  <h4 className={classes.title}>Batch transactions</h4>
-                  <BatchTransactionsList
-                    batchTransactionsList={batchTransactionsListTask.data}
-                  />
-                </section>
-              </>
+              <section>
+                <h4 className={classes.title}>Batch transactions</h4>
+                <BatchTransactionsList
+                  batchTransactionsList={batchTransactionsTask.data}
+                />
+              </section>
             )
           }
           default: {
@@ -104,7 +100,7 @@ Batch.propTypes = {
 
 const mapStateToProps = (state) => ({
   batchTask: state.batch.batchTask,
-  batchTransactionsListTask: state.batch.batchTransactionsListTask
+  batchTransactionsTask: state.batch.batchTransactionsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
