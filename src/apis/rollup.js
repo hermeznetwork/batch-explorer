@@ -113,6 +113,13 @@ mock.onGet(`${baseApiUrl}/batches/${mockedBatchId}`)
       {
         BatchID: 223,
         numberOfTransactions: 88,
+        SlotNum: '45',
+        EthTxHash: '0x0000000000000000000000000000000000000099',
+        EthBlockNum: 10697921,
+        ExitRoot: '0xr4e4t94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c67yt8',
+        OldStateRoot: '0x3ew3e94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca124asfee45',
+        NewStateRoot: '0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553',
+        CollectedFees: 5000504,
         ForgerAddr: '0x0000000000000000000000000000000000000001',
         timeStamp: 1597856265
       }
@@ -126,42 +133,35 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
       L1Txs: [
         {
           TxID: 101,
-          TokenID: 2,
           Amount: 243
         },
         {
           TxID: 102,
-          TokenID: 2,
           Amount: 116
         },
         {
           TxID: 103,
-          TokenID: 1,
           Amount: 535
         }
       ],
       L2Txs: [
         {
           TxID: 307,
-          BatchNum: 222,
           Amount: 540,
           Fee: 115
         },
         {
           TxID: 308,
-          BatchNum: 221,
           Amount: 241,
           Fee: 99
         },
         {
           TxID: 310,
-          BatchNum: 221,
           Amount: 999,
           Fee: 90
         },
         {
           TxID: 311,
-          BatchNum: 220,
           Amount: 423,
           Fee: 101
         }
