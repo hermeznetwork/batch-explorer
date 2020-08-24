@@ -9,14 +9,14 @@ import BatchTransactionsList from './components/batch-transactions-list/batch-tr
 import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
 
 function Batch ({
-  onLoadBatches,
+  onLoadBatch,
   batchTask,
   onLoadBatchTransactionsList,
   batchTransactionsTask
 }) {
   React.useEffect(() => {
-    onLoadBatches()
-  }, [onLoadBatches])
+    onLoadBatch()
+  }, [onLoadBatch])
   React.useEffect(() => {
     onLoadBatchTransactionsList()
   }, [onLoadBatchTransactionsList])
@@ -77,7 +77,7 @@ function Batch ({
 }
 
 Batch.propTypes = {
-  onLoadBatches: PropTypes.func.isRequired,
+  onLoadBatch: PropTypes.func.isRequired,
   batchTask: PropTypes.shape({
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
@@ -104,7 +104,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatches: () => dispatch(fetchBatch(222)),
+  onLoadBatch: () => dispatch(fetchBatch(222)),
   onLoadBatchTransactionsList: () => dispatch(fetchBatchTransactions(222))
 })
 
