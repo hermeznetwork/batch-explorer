@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import useCoordinatorStyles from './coordinator.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import CoordinatorDetails from './components/coordinator-details/coordinator-details.view'
-import BatchesList from '../home/components/batches-list/batches-list.view'
+import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchBatches, fetchCoordinator } from '../../store/coordinator/coordinator.thunks'
 
 function Coordinator ({
