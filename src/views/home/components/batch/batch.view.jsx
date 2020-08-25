@@ -4,8 +4,16 @@ import { Link } from 'react-router-dom'
 
 import useBatchStyles from './batch.styles'
 
-function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp }) {
+function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
   const classes = useBatchStyles()
+
+  function hideForgerAddress (hideForgerAddr) {
+    if (hideForgerAddr) {
+      return <></>
+    } else {
+      return <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
+    }
+  }
 
   return (
     <div className={classes.row}>
@@ -18,9 +26,7 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp }) {
       <div>
         Txs: {batchTxNum}
       </div>
-      <Link to={`/coordinator/${batchForgerAddr}`}>
-        Coordinator: {batchForgerAddr}
-      </Link>
+      {hideForgerAddress(hideForgerAddr)}
     </div>
   )
 }
@@ -28,8 +34,9 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp }) {
 Batch.propTypes = {
   batchId: PropTypes.number.isRequired,
   batchTxNum: PropTypes.number.isRequired,
-  batchForgerAddr: PropTypes.string.isRequired,
-  batchTimeStamp: PropTypes.number.isRequired
+  batchForgerAddr: PropTypes.string,
+  batchTimeStamp: PropTypes.number.isRequired,
+  hideForgerAddr: PropTypes.bool
 }
 
 export default Batch

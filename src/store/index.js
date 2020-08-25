@@ -4,11 +4,13 @@ import thunk from 'redux-thunk'
 import globalReducer from './global/global.reducer'
 import homeReducer from './home/home.reducer'
 import batchReducer from './batch/batch.reducer'
+import coordinatorReducer from './coordinator/coordinator.reducer'
 
 const rootReducer = combineReducers({
   global: globalReducer,
   home: homeReducer,
-  batch: batchReducer
+  batch: batchReducer,
+  coordinator: coordinatorReducer
 })
 
 const middlewares = [thunk]
