@@ -8,7 +8,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/batch',
+    path: '/batch/:batchId',
     label: 'Batch',
     component: Batch
   }

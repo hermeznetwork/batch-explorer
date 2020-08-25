@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import useBatchStyles from './batch.styles'
 
@@ -8,17 +9,17 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp }) {
 
   return (
     <div className={classes.row}>
+      <Link to={`/batch/${batchId}`}>
+        Batch: {batchId}
+      </Link>
       <div>
-            Batch: {batchId}
+        Age: {batchTimeStamp}
       </div>
       <div>
-            Age: {batchTimeStamp}
+        Txs: {batchTxNum}
       </div>
       <div>
-            Txs: {batchTxNum}
-      </div>
-      <div>
-            Coordinator: {batchForgerAddr}
+        Coordinator: {batchForgerAddr}
       </div>
     </div>
   )
