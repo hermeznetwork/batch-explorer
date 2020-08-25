@@ -215,14 +215,14 @@ async function getBatches () {
   return response.data
 }
 
-async function getBatch (batchnum) {
-  const response = await axios.get(`${baseApiUrl}/batches/${batchnum}`)
+async function getBatch (batchId) {
+  const response = await axios.get(`${baseApiUrl}/batches/${batchId}`)
 
   return response.data
 }
 
-async function getBatchTransactions (batchnum) {
-  const response = await axios.get(`${baseApiUrl}/batch/${batchnum}/txs`)
+async function getBatchTransactions (batchId) {
+  const response = await axios.get(`${baseApiUrl}/batch/${batchId}/txs`)
 
   return response.data
 }

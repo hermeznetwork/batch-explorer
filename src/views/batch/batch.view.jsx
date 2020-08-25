@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import useBatchStyles from './batch.styles'
@@ -14,14 +15,13 @@ function Batch ({
   onLoadBatchTransactionsList,
   batchTransactionsTask
 }) {
-  React.useEffect(() => {
-    onLoadBatch()
-  }, [onLoadBatch])
-  React.useEffect(() => {
-    onLoadBatchTransactionsList()
-  }, [onLoadBatchTransactionsList])
-
   const classes = useBatchStyles()
+  const { batchId } = useParams()
+
+  React.useEffect(() => {
+    onLoadBatch(batchId)
+    onLoadBatchTransactionsList(batchId)
+  }, [batchId, onLoadBatch, onLoadBatchTransactionsList])
 
   return (
     <div>
@@ -104,8 +104,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatch: () => dispatch(fetchBatch(222)),
-  onLoadBatchTransactionsList: () => dispatch(fetchBatchTransactions(222))
+  onLoadBatch: (batchId) => dispatch(fetchBatch(batchId)),
+  onLoadBatchTransactionsList: (batchId) => dispatch(fetchBatchTransactions(batchId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Batch)
