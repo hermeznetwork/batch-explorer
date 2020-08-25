@@ -18,9 +18,9 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp }) {
       <div>
         Txs: {batchTxNum}
       </div>
-      <div>
+      <Link to={`/coordinator/${batchForgerAddr}`}>
         Coordinator: {batchForgerAddr}
-      </div>
+      </Link>
     </div>
   )
 }
