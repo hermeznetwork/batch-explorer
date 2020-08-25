@@ -94,7 +94,7 @@ Coordinator.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        coordinatorID: PropTypes.number.isRequired
+        Forger: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string
