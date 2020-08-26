@@ -83,7 +83,7 @@ mock.onGet(`${baseApiUrl}/batches`)
         BatchID: 223,
         numberOfTransactions: 88,
         ForgerAddr: '0x0000000000000000000000000000000000000001',
-        timeStamp: 1597856265
+        timeStamp: 1598436610
       },
       {
         BatchID: 222,
@@ -101,7 +101,7 @@ mock.onGet(`${baseApiUrl}/batches`)
         BatchID: 220,
         numberOfTransactions: 77,
         ForgerAddr: '0x0000000000000000000000000000000000000004',
-        timeStamp: 1597856212144
+        timeStamp: 1546300800
       }
     ]
   )
