@@ -255,6 +255,7 @@ async function getTokens () {
 }
 
 async function getBatches (coordinatorId) {
+  // TODO: Once Aranau updates API this should be hanged. Elias knows the details.
   const params = coordinatorId ? '/' + coordinatorId : ''
 
   const response = await axios.get(`${baseApiUrl}/batches${params}`)
