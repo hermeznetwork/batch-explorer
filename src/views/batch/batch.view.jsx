@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import useBatchStyles from './batch.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import BatchDetails from './components/batch-details/batch-details.view'
-import BatchTransactionsList from '../shared/batch-transactions-list/batch-transactions-list.view'
+import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
 
 function Batch ({
@@ -61,7 +61,7 @@ function Batch ({
             return (
               <section>
                 <h4 className={classes.title}>Batch transactions</h4>
-                <BatchTransactionsList
+                <TransactionsList
                   transactions={batchTransactionsTask.data}
                 />
               </section>

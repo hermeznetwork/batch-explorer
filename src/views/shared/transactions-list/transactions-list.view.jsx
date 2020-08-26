@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
-import BatchTransaction from '../batch-transaction/batch-transaction.view'
-import useBatchTransactionsListStyles from './batch-transactions-list.styles'
+import Transaction from '../transaction/transaction.view'
+import useTransactionsListStyles from './transactions-list.styles'
 
-function BatchTransactionsList ({ transactions }) {
-  const classes = useBatchTransactionsListStyles()
+function TransactionsList ({ transactions }) {
+  const classes = useTransactionsListStyles()
 
   function getTransaction (transactionId) {
     return transactions.find((transaction) => transaction.TxID === transactionId)
@@ -20,7 +20,7 @@ function BatchTransactionsList ({ transactions }) {
             key={transaction.TxID}
             className={clsx({ [classes.transaction]: index > 0 })}
           >
-            <BatchTransaction
+            <Transaction
               transactionId={transaction.TxID}
               amount={getTransaction(transaction.TxID).Amount}
               fee={getTransaction(transaction.TxID).Fee}
@@ -32,7 +32,7 @@ function BatchTransactionsList ({ transactions }) {
   )
 }
 
-BatchTransactionsList.propTypes = {
+TransactionsList.propTypes = {
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
       TxID: PropTypes.number.isRequired,
@@ -42,4 +42,4 @@ BatchTransactionsList.propTypes = {
   )
 }
 
-export default BatchTransactionsList
+export default TransactionsList
