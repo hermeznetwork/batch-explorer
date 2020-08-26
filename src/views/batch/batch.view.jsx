@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import useBatchStyles from './batch.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import BatchDetails from './components/batch-details/batch-details.view'
-import BatchTransactionsList from './components/batch-transactions-list/batch-transactions-list.view'
+import BatchTransactionsList from '../shared/batch-transactions-list/batch-transactions-list.view'
 import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
 
 function Batch ({
