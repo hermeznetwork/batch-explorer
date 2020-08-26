@@ -7,14 +7,6 @@ import useBatchStyles from './batch.styles'
 function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
   const classes = useBatchStyles()
 
-  function hideForgerAddress (hideForgerAddr) {
-    if (hideForgerAddr) {
-      return <></>
-    } else {
-      return <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
-    }
-  }
-
   return (
     <div className={classes.row}>
       <Link to={`/batch/${batchId}`}>
@@ -26,7 +18,11 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForg
       <div>
         Txs: {batchTxNum}
       </div>
-      {hideForgerAddress(hideForgerAddr)}
+      {
+        hideForgerAddr
+          ? <></>
+          : <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
+      }
     </div>
   )
 }
