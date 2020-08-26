@@ -16,7 +16,7 @@ function loadBatch () {
 function loadBatchSuccess (batch) {
   return {
     type: batchActionTypes.LOAD_BATCH_SUCCESS,
-    batch: batch
+    batch
   }
 }
 
@@ -35,7 +35,7 @@ function loadBatchTransactions () {
 function loadBatchTransactionsSuccess (transactions) {
   return {
     type: batchActionTypes.LOAD_BATCH_TRANSACTIONS_SUCCESS,
-    transactions: transactions
+    transactions
   }
 }
 

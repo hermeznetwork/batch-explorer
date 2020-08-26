@@ -8,7 +8,7 @@ const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const mockedBatchId = 222
 const mockedCoordinatorId = '0x0000000000000000000000000000000000000002'
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}`)
+mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
   .reply(
     200,
     [
@@ -20,7 +20,7 @@ mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}`)
     ]
   )
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/${mockedTokenId}`)
+mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/${mockedTokenId}`)
   .reply(
     200,
     {
@@ -30,7 +30,7 @@ mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/${mockedTokenId}`)
     }
   )
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/txs/history`)
+mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
   .reply(
     200,
     [
@@ -225,13 +225,13 @@ mock.onAny()
   .passThrough()
 
 async function getAccounts (ethereumAddress) {
-  const response = await axios.get(`${baseApiUrl}/account/${ethereumAddress}`)
+  const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}`)
 
   return response.data
 }
 
 async function getAccount (ethereumAddress, tokenId) {
-  const response = await axios.get(`${baseApiUrl}/account/${ethereumAddress}/${tokenId}`)
+  const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}/${tokenId}`)
 
   return response.data
 }
@@ -241,7 +241,7 @@ async function getTransactions (ethereumAddress, tokenId) {
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    `${baseApiUrl}/account/${ethereumAddress}/txs/history`,
+    `${baseApiUrl}/accounts/${ethereumAddress}/txs`,
     { params }
   )
 
