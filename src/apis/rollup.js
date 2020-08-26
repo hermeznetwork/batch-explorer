@@ -6,6 +6,7 @@ const mockedEthereumAddress = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 const mockedTokenId = 0
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const mockedBatchId = 222
+const mockedCoordinatorId = '0x0000000000000000000000000000000000000002'
 
 mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}`)
   .reply(
@@ -106,6 +107,37 @@ mock.onGet(`${baseApiUrl}/batches`)
     ]
   )
 
+mock.onGet(`${baseApiUrl}/batches/${mockedCoordinatorId}`)
+  .reply(
+    200,
+    [
+      {
+        BatchID: 222,
+        numberOfTransactions: 88,
+        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        timeStamp: 1597856265
+      },
+      {
+        BatchID: 191,
+        numberOfTransactions: 103,
+        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        timeStamp: 1597863005
+      },
+      {
+        BatchID: 122,
+        numberOfTransactions: 23,
+        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        timeStamp: 1597855841
+      },
+      {
+        BatchID: 90,
+        numberOfTransactions: 77,
+        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        timeStamp: 1597856212144
+      }
+    ]
+  )
+
 mock.onGet(`${baseApiUrl}/batches/${mockedBatchId}`)
   .reply(
     200,
@@ -176,6 +208,19 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
     }
   )
 
+mock.onGet(`${baseApiUrl}/coordinators/${mockedCoordinatorId}`)
+  .reply(
+    200,
+    [
+      {
+        Forger: '0x0000000000000000000000000000000000000002',
+        Beneficiary: '0x000000000000000000000000000000aaaaa11111',
+        Withdraw: '0x0000000000000000000000000000002222222222',
+        URL: 'https://github.com/hermeznetwork/idocs/pull/164/files'
+      }
+    ]
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -209,8 +254,11 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches () {
-  const response = await axios.get(`${baseApiUrl}/batches`)
+async function getBatches (coordinatorId) {
+  // TODO: Once Aranau updates API this should be hanged. Elias knows the details.
+  const params = coordinatorId ? '/' + coordinatorId : ''
+
+  const response = await axios.get(`${baseApiUrl}/batches${params}`)
 
   return response.data
 }
@@ -227,4 +275,19 @@ async function getBatchTransactions (batchId) {
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatch, getBatchTransactions }
+async function getCoordinator (coordinatorId) {
+  const response = await axios.get(`${baseApiUrl}/coordinators/${coordinatorId}`)
+
+  return response.data
+}
+
+export {
+  getAccounts,
+  getAccount,
+  getTransactions,
+  getTokens,
+  getBatches,
+  getBatch,
+  getBatchTransactions,
+  getCoordinator
+}

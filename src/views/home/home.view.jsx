@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import useHomeStyles from './home.styles'
 import Spinner from '../shared/spinner/spinner.view'
-import BatchesList from './components/batches-list/batches-list.view'
+import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchBatches } from '../../store/home/home.thunks'
 
 function Home ({
