@@ -18,7 +18,7 @@ const routes = [
     component: Coordinator
   },
   {
-    path: '/user-account/',
+    path: '/user-account/:ethereumAddress',
     label: 'TEST USER ACCOUNT TEST',
     component: UserAccount
   }
