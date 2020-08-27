@@ -37,32 +37,6 @@ function globalReducer (state = initialGlobalState, action) {
         }
       }
     }
-    case globalActionTypes.LOAD_BATCHES: {
-      return {
-        ...state,
-        batchesTask: {
-          status: 'loading'
-        }
-      }
-    }
-    case globalActionTypes.LOAD_BATCHES_SUCCESS: {
-      return {
-        ...state,
-        batchesTask: {
-          status: 'successful',
-          data: action.batches
-        }
-      }
-    }
-    case globalActionTypes.LOAD_BATCHES_FAILURE: {
-      return {
-        ...state,
-        batchesTask: {
-          status: 'failed',
-          error: 'An error ocurred loading the batches'
-        }
-      }
-    }
     default: {
       return state
     }
