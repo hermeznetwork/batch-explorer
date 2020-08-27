@@ -35,14 +35,14 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
     200,
     [
       {
-        ID: 'b89eaac7e61417341b710b727768294d0e6a277b',
+        TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
         FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         FromIdx: 10,
         ToIdx: 20,
         Amount: 44.12,
         Nonce: 0,
-        FeeSelector: 15,
+        Fee: 15,
         Type: 'Transfer',
         TokenID: 2
       }
