@@ -18,6 +18,20 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
         Balance: 2.38,
         Nonce: 112,
         PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b0dd84'
+      },
+      {
+        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        TokenID: 1,
+        Balance: 102.8,
+        Nonce: 414,
+        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b11111'
+      },
+      {
+        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        TokenID: 2,
+        Balance: 320.19,
+        Nonce: 233,
+        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b22222'
       }
     ]
   )
