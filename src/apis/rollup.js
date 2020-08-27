@@ -15,7 +15,9 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
       {
         EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         TokenID: 0,
-        Balance: 2.38
+        Balance: 2.38,
+        Nonce: 112,
+        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b0dd84'
       }
     ]
   )

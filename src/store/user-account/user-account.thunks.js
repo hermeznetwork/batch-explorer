@@ -5,7 +5,7 @@ function fetchAccount (ethereumAddress) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadAccount())
 
-    return rollupApi.getAccount(ethereumAddress)
+    return rollupApi.getAccounts(ethereumAddress)
       .then(res => dispatch(userAccountActionTypes.loadAccountSuccess(res)))
       .catch(err => dispatch(userAccountActionTypes.loadAccountFailure(err)))
   }

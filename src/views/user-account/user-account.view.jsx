@@ -85,7 +85,6 @@ function UserAccount ({
 }
 
 UserAccount.propTypes = {
-  onLoadAccount: PropTypes.func.isRequired,
   accountTask: PropTypes.shape({
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
