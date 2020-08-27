@@ -15,21 +15,21 @@ import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import AccountDetails from './components/account-details/account-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
-import { fetchAccount, fetchAccountTransactions } from '../../store/batch/batch.thunks'
+import { fetchAccount, fetchTransactions } from '../../store/user-account/user-account.thunks'
 
 function UserAccount ({
   onLoadAccount,
   accountTask,
-  onLoadAccountTransactionsList,
-  accountTransactionsTask
+  onLoadTransactions,
+  transactionsTask
 }) {
   const classes = useUserAccountStyles()
-  const { accountId } = useParams()
+  const { ethereumAddress } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(accountId)
-    onLoadAccountTransactionsList(accountId)
-  }, [accountId, onLoadAccount, onLoadAccountTransactionsList])
+    onLoadAccount(ethereumAddress)
+    onLoadTransactions(ethereumAddress)
+  }, [ethereumAddress, onLoadAccount, onLoadTransactions])
 
   return (
     <div>
@@ -58,19 +58,19 @@ function UserAccount ({
       })()}
 
       {(() => {
-        switch (accountTransactionsTask.status) {
+        switch (transactionsTask.status) {
           case 'loading': {
             return <Spinner />
           }
           case 'failed': {
-            return <p>{accountTransactionsTask.error}</p>
+            return <p>{transactionsTask.error}</p>
           }
           case 'successful': {
             return (
               <section>
                 <h4 className={classes.title}>Account transactions</h4>
                 <TransactionsList
-                  transactions={accountTransactionsTask.data}
+                  transactions={transactionsTask.data}
                 />
               </section>
             )
@@ -90,12 +90,12 @@ UserAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        AccountID: PropTypes.number.isRequired
+        EthAddr: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string
   }),
-  accountTransactionsList: PropTypes.shape({
+  transactionsList: PropTypes.shape({
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -107,13 +107,13 @@ UserAccount.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  accountTask: state.batch.accountTask,
-  accountTransactionsTask: state.batch.accountTransactionsTask
+  accountTask: state.userAccount.accountTask,
+  transactionsTask: state.userAccount.transactionsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (accountId) => dispatch(fetchAccount(accountId)),
-  onLoadAccountTransactionsList: (accountId) => dispatch(fetchAccountTransactions(accountId))
+  onLoadAccount: (ethereumAddress) => dispatch(fetchAccount(ethereumAddress)),
+  onLoadTransactions: (ethereumAddress) => dispatch(fetchTransactions(ethereumAddress))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)
