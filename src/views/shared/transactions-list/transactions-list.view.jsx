@@ -35,7 +35,7 @@ function TransactionsList ({ transactions }) {
 TransactionsList.propTypes = {
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
-      TxID: PropTypes.number.isRequired,
+      TxID: PropTypes.string.isRequired,
       Amount: PropTypes.number.isRequired,
       Fee: PropTypes.number
     })

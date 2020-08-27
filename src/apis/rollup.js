@@ -61,6 +61,30 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
         Fee: 15,
         Type: 'Transfer',
         TokenID: 2
+      },
+      {
+        TxID: 'b89eaac7e61417341b710b727768294d0e600000',
+        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromIdx: 10,
+        ToIdx: 20,
+        Amount: 101.22,
+        Nonce: 0,
+        Fee: 4,
+        Type: 'Transfer',
+        TokenID: 1
+      },
+      {
+        TxID: 'b89eaac7e61417341b710b727768294d0e611111',
+        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromIdx: 10,
+        ToIdx: 20,
+        Amount: 981.79,
+        Nonce: 0,
+        Fee: 90,
+        Type: 'Transfer',
+        TokenID: 1
       }
     ]
   )
@@ -180,42 +204,42 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
     {
       L1Txs: [
         {
-          TxID: 101,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
           Amount: 243,
           Position: 1
         },
         {
-          TxID: 102,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2771',
           Amount: 116,
           Position: 5
         },
         {
-          TxID: 103,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2772',
           Amount: 535,
           Position: 9
         }
       ],
       L2Txs: [
         {
-          TxID: 307,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2773',
           Amount: 540,
           Fee: 115,
           Position: 2
         },
         {
-          TxID: 308,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2774',
           Amount: 241,
           Fee: 99,
           Position: 3
         },
         {
-          TxID: 310,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2775',
           Amount: 999,
           Fee: 90,
           Position: 15
         },
         {
-          TxID: 311,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2776',
           Amount: 423,
           Fee: 101,
           Position: 23

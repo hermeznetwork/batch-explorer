@@ -22,7 +22,7 @@ function Transaction ({ transactionId, amount, fee }) {
 }
 
 Transaction.propTypes = {
-  transactionId: PropTypes.number.isRequired,
+  transactionId: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
   fee: PropTypes.number
 }

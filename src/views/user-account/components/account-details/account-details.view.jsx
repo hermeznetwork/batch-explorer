@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import useAccountDetailsStyles from './account-details.styles'
 
@@ -17,10 +18,10 @@ function AccountDetails ({ account }) {
             Nonce: {account[0].Nonce}
       </div>
       <div>
-            Balance: {account[0].Balance}
+            Balance: TODO once we have API to do conversions
       </div>
       <div>
-            TokenID: {account[0].TokenID}
+            Token accounts: <Link to={`/token-accounts/${account[0].EthAddr}`}>{account.length}</Link>
       </div>
     </div>
   )

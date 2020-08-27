@@ -1,11 +1,3 @@
-// dva dela
-// Account
-// transactions ce da se reuse iz batachtransactions (tako da se batchtransactions prebacuje u shared)
-
-// API
-// transactions I can get them from here https://idocs.hermez.io/#/spec/architecture/api-server?id=get-accountsethaddrtxs
-// and for accounts from here https://idocs.hermez.io/#/spec/architecture/api-server?id=get-accountsethaddr
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
@@ -89,7 +81,7 @@ UserAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        EthAddr: PropTypes.number.isRequired
+        EthAddr: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string

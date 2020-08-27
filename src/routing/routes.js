@@ -19,7 +19,6 @@ const routes = [
   },
   {
     path: '/user-account/:ethereumAddress',
-    label: 'TEST USER ACCOUNT TEST',
     component: UserAccount
   }
 ]
