@@ -36,7 +36,7 @@ function UserAccount ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Account</h4>
+                <h4 className={classes.title}>User address</h4>
                 <AccountDetails
                   account={accountTask.data}
                 />
@@ -60,7 +60,7 @@ function UserAccount ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Account transactions</h4>
+                <h4 className={classes.title}>Transactions</h4>
                 <TransactionsList
                   transactions={transactionsTask.data}
                 />

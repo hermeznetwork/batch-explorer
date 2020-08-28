@@ -9,19 +9,16 @@ function AccountDetails ({ account }) {
   return (
     <div className={classes.row}>
       <div>
-            Baby JubJub: {account[0].PublicKey}
+            Hermez Address: {account[0].PublicKey}
       </div>
       <div>
-            Eth address: {account[0].EthAddr}
-      </div>
-      <div>
-            Nonce: {account[0].Nonce}
-      </div>
-      <div>
-            Balance: TODO once we have API to do conversions
+            Ethereum address: {account[0].EthAddr}
       </div>
       <div>
             Token accounts: <Link to={`/token-accounts/${account[0].EthAddr}`}>{account.length}</Link>
+      </div>
+      <div>
+            Nonce: {account[0].Nonce}
       </div>
     </div>
   )
