@@ -3,9 +3,6 @@ import { globalActionTypes } from './global.actions'
 const initialGlobalState = {
   tokensTask: {
     status: 'pending'
-  },
-  batchesTask: {
-    status: 'pending'
   }
 }
 
