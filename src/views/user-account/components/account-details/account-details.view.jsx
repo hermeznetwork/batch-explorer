@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import useAccountDetailsStyles from './account-details.styles'
 
@@ -15,7 +14,7 @@ function AccountDetails ({ account }) {
             Ethereum address: {account[0].EthAddr}
       </div>
       <div>
-            Token accounts: <Link to={`/token-accounts/${account[0].EthAddr}`}>{account.length}</Link>
+            Token accounts: {account.length}
       </div>
       <div>
             Nonce: {account[0].Nonce}
