@@ -13,7 +13,7 @@ function loadBatches () {
 function loadBatchesSuccess (batches) {
   return {
     type: homeActionTypes.LOAD_BATCHES_SUCCESS,
-    batches: batches
+    batches
   }
 }
 

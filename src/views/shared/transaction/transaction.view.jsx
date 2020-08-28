@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import useBatchTransactionStyles from './batch-transaction.styles'
+import useTransactionStyles from './transaction.styles'
 
-function BatchTransaction ({ transactionId, amount, fee }) {
-  const classes = useBatchTransactionStyles()
+function Transaction ({ transactionId, amount, fee }) {
+  const classes = useTransactionStyles()
 
   return (
     <div className={classes.row}>
@@ -21,10 +21,10 @@ function BatchTransaction ({ transactionId, amount, fee }) {
   )
 }
 
-BatchTransaction.propTypes = {
-  transactionId: PropTypes.number.isRequired,
+Transaction.propTypes = {
+  transactionId: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
   fee: PropTypes.number
 }
 
-export default BatchTransaction
+export default Transaction

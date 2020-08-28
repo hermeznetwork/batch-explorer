@@ -3,42 +3,42 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import useBatchStyles from './batch.styles'
+import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
-import BatchDetails from './components/batch-details/batch-details.view'
+import AccountDetails from './components/account-details/account-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
-import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
+import { fetchAccount, fetchTransactions } from '../../store/user-account/user-account.thunks'
 
-function Batch ({
-  onLoadBatch,
-  batchTask,
-  onLoadBatchTransactionsList,
-  batchTransactionsTask
+function UserAccount ({
+  onLoadAccount,
+  accountTask,
+  onLoadTransactions,
+  transactionsTask
 }) {
-  const classes = useBatchStyles()
-  const { batchId } = useParams()
+  const classes = useUserAccountStyles()
+  const { ethereumAddress } = useParams()
 
   React.useEffect(() => {
-    onLoadBatch(batchId)
-    onLoadBatchTransactionsList(batchId)
-  }, [batchId, onLoadBatch, onLoadBatchTransactionsList])
+    onLoadAccount(ethereumAddress)
+    onLoadTransactions(ethereumAddress)
+  }, [ethereumAddress, onLoadAccount, onLoadTransactions])
 
   return (
     <div>
       {(() => {
-        switch (batchTask.status) {
+        switch (accountTask.status) {
           case 'loading': {
             return <Spinner />
           }
           case 'failed': {
-            return <p>{batchTask.error}</p>
+            return <p>{accountTask.error}</p>
           }
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Batch</h4>
-                <BatchDetails
-                  batch={batchTask.data}
+                <h4 className={classes.title}>Account</h4>
+                <AccountDetails
+                  account={accountTask.data}
                 />
               </section>
             )
@@ -50,19 +50,19 @@ function Batch ({
       })()}
 
       {(() => {
-        switch (batchTransactionsTask.status) {
+        switch (transactionsTask.status) {
           case 'loading': {
             return <Spinner />
           }
           case 'failed': {
-            return <p>{batchTransactionsTask.error}</p>
+            return <p>{transactionsTask.error}</p>
           }
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Batch transactions</h4>
+                <h4 className={classes.title}>Account transactions</h4>
                 <TransactionsList
-                  transactions={batchTransactionsTask.data}
+                  transactions={transactionsTask.data}
                 />
               </section>
             )
@@ -76,18 +76,17 @@ function Batch ({
   )
 }
 
-Batch.propTypes = {
-  onLoadBatch: PropTypes.func.isRequired,
-  batchTask: PropTypes.shape({
+UserAccount.propTypes = {
+  accountTask: PropTypes.shape({
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        BatchID: PropTypes.number.isRequired
+        EthAddr: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string
   }),
-  batchTransactionsList: PropTypes.shape({
+  transactionsList: PropTypes.shape({
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -99,13 +98,13 @@ Batch.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  batchTask: state.batch.batchTask,
-  batchTransactionsTask: state.batch.batchTransactionsTask
+  accountTask: state.userAccount.accountTask,
+  transactionsTask: state.userAccount.transactionsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatch: (batchId) => dispatch(fetchBatch(batchId)),
-  onLoadBatchTransactionsList: (batchId) => dispatch(fetchBatchTransactions(batchId))
+  onLoadAccount: (ethereumAddress) => dispatch(fetchAccount(ethereumAddress)),
+  onLoadTransactions: (ethereumAddress) => dispatch(fetchTransactions(ethereumAddress))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Batch)
+export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

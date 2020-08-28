@@ -16,7 +16,7 @@ function loadCoordinator () {
 function loadCoordinatorSuccess (coordinator) {
   return {
     type: coordinatorActionTypes.LOAD_COORDINATOR_SUCCESS,
-    coordinator: coordinator
+    coordinator
   }
 }
 
@@ -35,7 +35,7 @@ function loadBatches () {
 function loadBatchesSuccess (batches) {
   return {
     type: coordinatorActionTypes.LOAD_BATCHES_SUCCESS,
-    batches: batches
+    batches
   }
 }
 

@@ -8,19 +8,35 @@ const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const mockedBatchId = 222
 const mockedCoordinatorId = '0x0000000000000000000000000000000000000002'
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}`)
+mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
   .reply(
     200,
     [
       {
         EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         TokenID: 0,
-        Balance: 2.38
+        Balance: 2.38,
+        Nonce: 112,
+        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b0dd84'
+      },
+      {
+        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        TokenID: 1,
+        Balance: 102.8,
+        Nonce: 414,
+        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b11111'
+      },
+      {
+        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        TokenID: 2,
+        Balance: 320.19,
+        Nonce: 233,
+        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b22222'
       }
     ]
   )
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/${mockedTokenId}`)
+mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/${mockedTokenId}`)
   .reply(
     200,
     {
@@ -30,21 +46,45 @@ mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/${mockedTokenId}`)
     }
   )
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/txs/history`)
+mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
   .reply(
     200,
     [
       {
-        ID: 'b89eaac7e61417341b710b727768294d0e6a277b',
+        TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
         FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         FromIdx: 10,
         ToIdx: 20,
         Amount: 44.12,
         Nonce: 0,
-        FeeSelector: 15,
+        Fee: 15,
         Type: 'Transfer',
         TokenID: 2
+      },
+      {
+        TxID: 'b89eaac7e61417341b710b727768294d0e600000',
+        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromIdx: 10,
+        ToIdx: 20,
+        Amount: 101.22,
+        Nonce: 0,
+        Fee: 4,
+        Type: 'Transfer',
+        TokenID: 1
+      },
+      {
+        TxID: 'b89eaac7e61417341b710b727768294d0e611111',
+        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromIdx: 10,
+        ToIdx: 20,
+        Amount: 981.79,
+        Nonce: 0,
+        Fee: 90,
+        Type: 'Transfer',
+        TokenID: 1
       }
     ]
   )
@@ -164,42 +204,42 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
     {
       L1Txs: [
         {
-          TxID: 101,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
           Amount: 243,
           Position: 1
         },
         {
-          TxID: 102,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2771',
           Amount: 116,
           Position: 5
         },
         {
-          TxID: 103,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2772',
           Amount: 535,
           Position: 9
         }
       ],
       L2Txs: [
         {
-          TxID: 307,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2773',
           Amount: 540,
           Fee: 115,
           Position: 2
         },
         {
-          TxID: 308,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2774',
           Amount: 241,
           Fee: 99,
           Position: 3
         },
         {
-          TxID: 310,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2775',
           Amount: 999,
           Fee: 90,
           Position: 15
         },
         {
-          TxID: 311,
+          TxID: 'b89eaac7e61417341b710b727768294d0e6a2776',
           Amount: 423,
           Fee: 101,
           Position: 23
@@ -225,13 +265,13 @@ mock.onAny()
   .passThrough()
 
 async function getAccounts (ethereumAddress) {
-  const response = await axios.get(`${baseApiUrl}/account/${ethereumAddress}`)
+  const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}`)
 
   return response.data
 }
 
 async function getAccount (ethereumAddress, tokenId) {
-  const response = await axios.get(`${baseApiUrl}/account/${ethereumAddress}/${tokenId}`)
+  const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}/${tokenId}`)
 
   return response.data
 }
@@ -241,7 +281,7 @@ async function getTransactions (ethereumAddress, tokenId) {
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    `${baseApiUrl}/account/${ethereumAddress}/txs/history`,
+    `${baseApiUrl}/accounts/${ethereumAddress}/txs`,
     { params }
   )
 
