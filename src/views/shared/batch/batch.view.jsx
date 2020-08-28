@@ -7,13 +7,20 @@ import useBatchStyles from './batch.styles'
 function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
   const classes = useBatchStyles()
 
+  const diff = new Date(new Date() - new Date(batchTimeStamp * 1000))
+  const seconds = ('0' + diff.getSeconds()).substr(-2) + 's ago'
+  const minutes = ('0' + diff.getMinutes()).substr(-2) + 'm '
+  const hours = diff.getHours() + 'h '
+  const days = diff.getDate() > 1 ? ' more than a day ago' : ''
+  const formattedTime = !days ? hours + minutes + seconds : days
+
   return (
     <div className={classes.row}>
       <Link to={`/batch/${batchId}`}>
         Batch: {batchId}
       </Link>
       <div>
-        Age: {batchTimeStamp}
+        {formattedTime}
       </div>
       <div>
         Txs: {batchTxNum}
