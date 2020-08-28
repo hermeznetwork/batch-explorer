@@ -8,8 +8,7 @@ function fetchAccount (ethereumAddress) {
     return rollupApi.getAccounts(ethereumAddress)
       .then(res => {
         // TODO:
-        // 1. Convert each token balance to fiat and then sum all to get a single value for example totalBalanceConvertedToFiat
-        // 2. Create an array of all tokens for example [{tokenName, tokenAmount, mountCovertedToFiat}] for "Account" page
+        // Create an array of all tokens for example [{tokenName, tokenSymbol, tokenAmount}] for "Token accounts" tab
 
         dispatch(userAccountActionTypes.loadAccountSuccess(res))
       })
