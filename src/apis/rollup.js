@@ -2,7 +2,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 const mock = new MockAdapter(axios)
-const mockedEthereumAddress = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
+const mockedEthereumAddress = 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 const mockedTokenId = 0
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const mockedBatchId = 222
@@ -13,25 +13,25 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
     200,
     [
       {
-        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         TokenID: 0,
         Balance: 2.38,
         Nonce: 112,
-        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b0dd84'
+        PublicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b0dd84'
       },
       {
-        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         TokenID: 1,
         Balance: 102.8,
         Nonce: 414,
-        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b11111'
+        PublicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b11111'
       },
       {
-        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         TokenID: 2,
         Balance: 320.19,
         Nonce: 233,
-        PublicKey: 'bx1234123412341234cfcd25ad4d90a62358b22222'
+        PublicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b22222'
       }
     ]
   )
@@ -40,7 +40,7 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/${mockedTokenId}`)
   .reply(
     200,
     {
-      EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+      EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
       TokenID: 0,
       Balance: 2.38
     }
@@ -52,8 +52,8 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
     [
       {
         TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
-        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         FromIdx: 10,
         ToIdx: 20,
         Amount: 44.12,
@@ -64,8 +64,8 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
       },
       {
         TxID: 'b89eaac7e61417341b710b727768294d0e600000',
-        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         FromIdx: 10,
         ToIdx: 20,
         Amount: 101.22,
@@ -76,8 +76,8 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
       },
       {
         TxID: 'b89eaac7e61417341b710b727768294d0e611111',
-        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        FromEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        ToEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         FromIdx: 10,
         ToIdx: 20,
         Amount: 981.79,
