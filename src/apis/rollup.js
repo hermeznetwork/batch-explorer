@@ -4,9 +4,10 @@ import MockAdapter from 'axios-mock-adapter'
 const mock = new MockAdapter(axios)
 const mockedEthereumAddress = 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 const mockedTokenId = 0
-const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
+// const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
+const baseApiUrl = 'http://167.71.59.190:4010'
 const mockedBatchId = 222
-const mockedCoordinatorId = '0x0000000000000000000000000000000000000002'
+const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 
 mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
   .reply(
@@ -129,7 +130,7 @@ mock.onGet(`${baseApiUrl}/batches`)
       {
         BatchID: 222,
         numberOfTransactions: 103,
-        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        ForgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         timeStamp: 1597863005
       },
       {
@@ -154,25 +155,25 @@ mock.onGet(`${baseApiUrl}/batches/${mockedCoordinatorId}`)
       {
         BatchID: 222,
         numberOfTransactions: 88,
-        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        ForgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         timeStamp: 1597856265
       },
       {
         BatchID: 191,
         numberOfTransactions: 103,
-        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        ForgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         timeStamp: 1597863005
       },
       {
         BatchID: 122,
         numberOfTransactions: 23,
-        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        ForgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         timeStamp: 1597855841
       },
       {
         BatchID: 90,
         numberOfTransactions: 77,
-        ForgerAddr: '0x0000000000000000000000000000000000000002',
+        ForgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
         timeStamp: 1597856212144
       }
     ]
@@ -248,16 +249,16 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
     }
   )
 
-mock.onGet(`${baseApiUrl}/coordinators/${mockedCoordinatorId}`)
-  .reply(
-    200,
-    {
-      forgerAddr: '0x0000000000000000000000000000000000000002',
-      withdrawAddr: '0x0000000000000000000000000000002222222222',
-      URL: 'https://github.com/hermeznetwork/idocs/pull/164/files',
-      ethereumBlock: 762375478
-    }
-  )
+// mock.onGet(`${baseApiUrl}/coordinators/${mockedCoordinatorId}`)
+//   .reply(
+//     200,
+//     {
+//       forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//       withdrawAddr: '0x0000000000000000000000000000002222222222',
+//       URL: 'https://github.com/hermeznetwork/idocs/pull/164/files',
+//       ethereumBlock: 762375478
+//     }
+//   )
 
 mock.onAny()
   .passThrough()
