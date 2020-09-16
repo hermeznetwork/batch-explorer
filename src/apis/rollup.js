@@ -8,8 +8,9 @@ const mockedTokenId = 0
 const baseApiUrl = 'http://167.71.59.190:4010'
 const mockedBatchId = 222
 const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
+// const mockedAccountIndex = 'hez:DAI:4444'
 
-mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
+mock.onGet(`${baseApiUrl}/accounts/hermezEthereumAddress?${mockedEthereumAddress}`)
   .reply(
     200,
     [
@@ -37,7 +38,7 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}`)
     ]
   )
 
-mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/${mockedTokenId}`)
+mock.onGet(`${baseApiUrl}/accounts/hermezEthereumAddress?${mockedEthereumAddress}/${mockedTokenId}`)
   .reply(
     200,
     {
@@ -148,7 +149,7 @@ mock.onGet(`${baseApiUrl}/batches`)
     ]
   )
 
-mock.onGet(`${baseApiUrl}/batches/${mockedCoordinatorId}`)
+mock.onGet(`${baseApiUrl}/batches?forgerAddr=${mockedCoordinatorId}`)
   .reply(
     200,
     [
@@ -264,8 +265,7 @@ mock.onAny()
   .passThrough()
 
 async function getAccounts (ethereumAddress) {
-  // const response = await axios.get(`${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}`)
-  const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}`)
+  const response = await axios.get(`${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}`)
 
   return response.data
 }
@@ -297,8 +297,8 @@ async function getTokens () {
 }
 
 async function getBatches (coordinatorId) {
-  // TODO: Once Aranau updates API this should be hanged. Elias knows the details.
-  const params = coordinatorId ? '/' + coordinatorId : ''
+  // TODO: refactor
+  const params = coordinatorId ? '?forgerAddr=' + coordinatorId : ''
 
   const response = await axios.get(`${baseApiUrl}/batches${params}`)
 
