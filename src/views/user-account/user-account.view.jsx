@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 
 import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -23,6 +24,10 @@ function UserAccount ({
     onLoadTransactions(ethereumAddress)
   }, [ethereumAddress, onLoadAccount, onLoadTransactions])
 
+  function getAccount (accountIndex) {
+    return accountTask.data.find((account) => account.accountIndex === accountIndex)
+  }
+
   return (
     <div>
       {(() => {
@@ -36,10 +41,22 @@ function UserAccount ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Account</h4>
-                <AccountDetails
-                  account={accountTask.data}
-                />
+                <h4 className={classes.title}>Token Accounts</h4>
+
+                {accountTask.data.map((account, index) =>
+                  <div
+                    key={account.accountIndex}
+                    className={clsx({ [classes.account]: index > 0 })}
+                  >
+                    <AccountDetails
+                      publicKey={getAccount(account.accountIndex).publicKey}
+                      ethereumAddress={getAccount(account.accountIndex).ethereumAddress}
+                      nonce={getAccount(account.accountIndex).nonce}
+                      tokenSymbol={getAccount(account.accountIndex).tokenSymbol}
+                      balance={getAccount(account.accountIndex).balance}
+                    />
+                  </div>
+                )}
               </section>
             )
           }
@@ -81,7 +98,7 @@ UserAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        EthAddr: PropTypes.string.isRequired
+        ethereumAddress: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string

@@ -10,35 +10,65 @@ const mockedBatchId = 222
 const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 // const mockedAccountIndex = 'hez:DAI:4444'
 
-mock.onGet(`${baseApiUrl}/accounts/hermezEthereumAddress?${mockedEthereumAddress}`)
-  .reply(
-    200,
-    [
-      {
-        EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        TokenID: 0,
-        Balance: 2.38,
-        Nonce: 112,
-        PublicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b0dd84'
-      },
-      {
-        EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        TokenID: 1,
-        Balance: 102.8,
-        Nonce: 414,
-        PublicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b11111'
-      },
-      {
-        EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        TokenID: 2,
-        Balance: 320.19,
-        Nonce: 233,
-        PublicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b22222'
-      }
-    ]
-  )
+// {
+//   "accounts": [
+//     {
+//       "accountIndex": "hez:DAI:4444",
+//       "tokenId": 4444,
+//       "tokenSymbol": "DAI",
+//       "nonce": 121,
+//       "balance": "870885693",
+//       "publicKey": "hez:HVrB8xQHAYt9QTpPUsj3RGOzDmrCI4IgrYslTeTqo6Ix",
+//       "ethereumAddress": "hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a"
+//     }
+//   ],
+//   "pagination": {
+//     "totalItems": 2048,
+//     "lastReturnedItem": 439
+//   }
+// }
 
-mock.onGet(`${baseApiUrl}/accounts/hermezEthereumAddress?${mockedEthereumAddress}/${mockedTokenId}`)
+// mock.onGet(`${baseApiUrl}/accounts?hermezEthereumAddress=${mockedEthereumAddress}`)
+//   .reply(
+//     200,
+//     {
+//       accounts : [
+//         {
+//           accountIndex: 'hez:DAI:4444',
+//           ethereumAddress: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           tokenID: 0,
+//           balance: 2.38,
+//           nonce: 112,
+//           publicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b0dd84',
+//           tokenSymbol: 'DAI'
+//         },
+//         {
+//           accountIndex: 'hez:ETH:3333',
+//           ethereumAddress: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           tokenID: 1,
+//           balance: 102.8,
+//           nonce: 414,
+//           publicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b11111',
+//           tokenSymbol: 'ETH'
+//         },
+//         {
+//           accountIndex: 'hez:XYZ:5555',
+//           ethereumAddress: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           tokenID: 2,
+//           balance: 320.19,
+//           nonce: 233,
+//           publicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b22222',
+//           tokenSymbol: 'XYZ'
+//         }
+//       ],
+//       pagination: {
+//         totalItems: 2048,
+//         lastReturnedItem: 439
+//       }
+//     }
+//   )
+
+mock.onGet(`${baseApiUrl}/accounts?hermezEthereumAddress=${mockedEthereumAddress}&tokenIds=${mockedTokenId}`)
   .reply(
     200,
     {
@@ -265,14 +295,13 @@ mock.onAny()
   .passThrough()
 
 async function getAccounts (ethereumAddress) {
-  const response = await axios.get(`${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}`)
+  const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}`)
 
   return response.data
 }
 
 async function getAccount (ethereumAddress, tokenId) {
-  // const response = await axios.get(`${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}/tokenIds?${tokenId}`)
-  const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}/${tokenId}`)
+  const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}&tokenIds=${tokenId}`)
 
   return response.data
 }

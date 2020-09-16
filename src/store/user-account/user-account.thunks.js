@@ -11,7 +11,7 @@ function fetchAccount (ethereumAddress) {
         // 1. Convert each token balance to fiat and then sum all to get a single value for example totalBalanceConvertedToFiat
         // 2. Create an array of all tokens for example [{tokenName, tokenAmount, mountCovertedToFiat}] for "Account" page
 
-        dispatch(userAccountActionTypes.loadAccountSuccess(res))
+        dispatch(userAccountActionTypes.loadAccountSuccess(res.accounts))
       })
       .catch(err => dispatch(userAccountActionTypes.loadAccountFailure(err)))
   }
