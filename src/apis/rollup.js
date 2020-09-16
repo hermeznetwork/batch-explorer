@@ -3,30 +3,12 @@ import MockAdapter from 'axios-mock-adapter'
 
 const mock = new MockAdapter(axios)
 const mockedEthereumAddress = 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
-const mockedTokenId = 0
+// const mockedTokenId = 0
 // const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const baseApiUrl = 'http://167.71.59.190:4010'
 const mockedBatchId = 222
 const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 // const mockedAccountIndex = 'hez:DAI:4444'
-
-// {
-//   "accounts": [
-//     {
-//       "accountIndex": "hez:DAI:4444",
-//       "tokenId": 4444,
-//       "tokenSymbol": "DAI",
-//       "nonce": 121,
-//       "balance": "870885693",
-//       "publicKey": "hez:HVrB8xQHAYt9QTpPUsj3RGOzDmrCI4IgrYslTeTqo6Ix",
-//       "ethereumAddress": "hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a"
-//     }
-//   ],
-//   "pagination": {
-//     "totalItems": 2048,
-//     "lastReturnedItem": 439
-//   }
-// }
 
 // mock.onGet(`${baseApiUrl}/accounts?hermezEthereumAddress=${mockedEthereumAddress}`)
 //   .reply(
@@ -68,15 +50,27 @@ const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 //     }
 //   )
 
-mock.onGet(`${baseApiUrl}/accounts?hermezEthereumAddress=${mockedEthereumAddress}&tokenIds=${mockedTokenId}`)
-  .reply(
-    200,
-    {
-      EthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-      TokenID: 0,
-      Balance: 2.38
-    }
-  )
+// mock.onGet(`${baseApiUrl}/accounts?hermezEthereumAddress=${mockedEthereumAddress}&tokenIds=${mockedTokenId}`)
+//   .reply(
+//     200,
+//     {
+//       accounts : [
+//         {
+//           accountIndex: 'hez:DAI:4444',
+//           ethereumAddress: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           tokenID: 0,
+//           balance: 2.38,
+//           nonce: 112,
+//           publicKey: 'hez:bx1234123412341234cfcd25ad4d90a62358b0dd84',
+//           tokenSymbol: 'DAI'
+//         }
+//       ],
+//       pagination: {
+//         totalItems: 2048,
+//         lastReturnedItem: 439
+//       }
+//     }
+//   )
 
 mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
   .reply(
