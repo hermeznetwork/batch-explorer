@@ -251,26 +251,26 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
 mock.onGet(`${baseApiUrl}/coordinators/${mockedCoordinatorId}`)
   .reply(
     200,
-    [
-      {
-        Forger: '0x0000000000000000000000000000000000000002',
-        Beneficiary: '0x000000000000000000000000000000aaaaa11111',
-        Withdraw: '0x0000000000000000000000000000002222222222',
-        URL: 'https://github.com/hermeznetwork/idocs/pull/164/files'
-      }
-    ]
+    {
+      forgerAddr: '0x0000000000000000000000000000000000000002',
+      withdrawAddr: '0x0000000000000000000000000000002222222222',
+      URL: 'https://github.com/hermeznetwork/idocs/pull/164/files',
+      ethereumBlock: 762375478
+    }
   )
 
 mock.onAny()
   .passThrough()
 
 async function getAccounts (ethereumAddress) {
+  // const response = await axios.get(`${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}`)
   const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}`)
 
   return response.data
 }
 
 async function getAccount (ethereumAddress, tokenId) {
+  // const response = await axios.get(`${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}/tokenIds?${tokenId}`)
   const response = await axios.get(`${baseApiUrl}/accounts/${ethereumAddress}/${tokenId}`)
 
   return response.data
@@ -281,6 +281,7 @@ async function getTransactions (ethereumAddress, tokenId) {
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
+    // `${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}/txs`,
     `${baseApiUrl}/accounts/${ethereumAddress}/txs`,
     { params }
   )
