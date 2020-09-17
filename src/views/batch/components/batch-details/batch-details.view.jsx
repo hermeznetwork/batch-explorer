@@ -1,9 +1,14 @@
 import React from 'react'
+import clsx from 'clsx'
 
 import useBatchDetailsStyles from './batch-details.styles'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
+
+  function findFee (tokenId) {
+    return batch.collectedFees.find((fee) => fee.tokenId === tokenId)
+  }
 
   return (
     <div className={classes.row}>
@@ -17,28 +22,31 @@ function BatchDetails ({ batch }) {
             Slot: {batch.slotNum}
       </div>
       <div>
-            EthTxHash: {batch.ethTxHash}
-      </div>
-      <div>
             Ethereum block number: {batch.ethereumBlockNum}
       </div>
       <div>
             ExitRoot: {batch.exitRoot}
       </div>
       <div>
-            OldStateRoot: {batch.oldStateRoot}
-      </div>
-      <div>
-            NewStateRoot: {batch.newStateRoot}
-      </div>
-      <div>
-            CollectedFees: {batch.collectedFees}
+            CollectedFees -
+        {
+          batch.collectedFees.map((fee, index) =>
+            <div
+              key={fee.tokenId}
+              className={clsx({ [classes.fee]: index > 0 })}
+            >
+              <div>
+                                    Token: {findFee(fee.tokenId).tokenSymbol}
+              </div>
+              <div>
+                                    Amount: {findFee(fee.tokenId).amount}
+              </div>
+            </div>
+          )
+        }
       </div>
       <div>
             ForgerAddr: {batch.forgerAddr}
-      </div>
-      <div>
-            timeStamp: {batch.timeStamp}
       </div>
     </div>
   )
