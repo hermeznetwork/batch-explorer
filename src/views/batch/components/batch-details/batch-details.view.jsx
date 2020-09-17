@@ -36,10 +36,10 @@ function BatchDetails ({ batch }) {
               className={clsx({ [classes.fee]: index > 0 })}
             >
               <div>
-                                    Token: {findFee(fee.tokenId).tokenSymbol}
+                  Token: {findFee(fee.tokenId).tokenSymbol}
               </div>
               <div>
-                                    Amount: {findFee(fee.tokenId).amount}
+                  Amount: {findFee(fee.tokenId).amount}
               </div>
             </div>
           )
