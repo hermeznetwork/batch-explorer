@@ -6,13 +6,15 @@ import homeReducer from './home/home.reducer'
 import batchReducer from './batch/batch.reducer'
 import coordinatorReducer from './coordinator/coordinator.reducer'
 import userAccountReducer from './user-account/user-account.reducer'
+import slotsReducer from './slots/slots.reducer'
 
 const rootReducer = combineReducers({
   global: globalReducer,
   home: homeReducer,
   batch: batchReducer,
   coordinator: coordinatorReducer,
-  userAccount: userAccountReducer
+  userAccount: userAccountReducer,
+  slots: slotsReducer
 })
 
 const middlewares = [thunk]
