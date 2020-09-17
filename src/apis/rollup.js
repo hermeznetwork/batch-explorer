@@ -6,7 +6,7 @@ const mock = new MockAdapter(axios)
 // const mockedTokenId = 0
 // const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const baseApiUrl = 'http://167.71.59.190:4010'
-const mockedBatchId = 222
+// const mockedBatchId = 5432
 // const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 // const mockedAccountIndex = 'hez:DAI:4444'
 
@@ -354,55 +354,54 @@ const mockedBatchId = 222
 //     }
 //   )
 
-mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
-  .reply(
-    200,
-    {
-      L1Txs: [
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
-          Amount: 243,
-          Position: 1
-        },
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a2771',
-          Amount: 116,
-          Position: 5
-        },
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a2772',
-          Amount: 535,
-          Position: 9
-        }
-      ],
-      L2Txs: [
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a2773',
-          Amount: 540,
-          Fee: 115,
-          Position: 2
-        },
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a2774',
-          Amount: 241,
-          Fee: 99,
-          Position: 3
-        },
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a2775',
-          Amount: 999,
-          Fee: 90,
-          Position: 15
-        },
-        {
-          TxID: 'b89eaac7e61417341b710b727768294d0e6a2776',
-          Amount: 423,
-          Fee: 101,
-          Position: 23
-        }
-      ]
-    }
-  )
+// mock.onGet(`${baseApiUrl}/transactions-history?batchNum=${mockedBatchId}`)
+//   .reply(
+//     200,
+//     {
+//       transactions: [
+//         {
+//           L1orL2: 'L1',
+//           id: '0x0040e2010000000000470000',
+//           type: 'Exit',
+//           position: 5,
+//           fromAccountIndex: 'hez:DAI:4444',
+//           toAccountIndex: 'hez:DAI:672',
+//           amount: '49',
+//           batchNum: 0,
+//           tokenId: 4444,
+//           tokenSymbol: 'DAI',
+//           historicUSD: 49.7,
+//           currentUSD: 50.01,
+//           fiatUpdate: '2019-08-24T14:15:22Z',
+//           timestamp: '2019-08-24T14:15:22Z',
+//           L1Info: null,
+//           L2Info: null
+//         },
+//         {
+//           L1orL2: 'L2',
+//           id: '0x0040e2010000000000470009',
+//           type: 'Exit',
+//           position: 6,
+//           fromAccountIndex: 'hez:DAI:4444',
+//           toAccountIndex: 'hez:DAI:672',
+//           amount: '9109',
+//           batchNum: 1,
+//           tokenId: 4444,
+//           tokenSymbol: 'DAI',
+//           historicUSD: 88.01,
+//           currentUSD: 432.55,
+//           fiatUpdate: '2019-08-25T04:10:45Z',
+//           timestamp: '2019-08-25T04:10:45Z',
+//           L1Info: null,
+//           L2Info: null
+//         }
+//       ],
+//       pagination: {
+//         totalItems: 2048,
+//         lastReturnedItem: 439
+//       }
+//     }
+//   )
 
 // mock.onGet(`${baseApiUrl}/coordinators/${mockedCoordinatorId}`)
 //   .reply(
@@ -464,7 +463,7 @@ async function getBatch (batchId) {
 }
 
 async function getBatchTransactions (batchId) {
-  const response = await axios.get(`${baseApiUrl}/batch/${batchId}/txs`)
+  const response = await axios.get(`${baseApiUrl}/transactions-history?batchNum=${batchId}`)
 
   return response.data
 }
