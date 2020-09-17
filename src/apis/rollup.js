@@ -142,94 +142,94 @@ mock.onGet(`${baseApiUrl}/tokens`)
     ]
   )
 
-mock.onGet(`${baseApiUrl}/batches`)
-  .reply(
-    200,
-    {
-      batches: [
-        {
-          batchNum: 5439,
-          ethereumBlockNum: 762375478,
-          collectedFees: [
-            {
-              tokenId: 4444,
-              tokenSymbol: 'DAI',
-              amount: '53'
-            }
-          ],
-          forgeL1TransactionsNum: 818,
-          forgerAddr: '0x0000000000000000000000000000000000000001',
-          stateRoot: 'string',
-          numAccounts: 0,
-          exitRoot: 'string',
-          slotNum: 784,
+// mock.onGet(`${baseApiUrl}/batches`)
+//   .reply(
+//     200,
+//     {
+//       batches: [
+//         {
+//           batchNum: 5439,
+//           ethereumBlockNum: 762375478,
+//           collectedFees: [
+//             {
+//               tokenId: 4444,
+//               tokenSymbol: 'DAI',
+//               amount: '53'
+//             }
+//           ],
+//           forgeL1TransactionsNum: 818,
+//           forgerAddr: '0x0000000000000000000000000000000000000001',
+//           stateRoot: 'string',
+//           numAccounts: 0,
+//           exitRoot: 'string',
+//           slotNum: 784,
 
-          timeStamp: 1598436610
-        },
-        {
-          batchNum: 5432,
-          ethereumBlockNum: 762375479,
-          collectedFees: [
-            {
-              tokenId: 4444,
-              tokenSymbol: 'DAI',
-              amount: '430'
-            }
-          ],
-          forgeL1TransactionsNum: 103,
-          forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-          stateRoot: 'string',
-          numAccounts: 0,
-          exitRoot: 'string',
-          slotNum: 785,
+//           timeStamp: 1598436610
+//         },
+//         {
+//           batchNum: 5432,
+//           ethereumBlockNum: 762375479,
+//           collectedFees: [
+//             {
+//               tokenId: 4444,
+//               tokenSymbol: 'DAI',
+//               amount: '430'
+//             }
+//           ],
+//           forgeL1TransactionsNum: 103,
+//           forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           stateRoot: 'string',
+//           numAccounts: 0,
+//           exitRoot: 'string',
+//           slotNum: 785,
 
-          timeStamp: 1597863005
-        },
-        {
-          batchNum: 5434,
-          ethereumBlockNum: 762375480,
-          collectedFees: [
-            {
-              tokenId: 4444,
-              tokenSymbol: 'DAI',
-              amount: '100'
-            }
-          ],
-          forgeL1TransactionsNum: 155,
-          forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-          stateRoot: 'string',
-          numAccounts: 0,
-          exitRoot: 'string',
-          slotNum: 784,
+//           timeStamp: 1597863005
+//         },
+//         {
+//           batchNum: 5434,
+//           ethereumBlockNum: 762375480,
+//           collectedFees: [
+//             {
+//               tokenId: 4444,
+//               tokenSymbol: 'DAI',
+//               amount: '100'
+//             }
+//           ],
+//           forgeL1TransactionsNum: 155,
+//           forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           stateRoot: 'string',
+//           numAccounts: 0,
+//           exitRoot: 'string',
+//           slotNum: 784,
 
-          timeStamp: 1597855841
-        },
-        {
-          batchNum: 5435,
-          ethereumBlockNum: 762375411,
-          collectedFees: [
-            {
-              tokenId: 4444,
-              tokenSymbol: 'DAI',
-              amount: '50'
-            }
-          ],
-          forgeL1TransactionsNum: 93,
-          forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-          stateRoot: 'string',
-          numAccounts: 0,
-          exitRoot: 'string',
-          slotNum: 780,
+//           timeStamp: 1597855841
+//         },
+//         {
+//           batchNum: 5435,
+//           ethereumBlockNum: 762375411,
+//           collectedFees: [
+//             {
+//               tokenId: 4444,
+//               tokenSymbol: 'DAI',
+//               amount: '50'
+//             }
+//           ],
+//           forgeL1TransactionsNum: 93,
+//           forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           stateRoot: 'string',
+//           numAccounts: 0,
+//           exitRoot: 'string',
+//           slotNum: 780,
 
-          timeStamp: 1546300800
-        }
-      ],
-      pagination: {
-        totalItems: 2048,
-        lastReturnedItem: 439
-      }
-    }
-  )
+//           timeStamp: 1546300800
+//         }
+//       ],
+//       pagination: {
+//         totalItems: 2048,
+//         lastReturnedItem: 439
+//       }
+//     }
+//   )
 
 mock.onGet(`${baseApiUrl}/batches?forgerAddr=${mockedCoordinatorId}`)
   .reply(

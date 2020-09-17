@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import useBatchStyles from './batch.styles'
 
-function Batch ({ batchNum, batchTxNum, batchForgerAddr, ethereumBlockNum, batchTimeStamp, hideForgerAddr }) {
+function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
   const classes = useBatchStyles()
 
   const diff = new Date(new Date() - new Date(batchTimeStamp * 1000))
@@ -20,9 +20,6 @@ function Batch ({ batchNum, batchTxNum, batchForgerAddr, ethereumBlockNum, batch
       </Link>
       <div>
         {formattedTime}
-      </div>
-      <div>
-        ethereumBlockNum: {ethereumBlockNum}
       </div>
       <div>
         Txs: {batchTxNum}

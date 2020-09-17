@@ -24,7 +24,6 @@ function BatchesList ({ batches, hideForgerAddr }) {
               batchNum={batch.batchNum}
               batchTxNum={findBatch(batch.batchNum).forgeL1TransactionsNum}
               batchForgerAddr={findBatch(batch.batchNum).forgerAddr}
-              ethereumBlockNum={findBatch(batch.batchNum).ethereumBlockNum}
               batchTimeStamp={findBatch(batch.batchNum).timeStamp}
               hideForgerAddr={hideForgerAddr}
             />
