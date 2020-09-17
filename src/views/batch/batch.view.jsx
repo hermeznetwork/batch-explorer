@@ -82,7 +82,7 @@ Batch.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        BatchID: PropTypes.number.isRequired
+        batchNum: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string
@@ -104,8 +104,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatch: (batchId) => dispatch(fetchBatch(batchId)),
-  onLoadBatchTransactionsList: (batchId) => dispatch(fetchBatchTransactions(batchId))
+  onLoadBatch: (batchNum) => dispatch(fetchBatch(batchNum)),
+  onLoadBatchTransactionsList: (batchNum) => dispatch(fetchBatchTransactions(batchNum))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Batch)

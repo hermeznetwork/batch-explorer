@@ -83,7 +83,7 @@ Coordinator.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        BatchID: PropTypes.number.isRequired
+        batchNum: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string

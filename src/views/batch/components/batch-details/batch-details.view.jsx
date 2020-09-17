@@ -8,37 +8,37 @@ function BatchDetails ({ batch }) {
   return (
     <div className={classes.row}>
       <div>
-            Batch: {batch[0].BatchID}
+            Batch: {batch.batchNum}
       </div>
       <div>
-            Number of transactions: {batch[0].numberOfTransactions}
+            Number of transactions: {batch.forgeL1TransactionsNum}
       </div>
       <div>
-            Slot: {batch[0].SlotNum}
+            Slot: {batch.slotNum}
       </div>
       <div>
-            EthTxHash: {batch[0].EthTxHash}
+            EthTxHash: {batch.ethTxHash}
       </div>
       <div>
-            EthBlockNum: {batch[0].EthBlockNum}
+            Ethereum block number: {batch.ethereumBlockNum}
       </div>
       <div>
-            ExitRoot: {batch[0].ExitRoot}
+            ExitRoot: {batch.exitRoot}
       </div>
       <div>
-            OldStateRoot: {batch[0].OldStateRoot}
+            OldStateRoot: {batch.oldStateRoot}
       </div>
       <div>
-            NewStateRoot: {batch[0].NewStateRoot}
+            NewStateRoot: {batch.newStateRoot}
       </div>
       <div>
-            CollectedFees: {batch[0].CollectedFees}
+            CollectedFees: {batch.collectedFees}
       </div>
       <div>
-            ForgerAddr: {batch[0].ForgerAddr}
+            ForgerAddr: {batch.forgerAddr}
       </div>
       <div>
-            timeStamp: {batch[0].timeStamp}
+            timeStamp: {batch.timeStamp}
       </div>
     </div>
   )

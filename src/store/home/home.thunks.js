@@ -6,7 +6,7 @@ function fetchBatches () {
     dispatch(homeActions.loadBatches())
 
     return rollupApi.getBatches()
-      .then(res => dispatch(homeActions.loadBatchesSuccess(res)))
+      .then(res => dispatch(homeActions.loadBatchesSuccess(res.batches)))
       .catch(err => dispatch(homeActions.loadBatchesFailure(err)))
   }
 }
