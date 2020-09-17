@@ -2,7 +2,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 const mock = new MockAdapter(axios)
-const mockedEthereumAddress = 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
+// const mockedEthereumAddress = 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 // const mockedTokenId = 0
 // const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const baseApiUrl = 'http://167.71.59.190:4010'
@@ -72,48 +72,54 @@ const mockedBatchId = 222
 //     }
 //   )
 
-mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
-  .reply(
-    200,
-    [
-      {
-        TxID: 'b89eaac7e61417341b710b727768294d0e6a277b',
-        FromEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        FromIdx: 10,
-        ToIdx: 20,
-        Amount: 44.12,
-        Nonce: 0,
-        Fee: 15,
-        Type: 'Transfer',
-        TokenID: 2
-      },
-      {
-        TxID: 'b89eaac7e61417341b710b727768294d0e600000',
-        FromEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        FromIdx: 10,
-        ToIdx: 20,
-        Amount: 101.22,
-        Nonce: 0,
-        Fee: 4,
-        Type: 'Transfer',
-        TokenID: 1
-      },
-      {
-        TxID: 'b89eaac7e61417341b710b727768294d0e611111',
-        FromEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: 'hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        FromIdx: 10,
-        ToIdx: 20,
-        Amount: 981.79,
-        Nonce: 0,
-        Fee: 90,
-        Type: 'Transfer',
-        TokenID: 1
-      }
-    ]
-  )
+// mock.onGet(`${baseApiUrl}/transactions-history?hermezEthereumAddress=${mockedEthereumAddress}`)
+//   .reply(
+//     200,
+//     {
+//       transactions: [
+//         {
+//           L1orL2: 'L1',
+//           id: '0x0040e2010000000000470000',
+//           type: 'Exit',
+//           position: 5,
+//           fromAccountIndex: 'hez:DAI:4444',
+//           toAccountIndex: 'hez:DAI:672',
+//           amount: '49',
+//           batchNum: 0,
+//           tokenId: 4444,
+//           tokenSymbol: 'DAI',
+//           historicUSD: 49.7,
+//           currentUSD: 50.01,
+//           fiatUpdate: '2019-08-24T14:15:22Z',
+//           timestamp: '2019-08-24T14:15:22Z',
+//           L1Info: null,
+//           L2Info: null
+//         },
+//         {
+//           L1orL2: 'L2',
+//           id: '0x0040e2010000000000470009',
+//           type: 'Exit',
+//           position: 6,
+//           fromAccountIndex: 'hez:DAI:4444',
+//           toAccountIndex: 'hez:DAI:672',
+//           amount: '9109',
+//           batchNum: 1,
+//           tokenId: 4444,
+//           tokenSymbol: 'DAI',
+//           historicUSD: 88.01,
+//           currentUSD: 432.55,
+//           fiatUpdate: '2019-08-25T04:10:45Z',
+//           timestamp: '2019-08-25T04:10:45Z',
+//           L1Info: null,
+//           L2Info: null
+//         }
+//       ],
+//       pagination: {
+//         totalItems: 2048,
+//         lastReturnedItem: 439
+//       }
+//     }
+//   )
 
 // mock.onGet(`${baseApiUrl}/tokens`)
 //   .reply(
@@ -429,8 +435,7 @@ async function getTransactions (ethereumAddress, tokenId) {
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    // `${baseApiUrl}/accounts/hermezEthereumAddress?${ethereumAddress}/txs`,
-    `${baseApiUrl}/accounts/${ethereumAddress}/txs`,
+    `${baseApiUrl}/transactions-history?hermezEthereumAddress=${ethereumAddress}`,
     { params }
   )
 

@@ -22,7 +22,7 @@ function fetchTransactions (ethereumAddress) {
     dispatch(userAccountActionTypes.loadTransactions())
 
     return rollupApi.getTransactions(ethereumAddress)
-      .then(res => dispatch(userAccountActionTypes.loadTransactionsSuccess(res)))
+      .then(res => dispatch(userAccountActionTypes.loadTransactionsSuccess(res.transactions)))
       .catch(err => dispatch(userAccountActionTypes.loadTransactionsFailure(err)))
   }
 }
