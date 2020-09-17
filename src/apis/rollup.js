@@ -115,32 +115,28 @@ mock.onGet(`${baseApiUrl}/accounts/${mockedEthereumAddress}/txs`)
     ]
   )
 
-mock.onGet(`${baseApiUrl}/tokens`)
-  .reply(
-    200,
-    [
-      {
-        TokenID: 0,
-        Name: 'Some Cool Token',
-        Symbol: 'SCT'
-      },
-      {
-        TokenID: 1,
-        Name: 'Other Cool Token',
-        Symbol: 'OCT'
-      },
-      {
-        TokenID: 2,
-        Name: 'New Token',
-        Symbol: 'NTO'
-      },
-      {
-        TokenID: 3,
-        Name: 'Too Good Token',
-        Symbol: 'TGT'
-      }
-    ]
-  )
+// mock.onGet(`${baseApiUrl}/tokens`)
+//   .reply(
+//     200,
+//     {
+//       tokens: [
+//         {
+//           id: 4444,
+//           ethereumAddress: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+//           name: 'Maker Dai',
+//           symbol: 'DAI',
+//           decimals: 5,
+//           ethereumBlockNum: 762375478,
+//           USD: 4.53,
+//           fiatUpdate: '2020-09-17T13:47:21.144Z'
+//         }
+//       ],
+//       pagination: {
+//         totalItems: 2048,
+//         lastReturnedItem: 439
+//       }
+//     }
+//   )
 
 // mock.onGet(`${baseApiUrl}/batches`)
 //   .reply(

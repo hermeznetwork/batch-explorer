@@ -6,7 +6,7 @@ function fetchTokens () {
     dispatch(globalActions.loadTokens())
 
     return rollupApi.getTokens()
-      .then(res => dispatch(globalActions.loadTokensSuccess(res)))
+      .then(res => dispatch(globalActions.loadTokensSuccess(res.tokens)))
       .catch(err => dispatch(globalActions.loadTokensFailure(err)))
   }
 }
