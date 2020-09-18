@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseApiUrl = 'http://167.71.59.190:4010'
+const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 
 async function getAccounts (ethereumAddress) {
   const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}`)
