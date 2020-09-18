@@ -3,6 +3,9 @@ import { slotActionTypes } from './slot.actions'
 const initialSlotState = {
   slotTask: {
     status: 'pending'
+  },
+  bidsTask: {
+    status: 'pending'
   }
 }
 
@@ -31,6 +34,32 @@ function slotReducer (state = initialSlotState, action) {
         slotTask: {
           status: 'failed',
           error: 'An error ocurred loading the slot'
+        }
+      }
+    }
+    case slotActionTypes.LOAD_BIDS: {
+      return {
+        ...state,
+        bidsTask: {
+          status: 'loading'
+        }
+      }
+    }
+    case slotActionTypes.LOAD_BIDS_SUCCESS: {
+      return {
+        ...state,
+        bidsTask: {
+          status: 'successful',
+          data: action.bids
+        }
+      }
+    }
+    case slotActionTypes.LOAD_BID_FAILURE: {
+      return {
+        ...state,
+        bidsTask: {
+          status: 'failed',
+          error: 'An error ocurred loading bids'
         }
       }
     }

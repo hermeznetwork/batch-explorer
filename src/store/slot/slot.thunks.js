@@ -11,4 +11,14 @@ function fetchSlot (slotNum) {
   }
 }
 
-export { fetchSlot }
+function fetchBids (slotNum) {
+  return (dispatch) => {
+    dispatch(slotActions.loadBids())
+
+    return rollupApi.getBids(slotNum)
+      .then(res => dispatch(slotActions.loadBidsSuccess(res)))
+      .catch(err => dispatch(slotActions.loadBidsFailure(err)))
+  }
+}
+
+export { fetchSlot, fetchBids }

@@ -435,6 +435,27 @@ mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
     }
   )
 
+mock.onGet(`${baseApiUrl}/bids?${mockedSlotNum}`)
+  .reply(
+    200,
+    {
+      bids: [
+        {
+          forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+          withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+          URL: 'https://hermez.io',
+          bidValue: '870885693',
+          ethereumBlockNum: 762375478,
+          timestamp: '2019-08-24T14:15:22Z'
+        }
+      ],
+      pagination: {
+        totalItems: 2048,
+        lastReturnedItem: 439
+      }
+    }
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -501,6 +522,19 @@ async function getSlot (slotNum) {
   return response.data
 }
 
+async function getBids (slotNum) {
+  const params = {
+    ...(slotNum ? { slotNum } : {})
+  }
+
+  const response = await axios.get(
+    `${baseApiUrl}/bids?${slotNum}`,
+    { params }
+  )
+
+  return response.data
+}
+
 export {
   getAccounts,
   getAccount,
@@ -510,5 +544,6 @@ export {
   getBatch,
   getBatchTransactions,
   getCoordinator,
-  getSlot
+  getSlot,
+  getBids
 }
