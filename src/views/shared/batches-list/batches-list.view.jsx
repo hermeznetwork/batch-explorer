@@ -8,10 +8,6 @@ import useBatchesListStyles from './batches-list.styles'
 function BatchesList ({ batches, hideForgerAddr }) {
   const classes = useBatchesListStyles()
 
-  function findBatch (batchNum) {
-    return batches.find((batch) => batch.batchNum === batchNum)
-  }
-
   return (
     <div>
       <section>
@@ -22,9 +18,9 @@ function BatchesList ({ batches, hideForgerAddr }) {
           >
             <Batch
               batchNum={batch.batchNum}
-              batchTxNum={findBatch(batch.batchNum).forgeL1TransactionsNum}
-              batchForgerAddr={findBatch(batch.batchNum).forgerAddr}
-              batchTimeStamp={findBatch(batch.batchNum).timeStamp}
+              batchTxNum={batch.forgeL1TransactionsNum}
+              batchForgerAddr={batch.forgerAddr}
+              batchTimeStamp={batch.timeStamp}
               hideForgerAddr={hideForgerAddr}
             />
           </div>
