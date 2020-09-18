@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import { Link } from 'react-router-dom'
 
 import useBatchDetailsStyles from './batch-details.styles'
 
@@ -19,7 +20,7 @@ function BatchDetails ({ batch }) {
             Number of transactions: {batch.forgeL1TransactionsNum}
       </div>
       <div>
-            Slot: {batch.slotNum}
+            Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
       </div>
       <div>
             Ethereum block number: {batch.ethereumBlockNum}
