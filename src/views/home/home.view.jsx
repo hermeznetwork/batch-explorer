@@ -33,7 +33,7 @@ function Home ({
                 <section>
                   <h4 className={classes.title}>Batches</h4>
                   <BatchesList
-                    batches={batchesTask.data}
+                    batches={batchesTask.data.batches}
                   />
                 </section>
               </>

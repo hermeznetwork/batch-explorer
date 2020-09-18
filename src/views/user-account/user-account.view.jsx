@@ -39,7 +39,7 @@ function UserAccount ({
               <section>
                 <h4 className={classes.title}>Token Accounts</h4>
 
-                {accountTask.data.map((account, index) =>
+                {accountTask.data.accounts.map((account, index) =>
                   <div
                     key={account.accountIndex}
                     className={clsx({ [classes.account]: index > 0 })}
@@ -75,7 +75,7 @@ function UserAccount ({
               <section>
                 <h4 className={classes.title}>Account transactions</h4>
                 <TransactionsList
-                  transactions={transactionsTask.data}
+                  transactions={transactionsTask.data.transactions}
                 />
               </section>
             )

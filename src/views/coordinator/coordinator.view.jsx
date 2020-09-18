@@ -62,7 +62,7 @@ function Coordinator ({
               <section>
                 <h4 className={classes.title}>Forged batches</h4>
                 <BatchesList
-                  batches={batchesTask.data}
+                  batches={batchesTask.data.batches}
                   hideForgerAddr
                 />
               </section>
