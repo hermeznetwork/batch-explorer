@@ -474,8 +474,8 @@ async function getCoordinator (coordinatorId) {
   return response.data
 }
 
-async function getSlots () {
-  const response = await axios.get(`${baseApiUrl}/slots`)
+async function getSlot () {
+  const response = await axios.get(`${baseApiUrl}/slot`)
 
   return response.data
 }
@@ -489,5 +489,5 @@ export {
   getBatch,
   getBatchTransactions,
   getCoordinator,
-  getSlots
+  getSlot
 }

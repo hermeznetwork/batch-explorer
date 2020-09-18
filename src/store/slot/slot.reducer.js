@@ -8,7 +8,7 @@ const initialSlotState = {
 
 function slotReducer (state = initialSlotState, action) {
   switch (action.type) {
-    case slotActionTypes.LOAD_SLOTS: {
+    case slotActionTypes.LOAD_SLOT: {
       return {
         ...state,
         slotTask: {
@@ -16,7 +16,7 @@ function slotReducer (state = initialSlotState, action) {
         }
       }
     }
-    case slotActionTypes.LOAD_SLOTS_SUCCESS: {
+    case slotActionTypes.LOAD_SLOT_SUCCESS: {
       return {
         ...state,
         slotTask: {
@@ -25,7 +25,7 @@ function slotReducer (state = initialSlotState, action) {
         }
       }
     }
-    case slotActionTypes.LOAD_SLOTS_FAILURE: {
+    case slotActionTypes.LOAD_SLOT_FAILURE: {
       return {
         ...state,
         slotTask: {
