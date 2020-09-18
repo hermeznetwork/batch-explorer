@@ -6,7 +6,7 @@ function fetchSlot (slotNum) {
     dispatch(slotActions.loadSlot())
 
     return rollupApi.getSlot(slotNum)
-      .then(res => dispatch(slotActions.loadSlotSuccess(res.nextForgers)))
+      .then(res => dispatch(slotActions.loadSlotSuccess(res)))
       .catch(err => dispatch(slotActions.loadSlotFailure(err)))
   }
 }

@@ -9,6 +9,7 @@ const baseApiUrl = 'http://167.71.59.190:4010'
 // const mockedBatchId = 5432
 // const mockedCoordinatorId = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
 // const mockedAccountIndex = 'hez:DAI:4444'
+const mockedSlotNum = 784
 
 // mock.onGet(`${baseApiUrl}/accounts?hermezEthereumAddress=${mockedEthereumAddress}`)
 //   .reply(
@@ -414,6 +415,26 @@ const baseApiUrl = 'http://167.71.59.190:4010'
 //     }
 //   )
 
+mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
+  .reply(
+    200,
+    {
+      slotNum: 784,
+      firstBlock: 0,
+      lastBlock: 0,
+      closedAuction: true,
+      winner: {
+        forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        URL: 'https://hermez.io',
+        ethereumBlock: 0
+      },
+      batchNums: [
+        5432
+      ]
+    }
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -474,8 +495,8 @@ async function getCoordinator (coordinatorId) {
   return response.data
 }
 
-async function getSlot () {
-  const response = await axios.get(`${baseApiUrl}/slot`)
+async function getSlot (slotNum) {
+  const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
 
   return response.data
 }

@@ -3,12 +3,16 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import useSlotStyles from './slot.styles'
+import Spinner from '../shared/spinner/spinner.view'
+import SlotDetails from './components/slot-details/slot-details.view'
 import { fetchSlot } from '../../store/slot/slot.thunks'
 
 function Slot ({
   onLoadSlot,
   slotTask
 }) {
+  const classes = useSlotStyles()
   const { slotNum } = useParams()
 
   React.useEffect(() => {
@@ -16,7 +20,31 @@ function Slot ({
   }, [slotNum, onLoadSlot])
 
   return (
-    <div>SLOT</div>
+    <div>
+      {(() => {
+        switch (slotTask.status) {
+          case 'loading': {
+            return <Spinner />
+          }
+          case 'failed': {
+            return <p>{slotTask.error}</p>
+          }
+          case 'successful': {
+            return (
+              <section>
+                <h4 className={classes.title}>Slot</h4>
+                <SlotDetails
+                  slot={slotTask.data}
+                />
+              </section>
+            )
+          }
+          default: {
+            return <></>
+          }
+        }
+      })()}
+    </div>
   )
 }
 
