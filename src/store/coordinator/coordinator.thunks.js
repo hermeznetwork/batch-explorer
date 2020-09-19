@@ -16,7 +16,7 @@ function fetchBatches (coordinatorId) {
     dispatch(coordinatorActions.loadBatches())
 
     return rollupApi.getBatches(coordinatorId)
-      .then(res => dispatch(coordinatorActions.loadBatchesSuccess(res.batches)))
+      .then(res => dispatch(coordinatorActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBatchesFailure(err)))
   }
 }

@@ -16,7 +16,7 @@ function fetchBatchTransactions (batchId) {
     dispatch(batchActions.loadBatchTransactions())
 
     return rollupApi.getBatchTransactions(batchId)
-      .then((res) => { dispatch(batchActions.loadBatchTransactionsSuccess(res.transactions)) })
+      .then((res) => { dispatch(batchActions.loadBatchTransactionsSuccess(res)) })
       .catch(err => dispatch(batchActions.loadBatchTransactionsFailure(err)))
   }
 }

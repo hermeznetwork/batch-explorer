@@ -24,10 +24,6 @@ function UserAccount ({
     onLoadTransactions(ethereumAddress)
   }, [ethereumAddress, onLoadAccount, onLoadTransactions])
 
-  function getAccount (accountIndex) {
-    return accountTask.data.find((account) => account.accountIndex === accountIndex)
-  }
-
   return (
     <div>
       {(() => {
@@ -43,17 +39,17 @@ function UserAccount ({
               <section>
                 <h4 className={classes.title}>Token Accounts</h4>
 
-                {accountTask.data.map((account, index) =>
+                {accountTask.data.accounts.map((account, index) =>
                   <div
                     key={account.accountIndex}
                     className={clsx({ [classes.account]: index > 0 })}
                   >
                     <AccountDetails
-                      publicKey={getAccount(account.accountIndex).publicKey}
-                      ethereumAddress={getAccount(account.accountIndex).ethereumAddress}
-                      nonce={getAccount(account.accountIndex).nonce}
-                      tokenSymbol={getAccount(account.accountIndex).tokenSymbol}
-                      balance={getAccount(account.accountIndex).balance}
+                      publicKey={account.publicKey}
+                      ethereumAddress={account.ethereumAddress}
+                      nonce={account.nonce}
+                      tokenSymbol={account.tokenSymbol}
+                      balance={account.balance}
                     />
                   </div>
                 )}
@@ -79,7 +75,7 @@ function UserAccount ({
               <section>
                 <h4 className={classes.title}>Account transactions</h4>
                 <TransactionsList
-                  transactions={transactionsTask.data}
+                  transactions={transactionsTask.data.transactions}
                 />
               </section>
             )

@@ -62,7 +62,7 @@ function Batch ({
               <section>
                 <h4 className={classes.title}>Batch transactions</h4>
                 <TransactionsList
-                  transactions={batchTransactionsTask.data}
+                  transactions={batchTransactionsTask.data.transactions}
                 />
               </section>
             )

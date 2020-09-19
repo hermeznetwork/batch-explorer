@@ -7,10 +7,6 @@ import useBatchDetailsStyles from './batch-details.styles'
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
 
-  function findFee (tokenId) {
-    return batch.collectedFees.find((fee) => fee.tokenId === tokenId)
-  }
-
   return (
     <div className={classes.row}>
       <div>
@@ -37,10 +33,10 @@ function BatchDetails ({ batch }) {
               className={clsx({ [classes.fee]: index > 0 })}
             >
               <div>
-                  Token: {findFee(fee.tokenId).tokenSymbol}
+                  Token: {fee.tokenSymbol}
               </div>
               <div>
-                  Amount: {findFee(fee.tokenId).amount}
+                  Amount: {fee.amount}
               </div>
             </div>
           )
