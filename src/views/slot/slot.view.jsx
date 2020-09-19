@@ -48,6 +48,7 @@ function Slot ({
           }
         }
       })()}
+
       {(() => {
         switch (bidsTask.status) {
           case 'loading': {

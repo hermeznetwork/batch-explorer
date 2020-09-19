@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 import Bid from '../bid/bid.view'
 
 function BidsList ({ bids }) {
-  console.log('bids: ' + JSON.stringify(bids))
-
   return (
     <div>
       <section>
