@@ -61,7 +61,7 @@ function Slot ({
               <section>
                 <h4 className={classes.title}>Bids</h4>
                 <BidsList
-                  bids={bidsTask.data}
+                  bids={bidsTask.data.bids}
                 />
               </section>
             )
