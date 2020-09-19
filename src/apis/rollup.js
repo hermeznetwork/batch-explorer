@@ -261,6 +261,58 @@ mock.onGet(`${baseApiUrl}/coordinators/${mockedCoordinatorId}`)
     ]
   )
 
+mock.onGet(`${baseApiUrl}/state`)
+  .reply(
+    200,
+    {
+      lastBlock: 0,
+      lastBatch: 0,
+      currentSlot: 0,
+      transactionsPerBatch: 2002.7,
+      batchFrequency: 8.9,
+      transactionsPerSecond: 302.3,
+      totalAccounts: 90473,
+      totalBJJs: 23067,
+      avgTransactionFee: 1.54,
+      governance: {
+        rollup: {
+          forgeTimeout: 5,
+          feeAddToken: 5698
+        },
+        auction: {
+          bootCoordinator: 'string',
+          slotDeadline: 3,
+          closedAuctionSlots: 2,
+          openAuctionSlots: 0,
+          defaultSlotSetBid: [
+            32,
+            0,
+            68,
+            21,
+            55,
+            99
+          ],
+          outbidding: 3.64,
+          donationAddress: 'string',
+          allocationRatio: [
+            80,
+            10,
+            10
+          ]
+        },
+        withdrawalDelayer: {
+          rollupAddress: 'string',
+          governanceAddress: 'string',
+          whitheHackerGroupAddress: 'string',
+          keeperAddress: 'string',
+          withdrawalDelay: 0,
+          emergencyModeStartingTime: 10,
+          emergencyMode: true
+        }
+      }
+    }
+  )
+
 mock.onAny()
   .passThrough()
 
@@ -321,6 +373,12 @@ async function getCoordinator (coordinatorId) {
   return response.data
 }
 
+async function getOverview () {
+  const response = await axios.get(`${baseApiUrl}/state`)
+
+  return response.data
+}
+
 export {
   getAccounts,
   getAccount,
@@ -329,5 +387,6 @@ export {
   getBatches,
   getBatch,
   getBatchTransactions,
-  getCoordinator
+  getCoordinator,
+  getOverview
 }
