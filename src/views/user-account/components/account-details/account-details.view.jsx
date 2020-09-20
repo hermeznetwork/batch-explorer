@@ -1,23 +1,30 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import useAccountDetailsStyles from './account-details.styles'
 
-function AccountDetails ({ account }) {
+function AccountDetails ({ publicKey, ethereumAddress, nonce, tokenSymbol, balance }) {
   const classes = useAccountDetailsStyles()
 
   return (
     <div className={classes.row}>
       <div>
-            Hermez Address: {account[0].PublicKey}
+            Baby JubJub: {publicKey}
       </div>
       <div>
-            Ethereum address: {account[0].EthAddr}
+            Eth address: {ethereumAddress}
       </div>
       <div>
-            Token accounts: {account.length}
+            Nonce: {nonce}
       </div>
       <div>
-            Nonce: {account[0].Nonce}
+            Token symbol: {tokenSymbol}
+      </div>
+      <div>
+            Balance: {balance}
+      </div>
+      <div>
+            Token accounts: <Link to={`/token-accounts/${ethereumAddress}`}>{}</Link>
       </div>
     </div>
   )

@@ -8,23 +8,19 @@ import useBatchesListStyles from './batches-list.styles'
 function BatchesList ({ batches, hideForgerAddr }) {
   const classes = useBatchesListStyles()
 
-  function findBatch (batchId) {
-    return batches.find((batch) => batch.BatchID === batchId)
-  }
-
   return (
     <div>
       <section>
         {batches.map((batch, index) =>
           <div
-            key={batch.BatchID}
+            key={batch.batchNum}
             className={clsx({ [classes.batch]: index > 0 })}
           >
             <Batch
-              batchId={batch.BatchID}
-              batchTxNum={findBatch(batch.BatchID).numberOfTransactions}
-              batchForgerAddr={findBatch(batch.BatchID).ForgerAddr}
-              batchTimeStamp={findBatch(batch.BatchID).timeStamp}
+              batchNum={batch.batchNum}
+              batchTxNum={batch.forgeL1TransactionsNum}
+              batchForgerAddr={batch.forgerAddr}
+              batchTimeStamp={batch.timeStamp}
               hideForgerAddr={hideForgerAddr}
             />
           </div>
@@ -37,7 +33,7 @@ function BatchesList ({ batches, hideForgerAddr }) {
 BatchesList.propTypes = {
   batches: PropTypes.arrayOf(
     PropTypes.shape({
-      BatchID: PropTypes.number.isRequired
+      batchNum: PropTypes.number.isRequired
     })
   ),
   hideForgerAddr: PropTypes.bool
