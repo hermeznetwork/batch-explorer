@@ -4,10 +4,10 @@ function Overview ({ overview }) {
   return (
     <div>
       <div>
-        LAST BatcH: {overview.lastBatch}
+        Last batch: {overview.lastBatch}
       </div>
       <div>
-        AVG TRANSACTIONS PER BATCH: {overview.transactionsPerBatch}
+        Avg transactions per batch: {overview.transactionsPerBatch}
       </div>
       <div>
         Avg Batch Time - batchFrequency: {overview.batchFrequency}
@@ -22,7 +22,7 @@ function Overview ({ overview }) {
         Total Wallets - totalBJJs: {overview.totalBJJs}
       </div>
       <div>
-        AVG TRANSACTION FEE: {overview.avgTransactionFee}
+        Avg transaction fee: {overview.avgTransactionFee}
       </div>
     </div>
   )
