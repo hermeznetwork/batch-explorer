@@ -88,6 +88,9 @@ async function getCoordinator (coordinatorId) {
 async function getOverview () {
   const response = await axios.get(`${baseApiUrl}/state`)
 
+  return response.data
+}
+
 async function getSlot (slotNum) {
   const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
 
@@ -114,7 +117,7 @@ export {
   getBatches,
   getBatch,
   getCoordinator,
-  getOverview
+  getOverview,
   getSlot,
   getBids
 }
