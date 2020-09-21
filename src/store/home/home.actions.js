@@ -1,7 +1,10 @@
 export const homeActionTypes = {
   LOAD_BATCHES: '[HOME] LOAD BATCHES',
   LOAD_BATCHES_SUCCESS: '[HOME] LOAD BATCHES SUCCESS',
-  LOAD_BATCHES_FAILURE: '[HOME] LOAD BATCHES FAILURE'
+  LOAD_BATCHES_FAILURE: '[HOME] LOAD BATCHES FAILURE',
+  LOAD_OVERVIEW: '[HOME] LOAD OVERVIEW',
+  LOAD_OVERVIEW_SUCCESS: '[HOME] LOAD OVERVIEW SUCCESS',
+  LOAD_OVERVIEW_FAILURE: '[HOME] LOAD OVERVIEW FAILURE'
 }
 
 function loadBatches () {
@@ -23,8 +26,30 @@ function loadBatchesFailure () {
   }
 }
 
+function loadOverview () {
+  return {
+    type: homeActionTypes.LOAD_OVERVIEW
+  }
+}
+
+function loadOverviewSuccess (overview) {
+  return {
+    type: homeActionTypes.LOAD_OVERVIEW_SUCCESS,
+    overview
+  }
+}
+
+function loadOverviewFailure () {
+  return {
+    type: homeActionTypes.LOAD_OVERVIEW_FAILURE
+  }
+}
+
 export {
   loadBatches,
   loadBatchesSuccess,
-  loadBatchesFailure
+  loadBatchesFailure,
+  loadOverview,
+  loadOverviewSuccess,
+  loadOverviewFailure
 }
