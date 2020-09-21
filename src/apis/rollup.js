@@ -1,6 +1,32 @@
 import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
 
+const mock = new MockAdapter(axios)
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
+const mockedSlotNum = 784
+
+mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
+  .reply(
+    200,
+    {
+      slotNum: 784,
+      firstBlock: 0,
+      lastBlock: 0,
+      closedAuction: true,
+      winner: {
+        forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        URL: 'https://hermez.io',
+        ethereumBlock: 0
+      },
+      batchNums: [
+        5432
+      ]
+    }
+  )
+
+mock.onAny()
+  .passThrough()
 
 async function getAccounts (hermezEthereumAddress, tokenId) {
   const params = {
@@ -59,11 +85,32 @@ async function getCoordinator (coordinatorId) {
   return response.data
 }
 
+async function getSlot (slotNum) {
+  const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
+
+  return response.data
+}
+
+async function getBids (slotNum) {
+  const params = {
+    ...(slotNum ? { slotNum } : {})
+  }
+
+  const response = await axios.get(
+    `${baseApiUrl}/bids?${slotNum}`,
+    { params }
+  )
+
+  return response.data
+}
+
 export {
   getAccounts,
   getTransactions,
   getTokens,
   getBatches,
   getBatch,
-  getCoordinator
+  getCoordinator,
+  getSlot,
+  getBids
 }
