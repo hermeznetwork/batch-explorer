@@ -14,7 +14,7 @@ async function getAccount (ethereumAddress, tokenId) {
   return response.data
 }
 
-async function getTransactions (ethereumAddress, tokenId) {
+async function getHistoryTransactions (ethereumAddress, tokenId) {
   const params = {
     ...(tokenId ? { tokenId } : {})
   }
@@ -22,6 +22,18 @@ async function getTransactions (ethereumAddress, tokenId) {
     `${baseApiUrl}/transactions-history?hermezEthereumAddress=${ethereumAddress}`,
     { params }
   )
+
+  return response.data
+}
+
+async function getHistoryTransaction (transactionId) {
+  const response = await axios.get(`${baseApiUrl}/transactions-history/${transactionId}`)
+
+  return response.data
+}
+
+async function getPoolTransaction (transactionId) {
+  const response = await axios.get(`${baseApiUrl}/transactions-pool/${transactionId}`)
 
   return response.data
 }
@@ -62,7 +74,9 @@ async function getCoordinator (coordinatorId) {
 export {
   getAccounts,
   getAccount,
-  getTransactions,
+  getHistoryTransactions,
+  getHistoryTransaction,
+  getPoolTransaction,
   getTokens,
   getBatches,
   getBatch,

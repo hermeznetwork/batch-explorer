@@ -21,7 +21,7 @@ function fetchTransactions (ethereumAddress) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadTransactions())
 
-    return rollupApi.getTransactions(ethereumAddress)
+    return rollupApi.getHistoryTransactions(ethereumAddress)
       .then(res => dispatch(userAccountActionTypes.loadTransactionsSuccess(res)))
       .catch(err => dispatch(userAccountActionTypes.loadTransactionsFailure(err)))
   }
