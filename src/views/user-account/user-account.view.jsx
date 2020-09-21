@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 
 import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -36,10 +37,22 @@ function UserAccount ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Account</h4>
-                <AccountDetails
-                  account={accountTask.data}
-                />
+                <h4 className={classes.title}>Token Accounts</h4>
+
+                {accountTask.data.accounts.map((account, index) =>
+                  <div
+                    key={account.accountIndex}
+                    className={clsx({ [classes.account]: index > 0 })}
+                  >
+                    <AccountDetails
+                      publicKey={account.publicKey}
+                      ethereumAddress={account.ethereumAddress}
+                      nonce={account.nonce}
+                      tokenSymbol={account.tokenSymbol}
+                      balance={account.balance}
+                    />
+                  </div>
+                )}
               </section>
             )
           }
@@ -62,7 +75,7 @@ function UserAccount ({
               <section>
                 <h4 className={classes.title}>Account transactions</h4>
                 <TransactionsList
-                  transactions={transactionsTask.data}
+                  transactions={transactionsTask.data.transactions}
                 />
               </section>
             )
@@ -81,7 +94,7 @@ UserAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        EthAddr: PropTypes.string.isRequired
+        ethereumAddress: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string

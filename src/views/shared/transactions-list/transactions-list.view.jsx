@@ -9,7 +9,7 @@ function TransactionsList ({ transactions }) {
   const classes = useTransactionsListStyles()
 
   function getTransaction (transactionId) {
-    return transactions.find((transaction) => transaction.TxID === transactionId)
+    return transactions.find((transaction) => transaction.id === transactionId)
   }
 
   return (
@@ -17,13 +17,15 @@ function TransactionsList ({ transactions }) {
       <section>
         {transactions.map((transaction, index) =>
           <div
-            key={transaction.TxID}
+            key={transaction.id}
             className={clsx({ [classes.transaction]: index > 0 })}
           >
             <Transaction
-              transactionId={transaction.TxID}
-              amount={getTransaction(transaction.TxID).Amount}
-              fee={getTransaction(transaction.TxID).Fee}
+              transactionId={transaction.id}
+              amount={getTransaction(transaction.id).amount}
+              historicUSD={getTransaction(transaction.id).historicUSD}
+              currentUSD={getTransaction(transaction.id).currentUSD}
+              l1orl2={getTransaction(transaction.id).L1orL2}
             />
           </div>
         )}

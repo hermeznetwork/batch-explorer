@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import useBatchStyles from './batch.styles'
 
-function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
+function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
   const classes = useBatchStyles()
 
   const diff = new Date(new Date() - new Date(batchTimeStamp * 1000))
@@ -16,8 +15,8 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForg
 
   return (
     <div className={classes.row}>
-      <Link to={`/batch/${batchId}`}>
-        Batch: {batchId}
+      <Link to={`/batch/${batchNum}`}>
+        Batch: {batchNum}
       </Link>
       <div>
         {formattedTime}
@@ -32,14 +31,6 @@ function Batch ({ batchId, batchTxNum, batchForgerAddr, batchTimeStamp, hideForg
       }
     </div>
   )
-}
-
-Batch.propTypes = {
-  batchId: PropTypes.number.isRequired,
-  batchTxNum: PropTypes.number.isRequired,
-  batchForgerAddr: PropTypes.string,
-  batchTimeStamp: PropTypes.number.isRequired,
-  hideForgerAddr: PropTypes.bool
 }
 
 export default Batch
