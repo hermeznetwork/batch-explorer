@@ -62,7 +62,7 @@ function Coordinator ({
               <section>
                 <h4 className={classes.title}>Forged batches</h4>
                 <BatchesList
-                  batches={batchesTask.data}
+                  batches={batchesTask.data.batches}
                   hideForgerAddr
                 />
               </section>
@@ -83,7 +83,7 @@ Coordinator.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        BatchID: PropTypes.number.isRequired
+        batchNum: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string

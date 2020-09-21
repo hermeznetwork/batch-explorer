@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 
 import useBatchDetailsStyles from './batch-details.styles'
 
@@ -8,37 +9,40 @@ function BatchDetails ({ batch }) {
   return (
     <div className={classes.row}>
       <div>
-            Batch: {batch[0].BatchID}
+            Batch: {batch.batchNum}
       </div>
       <div>
-            Number of transactions: {batch[0].numberOfTransactions}
+            Number of transactions: {batch.forgeL1TransactionsNum}
       </div>
       <div>
-            Slot: {batch[0].SlotNum}
+            Slot: {batch.slotNum}
       </div>
       <div>
-            EthTxHash: {batch[0].EthTxHash}
+            Ethereum block number: {batch.ethereumBlockNum}
       </div>
       <div>
-            EthBlockNum: {batch[0].EthBlockNum}
+            ExitRoot: {batch.exitRoot}
       </div>
       <div>
-            ExitRoot: {batch[0].ExitRoot}
+            CollectedFees -
+        {
+          batch.collectedFees.map((fee, index) =>
+            <div
+              key={fee.tokenId}
+              className={clsx({ [classes.fee]: index > 0 })}
+            >
+              <div>
+                  Token: {fee.tokenSymbol}
+              </div>
+              <div>
+                  Amount: {fee.amount}
+              </div>
+            </div>
+          )
+        }
       </div>
       <div>
-            OldStateRoot: {batch[0].OldStateRoot}
-      </div>
-      <div>
-            NewStateRoot: {batch[0].NewStateRoot}
-      </div>
-      <div>
-            CollectedFees: {batch[0].CollectedFees}
-      </div>
-      <div>
-            ForgerAddr: {batch[0].ForgerAddr}
-      </div>
-      <div>
-            timeStamp: {batch[0].timeStamp}
+            ForgerAddr: {batch.forgerAddr}
       </div>
     </div>
   )

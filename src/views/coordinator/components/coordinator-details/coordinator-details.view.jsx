@@ -5,18 +5,21 @@ function CoordinatorDetails ({ coordinator }) {
     <section>
       <div>
         <a
-          href={coordinator[0].URL}
+          href={coordinator.URL}
           target='_blank'
           rel='noopener noreferrer'
         >
-          {coordinator[0].URL}
+          {coordinator.URL}
         </a>
       </div>
       <div>
-        Forger address: {coordinator[0].Forger}
+        Forger address: {coordinator.forgerAddr}
       </div>
       <div>
-        Withdrawal address: {coordinator[0].Beneficiary}
+        Withdrawal address: {coordinator.withdrawAddr}
+      </div>
+      <div>
+      Ethereum block: {coordinator.ethereumBlock}
       </div>
     </section>
   )

@@ -63,7 +63,7 @@ function Home ({
                 <section>
                   <h4 className={classes.title}>Batches</h4>
                   <BatchesList
-                    batches={batchesTask.data}
+                    batches={batchesTask.data.batches}
                   />
                 </section>
               </>
@@ -84,7 +84,7 @@ Home.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        BatchID: PropTypes.number.isRequired
+        batchNum: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string

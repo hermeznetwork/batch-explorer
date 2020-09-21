@@ -1,9 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import useTransactionStyles from './transaction.styles'
 
-function Transaction ({ transactionId, amount, fee }) {
+function Transaction ({ transactionId, amount, currentUSD, historicUSD, l1orl2 }) {
   const classes = useTransactionStyles()
 
   return (
@@ -15,16 +14,16 @@ function Transaction ({ transactionId, amount, fee }) {
         Amount: {amount}
       </div>
       <div>
-        Fee: {fee}
+        Current USD: {currentUSD}
+      </div>
+      <div>
+        Historic USD: {historicUSD}
+      </div>
+      <div>
+        Level: {l1orl2}
       </div>
     </div>
   )
-}
-
-Transaction.propTypes = {
-  transactionId: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
-  fee: PropTypes.number
 }
 
 export default Transaction

@@ -15,12 +15,8 @@ function fetchBatchTransactions (batchId) {
   return (dispatch) => {
     dispatch(batchActions.loadBatchTransactions())
 
-    return rollupApi.getBatchTransactions(batchId)
-      .then((res) => {
-        // Concatenating L1 and L2 transactions and sorting them by Position
-        res = res.L1Txs.concat(res.L2Txs).sort((a, b) => b.Position - a.Position)
-        dispatch(batchActions.loadBatchTransactionsSuccess(res))
-      })
+    return rollupApi.getTransactions(undefined, undefined, batchId)
+      .then((res) => { dispatch(batchActions.loadBatchTransactionsSuccess(res)) })
       .catch(err => dispatch(batchActions.loadBatchTransactionsFailure(err)))
   }
 }
