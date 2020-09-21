@@ -28,24 +28,27 @@ mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
 mock.onAny()
   .passThrough()
 
-async function getAccounts (ethereumAddress) {
-  const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}`)
-
-  return response.data
-}
-
-async function getAccount (ethereumAddress, tokenId) {
-  const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}&tokenIds=${tokenId}`)
-
-  return response.data
-}
-
-async function getTransactions (ethereumAddress, tokenId) {
+async function getAccounts (hermezEthereumAddress, tokenId) {
   const params = {
+    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    `${baseApiUrl}/transactions-history?hermezEthereumAddress=${ethereumAddress}`,
+    `${baseApiUrl}/accounts`,
+    { params }
+  )
+
+  return response.data
+}
+
+async function getTransactions (hermezEthereumAddress, tokenId, batchNum) {
+  const params = {
+    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(tokenId ? { tokenId } : {}),
+    ...(batchNum ? { batchNum } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/transactions-history`,
     { params }
   )
 
@@ -58,23 +61,20 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches (coordinatorId) {
-  // TODO: refactor
-  const params = coordinatorId ? '?forgerAddr=' + coordinatorId : ''
-
-  const response = await axios.get(`${baseApiUrl}/batches${params}`)
+async function getBatches (forgerAddr) {
+  const params = {
+    ...(forgerAddr ? { forgerAddr } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/batches`,
+    { params }
+  )
 
   return response.data
 }
 
 async function getBatch (batchId) {
   const response = await axios.get(`${baseApiUrl}/batches/${batchId}`)
-
-  return response.data
-}
-
-async function getBatchTransactions (batchId) {
-  const response = await axios.get(`${baseApiUrl}/transactions-history?batchNum=${batchId}`)
 
   return response.data
 }
@@ -106,12 +106,10 @@ async function getBids (slotNum) {
 
 export {
   getAccounts,
-  getAccount,
   getTransactions,
   getTokens,
   getBatches,
   getBatch,
-  getBatchTransactions,
   getCoordinator,
   getSlot,
   getBids
