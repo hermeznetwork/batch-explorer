@@ -11,4 +11,14 @@ function fetchBatches () {
   }
 }
 
-export { fetchBatches }
+function fetchOverview () {
+  return (dispatch) => {
+    dispatch(homeActions.loadOverview())
+
+    return rollupApi.getOverview()
+      .then((res) => dispatch(homeActions.loadOverviewSuccess(res)))
+      .catch(err => dispatch(homeActions.loadOverviewFailure(err)))
+  }
+}
+
+export { fetchBatches, fetchOverview }

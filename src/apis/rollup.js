@@ -34,8 +34,8 @@ async function getAccounts (hermezEthereumAddress, tokenId) {
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    `${baseApiUrl}/accounts`,
-    { params }
+      `${baseApiUrl}/accounts`,
+      { params }
   )
 
   return response.data
@@ -97,6 +97,12 @@ async function getCoordinator (coordinatorId) {
   return response.data
 }
 
+async function getOverview () {
+  const response = await axios.get(`${baseApiUrl}/state`)
+
+  return response.data
+}
+
 async function getSlot (slotNum) {
   const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
 
@@ -125,6 +131,7 @@ export {
   getBatches,
   getBatch,
   getCoordinator,
+  getOverview,
   getSlot,
   getBids
 }
