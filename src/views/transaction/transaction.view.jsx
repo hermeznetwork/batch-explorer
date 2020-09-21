@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import useTransactionStyles from './transaction.styles'
+import Spinner from '../shared/spinner/spinner.view'
 import { fetchTransaction } from '../../store/transaction/transaction.thunks'
 
 function Transaction ({
@@ -10,6 +12,7 @@ function Transaction ({
   transactionTask
 }) {
   const { transactionId } = useParams()
+  const classes = useTransactionStyles()
 
   React.useEffect(() => {
     onLoadTransaction(transactionId)
@@ -17,7 +20,46 @@ function Transaction ({
 
   return (
     <div>
-        Transaction
+      {(() => {
+        switch (transactionTask.status) {
+          case 'loading': {
+            return <Spinner />
+          }
+          case 'failed': {
+            return <p>{transactionTask.error}</p>
+          }
+          case 'successful': {
+            return (
+              <section>
+                <div className={classes.item}>
+                  transactionId: {transactionTask.data.id}
+                </div>
+                <div className={classes.item}>
+                  type: {transactionTask.data.type}
+                </div>
+                <div className={classes.item}>
+                  amount: {transactionTask.data.amount}
+                </div>
+                <div className={classes.item}>
+                  historicUSD: {transactionTask.data.tokenSymbol}
+                </div>
+                <div className={classes.item}>
+                  currentUSD: {transactionTask.data.historicUSD}
+                </div>
+                <div className={classes.item}>
+                  currentUSD: {transactionTask.data.currentUSD}
+                </div>
+                <div className={classes.item}>
+                  l1orl2: {transactionTask.data.L1orL2}
+                </div>
+              </section>
+            )
+          }
+          default: {
+            return <></>
+          }
+        }
+      })()}
     </div>
   )
 }
