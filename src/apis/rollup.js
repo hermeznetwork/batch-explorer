@@ -1,25 +1,54 @@
 import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
 
+const mock = new MockAdapter(axios)
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
+const mockedSlotNum = 784
 
-async function getAccounts (ethereumAddress) {
-  const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}`)
+mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
+  .reply(
+    200,
+    {
+      slotNum: 784,
+      firstBlock: 0,
+      lastBlock: 0,
+      closedAuction: true,
+      winner: {
+        forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        URL: 'https://hermez.io',
+        ethereumBlock: 0
+      },
+      batchNums: [
+        5432
+      ]
+    }
+  )
 
-  return response.data
-}
+mock.onAny()
+  .passThrough()
 
-async function getAccount (ethereumAddress, tokenId) {
-  const response = await axios.get(`${baseApiUrl}/accounts?hermezEthereumAddress=${ethereumAddress}&tokenIds=${tokenId}`)
-
-  return response.data
-}
-
-async function getHistoryTransactions (ethereumAddress, tokenId) {
+async function getAccounts (hermezEthereumAddress, tokenId) {
   const params = {
+    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    `${baseApiUrl}/transactions-history?hermezEthereumAddress=${ethereumAddress}`,
+    `${baseApiUrl}/accounts`,
+    { params }
+  )
+
+  return response.data
+}
+
+async function getHistoryTransactions (hermezEthereumAddress, tokenId, batchNum) {
+  const params = {
+    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(tokenId ? { tokenId } : {}),
+    ...(batchNum ? { batchNum } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/transactions-history`,
     { params }
   )
 
@@ -44,11 +73,14 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches (coordinatorId) {
-  // TODO: refactor
-  const params = coordinatorId ? '?forgerAddr=' + coordinatorId : ''
-
-  const response = await axios.get(`${baseApiUrl}/batches${params}`)
+async function getBatches (forgerAddr) {
+  const params = {
+    ...(forgerAddr ? { forgerAddr } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/batches`,
+    { params }
+  )
 
   return response.data
 }
@@ -59,27 +91,40 @@ async function getBatch (batchId) {
   return response.data
 }
 
-async function getBatchTransactions (batchId) {
-  const response = await axios.get(`${baseApiUrl}/transactions-history?batchNum=${batchId}`)
-
-  return response.data
-}
-
 async function getCoordinator (coordinatorId) {
   const response = await axios.get(`${baseApiUrl}/coordinators/${coordinatorId}`)
 
   return response.data
 }
 
+async function getSlot (slotNum) {
+  const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
+
+  return response.data
+}
+
+async function getBids (slotNum) {
+  const params = {
+    ...(slotNum ? { slotNum } : {})
+  }
+
+  const response = await axios.get(
+    `${baseApiUrl}/bids?${slotNum}`,
+    { params }
+  )
+
+  return response.data
+}
+
 export {
   getAccounts,
-  getAccount,
   getHistoryTransactions,
   getHistoryTransaction,
   getPoolTransaction,
   getTokens,
   getBatches,
   getBatch,
-  getBatchTransactions,
-  getCoordinator
+  getCoordinator,
+  getSlot,
+  getBids
 }

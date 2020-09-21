@@ -7,6 +7,7 @@ import batchReducer from './batch/batch.reducer'
 import coordinatorReducer from './coordinator/coordinator.reducer'
 import userAccountReducer from './user-account/user-account.reducer'
 import transactionReducer from './transaction/transaction.reducer'
+import slotReducer from './slot/slot.reducer'
 
 const rootReducer = combineReducers({
   global: globalReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   batch: batchReducer,
   coordinator: coordinatorReducer,
   userAccount: userAccountReducer,
-  transaction: transactionReducer
+  transaction: transactionReducer,
+  slot: slotReducer
 })
 
 const middlewares = [thunk]
