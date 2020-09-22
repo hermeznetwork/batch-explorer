@@ -34,23 +34,38 @@ function Transaction ({
                 <div className={classes.item}>
                   transactionId: {transactionTask.data.id}
                 </div>
-                <div className={classes.item}>
+                <div className={classes.state}>
+                  status: {transactionTask.data.state}
+                </div>
+                <div className={classes.timestamp}>
+                  timestamp: {transactionTask.data.timestamp}
+                </div>
+                <div className={classes.type}>
                   type: {transactionTask.data.type}
+                </div>
+                <div className={classes.from}>
+                  From: {transactionTask.data.fromAccountIndex}
+                </div>
+                <div className={classes.to}>
+                  To: {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                 </div>
                 <div className={classes.item}>
                   amount: {transactionTask.data.amount}
                 </div>
-                <div className={classes.item}>
-                  historicUSD: {transactionTask.data.tokenSymbol}
+                <div className={classes.fee}>
+                  Fee: {transactionTask.data.fee}
                 </div>
-                <div className={classes.item}>
-                  currentUSD: {transactionTask.data.historicUSD}
+                {/* <div className={classes.slot}>
+                  Slot: {transactionTask.data.slot}
+                </div> */}
+                <div className={classes.batchNum}>
+                  Included in batch: {transactionTask.data.batchNum}
                 </div>
-                <div className={classes.item}>
-                  currentUSD: {transactionTask.data.currentUSD}
-                </div>
-                <div className={classes.item}>
-                  l1orl2: {transactionTask.data.L1orL2}
+                {/* <div className={classes.position}>
+                  Position in batch: {transactionTask.data.position}
+                </div> */}
+                <div className={classes.nonce}>
+                  Nonce: {transactionTask.data.nonce}
                 </div>
               </section>
             )
