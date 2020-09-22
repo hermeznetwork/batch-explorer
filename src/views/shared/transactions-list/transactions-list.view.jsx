@@ -8,10 +8,6 @@ import useTransactionsListStyles from './transactions-list.styles'
 function TransactionsList ({ transactions }) {
   const classes = useTransactionsListStyles()
 
-  function getTransaction (transactionId) {
-    return transactions.find((transaction) => transaction.id === transactionId)
-  }
-
   return (
     <div>
       <section>
@@ -22,10 +18,10 @@ function TransactionsList ({ transactions }) {
           >
             <Transaction
               transactionId={transaction.id}
-              amount={getTransaction(transaction.id).amount}
-              historicUSD={getTransaction(transaction.id).historicUSD}
-              currentUSD={getTransaction(transaction.id).currentUSD}
-              l1orl2={getTransaction(transaction.id).L1orL2}
+              amount={transaction.amount}
+              historicUSD={transaction.historicUSD}
+              currentUSD={transaction.currentUSD}
+              l1orl2={transaction.L1orL2}
             />
           </div>
         )}
