@@ -1,4 +1,6 @@
 import React from 'react'
+import clsx from 'clsx'
+import { Link } from 'react-router-dom'
 
 import useBatchDetailsStyles from './batch-details.styles'
 
@@ -8,37 +10,56 @@ function BatchDetails ({ batch }) {
   return (
     <div className={classes.row}>
       <div>
-            Batch: {batch[0].BatchID}
+        Batch: {batch.batchNum}
+      </div>
+
+      <div>
+        Eth Block Hash {batch.ethereumBlockNum}
       </div>
       <div>
-            Number of transactions: {batch[0].numberOfTransactions}
+        Eth Block Number {batch.ethereumBlockNum}
       </div>
       <div>
-            Slot: {batch[0].SlotNum}
+        Status
       </div>
       <div>
-            EthTxHash: {batch[0].EthTxHash}
+        Timestamp
       </div>
       <div>
-            EthBlockNum: {batch[0].EthBlockNum}
+            Fees Collected
+        {
+          batch.collectedFees.map((fee, index) =>
+            <div
+              key={fee.tokenId}
+              className={clsx({ [classes.fee]: index > 0 })}
+            >
+              <div>
+                  Token: {fee.tokenSymbol} {fee.amount}
+              </div>
+            </div>
+          )
+        }
       </div>
       <div>
-            ExitRoot: {batch[0].ExitRoot}
+        Total Collected Fees {batch.totalCollectedFeesUSD} USD
       </div>
       <div>
-            OldStateRoot: {batch[0].OldStateRoot}
+        Coordinator {batch.forgerAddr}
       </div>
       <div>
-            NewStateRoot: {batch[0].NewStateRoot}
+        Number of txs {batch.forgeL1TransactionsNum}
       </div>
       <div>
-            CollectedFees: {batch[0].CollectedFees}
+        Number of accounts {batch.numAccounts}
       </div>
       <div>
-            ForgerAddr: {batch[0].ForgerAddr}
+        Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
       </div>
       <div>
-            timeStamp: {batch[0].timeStamp}
+        State root {batch.stateRoot}
+      </div>
+      <div>
+        Exit root {batch.exitRoot}
       </div>
     </div>
   )
