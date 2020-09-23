@@ -44,7 +44,7 @@ function BatchDetails ({ batch }) {
         Total Collected Fees {batch.totalCollectedFeesUSD} USD
       </div>
       <div>
-        Coordinator {batch.forgerAddr}
+        <Link to={`/coordinator/${batch.forgerAddr}`}>Coordinator: {batch.forgerAddr}</Link>
       </div>
       <div>
         Number of txs {batch.forgeL1TransactionsNum}
