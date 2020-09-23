@@ -2,7 +2,7 @@ import React from 'react'
 
 import useTransactionStyles from './transaction.styles'
 
-function Transaction ({ transactionId, amount, currentUSD, historicUSD, l1orl2 }) {
+function Transaction ({ transactionId, amount, tokenSymbol }) {
   const classes = useTransactionStyles()
 
   return (
@@ -11,16 +11,10 @@ function Transaction ({ transactionId, amount, currentUSD, historicUSD, l1orl2 }
         Tx ID: {transactionId}
       </div>
       <div>
+        Token: {tokenSymbol}
+      </div>
+      <div>
         Amount: {amount}
-      </div>
-      <div>
-        Current USD: {currentUSD}
-      </div>
-      <div>
-        Historic USD: {historicUSD}
-      </div>
-      <div>
-        Level: {l1orl2}
       </div>
     </div>
   )
