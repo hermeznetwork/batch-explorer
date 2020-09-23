@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import useBatchStyles from './batch.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import BatchDetails from './components/batch-details/batch-details.view'
-import BatchTransactionsList from './components/batch-transactions-list/batch-transactions-list.view'
+import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
 
 function Batch ({
@@ -61,8 +61,8 @@ function Batch ({
             return (
               <section>
                 <h4 className={classes.title}>Batch transactions</h4>
-                <BatchTransactionsList
-                  transactions={batchTransactionsTask.data}
+                <TransactionsList
+                  transactions={batchTransactionsTask.data.transactions}
                 />
               </section>
             )
@@ -82,7 +82,7 @@ Batch.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        BatchID: PropTypes.number.isRequired
+        batchNum: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string
@@ -104,8 +104,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatch: (batchId) => dispatch(fetchBatch(batchId)),
-  onLoadBatchTransactionsList: (batchId) => dispatch(fetchBatchTransactions(batchId))
+  onLoadBatch: (batchNum) => dispatch(fetchBatch(batchNum)),
+  onLoadBatchTransactionsList: (batchNum) => dispatch(fetchBatchTransactions(batchNum))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Batch)

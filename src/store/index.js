@@ -4,11 +4,17 @@ import thunk from 'redux-thunk'
 import globalReducer from './global/global.reducer'
 import homeReducer from './home/home.reducer'
 import batchReducer from './batch/batch.reducer'
+import coordinatorReducer from './coordinator/coordinator.reducer'
+import userAccountReducer from './user-account/user-account.reducer'
+import slotReducer from './slot/slot.reducer'
 
 const rootReducer = combineReducers({
   global: globalReducer,
   home: homeReducer,
-  batch: batchReducer
+  batch: batchReducer,
+  coordinator: coordinatorReducer,
+  userAccount: userAccountReducer,
+  slot: slotReducer
 })
 
 const middlewares = [thunk]

@@ -2,176 +2,25 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
 const mock = new MockAdapter(axios)
-const mockedEthereumAddress = '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'
-const mockedTokenId = 0
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
-const mockedBatchId = 222
+const mockedSlotNum = 784
 
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}`)
-  .reply(
-    200,
-    [
-      {
-        EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        TokenID: 0,
-        Balance: 2.38
-      }
-    ]
-  )
-
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/${mockedTokenId}`)
+mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
   .reply(
     200,
     {
-      EthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-      TokenID: 0,
-      Balance: 2.38
-    }
-  )
-
-mock.onGet(`${baseApiUrl}/account/${mockedEthereumAddress}/txs/history`)
-  .reply(
-    200,
-    [
-      {
-        ID: 'b89eaac7e61417341b710b727768294d0e6a277b',
-        FromEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        ToEthAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        FromIdx: 10,
-        ToIdx: 20,
-        Amount: 44.12,
-        Nonce: 0,
-        FeeSelector: 15,
-        Type: 'Transfer',
-        TokenID: 2
-      }
-    ]
-  )
-
-mock.onGet(`${baseApiUrl}/tokens`)
-  .reply(
-    200,
-    [
-      {
-        TokenID: 0,
-        Name: 'Some Cool Token',
-        Symbol: 'SCT'
+      slotNum: 784,
+      firstBlock: 0,
+      lastBlock: 0,
+      closedAuction: true,
+      winner: {
+        forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
+        URL: 'https://hermez.io',
+        ethereumBlock: 0
       },
-      {
-        TokenID: 1,
-        Name: 'Other Cool Token',
-        Symbol: 'OCT'
-      },
-      {
-        TokenID: 2,
-        Name: 'New Token',
-        Symbol: 'NTO'
-      },
-      {
-        TokenID: 3,
-        Name: 'Too Good Token',
-        Symbol: 'TGT'
-      }
-    ]
-  )
-
-mock.onGet(`${baseApiUrl}/batches`)
-  .reply(
-    200,
-    [
-      {
-        BatchID: 223,
-        numberOfTransactions: 88,
-        ForgerAddr: '0x0000000000000000000000000000000000000001',
-        timeStamp: 1597856265
-      },
-      {
-        BatchID: 222,
-        numberOfTransactions: 103,
-        ForgerAddr: '0x0000000000000000000000000000000000000002',
-        timeStamp: 1597863005
-      },
-      {
-        BatchID: 221,
-        numberOfTransactions: 23,
-        ForgerAddr: '0x0000000000000000000000000000000000000003',
-        timeStamp: 1597855841
-      },
-      {
-        BatchID: 220,
-        numberOfTransactions: 77,
-        ForgerAddr: '0x0000000000000000000000000000000000000004',
-        timeStamp: 1597856212144
-      }
-    ]
-  )
-
-mock.onGet(`${baseApiUrl}/batches/${mockedBatchId}`)
-  .reply(
-    200,
-    [
-      {
-        BatchID: 222,
-        numberOfTransactions: 103,
-        SlotNum: '45',
-        EthTxHash: '0x0000000000000000000000000000000000000099',
-        EthBlockNum: 10697921,
-        ExitRoot: '0xr4e4t94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c67yt8',
-        OldStateRoot: '0x3ew3e94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca124asfee45',
-        NewStateRoot: '0xfe88c94d860f01a17f961bf4bdfb6e0c6cd10d3fda5cc861e805ca1240c58553',
-        CollectedFees: 5000504,
-        ForgerAddr: '0x0000000000000000000000000000000000000001',
-        timeStamp: 1597863005
-      }
-    ]
-  )
-
-mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
-  .reply(
-    200,
-    {
-      L1Txs: [
-        {
-          TxID: 101,
-          Amount: 243,
-          Position: 1
-        },
-        {
-          TxID: 102,
-          Amount: 116,
-          Position: 5
-        },
-        {
-          TxID: 103,
-          Amount: 535,
-          Position: 9
-        }
-      ],
-      L2Txs: [
-        {
-          TxID: 307,
-          Amount: 540,
-          Fee: 115,
-          Position: 2
-        },
-        {
-          TxID: 308,
-          Amount: 241,
-          Fee: 99,
-          Position: 3
-        },
-        {
-          TxID: 310,
-          Amount: 999,
-          Fee: 90,
-          Position: 15
-        },
-        {
-          TxID: 311,
-          Amount: 423,
-          Fee: 101,
-          Position: 23
-        }
+      batchNums: [
+        5432
       ]
     }
   )
@@ -179,24 +28,27 @@ mock.onGet(`${baseApiUrl}/batch/${mockedBatchId}/txs`)
 mock.onAny()
   .passThrough()
 
-async function getAccounts (ethereumAddress) {
-  const response = await axios.get(`${baseApiUrl}/account/${ethereumAddress}`)
-
-  return response.data
-}
-
-async function getAccount (ethereumAddress, tokenId) {
-  const response = await axios.get(`${baseApiUrl}/account/${ethereumAddress}/${tokenId}`)
-
-  return response.data
-}
-
-async function getTransactions (ethereumAddress, tokenId) {
+async function getAccounts (hermezEthereumAddress, tokenId) {
   const params = {
+    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
-    `${baseApiUrl}/account/${ethereumAddress}/txs/history`,
+      `${baseApiUrl}/accounts`,
+      { params }
+  )
+
+  return response.data
+}
+
+async function getTransactions (hermezEthereumAddress, tokenId, batchNum) {
+  const params = {
+    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(tokenId ? { tokenId } : {}),
+    ...(batchNum ? { batchNum } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/transactions-history`,
     { params }
   )
 
@@ -209,8 +61,14 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches () {
-  const response = await axios.get(`${baseApiUrl}/batches`)
+async function getBatches (forgerAddr) {
+  const params = {
+    ...(forgerAddr ? { forgerAddr } : {})
+  }
+  const response = await axios.get(
+    `${baseApiUrl}/batches`,
+    { params }
+  )
 
   return response.data
 }
@@ -221,10 +79,45 @@ async function getBatch (batchId) {
   return response.data
 }
 
-async function getBatchTransactions (batchId) {
-  const response = await axios.get(`${baseApiUrl}/batch/${batchId}/txs`)
+async function getCoordinator (coordinatorId) {
+  const response = await axios.get(`${baseApiUrl}/coordinators/${coordinatorId}`)
 
   return response.data
 }
 
-export { getAccounts, getAccount, getTransactions, getTokens, getBatches, getBatch, getBatchTransactions }
+async function getOverview () {
+  const response = await axios.get(`${baseApiUrl}/state`)
+
+  return response.data
+}
+
+async function getSlot (slotNum) {
+  const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
+
+  return response.data
+}
+
+async function getBids (slotNum) {
+  const params = {
+    ...(slotNum ? { slotNum } : {})
+  }
+
+  const response = await axios.get(
+    `${baseApiUrl}/bids?${slotNum}`,
+    { params }
+  )
+
+  return response.data
+}
+
+export {
+  getAccounts,
+  getTransactions,
+  getTokens,
+  getBatches,
+  getBatch,
+  getCoordinator,
+  getOverview,
+  getSlot,
+  getBids
+}
