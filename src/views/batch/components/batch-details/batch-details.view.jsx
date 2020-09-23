@@ -14,7 +14,7 @@ function BatchDetails ({ batch }) {
       </div>
 
       <div>
-        Eth Block Hash {batch.ethereumBlockNum}
+        Eth Block Hash
       </div>
       <div>
         Eth Block Number {batch.ethereumBlockNum}
