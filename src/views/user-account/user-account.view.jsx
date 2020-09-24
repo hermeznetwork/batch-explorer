@@ -24,6 +24,9 @@ function UserAccount ({
     onLoadTransactions(ethereumAddress)
   }, [ethereumAddress, onLoadAccount, onLoadTransactions])
 
+  console.log('accountTask: ' + JSON.stringify(accountTask.data))
+  console.log('transactionsTask: ' + JSON.stringify(transactionsTask.data))
+
   return (
     <div>
       {(() => {
@@ -36,24 +39,31 @@ function UserAccount ({
           }
           case 'successful': {
             return (
-              <section>
-                <h4 className={classes.title}>Token Accounts</h4>
-
-                {accountTask.data.accounts.map((account, index) =>
-                  <div
-                    key={account.accountIndex}
-                    className={clsx({ [classes.account]: index > 0 })}
-                  >
-                    <AccountDetails
-                      publicKey={account.publicKey}
-                      ethereumAddress={account.ethereumAddress}
-                      nonce={account.nonce}
-                      tokenSymbol={account.tokenSymbol}
-                      balance={account.balance}
-                    />
+              <div>
+                <section>
+                  <div>
+                    Hermez address: MISSING / NOT CLEAR
+                    Ethereum address: MISSING / NOT CLEAR
+                    Token accounts: {accountTask.data.accounts.length}
                   </div>
-                )}
-              </section>
+                </section>
+                <section>
+                  <h4 className={classes.title}>Token Accounts</h4>
+
+                  {accountTask.data.accounts.map((account, index) =>
+                    <div
+                      key={account.accountIndex}
+                      className={clsx({ [classes.account]: index > 0 })}
+                    >
+                      <AccountDetails
+                        tokenSymbol={account.tokenSymbol}
+                        ethereumAddress={account.ethereumAddress}
+                        balance={account.balance}
+                      />
+                    </div>
+                  )}
+                </section>
+              </div>
             )
           }
           default: {
