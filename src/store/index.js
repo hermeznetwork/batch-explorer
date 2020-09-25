@@ -6,6 +6,7 @@ import homeReducer from './home/home.reducer'
 import batchReducer from './batch/batch.reducer'
 import coordinatorReducer from './coordinator/coordinator.reducer'
 import userAccountReducer from './user-account/user-account.reducer'
+import transactionReducer from './transaction/transaction.reducer'
 import slotReducer from './slot/slot.reducer'
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   batch: batchReducer,
   coordinator: coordinatorReducer,
   userAccount: userAccountReducer,
+  transaction: transactionReducer,
   slot: slotReducer
 })
 
