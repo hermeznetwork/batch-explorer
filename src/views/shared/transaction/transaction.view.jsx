@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import useTransactionStyles from './transaction.styles'
 
-function Transaction ({ transactionId, amount, currentUSD, historicUSD, l1orl2 }) {
+function Transaction ({ transactionId, tokenSymbol, amount }) {
   const classes = useTransactionStyles()
 
   return (
@@ -12,16 +12,10 @@ function Transaction ({ transactionId, amount, currentUSD, historicUSD, l1orl2 }
         <Link to={`/transaction/${transactionId}`}>Tx ID: {transactionId}</Link>
       </div>
       <div>
+        Token: {tokenSymbol}
+      </div>
+      <div>
         Amount: {amount}
-      </div>
-      <div>
-        Current USD: {currentUSD}
-      </div>
-      <div>
-        Historic USD: {historicUSD}
-      </div>
-      <div>
-        Level: {l1orl2}
       </div>
     </div>
   )

@@ -19,9 +19,7 @@ function TransactionsList ({ transactions }) {
             <Transaction
               transactionId={transaction.id}
               amount={transaction.amount}
-              historicUSD={transaction.historicUSD}
-              currentUSD={transaction.currentUSD}
-              l1orl2={transaction.L1orL2}
+              tokenSymbol={transaction.tokenSymbol}
             />
           </div>
         )}

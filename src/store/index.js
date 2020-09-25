@@ -8,6 +8,7 @@ import coordinatorReducer from './coordinator/coordinator.reducer'
 import userAccountReducer from './user-account/user-account.reducer'
 import transactionReducer from './transaction/transaction.reducer'
 import slotReducer from './slot/slot.reducer'
+import tokenAccountReducer from './token-account/token-account.reducer'
 
 const rootReducer = combineReducers({
   global: globalReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   coordinator: coordinatorReducer,
   userAccount: userAccountReducer,
   transaction: transactionReducer,
-  slot: slotReducer
+  slot: slotReducer,
+  tokenAccount: tokenAccountReducer
 })
 
 const middlewares = [thunk]
