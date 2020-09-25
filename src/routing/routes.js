@@ -4,6 +4,7 @@ import Coordinator from '../views/coordinator/coordinator.view'
 import UserAccount from '../views/user-account/user-account.view'
 import Transaction from '../views/transaction/transaction.view'
 import Slot from '../views/slot/slot.view'
+import TokenAccount from '../views/token-account/token-account.view'
 
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
   {
     path: '/slot/:slotNum',
     component: Slot
+  },
+  {
+    path: '/token-account/:ethereumAddress&:tokenId&:accountIndex',
+    component: TokenAccount
   }
 ]
 

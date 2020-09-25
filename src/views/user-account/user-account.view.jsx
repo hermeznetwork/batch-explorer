@@ -37,6 +37,8 @@ function UserAccount ({
           case 'successful': {
             return (
               <div>
+                <h4 className={classes.title}>User Address</h4>
+
                 <section>
                   <div>
                     Hermez address: {accountTask.data.accounts[0].bjj}
@@ -60,6 +62,8 @@ function UserAccount ({
                         tokenSymbol={account.tokenSymbol}
                         ethereumAddress={account.ethereumAddress}
                         balance={account.balance}
+                        tokenId={account.tokenId}
+                        accountIndex={account.accountIndex}
                       />
                     </div>
                   )}

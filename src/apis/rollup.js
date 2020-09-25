@@ -41,11 +41,12 @@ async function getAccounts (hermezEthereumAddress, tokenId) {
   return response.data
 }
 
-async function getHistoryTransactions (hermezEthereumAddress, tokenId, batchNum) {
+async function getHistoryTransactions (hermezEthereumAddress, tokenId, batchNum, accountIndex) {
   const params = {
     ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {}),
-    ...(batchNum ? { batchNum } : {})
+    ...(batchNum ? { batchNum } : {}),
+    ...(accountIndex ? { accountIndex } : {})
   }
   const response = await axios.get(
     `${baseApiUrl}/transactions-history`,

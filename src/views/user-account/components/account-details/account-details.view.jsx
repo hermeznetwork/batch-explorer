@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 
 import useAccountDetailsStyles from './account-details.styles'
 
-function AccountDetails ({ publicKey, ethereumAddress, nonce, tokenSymbol, balance }) {
+function AccountDetails ({ ethereumAddress, tokenSymbol, balance, tokenId, accountIndex }) {
   const classes = useAccountDetailsStyles()
 
   return (
     <div className={classes.row}>
       <div>
-        <Link to={`/token-account/${tokenSymbol}`}>Token: {tokenSymbol}</Link>
+        <Link to={`/token-account/${ethereumAddress}&${tokenId}&${accountIndex}`}>Token: {tokenSymbol}</Link>
       </div>
       <div>
             Eth address: {ethereumAddress}
