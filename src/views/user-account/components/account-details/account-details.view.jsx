@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import useAccountDetailsStyles from './account-details.styles'
 
@@ -8,7 +9,7 @@ function AccountDetails ({ publicKey, ethereumAddress, nonce, tokenSymbol, balan
   return (
     <div className={classes.row}>
       <div>
-            Token symbol: {tokenSymbol}
+        <Link to={`/token-account/${tokenSymbol}`}>Token: {tokenSymbol}</Link>
       </div>
       <div>
             Eth address: {ethereumAddress}

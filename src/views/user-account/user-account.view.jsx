@@ -24,9 +24,6 @@ function UserAccount ({
     onLoadTransactions(ethereumAddress)
   }, [ethereumAddress, onLoadAccount, onLoadTransactions])
 
-  console.log('accountTask: ' + JSON.stringify(accountTask.data))
-  console.log('transactionsTask: ' + JSON.stringify(transactionsTask.data))
-
   return (
     <div>
       {(() => {
@@ -42,8 +39,12 @@ function UserAccount ({
               <div>
                 <section>
                   <div>
-                    Hermez address: MISSING / NOT CLEAR
-                    Ethereum address: MISSING / NOT CLEAR
+                    Hermez address: {accountTask.data.accounts[0].bjj}
+                  </div>
+                  <div>
+                    Ethereum address: {accountTask.data.accounts[0].ethereumAddress}
+                  </div>
+                  <div>
                     Token accounts: {accountTask.data.accounts.length}
                   </div>
                 </section>

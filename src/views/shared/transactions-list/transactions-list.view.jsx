@@ -8,8 +8,6 @@ import useTransactionsListStyles from './transactions-list.styles'
 function TransactionsList ({ transactions }) {
   const classes = useTransactionsListStyles()
 
-  console.log('transactions: ' + JSON.stringify(transactions))
-
   return (
     <div>
       <section>
