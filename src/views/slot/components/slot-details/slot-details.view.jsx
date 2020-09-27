@@ -8,7 +8,7 @@ function SlotDetails ({ slot, bids }) {
           Slot: {slot.slotNum}
         </div>
         <div>
-          Bids: {bids.lenght}
+          Bids: {bids.length}
         </div>
         <div>
           Winner bid: ???

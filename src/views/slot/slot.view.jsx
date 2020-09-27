@@ -7,7 +7,9 @@ import useSlotStyles from './slot.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import SlotDetails from './components/slot-details/slot-details.view'
 import BidsList from './components/bids-list/bids-list.view'
+import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchSlot, fetchBids } from '../../store/slot/slot.thunks'
+// TODO add fetchBatches & co.
 
 function Slot ({
   onLoadSlot,
@@ -23,6 +25,10 @@ function Slot ({
     onLoadBids(slotNum)
   }, [slotNum, onLoadSlot, onLoadBids])
 
+  if (bidsTask.data !== undefined) {
+    console.log('BIDS TASK: ' + JSON.stringify(bidsTask.data.bids))
+  }
+
   return (
     <div>
       {(() => {
@@ -34,38 +40,49 @@ function Slot ({
             return <p>{slotTask.error}</p>
           }
           case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Slot</h4>
-                <SlotDetails
-                  slot={slotTask.data}
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
-
-      {(() => {
-        switch (bidsTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{bidsTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Bids</h4>
-                <BidsList
-                  bids={bidsTask.data.bids}
-                />
-              </section>
-            )
+            switch (bidsTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{bidsTask.error}</p>
+              }
+              case 'successful': {
+                let batchesInSlotSection
+                if (slotTask.data.closedAuction) {
+                  batchesInSlotSection =
+                  // TODO OVO MOZE DA BUDE ISTO KAO I COORDINATOR, PROVERI da li je isti i poziv ka API-u
+                    <section>
+                      <h4 className={classes.title}>Batches in Slot</h4>
+                      <BatchesList
+                        // batches={batchesTask.data.batches}
+                        hideForgerAddr
+                      />
+                    </section>
+                }
+                return (
+                  <>
+                    <section>
+                      <h4 className={classes.title}>Slot</h4>
+                      <SlotDetails
+                        slot={slotTask.data}
+                        bids={bidsTask.data.bids}
+                      />
+                    </section>
+                    <section>
+                      <h4 className={classes.title}>Bids</h4>
+                      <BidsList
+                        bids={bidsTask.data.bids}
+                      />
+                    </section>
+                    {batchesInSlotSection}
+                  </>
+                )
+              }
+              default: {
+                return <></>
+              }
+            }
           }
           default: {
             return <></>
