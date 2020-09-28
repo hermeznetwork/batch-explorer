@@ -10,16 +10,18 @@ function Overview ({ overview }) {
         Avg transactions per batch: {overview.transactionsPerBatch}
       </div>
       <div>
-        Avg Batch Time - batchFrequency: {overview.batchFrequency}
+        Avg Batch Time: {overview.batchFrequency}
       </div>
       <div>
         Transactions Per Second: {overview.transactionsPerSecond}
       </div>
       <div>
-        Total Wallets - totalAccounts: {overview.totalAccounts}
-      </div>
-      <div>
-        Total Wallets - totalBJJs: {overview.totalBJJs}
+        <div>
+          Total Wallets: {overview.totalBJJs}
+        </div>
+        <div>
+          {overview.totalAccounts} accounts
+        </div>
       </div>
       <div>
         Avg transaction fee: {overview.avgTransactionFee}
