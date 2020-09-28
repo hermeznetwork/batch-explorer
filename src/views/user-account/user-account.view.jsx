@@ -36,24 +36,39 @@ function UserAccount ({
           }
           case 'successful': {
             return (
-              <section>
-                <h4 className={classes.title}>Token Accounts</h4>
+              <div>
+                <h4 className={classes.title}>User Address</h4>
 
-                {accountTask.data.accounts.map((account, index) =>
-                  <div
-                    key={account.accountIndex}
-                    className={clsx({ [classes.account]: index > 0 })}
-                  >
-                    <AccountDetails
-                      publicKey={account.publicKey}
-                      ethereumAddress={account.ethereumAddress}
-                      nonce={account.nonce}
-                      tokenSymbol={account.tokenSymbol}
-                      balance={account.balance}
-                    />
+                <section>
+                  <div>
+                    Hermez address: {accountTask.data.accounts[0].bjj}
                   </div>
-                )}
-              </section>
+                  <div>
+                    Ethereum address: {accountTask.data.accounts[0].ethereumAddress}
+                  </div>
+                  <div>
+                    Token accounts: {accountTask.data.accounts.length}
+                  </div>
+                </section>
+                <section>
+                  <h4 className={classes.title}>Token Accounts</h4>
+
+                  {accountTask.data.accounts.map((account, index) =>
+                    <div
+                      key={account.accountIndex}
+                      className={clsx({ [classes.account]: index > 0 })}
+                    >
+                      <AccountDetails
+                        tokenSymbol={account.tokenSymbol}
+                        ethereumAddress={account.ethereumAddress}
+                        balance={account.balance}
+                        tokenId={account.tokenId}
+                        accountIndex={account.accountIndex}
+                      />
+                    </div>
+                  )}
+                </section>
+              </div>
             )
           }
           default: {
@@ -73,7 +88,7 @@ function UserAccount ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Account transactions</h4>
+                <h4 className={classes.title}>Transactions</h4>
                 <TransactionsList
                   transactions={transactionsTask.data.transactions}
                 />

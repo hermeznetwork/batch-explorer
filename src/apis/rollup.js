@@ -41,16 +41,29 @@ async function getAccounts (hermezEthereumAddress, tokenId) {
   return response.data
 }
 
-async function getTransactions (hermezEthereumAddress, tokenId, batchNum) {
+async function getHistoryTransactions (hermezEthereumAddress, tokenId, batchNum, accountIndex) {
   const params = {
     ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {}),
-    ...(batchNum ? { batchNum } : {})
+    ...(batchNum ? { batchNum } : {}),
+    ...(accountIndex ? { accountIndex } : {})
   }
   const response = await axios.get(
     `${baseApiUrl}/transactions-history`,
     { params }
   )
+
+  return response.data
+}
+
+async function getHistoryTransaction (transactionId) {
+  const response = await axios.get(`${baseApiUrl}/transactions-history/${transactionId}`)
+
+  return response.data
+}
+
+async function getPoolTransaction (transactionId) {
+  const response = await axios.get(`${baseApiUrl}/transactions-pool/${transactionId}`)
 
   return response.data
 }
@@ -112,7 +125,9 @@ async function getBids (slotNum) {
 
 export {
   getAccounts,
-  getTransactions,
+  getHistoryTransactions,
+  getHistoryTransaction,
+  getPoolTransaction,
   getTokens,
   getBatches,
   getBatch,

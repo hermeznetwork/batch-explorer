@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import useTransactionStyles from './transaction.styles'
 
@@ -8,7 +9,7 @@ function Transaction ({ transactionId, amount, tokenSymbol }) {
   return (
     <div className={classes.row}>
       <div>
-        Tx ID: {transactionId}
+        <Link to={`/transaction/${transactionId}`}>Tx ID: {transactionId}</Link>
       </div>
       <div>
         Token: {tokenSymbol}
