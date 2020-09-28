@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import useTransactionStyles from './transaction.styles'
 
-function Transaction ({ transactionId, tokenSymbol, amount }) {
+function Transaction ({ transactionId, amount, tokenSymbol }) {
   const classes = useTransactionStyles()
 
   return (

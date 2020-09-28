@@ -10,22 +10,23 @@ function BatchDetails ({ batch }) {
   return (
     <div className={classes.row}>
       <div>
-            Batch: {batch.batchNum}
+        Batch: {batch.batchNum}
+      </div>
+
+      <div>
+        Eth Block Hash
       </div>
       <div>
-            Number of transactions: {batch.forgeL1TransactionsNum}
+        Eth Block Number {batch.ethereumBlockNum}
       </div>
       <div>
-            Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
+        Status
       </div>
       <div>
-            Ethereum block number: {batch.ethereumBlockNum}
+        Timestamp
       </div>
       <div>
-            ExitRoot: {batch.exitRoot}
-      </div>
-      <div>
-            CollectedFees -
+            Fees Collected
         {
           batch.collectedFees.map((fee, index) =>
             <div
@@ -33,17 +34,32 @@ function BatchDetails ({ batch }) {
               className={clsx({ [classes.fee]: index > 0 })}
             >
               <div>
-                  Token: {fee.tokenSymbol}
-              </div>
-              <div>
-                  Amount: {fee.amount}
+                  Token: {fee.tokenSymbol} {fee.amount}
               </div>
             </div>
           )
         }
       </div>
       <div>
-            ForgerAddr: {batch.forgerAddr}
+        Total Collected Fees {batch.totalCollectedFeesUSD} USD
+      </div>
+      <div>
+        <Link to={`/coordinator/${batch.forgerAddr}`}>Coordinator: {batch.forgerAddr}</Link>
+      </div>
+      <div>
+        Number of txs {batch.forgeL1TransactionsNum}
+      </div>
+      <div>
+        Number of accounts {batch.numAccounts}
+      </div>
+      <div>
+        Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
+      </div>
+      <div>
+        State root {batch.stateRoot}
+      </div>
+      <div>
+        Exit root {batch.exitRoot}
       </div>
     </div>
   )
