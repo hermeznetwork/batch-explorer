@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import useTransactionStyles from './transaction.styles'
@@ -44,10 +44,15 @@ function Transaction ({
                   type: {transactionTask.data.type}
                 </div>
                 <div className={classes.from}>
-                  From: {transactionTask.data.fromAccountIndex}
+                  {/* TODO: fromEthereumAddress is missing from API response
+                  <Link to={`/token-account/${transactionTask.data.fromEthereumAddress}&${transactionTask.data.tokenId}&${transactionTask.data.fromAccountIndex}`}>
+                    From: {transactionTask.data.fromAccountIndex}
+                  </Link> */}
                 </div>
                 <div className={classes.to}>
-                  To: {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                  <Link to={`/token-account/${transactionTask.data.toEthereumAddress}/${transactionTask.data.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                    To: {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                  </Link>
                 </div>
                 <div className={classes.item}>
                   amount: {transactionTask.data.amount}

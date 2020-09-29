@@ -22,7 +22,3 @@ function fetchTransactions (accountIndex) {
 }
 
 export { fetchAccount, fetchTransactions }
-
-// http://167.71.59.190:4010/accounts?hermezEthereumAddress=hez%3A0xaa942cfcd25ad4d90a62358b0dd84f33b398262a&tokenIds=4444
-
-// http://167.71.59.190:4010/transactions-history?accountIndex=hez%3ADAI%3A4444

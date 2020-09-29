@@ -33,7 +33,7 @@ const routes = [
     component: Slot
   },
   {
-    path: '/token-account/:ethereumAddress&:tokenId&:accountIndex',
+    path: '/token-account/:ethereumAddress/:tokenId/:accountIndex',
     component: TokenAccount
   }
 ]
