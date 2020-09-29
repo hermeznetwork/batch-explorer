@@ -36,7 +36,7 @@ function Coordinator ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Coordinator</h4>
+                <h4 className={classes.title}>Coordinator info</h4>
                 <CoordinatorDetails
                   coordinator={coordinatorTask.data}
                 />
