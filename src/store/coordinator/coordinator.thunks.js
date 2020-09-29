@@ -21,4 +21,14 @@ function fetchBatches (coordinatorId) {
   }
 }
 
-export { fetchCoordinator, fetchBatches }
+function fetchBids (coordinatorId) {
+  return (dispatch) => {
+    dispatch(coordinatorActions.loadBids())
+
+    return rollupApi.getBids(coordinatorId)
+      .then(res => dispatch(coordinatorActions.loadBidsSuccess(res)))
+      .catch(err => dispatch(coordinatorActions.loadBidsFailure(err)))
+  }
+}
+
+export { fetchCoordinator, fetchBatches, fetchBids }

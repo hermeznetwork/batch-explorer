@@ -4,7 +4,10 @@ export const coordinatorActionTypes = {
   LOAD_COORDINATOR_FAILURE: '[COORDINATOR] LOAD COORDINATOR FAILURE',
   LOAD_BATCHES: '[COORDINATOR] LOAD BATCHES',
   LOAD_BATCHES_SUCCESS: '[COORDINATOR] LOAD BATCHES SUCCESS',
-  LOAD_BATCHES_FAILURE: '[COORDINATOR] LOAD BATCHES FAILURE'
+  LOAD_BATCHES_FAILURE: '[COORDINATOR] LOAD BATCHES FAILURE',
+  LOAD_BIDS: '[COORDINATOR] LOAD BIDS',
+  LOAD_BIDS_SUCCESS: '[COORDINATOR] LOAD BIDS SUCCESS',
+  LOAD_BIDS_FAILURE: '[COORDINATOR] LOAD BIDS FAILURE'
 }
 
 function loadCoordinator () {
@@ -45,11 +48,33 @@ function loadBatchesFailure () {
   }
 }
 
+function loadBids () {
+  return {
+    type: coordinatorActionTypes.LOAD_BIDS
+  }
+}
+
+function loadBidsSuccess (bids) {
+  return {
+    type: coordinatorActionTypes.LOAD_BIDS_SUCCESS,
+    bids
+  }
+}
+
+function loadBidsFailure () {
+  return {
+    type: coordinatorActionTypes.LOAD_BIDS_FAILURE
+  }
+}
+
 export {
   loadCoordinator,
   loadCoordinatorSuccess,
   loadCoordinatorFailure,
   loadBatches,
   loadBatchesSuccess,
-  loadBatchesFailure
+  loadBatchesFailure,
+  loadBids,
+  loadBidsSuccess,
+  loadBidsFailure
 }
