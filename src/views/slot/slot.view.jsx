@@ -7,9 +7,7 @@ import useSlotStyles from './slot.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import SlotDetails from './components/slot-details/slot-details.view'
 import BidsList from '../shared/bids-list/bids-list.view'
-// import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchSlot, fetchBids } from '../../store/slot/slot.thunks'
-// TODO add fetchBatches & co.
 
 function Slot ({
   onLoadSlot,
@@ -44,18 +42,6 @@ function Slot ({
                 return <p>{bidsTask.error}</p>
               }
               case 'successful': {
-                let batchesInSlotSection
-                if (slotTask.data.closedAuction) {
-                  batchesInSlotSection =
-                  // TODO OVO MOZE DA BUDE ISTO KAO I COORDINATOR, PROVERI da li je isti i poziv ka API-u
-                    <section>
-                      <h4 className={classes.title}>Batches in Slot</h4>
-                      {/* <BatchesList
-                        batches={batchesTask.data.batches}
-                        hideForgerAddr
-                      /> */}
-                    </section>
-                }
                 return (
                   <>
                     <section>
@@ -72,7 +58,6 @@ function Slot ({
                         isSlot
                       />
                     </section>
-                    {batchesInSlotSection}
                   </>
                 )
               }
