@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Bid from '../bid/bid.view'
 
-function BidsList ({ bids }) {
+function BidsList ({ bids, isSlot }) {
   return (
     <div>
       <section>
@@ -15,7 +15,11 @@ function BidsList ({ bids }) {
           >
             <Bid
               forgerAddr={bid.forgerAddr}
+              // TODO: missing from API response
+              // slot={bid.slot}
+              numberOfBids={bids.length}
               bidValue={bid.bidValue}
+              isSlot={isSlot}
             />
           </div>
         )}

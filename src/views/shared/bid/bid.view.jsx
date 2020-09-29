@@ -1,16 +1,33 @@
 import React from 'react'
 
-function Bid ({ forgerAddr, bidValue }) {
-  return (
-    <div>
+function Bid ({ forgerAddr, bidValue, numberOfBids, slot, isSlot }) {
+  if (isSlot) {
+    return (
       <div>
-        Bid amount: {bidValue}
+        <div>
+          Coordinator: {forgerAddr}
+        </div>
+        <div>
+          Bid amount: {bidValue}
+        </div>
       </div>
+    )
+  } else {
+    return (
       <div>
-        Coordinator: {forgerAddr}
+        <div>
+          {/* TODO: missing from API response */}
+          {/* Slot: {slot} */}
+        </div>
+        <div>
+          Bids: {numberOfBids}
+        </div>
+        <div>
+          Bid amount: {bidValue}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Bid

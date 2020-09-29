@@ -69,6 +69,7 @@ function Slot ({
                       <h4 className={classes.title}>Bids</h4>
                       <BidsList
                         bids={bidsTask.data.bids}
+                        isSlot
                       />
                     </section>
                     {batchesInSlotSection}
