@@ -24,6 +24,7 @@ function Coordinator ({
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
     onLoadCoordinator(coordinatorId)
+    onLoadBids(coordinatorId)
   }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
 
   return (
@@ -121,7 +122,7 @@ Coordinator.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        Forger: PropTypes.string.isRequired
+        forgerAddr: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string
@@ -131,7 +132,7 @@ Coordinator.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        slotNum: PropTypes.number.isRequired
+        forgerAddr: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string
@@ -141,13 +142,13 @@ Coordinator.propTypes = {
 const mapStateToProps = (state) => ({
   batchesTask: state.coordinator.batchesTask,
   coordinatorTask: state.coordinator.coordinatorTask,
-  bidsTask: state.slot.bidsTask
+  bidsTask: state.coordinator.bidsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatches: (coordinatorId) => dispatch(fetchBatches(coordinatorId)),
   onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId)),
-  onLoadBids: (coordinatorId) => dispatch(fetchBids(coordinatorId))
+  onLoadBids: (coordinatorId) => dispatch(fetchBids(undefined, coordinatorId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Coordinator)

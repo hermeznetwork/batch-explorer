@@ -15,7 +15,7 @@ function fetchBids (slotNum) {
   return (dispatch) => {
     dispatch(slotActions.loadBids())
 
-    return rollupApi.getBids(slotNum)
+    return rollupApi.getBids(slotNum, undefined)
       .then(res => dispatch(slotActions.loadBidsSuccess(res)))
       .catch(err => dispatch(slotActions.loadBidsFailure(err)))
   }

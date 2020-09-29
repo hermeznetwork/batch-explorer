@@ -25,7 +25,7 @@ function fetchBids (coordinatorId) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBids())
 
-    return rollupApi.getBids(coordinatorId)
+    return rollupApi.getBids(undefined, coordinatorId)
       .then(res => dispatch(coordinatorActions.loadBidsSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBidsFailure(err)))
   }

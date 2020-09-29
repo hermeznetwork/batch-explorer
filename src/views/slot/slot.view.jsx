@@ -119,7 +119,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadSlot: (slotNum) => dispatch(fetchSlot(slotNum)),
-  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum))
+  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum, undefined))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Slot)
