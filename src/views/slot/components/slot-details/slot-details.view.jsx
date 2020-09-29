@@ -1,19 +1,35 @@
 import React from 'react'
 
-function SlotDetails ({ slot }) {
-  return (
-    <div>
+function SlotDetails ({ slot, bids }) {
+  if (slot.closedAuction) {
+    return (
       <div>
-        Slot: {slot.slotNum}
+        <div>
+          Slot: {slot.slotNum}
+        </div>
+        <div>
+          Bids: {bids.length}
+        </div>
+        <div>
+          Winner bid: ???
+        </div>
+        <div>
+          Coordinator: {slot.winner.forgerAddr}
+        </div>
       </div>
+    )
+  } else {
+    return (
       <div>
-        Winner bid:
+        <div>
+          Slot: {slot.slotNum}
+        </div>
+        <div>
+          Bids: ???
+        </div>
       </div>
-      <div>
-        ForgerAddr: {slot.winner.forgerAddr}
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default SlotDetails
