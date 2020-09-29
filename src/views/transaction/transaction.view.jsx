@@ -50,7 +50,7 @@ function Transaction ({
                   </Link> */}
                 </div>
                 <div className={classes.to}>
-                  <Link to={`/token-account/${transactionTask.data.toEthereumAddress}&${transactionTask.data.tokenId}&${transactionTask.data.toAccountIndex}`}>
+                  <Link to={`/token-account/${transactionTask.data.toEthereumAddress}/${transactionTask.data.tokenId}/${transactionTask.data.toAccountIndex}`}>
                     To: {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                   </Link>
                 </div>
