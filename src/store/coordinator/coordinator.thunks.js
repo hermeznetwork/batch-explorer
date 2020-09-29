@@ -1,31 +1,31 @@
 import * as coordinatorActions from './coordinator.actions'
 import * as rollupApi from '../../apis/rollup'
 
-function fetchCoordinator (coordinatorId) {
+function fetchCoordinator (forgerAddr) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadCoordinator())
 
-    return rollupApi.getCoordinator(coordinatorId)
+    return rollupApi.getCoordinator(forgerAddr)
       .then(res => dispatch(coordinatorActions.loadCoordinatorSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadCoordinatorFailure(err)))
   }
 }
 
-function fetchBatches (coordinatorId) {
+function fetchBatches (forgerAddr) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBatches())
 
-    return rollupApi.getBatches(coordinatorId)
+    return rollupApi.getBatches(forgerAddr)
       .then(res => dispatch(coordinatorActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBatchesFailure(err)))
   }
 }
 
-function fetchBids (coordinatorId) {
+function fetchBids (slotNum, forgerAddr) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBids())
 
-    return rollupApi.getBids(undefined, coordinatorId)
+    return rollupApi.getBids(slotNum, forgerAddr)
       .then(res => dispatch(coordinatorActions.loadBidsSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBidsFailure(err)))
   }

@@ -11,11 +11,11 @@ function fetchSlot (slotNum) {
   }
 }
 
-function fetchBids (slotNum) {
+function fetchBids (slotNum, forgerAddr) {
   return (dispatch) => {
     dispatch(slotActions.loadBids())
 
-    return rollupApi.getBids(slotNum, undefined)
+    return rollupApi.getBids(slotNum, forgerAddr)
       .then(res => dispatch(slotActions.loadBidsSuccess(res)))
       .catch(err => dispatch(slotActions.loadBidsFailure(err)))
   }
