@@ -6,6 +6,9 @@ const initialSlotState = {
   },
   bidsTask: {
     status: 'pending'
+  },
+  batchesTask: {
+    status: 'pending'
   }
 }
 
@@ -60,6 +63,32 @@ function slotReducer (state = initialSlotState, action) {
         bidsTask: {
           status: 'failed',
           error: 'An error ocurred loading bids'
+        }
+      }
+    }
+    case slotActionTypes.LOAD_BATCHES: {
+      return {
+        ...state,
+        batchesTask: {
+          status: 'loading'
+        }
+      }
+    }
+    case slotActionTypes.LOAD_BATCHES_SUCCESS: {
+      return {
+        ...state,
+        batchesTask: {
+          status: 'successful',
+          data: action.batches
+        }
+      }
+    }
+    case slotActionTypes.LOAD_BATCHES_FAILURE: {
+      return {
+        ...state,
+        batchesTask: {
+          status: 'failed',
+          error: 'An error ocurred loading the batch'
         }
       }
     }

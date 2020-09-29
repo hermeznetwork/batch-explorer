@@ -7,23 +7,32 @@ import useSlotStyles from './slot.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import SlotDetails from './components/slot-details/slot-details.view'
 import BidsList from '../shared/bids-list/bids-list.view'
-// import BatchesList from '../shared/batches-list/batches-list.view'
-import { fetchSlot, fetchBids } from '../../store/slot/slot.thunks'
-// TODO add fetchBatches & co.
+import BatchesList from '../shared/batches-list/batches-list.view'
+import { fetchSlot, fetchBids, fetchBatches } from '../../store/slot/slot.thunks'
 
 function Slot ({
   onLoadSlot,
   slotTask,
   onLoadBids,
-  bidsTask
+  bidsTask,
+  onLoadBatches,
+  batchesTask
 }) {
   const classes = useSlotStyles()
   const { slotNum } = useParams()
+  const minBatchNum = slotTask.data ? slotTask.data.batchNums[0] : undefined
+  const maxBatchNum = slotTask.data ? slotTask.data.batchNums[slotTask.data.batchNums.length - 1] : undefined
 
   React.useEffect(() => {
     onLoadSlot(slotNum)
     onLoadBids(slotNum)
   }, [slotNum, onLoadSlot, onLoadBids])
+
+  React.useEffect(() => {
+    if (slotTask.status === 'successful') {
+      onLoadBatches(minBatchNum, maxBatchNum)
+    }
+  }, [slotTask, minBatchNum, maxBatchNum, onLoadBatches])
 
   return (
     <div>
@@ -44,18 +53,6 @@ function Slot ({
                 return <p>{bidsTask.error}</p>
               }
               case 'successful': {
-                let batchesInSlotSection
-                if (slotTask.data.closedAuction) {
-                  batchesInSlotSection =
-                  // TODO OVO MOZE DA BUDE ISTO KAO I COORDINATOR, PROVERI da li je isti i poziv ka API-u
-                    <section>
-                      <h4 className={classes.title}>Batches in Slot</h4>
-                      {/* <BatchesList
-                        batches={batchesTask.data.batches}
-                        hideForgerAddr
-                      /> */}
-                    </section>
-                }
                 return (
                   <>
                     <section>
@@ -72,7 +69,6 @@ function Slot ({
                         isSlot
                       />
                     </section>
-                    {batchesInSlotSection}
                   </>
                 )
               }
@@ -86,6 +82,32 @@ function Slot ({
           }
         }
       })()}
+
+      {(() => {
+        switch (batchesTask.status) {
+          case 'loading': {
+            return <Spinner />
+          }
+          case 'failed': {
+            return <p>{batchesTask.error}</p>
+          }
+          case 'successful': {
+            return (
+              <section>
+                <h4 className={classes.title}>Batches in slot</h4>
+                <BatchesList
+                  batches={batchesTask.data.batches}
+                  hideForgerAddr
+                />
+              </section>
+            )
+          }
+          default: {
+            return <></>
+          }
+        }
+      })()}
+
     </div>
   )
 }
@@ -110,17 +132,29 @@ Slot.propTypes = {
       })
     ),
     error: PropTypes.string
+  }),
+  onLoadBatches: PropTypes.func.isRequired,
+  batchesTask: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        batchNum: PropTypes.number.isRequired
+      })
+    ),
+    error: PropTypes.string
   })
 }
 
 const mapStateToProps = (state) => ({
   slotTask: state.slot.slotTask,
-  bidsTask: state.slot.bidsTask
+  bidsTask: state.slot.bidsTask,
+  batchesTask: state.slot.batchesTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadSlot: (slotNum) => dispatch(fetchSlot(slotNum)),
-  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum, undefined))
+  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum, undefined)),
+  onLoadBatches: (minBatchNum, maxBatchNum) => dispatch(fetchBatches(undefined, minBatchNum, maxBatchNum))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Slot)

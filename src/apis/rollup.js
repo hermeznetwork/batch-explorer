@@ -74,9 +74,11 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches (forgerAddr) {
+async function getBatches (forgerAddr, minBatchNum, maxBatchNum) {
   const params = {
-    ...(forgerAddr ? { forgerAddr } : {})
+    ...(forgerAddr ? { forgerAddr } : {}),
+    ...(minBatchNum ? { minBatchNum } : {}),
+    ...(maxBatchNum ? { maxBatchNum } : {})
   }
   const response = await axios.get(
     `${baseApiUrl}/batches`,
