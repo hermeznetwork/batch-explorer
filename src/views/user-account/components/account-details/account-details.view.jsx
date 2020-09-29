@@ -9,7 +9,7 @@ function AccountDetails ({ ethereumAddress, tokenSymbol, balance, tokenId, accou
   return (
     <div className={classes.row}>
       <div>
-        <Link to={`/token-account/${ethereumAddress}&${tokenId}&${accountIndex}`}>Token: {tokenSymbol}</Link>
+        <Link to={`/token-account/${ethereumAddress}/${tokenId}/${accountIndex}`}>Token: {tokenSymbol}</Link>
       </div>
       <div>
             Eth address: {ethereumAddress}
