@@ -25,10 +25,6 @@ function Slot ({
     onLoadBids(slotNum)
   }, [slotNum, onLoadSlot, onLoadBids])
 
-  if (bidsTask.data !== undefined) {
-    console.log('BIDS TASK: ' + JSON.stringify(bidsTask.data.bids))
-  }
-
   return (
     <div>
       {(() => {
