@@ -4,7 +4,10 @@ export const slotActionTypes = {
   LOAD_SLOT_FAILURE: '[SLOT] LOAD SLOT FAILURE',
   LOAD_BIDS: '[SLOT] LOAD BIDS',
   LOAD_BIDS_SUCCESS: '[SLOT] LOAD BIDS SUCCESS',
-  LOAD_BIDS_FAILURE: '[SLOT] LOAD BIDS FAILURE'
+  LOAD_BIDS_FAILURE: '[SLOT] LOAD BIDS FAILURE',
+  LOAD_BATCHES: '[SLOT] LOAD BATCHES',
+  LOAD_BATCHES_SUCCESS: '[SLOT] LOAD BATCHES SUCCESS',
+  LOAD_BATCHES_FAILURE: '[SLOT] LOAD BATCHES FAILURE'
 }
 
 function loadSlot () {
@@ -45,11 +48,33 @@ function loadBidsFailure () {
   }
 }
 
+function loadBatches () {
+  return {
+    type: slotActionTypes.LOAD_BATCHES
+  }
+}
+
+function loadBatchesSuccess (batches) {
+  return {
+    type: slotActionTypes.LOAD_BATCHES_SUCCESS,
+    batches
+  }
+}
+
+function loadBatchesFailure () {
+  return {
+    type: slotActionTypes.LOAD_BATCHES_FAILURE
+  }
+}
+
 export {
   loadSlot,
   loadSlotSuccess,
   loadSlotFailure,
   loadBids,
   loadBidsSuccess,
-  loadBidsFailure
+  loadBidsFailure,
+  loadBatches,
+  loadBatchesSuccess,
+  loadBatchesFailure
 }
