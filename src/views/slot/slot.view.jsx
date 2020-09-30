@@ -20,8 +20,6 @@ function Slot ({
 }) {
   const classes = useSlotStyles()
   const { slotNum } = useParams()
-  const minBatchNum = slotTask.data ? slotTask.data.batchNums[0] : undefined
-  const maxBatchNum = slotTask.data ? slotTask.data.batchNums[slotTask.data.batchNums.length - 1] : undefined
 
   React.useEffect(() => {
     onLoadSlot(slotNum)
@@ -30,9 +28,12 @@ function Slot ({
 
   React.useEffect(() => {
     if (slotTask.status === 'successful') {
+      const minBatchNum = slotTask.data.batchNums[0]
+      const maxBatchNum = slotTask.data.batchNums[slotTask.data.batchNums.length - 1]
+
       onLoadBatches(minBatchNum, maxBatchNum)
     }
-  }, [slotTask, minBatchNum, maxBatchNum, onLoadBatches])
+  }, [slotTask, onLoadBatches])
 
   return (
     <div>
