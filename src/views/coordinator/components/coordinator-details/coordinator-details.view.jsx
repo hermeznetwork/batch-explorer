@@ -4,6 +4,12 @@ function CoordinatorDetails ({ coordinator }) {
   return (
     <section>
       <div>
+        Forger address: {coordinator.forgerAddr}
+      </div>
+      <div>
+        Withdrawal address: {coordinator.withdrawAddr}
+      </div>
+      <div>
         <a
           href={coordinator.URL}
           target='_blank'
@@ -11,15 +17,6 @@ function CoordinatorDetails ({ coordinator }) {
         >
           {coordinator.URL}
         </a>
-      </div>
-      <div>
-        Forger address: {coordinator.forgerAddr}
-      </div>
-      <div>
-        Withdrawal address: {coordinator.withdrawAddr}
-      </div>
-      <div>
-      Ethereum block: {coordinator.ethereumBlock}
       </div>
     </section>
   )

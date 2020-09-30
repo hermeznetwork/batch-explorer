@@ -74,9 +74,11 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches (forgerAddr) {
+async function getBatches (forgerAddr, minBatchNum, maxBatchNum) {
   const params = {
-    ...(forgerAddr ? { forgerAddr } : {})
+    ...(forgerAddr ? { forgerAddr } : {}),
+    ...(minBatchNum ? { minBatchNum } : {}),
+    ...(maxBatchNum ? { maxBatchNum } : {})
   }
   const response = await axios.get(
     `${baseApiUrl}/batches`,
@@ -110,13 +112,14 @@ async function getSlot (slotNum) {
   return response.data
 }
 
-async function getBids (slotNum) {
+async function getBids (slotNum, forgerAddr) {
   const params = {
-    ...(slotNum ? { slotNum } : {})
+    ...(slotNum ? { slotNum } : {}),
+    ...(forgerAddr ? { forgerAddr } : {})
   }
 
   const response = await axios.get(
-    `${baseApiUrl}/bids?${slotNum}`,
+    `${baseApiUrl}/bids`,
     { params }
   )
 

@@ -7,13 +7,16 @@ import useCoordinatorStyles from './coordinator.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import CoordinatorDetails from './components/coordinator-details/coordinator-details.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
-import { fetchBatches, fetchCoordinator } from '../../store/coordinator/coordinator.thunks'
+import BidsList from '../shared/bids-list/bids-list.view'
+import { fetchBatches, fetchCoordinator, fetchBids } from '../../store/coordinator/coordinator.thunks'
 
 function Coordinator ({
   onLoadBatches,
   batchesTask,
   onLoadCoordinator,
-  coordinatorTask
+  coordinatorTask,
+  onLoadBids,
+  bidsTask
 }) {
   const classes = useCoordinatorStyles()
   const { coordinatorId } = useParams()
@@ -21,7 +24,8 @@ function Coordinator ({
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
     onLoadCoordinator(coordinatorId)
-  }, [coordinatorId, onLoadBatches, onLoadCoordinator])
+    onLoadBids(coordinatorId)
+  }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
 
   return (
     <div>
@@ -36,7 +40,7 @@ function Coordinator ({
           case 'successful': {
             return (
               <section>
-                <h4 className={classes.title}>Coordinator</h4>
+                <h4 className={classes.title}>Coordinator info</h4>
                 <CoordinatorDetails
                   coordinator={coordinatorTask.data}
                 />
@@ -73,6 +77,30 @@ function Coordinator ({
           }
         }
       })()}
+
+      {(() => {
+        switch (bidsTask.status) {
+          case 'loading': {
+            return <Spinner />
+          }
+          case 'failed': {
+            return <p>{bidsTask.error}</p>
+          }
+          case 'successful': {
+            return (
+              <section>
+                <h4 className={classes.title}>Winner bids</h4>
+                <BidsList
+                  bids={bidsTask.data.bids}
+                />
+              </section>
+            )
+          }
+          default: {
+            return <></>
+          }
+        }
+      })()}
     </div>
   )
 }
@@ -94,7 +122,17 @@ Coordinator.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        Forger: PropTypes.string.isRequired
+        forgerAddr: PropTypes.string.isRequired
+      })
+    ),
+    error: PropTypes.string
+  }),
+  onLoadBids: PropTypes.func.isRequired,
+  bidsTask: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        forgerAddr: PropTypes.number.isRequired
       })
     ),
     error: PropTypes.string
@@ -103,12 +141,14 @@ Coordinator.propTypes = {
 
 const mapStateToProps = (state) => ({
   batchesTask: state.coordinator.batchesTask,
-  coordinatorTask: state.coordinator.coordinatorTask
+  coordinatorTask: state.coordinator.coordinatorTask,
+  bidsTask: state.coordinator.bidsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatches: (coordinatorId) => dispatch(fetchBatches(coordinatorId)),
-  onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId))
+  onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId)),
+  onLoadBids: (coordinatorId) => dispatch(fetchBids(undefined, coordinatorId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Coordinator)

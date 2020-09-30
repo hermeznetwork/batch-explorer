@@ -11,14 +11,24 @@ function fetchSlot (slotNum) {
   }
 }
 
-function fetchBids (slotNum) {
+function fetchBids (slotNum, forgerAddr) {
   return (dispatch) => {
     dispatch(slotActions.loadBids())
 
-    return rollupApi.getBids(slotNum)
+    return rollupApi.getBids(slotNum, forgerAddr)
       .then(res => dispatch(slotActions.loadBidsSuccess(res)))
       .catch(err => dispatch(slotActions.loadBidsFailure(err)))
   }
 }
 
-export { fetchSlot, fetchBids }
+function fetchBatches (forgerAddr, minBatchNum, maxBatchNum) {
+  return (dispatch) => {
+    dispatch(slotActions.loadBatches())
+
+    return rollupApi.getBatches(forgerAddr, minBatchNum, maxBatchNum)
+      .then(res => dispatch(slotActions.loadBatchesSuccess(res)))
+      .catch(err => dispatch(slotActions.loadBatchesFailure(err)))
+  }
+}
+
+export { fetchSlot, fetchBids, fetchBatches }
