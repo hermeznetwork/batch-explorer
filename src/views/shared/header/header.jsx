@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import useHeaderStyles from './header.styles'
 import logo from '../../../images/logo.svg'
 import Container from '../container/container.view'
+import Search from '../../search/search.view'
 
 function Header () {
   const classes = useHeaderStyles()
@@ -27,6 +28,7 @@ function Header () {
             <p className={classes.linkText}>Twitter</p>
           </Link>
         </div>
+        <Search />
       </Container>
     </header>
   )
