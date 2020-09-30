@@ -1,7 +1,10 @@
 import React from 'react'
+import useMainStyles from './main.styles'
 
 function Main ({ children }) {
-  return <main>{children}</main>
+  const classes = useMainStyles()
+
+  return <main className={classes.main}>{children}</main>
 }
 
 export default Main
