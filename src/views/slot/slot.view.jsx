@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import useSlotStyles from './slot.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import SlotDetails from './components/slot-details/slot-details.view'
-import BidsList from './components/bids-list/bids-list.view'
+import BidsList from '../shared/bids-list/bids-list.view'
 import { fetchSlot, fetchBids } from '../../store/slot/slot.thunks'
 
 function Slot ({
@@ -34,38 +34,37 @@ function Slot ({
             return <p>{slotTask.error}</p>
           }
           case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Slot</h4>
-                <SlotDetails
-                  slot={slotTask.data}
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
-
-      {(() => {
-        switch (bidsTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{bidsTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Bids</h4>
-                <BidsList
-                  bids={bidsTask.data.bids}
-                />
-              </section>
-            )
+            switch (bidsTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{bidsTask.error}</p>
+              }
+              case 'successful': {
+                return (
+                  <>
+                    <section>
+                      <h4 className={classes.title}>Slot</h4>
+                      <SlotDetails
+                        slot={slotTask.data}
+                        bids={bidsTask.data.bids}
+                      />
+                    </section>
+                    <section>
+                      <h4 className={classes.title}>Bids</h4>
+                      <BidsList
+                        bids={bidsTask.data.bids}
+                        isSlot
+                      />
+                    </section>
+                  </>
+                )
+              }
+              default: {
+                return <></>
+              }
+            }
           }
           default: {
             return <></>
@@ -106,7 +105,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadSlot: (slotNum) => dispatch(fetchSlot(slotNum)),
-  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum))
+  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum, undefined))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Slot)

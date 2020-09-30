@@ -6,6 +6,9 @@ const initialCoordinatorState = {
   },
   batchesTask: {
     status: 'pending'
+  },
+  bidsTask: {
+    status: 'pending'
   }
 }
 
@@ -60,6 +63,32 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         batchesTask: {
           status: 'failed',
           error: 'An error ocurred loading the batch'
+        }
+      }
+    }
+    case coordinatorActionTypes.LOAD_BIDS: {
+      return {
+        ...state,
+        bidsTask: {
+          status: 'loading'
+        }
+      }
+    }
+    case coordinatorActionTypes.LOAD_BIDS_SUCCESS: {
+      return {
+        ...state,
+        bidsTask: {
+          status: 'successful',
+          data: action.bids
+        }
+      }
+    }
+    case coordinatorActionTypes.LOAD_BIDS_FAILURE: {
+      return {
+        ...state,
+        bidsTask: {
+          status: 'failed',
+          error: 'An error ocurred loading bids'
         }
       }
     }
