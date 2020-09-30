@@ -83,7 +83,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         }
       }
     }
-    case coordinatorActionTypes.LOAD_BID_FAILURE: {
+    case coordinatorActionTypes.LOAD_BIDS_FAILURE: {
       return {
         ...state,
         bidsTask: {
