@@ -5,6 +5,7 @@ import UserAccount from '../views/user-account/user-account.view'
 import Transaction from '../views/transaction/transaction.view'
 import Slot from '../views/slot/slot.view'
 import TokenAccount from '../views/token-account/token-account.view'
+import SearchError from '../views/search-error/search-error.view'
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
   {
     path: '/token-account/:ethereumAddress/:tokenId/:accountIndex',
     component: TokenAccount
+  },
+  {
+    path: '/search-error',
+    component: SearchError
   }
 ]
 

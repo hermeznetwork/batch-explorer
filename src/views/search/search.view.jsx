@@ -17,9 +17,10 @@ function Search ({
 
   if (ethereumAddressPattern.test(value)) {
     route = '/user-account/' + value
-  }
-  if (batchNumPattern.test(value)) {
+  } else if (batchNumPattern.test(value)) {
     route = '/batch/' + value
+  } else {
+    route = '/search-error'
   }
 
   return (
