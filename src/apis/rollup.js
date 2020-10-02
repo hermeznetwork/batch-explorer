@@ -62,14 +62,14 @@ async function getBatches (forgerAddr, minBatchNum, maxBatchNum) {
   return response.data
 }
 
-async function getBatch (batchId) {
-  const response = await axios.get(`${baseApiUrl}/batches/${batchId}`)
+async function getBatch (batchNum) {
+  const response = await axios.get(`${baseApiUrl}/batches/${batchNum}`)
 
   return response.data
 }
 
-async function getCoordinator (coordinatorId) {
-  const response = await axios.get(`${baseApiUrl}/coordinators/${coordinatorId}`)
+async function getCoordinator (forgerAddr) {
+  const response = await axios.get(`${baseApiUrl}/coordinators/${forgerAddr}`)
 
   return response.data
 }
