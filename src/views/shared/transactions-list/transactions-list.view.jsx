@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import Transaction from '../transaction/transaction.view'
 import useTransactionsListStyles from './transactions-list.styles'
 
-function TransactionsList ({ transactions }) {
+function TransactionsList ({ transactions, isToken }) {
   const classes = useTransactionsListStyles()
 
   return (
@@ -20,6 +20,7 @@ function TransactionsList ({ transactions }) {
               transactionId={transaction.id}
               amount={transaction.amount}
               tokenSymbol={transaction.tokenSymbol}
+              isToken={isToken}
             />
           </div>
         )}

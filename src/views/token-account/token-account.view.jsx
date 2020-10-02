@@ -69,6 +69,7 @@ function TokenAccount ({
                 <h4>Transactions</h4>
                 <TransactionsList
                   transactions={transactionsTask.data.transactions}
+                  isToken
                 />
               </section>
             )
