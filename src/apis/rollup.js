@@ -1,36 +1,10 @@
 import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
 
-const mock = new MockAdapter(axios)
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
-const mockedSlotNum = 784
 
-mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
-  .reply(
-    200,
-    {
-      slotNum: 784,
-      firstBlock: 0,
-      lastBlock: 0,
-      closedAuction: true,
-      winner: {
-        forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        URL: 'https://hermez.io',
-        ethereumBlock: 0
-      },
-      batchNums: [
-        5432
-      ]
-    }
-  )
-
-mock.onAny()
-  .passThrough()
-
-async function getAccounts (hermezEthereumAddress, tokenId) {
+async function getAccounts (hezEthereumAddress, tokenId) {
   const params = {
-    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(hezEthereumAddress ? { hezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
@@ -41,9 +15,9 @@ async function getAccounts (hermezEthereumAddress, tokenId) {
   return response.data
 }
 
-async function getHistoryTransactions (hermezEthereumAddress, tokenId, batchNum, accountIndex) {
+async function getHistoryTransactions (hezEthereumAddress, tokenId, batchNum, accountIndex) {
   const params = {
-    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(hezEthereumAddress ? { hezEthereumAddress } : {}),
     ...(tokenId ? { tokenId } : {}),
     ...(batchNum ? { batchNum } : {}),
     ...(accountIndex ? { accountIndex } : {})
