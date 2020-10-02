@@ -50,8 +50,9 @@ function Transaction ({
                   </Link> */}
                 </div>
                 <div className={classes.to}>
+                  To:
                   <Link to={`/token-account/${transactionTask.data.toEthereumAddress}/${transactionTask.data.tokenId}/${transactionTask.data.toAccountIndex}`}>
-                    To: {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                    {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                   </Link>
                 </div>
                 <div className={classes.item}>
@@ -64,7 +65,10 @@ function Transaction ({
                   Slot: {transactionTask.data.slot}
                 </div> */}
                 <div className={classes.batchNum}>
-                  Included in batch: {transactionTask.data.batchNum}
+                  Included in batch:
+                  <Link to={`/batch/${transactionTask.data.batchNum}`}>
+                    {transactionTask.data.batchNum}
+                  </Link>
                 </div>
                 {/* <div className={classes.position}>
                   Position in batch: {transactionTask.data.position}

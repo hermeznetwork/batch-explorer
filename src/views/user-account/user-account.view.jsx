@@ -44,7 +44,7 @@ function UserAccount ({
                     Hermez address: {accountTask.data.accounts[0].bjj}
                   </div>
                   <div>
-                    Ethereum address: {accountTask.data.accounts[0].ethereumAddress}
+                    Ethereum address: {accountTask.data.accounts[0].hezEthereumAddress}
                   </div>
                   <div>
                     Token accounts: {accountTask.data.accounts.length}
@@ -59,10 +59,11 @@ function UserAccount ({
                       className={clsx({ [classes.account]: index > 0 })}
                     >
                       <AccountDetails
-                        tokenSymbol={account.tokenSymbol}
-                        ethereumAddress={account.ethereumAddress}
-                        balance={account.balance}
-                        tokenId={account.tokenId}
+                        tokenSymbol={account.token.symbol}
+                        ethereumAddress={account.token.ethereumAddress}
+                        hezEthereumAddress={account.hezEthereumAddress}
+                        balance={Number(account.balance) / Math.pow(10, account.token.decimals)}
+                        tokenId={account.token.id}
                         accountIndex={account.accountIndex}
                       />
                     </div>

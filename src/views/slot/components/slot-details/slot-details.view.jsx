@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function SlotDetails ({ slot, bids }) {
   if (slot.closedAuction) {
@@ -14,7 +15,7 @@ function SlotDetails ({ slot, bids }) {
           Winner bid: ???
         </div>
         <div>
-          Coordinator: {slot.winner.forgerAddr}
+          Coordinator:  <Link to={`/coordinator/${slot.winner.forgerAddr}`}>{slot.winner.forgerAddr}</Link>
         </div>
       </div>
     )
