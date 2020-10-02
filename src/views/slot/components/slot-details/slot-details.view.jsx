@@ -9,10 +9,13 @@ function SlotDetails ({ slot, bids }) {
           Slot: {slot.slotNum}
         </div>
         <div>
+          Status: Closed Auction
+        </div>
+        <div>
           Bids: {bids.length}
         </div>
         <div>
-          Winner bid: ???
+          Winner bid: TODO
         </div>
         <div>
           Coordinator:  <Link to={`/coordinator/${slot.winner.forgerAddr}`}>{slot.winner.forgerAddr}</Link>
@@ -26,7 +29,10 @@ function SlotDetails ({ slot, bids }) {
           Slot: {slot.slotNum}
         </div>
         <div>
-          Bids: ???
+          Status: Open Auction
+        </div>
+        <div>
+          Bids: {bids.length}
         </div>
       </div>
     )
