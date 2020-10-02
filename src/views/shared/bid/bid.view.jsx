@@ -17,8 +17,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
     return (
       <div>
         <div>
-          {/* TODO: missing from API response */}
-          {/* Slot: <Link to={`/slot/${slotNum}`}>{slotNum}</Link> */}
+          Slot: <Link to={`/slot/${slotNum}`}>{slotNum}</Link>
         </div>
         <div>
           Bids: {numberOfBids}
