@@ -17,12 +17,12 @@ function UserAccount ({
   transactionsTask
 }) {
   const classes = useUserAccountStyles()
-  const { ethereumAddress } = useParams()
+  const { hezEthereumAddress } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(ethereumAddress)
-    onLoadTransactions(ethereumAddress)
-  }, [ethereumAddress, onLoadAccount, onLoadTransactions])
+    onLoadAccount(hezEthereumAddress)
+    onLoadTransactions(hezEthereumAddress)
+  }, [hezEthereumAddress, onLoadAccount, onLoadTransactions])
 
   return (
     <div>
@@ -110,7 +110,7 @@ UserAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        ethereumAddress: PropTypes.string.isRequired
+        hezEthereumAddress: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string
@@ -132,8 +132,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (ethereumAddress) => dispatch(fetchAccount(ethereumAddress)),
-  onLoadTransactions: (ethereumAddress) => dispatch(fetchTransactions(ethereumAddress))
+  onLoadAccount: (hezEthereumAddress) => dispatch(fetchAccount(hezEthereumAddress)),
+  onLoadTransactions: (hezEthereumAddress) => dispatch(fetchTransactions(hezEthereumAddress))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

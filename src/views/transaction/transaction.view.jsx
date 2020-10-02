@@ -45,13 +45,13 @@ function Transaction ({
                 </div>
                 <div className={classes.from}>
                   {/* TODO: fromEthereumAddress is missing from API response
-                  <Link to={`/token-account/${transactionTask.data.fromEthereumAddress}&${transactionTask.data.tokenId}&${transactionTask.data.fromAccountIndex}`}>
+                  <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                     From: {transactionTask.data.fromAccountIndex}
                   </Link> */}
                 </div>
                 <div className={classes.to}>
                   To:
-                  <Link to={`/token-account/${transactionTask.data.toEthereumAddress}/${transactionTask.data.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                  <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                     {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                   </Link>
                 </div>
@@ -62,7 +62,7 @@ function Transaction ({
                   Fee: {transactionTask.data.fee}
                 </div>
                 {/* <div className={classes.slot}>
-                  Slot: {transactionTask.data.slot}
+                  Slot: <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
                 </div> */}
                 <div className={classes.batchNum}>
                   Included in batch:
