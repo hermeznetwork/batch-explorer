@@ -1,24 +1,37 @@
 import { createUseStyles } from 'react-jss'
 
-const useHeaderStyles = createUseStyles({
-  navbar: {
-    listStyle: 'none',
-    paddingLeft: 0,
+const useMainHeaderStyles = createUseStyles(theme => ({
+  root: {
+    width: '100%',
+    position: 'fixed',
+    height: theme.headerHeight,
     display: 'flex',
-    justifyContent: 'space-around'
+    alignItems: 'center',
+    background: theme.palette.primary.main
   },
-  navbarItem: {
+  headerContent: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  logo: {
+    textDecoration: 'none',
+    color: 'currentColor',
     display: 'flex'
   },
-  navbarLink: {
-    padding: '8px 16px',
-    textDecoration: 'none',
-    color: 'black',
-    borderRadius: 8
+  link: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)'
   },
-  activeNavbarLink: {
-    background: 'gainsboro'
+  linkText: {
+    fontWeight: theme.fontWeights.bold,
+    whiteSpace: 'nowrap'
   }
-})
+}))
 
-export default useHeaderStyles
+export default useMainHeaderStyles
