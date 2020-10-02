@@ -43,7 +43,7 @@ function TokenAccount ({
                     Token: {accountTask.data.accounts[0].tokenSymbol}
                   </div>
                   <div>
-                    Balance: {accountTask.data.accounts[0].balance}
+                    Balance: {Number(accountTask.data.accounts[0].balance) / Math.pow(10, accountTask.data.accounts[0].token.decimals)}
                   </div>
                 </section>
               </div>

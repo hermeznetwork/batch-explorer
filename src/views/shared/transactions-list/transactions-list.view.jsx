@@ -18,7 +18,7 @@ function TransactionsList ({ transactions, isToken }) {
           >
             <Transaction
               transactionId={transaction.id}
-              amount={transaction.amount}
+              amount={Number(transaction.amount) / Math.pow(10, transaction.token.decimals)}
               tokenSymbol={transaction.tokenSymbol}
               isToken={isToken}
             />

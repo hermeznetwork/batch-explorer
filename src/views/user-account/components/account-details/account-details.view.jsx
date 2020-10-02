@@ -12,10 +12,10 @@ function AccountDetails ({ ethereumAddress, hezEthereumAddress, tokenSymbol, bal
         Token: <Link to={`/token-account/${hezEthereumAddress}/${tokenId}/${accountIndex}`}>{tokenSymbol}</Link>
       </div>
       <div>
-            Eth address: {ethereumAddress}
+        Eth address: {ethereumAddress}
       </div>
       <div>
-            Balance: {balance}
+        Balance: {balance}
       </div>
     </div>
   )

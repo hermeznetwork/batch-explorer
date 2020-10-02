@@ -56,10 +56,11 @@ function Transaction ({
                   </Link>
                 </div>
                 <div className={classes.item}>
-                  amount: {transactionTask.data.amount}
+                  Amount: {Number(transactionTask.data.amount) / Math.pow(10, transactionTask.data.token.decimals)}
                 </div>
                 <div className={classes.fee}>
-                  Fee: {transactionTask.data.fee}
+
+                  Fee: {Number(transactionTask.data.fee) / Math.pow(10, transactionTask.data.token.decimals)}
                 </div>
                 {/* <div className={classes.slot}>
                   Slot: <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
