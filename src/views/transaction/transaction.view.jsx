@@ -62,7 +62,8 @@ function Transaction ({
 
                   Fee: {Number(transactionTask.data.fee) / Math.pow(10, transactionTask.data.token.decimals)}
                 </div>
-                {/* <div className={classes.slot}>
+                {/* TODO: slot is missing from API response
+                <div className={classes.slot}>
                   Slot: <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
                 </div> */}
                 <div className={classes.batchNum}>
@@ -71,9 +72,11 @@ function Transaction ({
                     {transactionTask.data.batchNum}
                   </Link>
                 </div>
-                {/* <div className={classes.position}>
-                  Position in batch: {transactionTask.data.position}
-                </div> */}
+                {
+                  transactionTask.data.position
+                    ? <div className={classes.position}>Position in batch: {transactionTask.data.position}</div>
+                    : <></>
+                }
                 <div className={classes.nonce}>
                   Nonce: {transactionTask.data.nonce}
                 </div>

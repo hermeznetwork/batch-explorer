@@ -14,7 +14,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/batch/:batchId',
+    path: '/batch/:batchNum',
     component: Batch
   },
   {
@@ -22,7 +22,7 @@ const routes = [
     component: Coordinator
   },
   {
-    path: '/user-account/:ethereumAddress',
+    path: '/user-account/:hezEthereumAddress',
     component: UserAccount
   },
   {
@@ -34,7 +34,7 @@ const routes = [
     component: Slot
   },
   {
-    path: '/token-account/:ethereumAddress/:tokenId/:accountIndex',
+    path: '/token-account/:hezEthereumAddress/:tokenId/:accountIndex',
     component: TokenAccount
   },
   {
