@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
+import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -62,7 +63,7 @@ function UserAccount ({
                         tokenSymbol={account.token.symbol}
                         ethereumAddress={account.token.ethereumAddress}
                         hezEthereumAddress={account.hezEthereumAddress}
-                        balance={Number(account.balance) / Math.pow(10, account.token.decimals)}
+                        balance={getTokenAmountString(account.balance, account.token.decimals)}
                         tokenId={account.token.id}
                         accountIndex={account.accountIndex}
                       />

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -56,11 +57,10 @@ function Transaction ({
                   </Link>
                 </div>
                 <div className={classes.item}>
-                  Amount: {Number(transactionTask.data.amount) / Math.pow(10, transactionTask.data.token.decimals)}
+                  Amount: {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
                 </div>
                 <div className={classes.fee}>
-
-                  Fee: {Number(transactionTask.data.fee) / Math.pow(10, transactionTask.data.token.decimals)}
+                  Fee: {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
                 </div>
                 {/* TODO: slot is missing from API response
                 <div className={classes.slot}>

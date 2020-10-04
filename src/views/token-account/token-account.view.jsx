@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import Spinner from '../shared/spinner/spinner.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
@@ -40,10 +41,10 @@ function TokenAccount ({
                     Token address: {accountTask.data.accounts[0].accountIndex}
                   </div>
                   <div>
-                    Token: {accountTask.data.accounts[0].tokenSymbol}
+                    Token: {accountTask.data.accounts[0].token.symbol}
                   </div>
                   <div>
-                    Balance: {Number(accountTask.data.accounts[0].balance) / Math.pow(10, accountTask.data.accounts[0].token.decimals)}
+                    Balance: {getTokenAmountString(accountTask.data.accounts[0].balance, accountTask.data.accounts[0].token.decimals)}
                   </div>
                 </section>
               </div>
