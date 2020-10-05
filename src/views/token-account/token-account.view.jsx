@@ -89,8 +89,7 @@ TokenAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        hezEthereumAddress: PropTypes.string.isRequired,
-        tokenSymbol: PropTypes.number.isRequired
+        hezEthereumAddress: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string

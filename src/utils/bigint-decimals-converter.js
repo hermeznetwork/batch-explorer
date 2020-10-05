@@ -1,4 +1,4 @@
-const { ethers } = require('ethers')
+import { ethers } from 'ethers'
 
 /**
  * Converts an amount to BigInt and decimals to Float
