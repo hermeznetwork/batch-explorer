@@ -2,9 +2,10 @@ import axios from 'axios'
 
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 
-async function getAccounts (hezEthereumAddress, tokenId) {
+async function getAccounts (hezEthereumAddress, BJJ, tokenId) {
   const params = {
     ...(hezEthereumAddress ? { hezEthereumAddress } : {}),
+    ...(BJJ ? { BJJ } : {}),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(

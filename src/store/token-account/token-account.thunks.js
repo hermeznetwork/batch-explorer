@@ -1,11 +1,11 @@
 import * as tokenAccountActionTypes from './token-account.actions'
 import * as rollupApi from '../../apis/rollup'
 
-function fetchAccount (ethereumAddress, tokenId) {
+function fetchAccount (ethereumAddress, BJJ, tokenId) {
   return (dispatch) => {
     dispatch(tokenAccountActionTypes.loadAccount())
 
-    return rollupApi.getAccounts(ethereumAddress, tokenId)
+    return rollupApi.getAccounts(ethereumAddress, BJJ, tokenId)
       .then(res => dispatch(tokenAccountActionTypes.loadAccountSuccess(res)))
       .catch(err => dispatch(tokenAccountActionTypes.loadAccountFailure(err)))
   }

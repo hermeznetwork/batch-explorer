@@ -44,18 +44,40 @@ function Transaction ({
                 <div className={classes.type}>
                   type: {transactionTask.data.type}
                 </div>
-                <div className={classes.from}>
-                  {/* TODO: fromEthereumAddress is missing from API response
-                  <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
-                    From: {transactionTask.data.fromAccountIndex}
-                  </Link> */}
-                </div>
-                <div className={classes.to}>
-                  To:
-                  <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
-                    {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
-                  </Link>
-                </div>
+                {transactionTask.data.fromHezEthereumAddress
+                  ? <div className={classes.from}>
+                      <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${undefined}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                        From: {transactionTask.data.fromAccountIndex}
+                      </Link>
+                    </div>
+                  : <></>
+                }
+                {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.L1Info
+                  ? <div className={classes.from}>
+                      <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${undefined}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                        From: {transactionTask.data.fromAccountIndex}
+                      </Link>
+                    </div>
+                  : <></>
+                }
+                {transactionTask.data.toHezEthereumAddress
+                  ? <div className={classes.to}>
+                      To:
+                      <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${undefined}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                        {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                      </Link>
+                    </div>
+                  : <></>
+                }
+                {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
+                  ? <div className={classes.to}>
+                      To:
+                      <Link to={`/token-account/${undefined}/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                        {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
+                      </Link>
+                    </div>
+                  : <></>
+                }
                 <div className={classes.item}>
                   Amount: {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
                 </div>
@@ -72,8 +94,7 @@ function Transaction ({
                     {transactionTask.data.batchNum}
                   </Link>
                 </div>
-                {
-                  transactionTask.data.position
+                {transactionTask.data.position
                     ? <div className={classes.position}>Position in batch: {transactionTask.data.position}</div>
                     : <></>
                 }
