@@ -7,9 +7,6 @@ import routes from '../routing/routes'
 function App () {
   return (
     <>
-      {/* TODO: Remove this link once Transactions page is done,
-    since User account page should be linked from there */}
-      <strong><a href='http://localhost:3000/user-account/hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'>TEST USER ACCOUNT</a></strong>
       <Route>
         <Layout>
           <Switch>

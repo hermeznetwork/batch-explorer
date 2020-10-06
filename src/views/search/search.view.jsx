@@ -34,6 +34,8 @@ function Search ({
     <div className={classes.root}>
       <input value={searchTerm} onChange={e => setSearchTerm(e.target.value)} type='text' />
       <button onClick={handleSearch}>CLICK ME</button>
+      {/* TODO: Remove this link once Transactions page is done, since User account page should be linked from there */}
+      <strong><a href='http://localhost:3000/user-account/hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'>TEST USER ACCOUNT</a></strong>
     </div>
   )
 }
