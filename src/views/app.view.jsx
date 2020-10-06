@@ -3,8 +3,11 @@ import { Route, Switch } from 'react-router-dom'
 
 import Layout from './shared/layout/layout.view'
 import routes from '../routing/routes'
+import useAppStyles from './app.styles'
 
 function App () {
+  useAppStyles()
+
   return (
     <>
       <Route>
