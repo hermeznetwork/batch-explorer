@@ -14,7 +14,7 @@ const useAppStyles = createUseStyles({
       fontDisplay: 'swap'
     },
     {
-      fontFamily: 'Modern Era',
+      fontFamily: 'Modern Era Medium',
       src: "url('./fonts/modern-era/ModernEra-Medium.woff2') format('woff2')",
       fallbacks: [
         { src: "url('./fonts/modern-era/ModernEra-Medium.woff') format('woff')" },
@@ -25,7 +25,7 @@ const useAppStyles = createUseStyles({
       fontDisplay: 'swap'
     },
     {
-      fontFamily: 'Modern Era',
+      fontFamily: 'Modern Era Bold',
       src: "url('./fonts/modern-era/ModernEra-Bold.woff2') format('woff2')",
       fallbacks: [
         { src: "url('./fonts/modern-era/ModernEra-Bold.woff') format('woff')" },
@@ -36,7 +36,7 @@ const useAppStyles = createUseStyles({
       fontDisplay: 'swap'
     },
     {
-      fontFamily: 'Modern Era',
+      fontFamily: 'Modern Era Extra Bold',
       src: "url('./fonts/modern-era/ModernEra-ExtraBold.woff2') format('woff2')",
       fallbacks: [
         { src: "url('./fonts/modern-era/ModernEra-ExtraBold.woff') format('woff')" },

@@ -1,9 +1,18 @@
 import { createUseStyles } from 'react-jss'
 
 const useHomeStyles = createUseStyles({
-  title: {
-    marginBottom: 16
+  root: {
+    width: '100%'
+  },
+  wrapper: {
+    width: '100%'
   }
+  // section: {
+  //   width: '100%',
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  // }
 })
 
 export default useHomeStyles
