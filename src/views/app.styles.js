@@ -62,7 +62,7 @@ const useAppStyles = createUseStyles({
       height: '100%'
     },
     body: {
-      fontFamily: 'Modern Era',
+      fontFamily: 'Modern Era Medium',
       fontSize: 16,
       minHeight: '100vh'
     },

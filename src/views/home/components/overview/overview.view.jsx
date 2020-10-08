@@ -7,8 +7,6 @@ function Overview ({ overview }) {
 
   return (
     <div className={classes.root}>
-      <h4 className={classes.title}>Overview</h4>
-
       <div className={classes.row}>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>

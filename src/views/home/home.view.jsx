@@ -6,7 +6,7 @@ import { useTheme } from 'react-jss'
 import useHomeStyles from './home.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
-import BatchesList from '../shared/batches-list/batches-list.view'
+import BatchesList from './components/batches-list/batches-list.view'
 import Overview from './components/overview/overview.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
 
@@ -40,6 +40,7 @@ function Home ({
                 return (
                   <>
                     <section className={classes.section}>
+                      <h4 className={classes.title}>Overview</h4>
                       <Overview
                         overview={overviewTask.data}
                       />
