@@ -7,12 +7,6 @@ const useHomeStyles = createUseStyles({
   wrapper: {
     width: '100%'
   }
-  // section: {
-  //   width: '100%',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  // }
 })
 
 export default useHomeStyles
