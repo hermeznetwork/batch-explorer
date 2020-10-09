@@ -8,7 +8,7 @@ const useHomeStyles = createUseStyles(theme => ({
     width: '100%'
   },
   title: {
-    marginBottom: 16,
+    marginBottom: theme.spacing(2),
     fontFamily: 'Modern Era Extra Bold',
     fontSize: theme.spacing(3)
   }
