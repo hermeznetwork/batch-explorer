@@ -24,7 +24,7 @@ const useOverviewStyles = createUseStyles(theme => ({
     background: theme.palette.white,
     borderRadius: theme.spacing(3),
     minHeight: '156px',
-    width: '48%',
+    width: '310px',
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5)
   }
