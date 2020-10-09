@@ -46,7 +46,7 @@ function Transaction ({
                 </div>
                 {transactionTask.data.fromHezEthereumAddress
                   ? <div className={classes.from}>
-                      <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${undefined}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                      <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                         From: {transactionTask.data.fromAccountIndex}
                       </Link>
                     </div>
@@ -54,7 +54,7 @@ function Transaction ({
                 }
                 {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.L1Info
                   ? <div className={classes.from}>
-                      <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${undefined}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                      <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                         From: {transactionTask.data.fromAccountIndex}
                       </Link>
                     </div>
@@ -63,7 +63,7 @@ function Transaction ({
                 {transactionTask.data.toHezEthereumAddress
                   ? <div className={classes.to}>
                       To:
-                      <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${undefined}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                      <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                         {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                       </Link>
                     </div>
@@ -72,7 +72,7 @@ function Transaction ({
                 {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
                   ? <div className={classes.to}>
                       To:
-                      <Link to={`/token-account/${undefined}/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                      <Link to={`/token-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                         {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                       </Link>
                     </div>

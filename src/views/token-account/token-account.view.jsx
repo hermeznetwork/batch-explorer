@@ -14,12 +14,12 @@ function TokenAccount ({
   onLoadTransactions,
   transactionsTask
 }) {
-  const { hezEthereumAddress, BJJ, tokenId, accountIndex } = useParams()
+  const { address, tokenId, accountIndex } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(hezEthereumAddress, BJJ, tokenId)
+    onLoadAccount(address, tokenId)
     onLoadTransactions(accountIndex)
-  }, [hezEthereumAddress, BJJ, tokenId, accountIndex, onLoadAccount, onLoadTransactions])
+  }, [address, tokenId, accountIndex, onLoadAccount, onLoadTransactions])
 
   return (
     <div>
@@ -111,7 +111,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (hezEthereumAddress, BJJ, tokenId) => dispatch(fetchAccount(hezEthereumAddress, BJJ, tokenId)),
+  onLoadAccount: (address, tokenId) => dispatch(fetchAccount(address, tokenId)),
   onLoadTransactions: (accountIndex) => dispatch(fetchTransactions(accountIndex))
 })
 

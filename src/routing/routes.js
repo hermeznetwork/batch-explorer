@@ -34,7 +34,7 @@ const routes = [
     component: Slot
   },
   {
-    path: '/token-account/:hezEthereumAddress/:BJJ/:tokenId/:accountIndex',
+    path: '/token-account/:address/:tokenId/:accountIndex',
     component: TokenAccount
   },
   {

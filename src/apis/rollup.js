@@ -1,11 +1,26 @@
 import axios from 'axios'
 
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
+const hezEthereumAddressPattern = new RegExp('^hez:0x[a-fA-F0-9]{40}$')
+const bjjAddressPattern = new RegExp('^hez:[A-Za-z0-9_-]{44}$')
 
-async function getAccounts (hezEthereumAddress, BJJ, tokenId) {
+function isEthereumAddress (test) {
+  if (hezEthereumAddressPattern.test(test)) {
+    return true
+  }
+  return false
+}
+function isBjjAddress (test) {
+  if (bjjAddressPattern.test(test)) {
+    return true
+  }
+  return false
+}
+
+async function getAccounts (address, tokenId) {
   const params = {
-    ...(hezEthereumAddress ? { hezEthereumAddress } : {}),
-    ...(BJJ ? { BJJ } : {}),
+    ...(isEthereumAddress(address) ? { 'hezEthereumAddress': address } : {} ),
+    ...(isBjjAddress(address) ? { 'BJJ': address } : {} ),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
@@ -16,9 +31,10 @@ async function getAccounts (hezEthereumAddress, BJJ, tokenId) {
   return response.data
 }
 
-async function getHistoryTransactions (hezEthereumAddress, tokenId, batchNum, accountIndex) {
+async function getHistoryTransactions (address, tokenId, batchNum, accountIndex) {
   const params = {
-    ...(hezEthereumAddress ? { hezEthereumAddress } : {}),
+    ...(isEthereumAddress(address) ? { 'hezEthereumAddress': address } : {} ),
+    ...(isBjjAddress(address) ? { 'BJJ': address } : {} ),
     ...(tokenId ? { tokenId } : {}),
     ...(batchNum ? { batchNum } : {}),
     ...(accountIndex ? { accountIndex } : {})
