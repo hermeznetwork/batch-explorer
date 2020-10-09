@@ -63,7 +63,6 @@ function UserAccount ({
                         tokenSymbol={account.token.symbol}
                         ethereumAddress={account.token.ethereumAddress}
                         hezEthereumAddress={account.hezEthereumAddress}
-                        bjj={account.bjj}
                         balance={getTokenAmountString(account.balance, account.token.decimals)}
                         tokenId={account.token.id}
                         accountIndex={account.accountIndex}
