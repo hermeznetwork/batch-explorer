@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 
 import useBatchDetailsStyles from './batch-details.styles'
@@ -14,43 +13,25 @@ function BatchDetails ({ batch }) {
       </div>
 
       <div>
-        Eth Block Hash
+        Eth Block Hash {batch.ethereumBlockHash}
       </div>
       <div>
         Eth Block Number {batch.ethereumBlockNum}
       </div>
       <div>
-        Status
+        Status TODO
       </div>
       <div>
-        Timestamp
+        Timestamp {batch.timestamp}
       </div>
       <div>
-            Fees Collected
-        {
-          batch.collectedFees.map((fee, index) =>
-            <div
-              key={fee.tokenId}
-              className={clsx({ [classes.fee]: index > 0 })}
-            >
-              <div>
-                  Token: {fee.tokenSymbol} {fee.amount}
-              </div>
-            </div>
-          )
-        }
-      </div>
-      <div>
-        Total Collected Fees {batch.totalCollectedFeesUSD} USD
+        Fees Collected {batch.historicTotalCollectedFeesUSD} USD
       </div>
       <div>
         <Link to={`/coordinator/${batch.forgerAddr}`}>Coordinator: {batch.forgerAddr}</Link>
       </div>
       <div>
         Number of txs {batch.forgeL1TransactionsNum}
-      </div>
-      <div>
-        Number of accounts {batch.numAccounts}
       </div>
       <div>
         Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>

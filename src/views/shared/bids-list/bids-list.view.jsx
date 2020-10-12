@@ -15,8 +15,7 @@ function BidsList ({ bids, isSlot }) {
           >
             <Bid
               forgerAddr={bid.forgerAddr}
-              // TODO: missing from API response
-              // slot={bid.slot}
+              slotNum={bid.slotNum}
               numberOfBids={bids.length}
               bidValue={bid.bidValue}
               isSlot={isSlot}

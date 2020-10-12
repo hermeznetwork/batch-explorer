@@ -124,8 +124,8 @@ export class CliExternalOperator {
      * @param {Number} - batch depth
      * @returns {Object} - http response
      */
-  getBatchTx (batchId) {
-    return axios.get(`${this.url}/batch/${batchId}`)
+  getBatchTx (batchNum) {
+    return axios.get(`${this.url}/batch/${batchNum}`)
   }
 
   /**

@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Bid ({ forgerAddr, bidValue, numberOfBids, slot, isSlot }) {
+function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
   if (isSlot) {
     return (
       <div>
         <div>
-          Coordinator: {forgerAddr}
+          Coordinator:  <Link to={`/coordinator/${forgerAddr}`}>{forgerAddr}</Link>
         </div>
         <div>
           Bid amount: {bidValue}
@@ -16,8 +17,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slot, isSlot }) {
     return (
       <div>
         <div>
-          {/* TODO: missing from API response */}
-          {/* Slot: {slot} */}
+          Slot: <Link to={`/slot/${slotNum}`}>{slotNum}</Link>
         </div>
         <div>
           Bids: {numberOfBids}

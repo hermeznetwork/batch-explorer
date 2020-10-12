@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import Spinner from '../shared/spinner/spinner.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
@@ -13,12 +14,12 @@ function TokenAccount ({
   onLoadTransactions,
   transactionsTask
 }) {
-  const { ethereumAddress, tokenId, accountIndex } = useParams()
+  const { address, tokenId, accountIndex } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(ethereumAddress, tokenId)
+    onLoadAccount(address, tokenId)
     onLoadTransactions(accountIndex)
-  }, [ethereumAddress, tokenId, accountIndex, onLoadAccount, onLoadTransactions])
+  }, [address, tokenId, accountIndex, onLoadAccount, onLoadTransactions])
 
   return (
     <div>
@@ -40,10 +41,10 @@ function TokenAccount ({
                     Token address: {accountTask.data.accounts[0].accountIndex}
                   </div>
                   <div>
-                    Token: {accountTask.data.accounts[0].tokenSymbol}
+                    Token: {accountTask.data.accounts[0].token.symbol}
                   </div>
                   <div>
-                    Balance: {accountTask.data.accounts[0].balance}
+                    Balance: {getTokenAmountString(accountTask.data.accounts[0].balance, accountTask.data.accounts[0].token.decimals)}
                   </div>
                 </section>
               </div>
@@ -69,6 +70,7 @@ function TokenAccount ({
                 <h4>Transactions</h4>
                 <TransactionsList
                   transactions={transactionsTask.data.transactions}
+                  isToken
                 />
               </section>
             )
@@ -87,8 +89,7 @@ TokenAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        ethereumAddress: PropTypes.string.isRequired,
-        tokenSymbol: PropTypes.number.isRequired
+        hezEthereumAddress: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string
@@ -110,7 +111,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (ethereumAddress, tokenId) => dispatch(fetchAccount(ethereumAddress, tokenId)),
+  onLoadAccount: (address, tokenId) => dispatch(fetchAccount(address, tokenId)),
   onLoadTransactions: (accountIndex) => dispatch(fetchTransactions(accountIndex))
 })
 
