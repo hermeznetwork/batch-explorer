@@ -23,8 +23,8 @@ const useOverviewStyles = createUseStyles(theme => ({
     justifyContent: 'space-between',
     background: theme.palette.white,
     borderRadius: theme.spacing(3),
-    minHeight: '156px',
-    width: '310px',
+    minHeight: theme.spacing(19.5),
+    width: theme.spacing(39),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5)
   }
