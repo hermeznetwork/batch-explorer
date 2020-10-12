@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { useTheme } from 'react-jss'
 
 import useBatchStyles from './batch.styles'
 import Spinner from '../shared/spinner/spinner.view'
+import Container from '../shared/container/container.view'
 import BatchDetails from './components/batch-details/batch-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
@@ -15,6 +17,7 @@ function Batch ({
   onLoadBatchTransactionsList,
   batchTransactionsTask
 }) {
+  const theme = useTheme()
   const classes = useBatchStyles()
   const { batchNum } = useParams()
 
@@ -24,54 +27,56 @@ function Batch ({
   }, [batchNum, onLoadBatch, onLoadBatchTransactionsList])
 
   return (
-    <div>
-      {(() => {
-        switch (batchTask.status) {
-          case 'loading': {
-            return <Spinner />
+    <div className={classes.root}>
+      <Container backgroundColor={theme.palette.white} disableTopGutter>
+        {(() => {
+          switch (batchTask.status) {
+            case 'loading': {
+              return <Spinner />
+            }
+            case 'failed': {
+              return <p>{batchTask.error}</p>
+            }
+            case 'successful': {
+              return (
+                <section>
+                  <h4 className={classes.title}>Batch</h4>
+                  <BatchDetails
+                    batch={batchTask.data}
+                  />
+                </section>
+              )
+            }
+            default: {
+              return <></>
+            }
           }
-          case 'failed': {
-            return <p>{batchTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Batch</h4>
-                <BatchDetails
-                  batch={batchTask.data}
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
+        })()}
 
-      {(() => {
-        switch (batchTransactionsTask.status) {
-          case 'loading': {
-            return <Spinner />
+        {(() => {
+          switch (batchTransactionsTask.status) {
+            case 'loading': {
+              return <Spinner />
+            }
+            case 'failed': {
+              return <p>{batchTransactionsTask.error}</p>
+            }
+            case 'successful': {
+              return (
+                <section>
+                  <h4 className={classes.title}>Batch transactions</h4>
+                  <TransactionsList
+                    transactions={batchTransactionsTask.data.transactions}
+                  />
+                </section>
+              )
+            }
+            default: {
+              return <></>
+            }
           }
-          case 'failed': {
-            return <p>{batchTransactionsTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Batch transactions</h4>
-                <TransactionsList
-                  transactions={batchTransactionsTask.data.transactions}
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
+        })()}
+      </Container>
     </div>
   )
 }
