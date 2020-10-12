@@ -3,42 +3,35 @@ import { createUseStyles } from 'react-jss'
 const useMainHeaderStyles = createUseStyles(theme => ({
   root: {
     width: '100%',
-    // position: 'fixed',
     height: theme.headerHeight,
     display: 'flex',
-    // alignItems: 'center',
     background: theme.palette.primary.main
+  },
+  wrapper: {
+    width: '100%'
   },
   row: {
     display: 'flex',
-    flexDirection: 'column'
-    // justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: theme.spacing(3)
   },
   headline: {
     fontFamily: 'Modern Era Extra Bold',
-    fontSize: theme.spacing(1.5)
+    fontSize: theme.spacing(1.5),
+    marginTop: theme.spacing(5)
   },
-  logo: {
-    // textDecoration: 'none',
-    // color: 'currentColor',
-    // display: 'flex'
-  },
-  logoHeadline: {
-    fontFamily: 'Modern Era Extra Bold',
-    fontSize: theme.spacing(2.25)
+  links: {
+    display: 'flex',
+    alignItems: 'center'
   },
   link: {
     fontFamily: 'Modern Era Bold'
-    // display: 'flex',
-    // alignItems: 'center',
-    // padding: theme.spacing(1),
-    // position: 'absolute',
-    // top: '50%',
-    // transform: 'translateY(-50%)'
   },
-  linkText: {
-    // fontWeight: theme.fontWeights.bold,
-    // whiteSpace: 'nowrap'
+  notLastLink: {
+    marginRight: theme.spacing(2.5)
+  },
+  search: {
+    marginBottom: theme.spacing(7)
   }
 }))
 

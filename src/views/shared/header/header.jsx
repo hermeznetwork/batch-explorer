@@ -12,27 +12,19 @@ function Header () {
   return (
     <header className={classes.root}>
       <Container disableVerticalGutters>
-        <div>
+        <div className={classes.wrapper}>
 
           <div className={`${classes.row} ${classes.logoAndLinks}`}>
             <div>
               <Link
                 to='/'
-                className={classes.logo}
               >
                 <img src={logo} alt='Hermez logo' />
-                <span className={classes.logoHeadline}>Explorer</span>
               </Link>
             </div>
-            <div>
-              <Link to='/' className={classes.link}>
-                <p className={classes.linkText}>Hermez wallet</p>
-              </Link>
-            </div>
-            <div>
-              <Link to='https://twitter.com/hermez_network' className={classes.link}>
-                <p className={classes.linkText}>Twitter</p>
-              </Link>
+            <div className={classes.links}>
+              <Link to='/' className={`${classes.link} ${classes.notLastLink}`}>Hermez wallet</Link>
+              <Link to='https://twitter.com/hermez_network' className={classes.link}>Twitter</Link>
             </div>
           </div>
 
