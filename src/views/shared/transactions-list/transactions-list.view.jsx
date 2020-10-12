@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import { getTokenAmountString } from '../../../utils/bigint-decimals-converter'
 
 import Transaction from '../transaction/transaction.view'
 import useTransactionsListStyles from './transactions-list.styles'
 
-function TransactionsList ({ transactions }) {
+function TransactionsList ({ transactions, isToken }) {
   const classes = useTransactionsListStyles()
 
   return (
@@ -18,8 +19,9 @@ function TransactionsList ({ transactions }) {
           >
             <Transaction
               transactionId={transaction.id}
-              amount={transaction.amount}
-              tokenSymbol={transaction.tokenSymbol}
+              amount={getTokenAmountString(transaction.amount, transaction.token.decimals)}
+              tokenSymbol={transaction.token.symbol}
+              isToken={isToken}
             />
           </div>
         )}

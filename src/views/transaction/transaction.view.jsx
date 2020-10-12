@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -43,32 +44,60 @@ function Transaction ({
                 <div className={classes.type}>
                   type: {transactionTask.data.type}
                 </div>
-                <div className={classes.from}>
-                  {/* TODO: fromEthereumAddress is missing from API response
-                  <Link to={`/token-account/${transactionTask.data.fromEthereumAddress}&${transactionTask.data.tokenId}&${transactionTask.data.fromAccountIndex}`}>
-                    From: {transactionTask.data.fromAccountIndex}
-                  </Link> */}
-                </div>
-                <div className={classes.to}>
-                  <Link to={`/token-account/${transactionTask.data.toEthereumAddress}/${transactionTask.data.tokenId}/${transactionTask.data.toAccountIndex}`}>
-                    To: {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
-                  </Link>
-                </div>
+                {transactionTask.data.fromHezEthereumAddress
+                  ? <div className={classes.from}>
+                      <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                        From: {transactionTask.data.fromAccountIndex}
+                      </Link>
+                    </div>
+                  : <></>
+                }
+                {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.L1Info
+                  ? <div className={classes.from}>
+                      <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                        From: {transactionTask.data.fromAccountIndex}
+                      </Link>
+                    </div>
+                  : <></>
+                }
+                {transactionTask.data.toHezEthereumAddress
+                  ? <div className={classes.to}>
+                      To:
+                      <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                        {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                      </Link>
+                    </div>
+                  : <></>
+                }
+                {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
+                  ? <div className={classes.to}>
+                      To:
+                      <Link to={`/token-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                        {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
+                      </Link>
+                    </div>
+                  : <></>
+                }
                 <div className={classes.item}>
-                  amount: {transactionTask.data.amount}
+                  Amount: {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
                 </div>
                 <div className={classes.fee}>
-                  Fee: {transactionTask.data.fee}
+                  Fee: {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
                 </div>
-                {/* <div className={classes.slot}>
-                  Slot: {transactionTask.data.slot}
+                {/* TODO: slot is missing from API response
+                <div className={classes.slot}>
+                  Slot: <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
                 </div> */}
                 <div className={classes.batchNum}>
-                  Included in batch: {transactionTask.data.batchNum}
+                  Included in batch:
+                  <Link to={`/batch/${transactionTask.data.batchNum}`}>
+                    {transactionTask.data.batchNum}
+                  </Link>
                 </div>
-                {/* <div className={classes.position}>
-                  Position in batch: {transactionTask.data.position}
-                </div> */}
+                {transactionTask.data.position
+                    ? <div className={classes.position}>Position in batch: {transactionTask.data.position}</div>
+                    : <></>
+                }
                 <div className={classes.nonce}>
                   Nonce: {transactionTask.data.nonce}
                 </div>
