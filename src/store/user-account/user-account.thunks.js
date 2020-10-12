@@ -6,12 +6,7 @@ function fetchAccount (ethereumAddress) {
     dispatch(userAccountActionTypes.loadAccount())
 
     return rollupApi.getAccounts(ethereumAddress)
-      .then(res => {
-        // TODO:
-        // Create an array of all tokens for example [{tokenName, tokenSymbol, tokenAmount}] for "Token accounts" tab
-
-        dispatch(userAccountActionTypes.loadAccountSuccess(res))
-      })
+      .then(res => dispatch(userAccountActionTypes.loadAccountSuccess(res)))
       .catch(err => dispatch(userAccountActionTypes.loadAccountFailure(err)))
   }
 }

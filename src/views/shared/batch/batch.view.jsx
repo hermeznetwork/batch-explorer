@@ -21,15 +21,13 @@ function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp, hideFor
       <div>
         Txs: {batchTxNum}
       </div>
+      {
+        hideForgerAddr
+          ? <></>
+          : <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
+      }
       <div>
-        {
-          hideForgerAddr
-            ? <></>
-            : <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
-        }
-      </div>
-      <div>
-        {formattedTime}
+        TODO {formattedTime}
       </div>
     </div>
   )

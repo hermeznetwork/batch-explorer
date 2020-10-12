@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
+import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -17,12 +18,12 @@ function UserAccount ({
   transactionsTask
 }) {
   const classes = useUserAccountStyles()
-  const { ethereumAddress } = useParams()
+  const { hezEthereumAddress } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(ethereumAddress)
-    onLoadTransactions(ethereumAddress)
-  }, [ethereumAddress, onLoadAccount, onLoadTransactions])
+    onLoadAccount(hezEthereumAddress)
+    onLoadTransactions(hezEthereumAddress)
+  }, [hezEthereumAddress, onLoadAccount, onLoadTransactions])
 
   return (
     <div>
@@ -44,7 +45,7 @@ function UserAccount ({
                     Hermez address: {accountTask.data.accounts[0].bjj}
                   </div>
                   <div>
-                    Ethereum address: {accountTask.data.accounts[0].ethereumAddress}
+                    Ethereum address: {accountTask.data.accounts[0].hezEthereumAddress}
                   </div>
                   <div>
                     Token accounts: {accountTask.data.accounts.length}
@@ -59,10 +60,11 @@ function UserAccount ({
                       className={clsx({ [classes.account]: index > 0 })}
                     >
                       <AccountDetails
-                        tokenSymbol={account.tokenSymbol}
-                        ethereumAddress={account.ethereumAddress}
-                        balance={account.balance}
-                        tokenId={account.tokenId}
+                        tokenSymbol={account.token.symbol}
+                        ethereumAddress={account.token.ethereumAddress}
+                        hezEthereumAddress={account.hezEthereumAddress}
+                        balance={getTokenAmountString(account.balance, account.token.decimals)}
+                        tokenId={account.token.id}
                         accountIndex={account.accountIndex}
                       />
                     </div>
@@ -109,7 +111,7 @@ UserAccount.propTypes = {
     status: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        ethereumAddress: PropTypes.string.isRequired
+        hezEthereumAddress: PropTypes.string.isRequired
       })
     ),
     error: PropTypes.string
@@ -131,8 +133,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (ethereumAddress) => dispatch(fetchAccount(ethereumAddress)),
-  onLoadTransactions: (ethereumAddress) => dispatch(fetchTransactions(ethereumAddress))
+  onLoadAccount: (hezEthereumAddress) => dispatch(fetchAccount(hezEthereumAddress)),
+  onLoadTransactions: (hezEthereumAddress) => dispatch(fetchTransactions(hezEthereumAddress))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

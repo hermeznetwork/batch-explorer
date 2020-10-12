@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import useTransactionStyles from './transaction.styles'
 
-function Transaction ({ transactionId, amount, tokenSymbol }) {
+function Transaction ({ transactionId, amount, tokenSymbol, isToken }) {
   const classes = useTransactionStyles()
 
   return (
@@ -11,9 +11,11 @@ function Transaction ({ transactionId, amount, tokenSymbol }) {
       <div>
         <Link to={`/transaction/${transactionId}`}>Tx ID: {transactionId}</Link>
       </div>
-      <div>
-        Token: {tokenSymbol}
-      </div>
+      {
+        isToken
+          ? <></>
+          : <div>Token: {tokenSymbol}</div>
+      }
       <div>
         Amount: {amount}
       </div>

@@ -1,36 +1,26 @@
 import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
 
-const mock = new MockAdapter(axios)
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
-const mockedSlotNum = 784
+const hezEthereumAddressPattern = new RegExp('^hez:0x[a-fA-F0-9]{40}$')
+const bjjAddressPattern = new RegExp('^hez:[A-Za-z0-9_-]{44}$')
 
-mock.onGet(`${baseApiUrl}/slots/${mockedSlotNum}`)
-  .reply(
-    200,
-    {
-      slotNum: 784,
-      firstBlock: 0,
-      lastBlock: 0,
-      closedAuction: true,
-      winner: {
-        forgerAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        withdrawAddr: '0xaa942cfcd25ad4d90a62358b0dd84f33b398262a',
-        URL: 'https://hermez.io',
-        ethereumBlock: 0
-      },
-      batchNums: [
-        5432
-      ]
-    }
-  )
+function isEthereumAddress (test) {
+  if (hezEthereumAddressPattern.test(test)) {
+    return true
+  }
+  return false
+}
+function isBjjAddress (test) {
+  if (bjjAddressPattern.test(test)) {
+    return true
+  }
+  return false
+}
 
-mock.onAny()
-  .passThrough()
-
-async function getAccounts (hermezEthereumAddress, tokenId) {
+async function getAccounts (address, tokenId) {
   const params = {
-    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(isEthereumAddress(address) ? { 'hezEthereumAddress': address } : {} ),
+    ...(isBjjAddress(address) ? { 'BJJ': address } : {} ),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
@@ -41,9 +31,10 @@ async function getAccounts (hermezEthereumAddress, tokenId) {
   return response.data
 }
 
-async function getHistoryTransactions (hermezEthereumAddress, tokenId, batchNum, accountIndex) {
+async function getHistoryTransactions (address, tokenId, batchNum, accountIndex) {
   const params = {
-    ...(hermezEthereumAddress ? { hermezEthereumAddress } : {}),
+    ...(isEthereumAddress(address) ? { 'hezEthereumAddress': address } : {} ),
+    ...(isBjjAddress(address) ? { 'BJJ': address } : {} ),
     ...(tokenId ? { tokenId } : {}),
     ...(batchNum ? { batchNum } : {}),
     ...(accountIndex ? { accountIndex } : {})
@@ -88,14 +79,14 @@ async function getBatches (forgerAddr, minBatchNum, maxBatchNum) {
   return response.data
 }
 
-async function getBatch (batchId) {
-  const response = await axios.get(`${baseApiUrl}/batches/${batchId}`)
+async function getBatch (batchNum) {
+  const response = await axios.get(`${baseApiUrl}/batches/${batchNum}`)
 
   return response.data
 }
 
-async function getCoordinator (coordinatorId) {
-  const response = await axios.get(`${baseApiUrl}/coordinators/${coordinatorId}`)
+async function getCoordinator (forgerAddr) {
+  const response = await axios.get(`${baseApiUrl}/coordinators/${forgerAddr}`)
 
   return response.data
 }

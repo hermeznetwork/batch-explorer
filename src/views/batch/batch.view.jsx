@@ -16,12 +16,12 @@ function Batch ({
   batchTransactionsTask
 }) {
   const classes = useBatchStyles()
-  const { batchId } = useParams()
+  const { batchNum } = useParams()
 
   React.useEffect(() => {
-    onLoadBatch(batchId)
-    onLoadBatchTransactionsList(batchId)
-  }, [batchId, onLoadBatch, onLoadBatchTransactionsList])
+    onLoadBatch(batchNum)
+    onLoadBatchTransactionsList(batchNum)
+  }, [batchNum, onLoadBatch, onLoadBatchTransactionsList])
 
   return (
     <div>
