@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import useSearchStyles from './search.styles'
+import search from '../../images/icons/search-glass.svg'
 
 function Search ({
   changeRoute
@@ -37,8 +38,14 @@ function Search ({
         onChange={e => setSearchTerm(e.target.value)}
         type='text'
         placeholder='Search your transaction, an address, or a batch'
+        className={classes.input}
       />
-      <button onClick={handleSearch}>CLICK ME</button>
+      <button
+        onClick={handleSearch}
+        className={classes.button}
+      >
+        <img src={search} alt='Search' />
+      </button>
       {/* TODO: Remove this link once Transactions page is done, since User account page should be linked from there */}
       {/* <strong><a href='http://localhost:3000/user-account/hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'>TEST USER ACCOUNT</a></strong> */}
     </div>
