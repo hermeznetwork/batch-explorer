@@ -32,7 +32,6 @@ const theme = {
     extraBold: '800'
   },
   spacing: (value) => value * 8
-  // headerHeight: '256px'
 }
 
 export default theme
