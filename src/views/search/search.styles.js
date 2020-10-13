@@ -24,8 +24,8 @@ const useSearchStyles = createUseStyles(theme => ({
     }
   },
   button: {
-    width: '52px',
-    height: '52px',
+    width: theme.spacing(6.5),
+    height: theme.spacing(6.5),
     position: 'absolute',
     right: 0,
     borderRadius: theme.spacing(2),

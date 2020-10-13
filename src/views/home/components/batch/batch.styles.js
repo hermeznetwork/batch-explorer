@@ -8,8 +8,8 @@ const useBatchStyles = createUseStyles(theme => ({
     justifyContent: 'space-between',
     background: theme.palette.white,
     borderRadius: theme.spacing(3),
-    minHeight: '156px',
-    width: '48%',
+    minHeight: theme.spacing(19.5),
+    width: theme.spacing(39),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5)
   },
@@ -25,14 +25,14 @@ const useBatchStyles = createUseStyles(theme => ({
     paddingTop: theme.spacing(4)
   },
   transactionNumber: {
-    fontFamily: 'Modern Era Extra Bold'
+    fontWeight: theme.fontWeights.extraBold
   },
   coordinator: {
     paddingTop: theme.spacing(2)
   },
   coordinatorLink: {
     color: theme.palette.secondary.main,
-    fontFamily: 'Modern Era Extra Bold',
+    fontWeight: theme.fontWeights.extraBold,
     marginLeft: theme.spacing(1)
   },
   time: {

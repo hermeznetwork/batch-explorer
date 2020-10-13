@@ -13,7 +13,6 @@ function Header () {
     <header className={classes.root}>
       <Container disableVerticalGutters>
         <div className={classes.wrapper}>
-
           <div className={`${classes.row} ${classes.logoAndLinks}`}>
             <div>
               <Link
@@ -23,19 +22,16 @@ function Header () {
               </Link>
             </div>
             <div className={classes.links}>
-              <Link to='/' className={`${classes.link} ${classes.notLastLink}`}>Hermez wallet</Link>
-              <Link to='https://twitter.com/hermez_network' className={classes.link}>Twitter</Link>
+              <Link to='/' className={classes.link}>Hermez wallet</Link>
+              <Link to='https://twitter.com/hermez_network' className={`${classes.link} ${classes.linkLast}`}>Twitter</Link>
             </div>
           </div>
-
           <div className={`${classes.row} ${classes.headline}`}>
             <h1>Hermez Batch Explorer</h1>
           </div>
-
           <div className={`${classes.row} ${classes.search}`}>
             <Search />
           </div>
-
         </div>
       </Container>
     </header>

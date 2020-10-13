@@ -27,12 +27,12 @@ const theme = {
     orange: '#ffa600'
   },
   fontWeights: {
+    normal: '400',
     medium: '500',
     bold: '700',
     extraBold: '800'
   },
   spacing: (value) => value * 8
-  // headerHeight: '256px'
 }
 
 export default theme

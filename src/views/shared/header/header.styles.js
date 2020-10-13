@@ -3,7 +3,6 @@ import { createUseStyles } from 'react-jss'
 const useMainHeaderStyles = createUseStyles(theme => ({
   root: {
     width: '100%',
-    height: theme.headerHeight,
     display: 'flex',
     background: theme.palette.primary.main
   },
@@ -16,7 +15,7 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   headline: {
-    fontFamily: 'Modern Era Extra Bold',
+    fontWeight: theme.fontWeights.extraBold,
     fontSize: theme.spacing(1.5),
     marginTop: theme.spacing(5)
   },
@@ -25,10 +24,11 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     alignItems: 'center'
   },
   link: {
-    fontFamily: 'Modern Era Bold'
-  },
-  notLastLink: {
+    fontWeight: theme.fontWeights.bold,
     marginRight: theme.spacing(2.5)
+  },
+  linkLast: {
+    marginRight: 0
   },
   search: {
     marginBottom: theme.spacing(7)
