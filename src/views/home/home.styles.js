@@ -9,7 +9,7 @@ const useHomeStyles = createUseStyles(theme => ({
   },
   title: {
     marginBottom: theme.spacing(2),
-    fontWeight: 800,
+    fontWeight: theme.fontWeights.extraBold,
     fontSize: theme.spacing(3)
   }
 }))

@@ -22,8 +22,8 @@ function Header () {
               </Link>
             </div>
             <div className={classes.links}>
-              <Link to='/' className={`${classes.link} ${classes.notLastLink}`}>Hermez wallet</Link>
-              <Link to='https://twitter.com/hermez_network' className={classes.link}>Twitter</Link>
+              <Link to='/' className={classes.link}>Hermez wallet</Link>
+              <Link to='https://twitter.com/hermez_network' className={`${classes.link} ${classes.linkLast}`}>Twitter</Link>
             </div>
           </div>
           <div className={`${classes.row} ${classes.headline}`}>

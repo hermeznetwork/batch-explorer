@@ -37,7 +37,7 @@ function Search ({
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
         type='text'
-        placeholder='Search your transaction, an address, or a batch'
+        placeholder='Search for a transaction, an address, or a batch'
         className={classes.input}
       />
       <button

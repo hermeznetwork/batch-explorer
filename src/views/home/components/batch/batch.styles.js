@@ -25,14 +25,14 @@ const useBatchStyles = createUseStyles(theme => ({
     paddingTop: theme.spacing(4)
   },
   transactionNumber: {
-    fontWeight: 800
+    fontWeight: theme.fontWeights.extraBold
   },
   coordinator: {
     paddingTop: theme.spacing(2)
   },
   coordinatorLink: {
     color: theme.palette.secondary.main,
-    fontWeight: 800,
+    fontWeight: theme.fontWeights.extraBold,
     marginLeft: theme.spacing(1)
   },
   time: {
