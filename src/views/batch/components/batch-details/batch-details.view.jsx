@@ -7,40 +7,46 @@ function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
 
   return (
-    <div className={classes.row}>
-      <div>
-        Batch: {batch.batchNum}
+    <div>
+      <div className={classes.row}>
+        <div className={classes.col}>Eth Block Hash</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.ethereumBlockHash}</div>
       </div>
-
-      <div>
-        Eth Block Hash {batch.ethereumBlockHash}
+      <div className={classes.row}>
+        <div className={classes.col}>Eth Block Number</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.ethereumBlockNum}</div>
       </div>
-      <div>
-        Eth Block Number {batch.ethereumBlockNum}
+      <div className={classes.row}>
+        <div className={classes.col}>Status</div>
+        <div className={`${classes.col} ${classes.colLast}`}>TODO</div>
       </div>
-      <div>
-        Status TODO
+      <div className={classes.row}>
+        <div className={classes.col}>Timestamp</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.timestamp}</div>
       </div>
-      <div>
-        Timestamp {batch.timestamp}
+      <div className={classes.row}>
+        <div className={classes.col}>Fees Collected</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.historicTotalCollectedFeesUSD} USD</div>
       </div>
-      <div>
-        Fees Collected {batch.historicTotalCollectedFeesUSD} USD
+      <div className={classes.row}>
+        <div className={classes.col}>Coordinator</div>
+        <div className={`${classes.col} ${classes.colLast} ${classes.link}`}><Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link></div>
       </div>
-      <div>
-        <Link to={`/coordinator/${batch.forgerAddr}`}>Coordinator: {batch.forgerAddr}</Link>
+      <div className={classes.row}>
+        <div className={classes.col}>Number of txs</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.forgeL1TransactionsNum}</div>
       </div>
-      <div>
-        Number of txs {batch.forgeL1TransactionsNum}
+      <div className={classes.row}>
+        <div className={classes.col}>Slot</div>
+        <div className={`${classes.col} ${classes.colLast} ${classes.link}`}><Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link></div>
       </div>
-      <div>
-        Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
+      <div className={classes.row}>
+        <div className={classes.col}>State root</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.stateRoot}</div>
       </div>
-      <div>
-        State root {batch.stateRoot}
-      </div>
-      <div>
-        Exit root {batch.exitRoot}
+      <div className={`${classes.row} ${classes.rowLast}`}>
+        <div className={classes.col}>Exit root</div>
+        <div className={`${classes.col} ${classes.colLast}`}>{batch.exitRoot}</div>
       </div>
     </div>
   )

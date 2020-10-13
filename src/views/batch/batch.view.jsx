@@ -29,53 +29,55 @@ function Batch ({
   return (
     <div className={classes.root}>
       <Container backgroundColor={theme.palette.white} disableTopGutter>
-        {(() => {
-          switch (batchTask.status) {
-            case 'loading': {
-              return <Spinner />
+        <div className={classes.wrapper}>
+          {(() => {
+            switch (batchTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{batchTask.error}</p>
+              }
+              case 'successful': {
+                return (
+                  <section>
+                    <h4 className={classes.title}>Batch {batchTask.data.batchNum}</h4>
+                    <BatchDetails
+                      batch={batchTask.data}
+                    />
+                  </section>
+                )
+              }
+              default: {
+                return <></>
+              }
             }
-            case 'failed': {
-              return <p>{batchTask.error}</p>
-            }
-            case 'successful': {
-              return (
-                <section>
-                  <h4 className={classes.title}>Batch</h4>
-                  <BatchDetails
-                    batch={batchTask.data}
-                  />
-                </section>
-              )
-            }
-            default: {
-              return <></>
-            }
-          }
-        })()}
+          })()}
 
-        {(() => {
-          switch (batchTransactionsTask.status) {
-            case 'loading': {
-              return <Spinner />
+          {(() => {
+            switch (batchTransactionsTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{batchTransactionsTask.error}</p>
+              }
+              case 'successful': {
+                return (
+                  <section>
+                    <h4 className={classes.title}>Batch transactions</h4>
+                    <TransactionsList
+                      transactions={batchTransactionsTask.data.transactions}
+                    />
+                  </section>
+                )
+              }
+              default: {
+                return <></>
+              }
             }
-            case 'failed': {
-              return <p>{batchTransactionsTask.error}</p>
-            }
-            case 'successful': {
-              return (
-                <section>
-                  <h4 className={classes.title}>Batch transactions</h4>
-                  <TransactionsList
-                    transactions={batchTransactionsTask.data.transactions}
-                  />
-                </section>
-              )
-            }
-            default: {
-              return <></>
-            }
-          }
-        })()}
+          })()}
+        </div>
       </Container>
     </div>
   )
