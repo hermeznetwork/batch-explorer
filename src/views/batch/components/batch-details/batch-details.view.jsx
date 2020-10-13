@@ -8,7 +8,7 @@ function BatchDetails ({ batch }) {
 
   return (
     <div>
-      <div className={classes.row}>
+      <div className={`${classes.row} ${classes.rowFirst}`}>
         <div className={classes.col}>Eth Block Hash</div>
         <div className={`${classes.col} ${classes.colLast}`}>{batch.ethereumBlockHash}</div>
       </div>
@@ -44,7 +44,7 @@ function BatchDetails ({ batch }) {
         <div className={classes.col}>State root</div>
         <div className={`${classes.col} ${classes.colLast}`}>{batch.stateRoot}</div>
       </div>
-      <div className={`${classes.row} ${classes.rowLast}`}>
+      <div className={classes.row}>
         <div className={classes.col}>Exit root</div>
         <div className={`${classes.col} ${classes.colLast}`}>{batch.exitRoot}</div>
       </div>

@@ -41,7 +41,7 @@ function Batch ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Batch {batchTask.data.batchNum}</h4>
+                    <h4 className={`${classes.title} ${classes.titleFirst}`}>Batch {batchTask.data.batchNum}</h4>
                     <BatchDetails
                       batch={batchTask.data}
                     />

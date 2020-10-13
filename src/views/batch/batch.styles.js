@@ -8,9 +8,13 @@ const useBatchStyles = createUseStyles(theme => ({
     width: '100%'
   },
   title: {
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(4),
     fontWeight: theme.fontWeights.extraBold,
     fontSize: theme.spacing(3)
+  },
+  titleFirst: {
+    marginBottom: theme.spacing(5)
   }
 }))
 

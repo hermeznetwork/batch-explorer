@@ -5,10 +5,10 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: `${theme.spacing(3)}px 0`,
-    borderTop: '1px solid' + theme.palette.grey.veryLight
-  },
-  rowLast: {
     borderBottom: '1px solid' + theme.palette.grey.veryLight
+  },
+  rowFirst: {
+    borderTop: '1px solid' + theme.palette.grey.veryLight
   },
   col: {
     fontWeight: theme.fontWeights.medium
