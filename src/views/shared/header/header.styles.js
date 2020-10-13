@@ -16,7 +16,7 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   headline: {
-    fontFamily: 'Modern Era Extra Bold',
+    fontWeight: 800,
     fontSize: theme.spacing(1.5),
     marginTop: theme.spacing(5)
   },
@@ -25,7 +25,7 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     alignItems: 'center'
   },
   link: {
-    fontFamily: 'Modern Era Bold'
+    fontWeight: 700
   },
   notLastLink: {
     marginRight: theme.spacing(2.5)

@@ -14,7 +14,7 @@ const useOverviewStyles = createUseStyles(theme => ({
   },
   secondRow: {
     fontSize: theme.spacing(5),
-    fontFamily: 'Modern Era Bold'
+    fontWeight: 700
   },
   col: {
     display: 'flex',
@@ -23,8 +23,8 @@ const useOverviewStyles = createUseStyles(theme => ({
     justifyContent: 'space-between',
     background: theme.palette.white,
     borderRadius: theme.spacing(3),
-    minHeight: '156px',
-    width: '48%',
+    minHeight: theme.spacing(19.5),
+    width: theme.spacing(39),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5)
   }
