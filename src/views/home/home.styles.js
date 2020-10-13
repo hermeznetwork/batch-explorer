@@ -9,7 +9,7 @@ const useHomeStyles = createUseStyles(theme => ({
   },
   title: {
     marginBottom: theme.spacing(2),
-    fontFamily: 'Modern Era Extra Bold',
+    fontWeight: 800,
     fontSize: theme.spacing(3)
   }
 }))

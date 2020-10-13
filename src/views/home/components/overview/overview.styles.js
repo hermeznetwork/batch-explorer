@@ -14,7 +14,7 @@ const useOverviewStyles = createUseStyles(theme => ({
   },
   secondRow: {
     fontSize: theme.spacing(5),
-    fontFamily: 'Modern Era Bold'
+    fontWeight: 700
   },
   col: {
     display: 'flex',
