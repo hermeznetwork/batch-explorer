@@ -3,34 +3,35 @@ import { createUseStyles } from 'react-jss'
 const useMainHeaderStyles = createUseStyles(theme => ({
   root: {
     width: '100%',
-    position: 'fixed',
-    height: theme.headerHeight,
     display: 'flex',
-    alignItems: 'center',
     background: theme.palette.primary.main
   },
-  headerContent: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+  wrapper: {
+    width: '100%'
   },
-  logo: {
-    textDecoration: 'none',
-    color: 'currentColor',
-    display: 'flex'
+  row: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: theme.spacing(3)
+  },
+  headline: {
+    fontWeight: theme.fontWeights.extraBold,
+    fontSize: theme.spacing(1.5),
+    marginTop: theme.spacing(5)
+  },
+  links: {
+    display: 'flex',
+    alignItems: 'center'
   },
   link: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(1),
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)'
-  },
-  linkText: {
     fontWeight: theme.fontWeights.bold,
-    whiteSpace: 'nowrap'
+    marginRight: theme.spacing(2.5)
+  },
+  linkLast: {
+    marginRight: 0
+  },
+  search: {
+    marginBottom: theme.spacing(7)
   }
 }))
 

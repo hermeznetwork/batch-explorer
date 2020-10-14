@@ -25,7 +25,7 @@ const useAppStyles = createUseStyles({
       fontDisplay: 'swap'
     },
     {
-      fontFamily: 'Modern',
+      fontFamily: 'Modern Era',
       src: "url('./fonts/modern-era/ModernEra-Bold.woff2') format('woff2')",
       fallbacks: [
         { src: "url('./fonts/modern-era/ModernEra-Bold.woff') format('woff')" },
