@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
-import { useTheme } from 'react-jss'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -15,7 +14,6 @@ function Transaction ({
   transactionTask
 }) {
   const { transactionId } = useParams()
-  const theme = useTheme()
   const classes = useTransactionStyles()
 
   React.useEffect(() => {
@@ -24,7 +22,7 @@ function Transaction ({
 
   return (
     <div className={classes.root}>
-      <Container backgroundColor={theme.palette.primary.main} disableTopGutter>
+      <Container disableTopGutter>
         <div className={classes.wrapper}>
           {(() => {
             switch (transactionTask.status) {
@@ -37,6 +35,7 @@ function Transaction ({
               case 'successful': {
                 return (
                   <section>
+                    <h4 className={classes.title}>Transaction summary</h4>
                     <div className={`${classes.row} ${classes.rowFirst}`}>
                       <div className={classes.col}>
                         Transaction ID
@@ -131,7 +130,6 @@ function Transaction ({
                         {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
                       </div>
                     </div>
-                    {/* TODO: slot is missing from API response
                     <div className={classes.row}>
                       <div className={classes.col}>
                         Slot
@@ -139,7 +137,7 @@ function Transaction ({
                       <div className={`${classes.col} ${classes.colLast}`}>
                         <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
                       </div>
-                    </div> */}
+                    </div>
                     <div className={classes.row}>
                       <div className={classes.col}>
                         Included in batch
@@ -148,20 +146,14 @@ function Transaction ({
                         <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
                       </div>
                     </div>
-                    {transactionTask.data.position
-                      ?
-                        <>
-                          <div className={classes.row}>
-                            <div className={classes.col}>
-                              Position in batch
-                            </div>
-                            <div className={`${classes.col} ${classes.colLast}`}>
-                              {transactionTask.data.position}
-                            </div>
-                          </div>
-                        </>
-                      : <></>
-                    }
+                    <div className={classes.row}>
+                      <div className={classes.col}>
+                        Position in batch
+                      </div>
+                      <div className={`${classes.col} ${classes.colLast}`}>
+                        {transactionTask.data.position}
+                      </div>
+                    </div>
                     <div className={classes.row}>
                       <div className={classes.col}>
                         Nonce
