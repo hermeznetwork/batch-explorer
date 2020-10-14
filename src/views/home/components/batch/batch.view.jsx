@@ -16,9 +16,9 @@ function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp }) {
 
   return (
     <div className={classes.col}>
-      <div className={classes.batch}>
+      <div className={classes.batchWrapper}>
         <Link to={`/batch/${batchNum}`}>
-          Batch: {batchNum}
+          <div className={classes.batch}>Batch: {batchNum}</div>
         </Link>
       </div>
       <div className={classes.transaction}>

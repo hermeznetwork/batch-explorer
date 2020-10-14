@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import useBatchDetailsStyles from './batch-details.styles'
+import angleDown from '../../../../images/icons/angle-down.svg'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
@@ -18,7 +19,7 @@ function BatchDetails ({ batch }) {
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Status</div>
-        <div className={`${classes.col} ${classes.colLast}`}>TODO</div>
+        <div className={`${classes.col} ${classes.colLast} ${classes.status}`}>TODO</div>
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Timestamp</div>
@@ -32,6 +33,13 @@ function BatchDetails ({ batch }) {
         <div className={classes.col}>Coordinator</div>
         <div className={`${classes.col} ${classes.colLast} ${classes.link}`}><Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link></div>
       </div>
+      {/* TODO Add see details functionality */}
+      <button
+        className={classes.seeDetails}
+      >
+        See details
+        <img src={angleDown} className={classes.icon} alt='See details' />
+      </button>
       <div className={classes.row}>
         <div className={classes.col}>Number of txs</div>
         <div className={`${classes.col} ${classes.colLast}`}>{batch.forgeL1TransactionsNum}</div>

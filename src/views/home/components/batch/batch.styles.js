@@ -13,12 +13,14 @@ const useBatchStyles = createUseStyles(theme => ({
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5)
   },
+  batchWrapper: {
+    width: '100%'
+  },
   batch: {
     background: theme.palette.grey.light,
     borderRadius: theme.spacing(2),
     color: theme.palette.grey.main,
     padding: theme.spacing(2),
-    width: '100%',
     textAlign: 'center'
   },
   transaction: {
