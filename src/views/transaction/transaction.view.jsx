@@ -70,7 +70,8 @@ function Transaction ({
                     </div>
 
                     {transactionTask.data.fromHezEthereumAddress
-                      ? <>
+                      ? (
+                        <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.colLast}`}>
                             <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
@@ -78,10 +79,10 @@ function Transaction ({
                             </Link>
                           </div>
                         </>
-                      : <></>
-                    }
+                      ) : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.L1Info
-                      ? <>
+                      ? (
+                        <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.colLast}`}>
                             <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
@@ -89,10 +90,10 @@ function Transaction ({
                             </Link>
                           </div>
                         </>
-                      : <></>
-                    }
+                      ) : <></>}
                     {transactionTask.data.toHezEthereumAddress
-                      ? <>
+                      ? (
+                        <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.colLast}`}>
                             <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
@@ -100,10 +101,10 @@ function Transaction ({
                             </Link>
                           </div>
                         </>
-                      : <></>
-                    }
+                      ) : <></>}
                     {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
-                      ? <>
+                      ? (
+                        <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.colLast}`}>
                             <Link to={`/token-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
@@ -111,8 +112,7 @@ function Transaction ({
                             </Link>
                           </div>
                         </>
-                      : <></>
-                    }
+                      ) : <></>}
 
                     <div className={classes.row}>
                       <div className={classes.col}>
