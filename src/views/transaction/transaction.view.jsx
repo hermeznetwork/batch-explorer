@@ -36,11 +36,11 @@ function Transaction ({
                 return (
                   <section>
                     <h4 className={classes.title}>Transaction summary</h4>
-                    <div className={`${classes.row} ${classes.rowFirst}`}>
+                    <div className={classes.row}>
                       <div className={classes.col}>
                         Transaction ID
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {transactionTask.data.id}
                       </div>
                     </div>
@@ -48,7 +48,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Status
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {transactionTask.data.state}
                       </div>
                     </div>
@@ -56,7 +56,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Timestamp
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {transactionTask.data.timestamp}
                       </div>
                     </div>
@@ -64,7 +64,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Type of transaction
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {transactionTask.data.type}
                       </div>
                     </div>
@@ -73,7 +73,7 @@ function Transaction ({
                       ? (
                         <>
                           <div className={classes.col}>From</div>
-                          <div className={`${classes.col} ${classes.colLast}`}>
+                          <div className={`${classes.col} ${classes.link}`}>
                             <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                               {transactionTask.data.fromAccountIndex}
                             </Link>
@@ -84,7 +84,7 @@ function Transaction ({
                       ? (
                         <>
                           <div className={classes.col}>From</div>
-                          <div className={`${classes.col} ${classes.colLast}`}>
+                          <div className={`${classes.col} ${classes.link}`}>
                             <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                               From: {transactionTask.data.fromAccountIndex}
                             </Link>
@@ -95,7 +95,7 @@ function Transaction ({
                       ? (
                         <>
                           <div className={classes.col}>To</div>
-                          <div className={`${classes.col} ${classes.colLast}`}>
+                          <div className={`${classes.col} ${classes.link}`}>
                             <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                             </Link>
@@ -106,7 +106,7 @@ function Transaction ({
                       ? (
                         <>
                           <div className={classes.col}>To</div>
-                          <div className={`${classes.col} ${classes.colLast}`}>
+                          <div className={`${classes.col} ${classes.link}`}>
                             <Link to={`/token-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                             </Link>
@@ -118,7 +118,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Amount
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
                       </div>
                     </div>
@@ -126,7 +126,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Fee
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
                       </div>
                     </div>
@@ -134,7 +134,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Slot
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={`${classes.col} ${classes.link}`}>
                         <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
                       </div>
                     </div>
@@ -142,7 +142,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Included in batch
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={`${classes.col} ${classes.link}`}>
                         <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
                       </div>
                     </div>
@@ -150,7 +150,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Position in batch
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {transactionTask.data.position}
                       </div>
                     </div>
@@ -158,7 +158,7 @@ function Transaction ({
                       <div className={classes.col}>
                         Nonce
                       </div>
-                      <div className={`${classes.col} ${classes.colLast}`}>
+                      <div className={classes.col}>
                         {transactionTask.data.nonce}
                       </div>
                     </div>

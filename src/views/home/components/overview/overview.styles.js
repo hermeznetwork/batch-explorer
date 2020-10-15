@@ -22,7 +22,7 @@ const useOverviewStyles = createUseStyles(theme => ({
     alignItems: 'start',
     justifyContent: 'space-between',
     background: theme.palette.white,
-    borderRadius: theme.spacing(3),
+    borderRadius: '24px',
     minHeight: theme.spacing(19.5),
     width: theme.spacing(39),
     marginBottom: theme.spacing(3),
