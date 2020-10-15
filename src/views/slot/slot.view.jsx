@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import useSlotStyles from './slot.styles'
 import Spinner from '../shared/spinner/spinner.view'
+import Container from '../shared/container/container.view'
 import SlotDetails from './components/slot-details/slot-details.view'
 import BidsList from '../shared/bids-list/bids-list.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
@@ -36,79 +37,82 @@ function Slot ({
   }, [slotTask, onLoadBatches])
 
   return (
-    <div>
-      {(() => {
-        switch (slotTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{slotTask.error}</p>
-          }
-          case 'successful': {
-            switch (bidsTask.status) {
+    <div className={classes.root}>
+      <Container disableTopGutter>
+        <div className={classes.wrapper}>
+          {(() => {
+            switch (slotTask.status) {
               case 'loading': {
                 return <Spinner />
               }
               case 'failed': {
-                return <p>{bidsTask.error}</p>
+                return <p>{slotTask.error}</p>
+              }
+              case 'successful': {
+                switch (bidsTask.status) {
+                  case 'loading': {
+                    return <Spinner />
+                  }
+                  case 'failed': {
+                    return <p>{bidsTask.error}</p>
+                  }
+                  case 'successful': {
+                    return (
+                      <>
+                        <section>
+                          <h4 className={classes.title}>Slot</h4>
+                          <SlotDetails
+                            slot={slotTask.data}
+                            bids={bidsTask.data.bids}
+                          />
+                        </section>
+                        <section>
+                          <h4 className={classes.title}>Bids</h4>
+                          <BidsList
+                            bids={bidsTask.data.bids}
+                            isSlot
+                          />
+                        </section>
+                      </>
+                    )
+                  }
+                  default: {
+                    return <></>
+                  }
+                }
+              }
+              default: {
+                return <></>
+              }
+            }
+          })()}
+
+          {(() => {
+            switch (batchesTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{batchesTask.error}</p>
               }
               case 'successful': {
                 return (
-                  <>
-                    <section>
-                      <h4 className={classes.title}>Slot</h4>
-                      <SlotDetails
-                        slot={slotTask.data}
-                        bids={bidsTask.data.bids}
-                      />
-                    </section>
-                    <section>
-                      <h4 className={classes.title}>Bids</h4>
-                      <BidsList
-                        bids={bidsTask.data.bids}
-                        isSlot
-                      />
-                    </section>
-                  </>
+                  <section>
+                    <h4 className={classes.title}>Batches in slot</h4>
+                    <BatchesList
+                      batches={batchesTask.data.batches}
+                      hideForgerAddr
+                    />
+                  </section>
                 )
               }
               default: {
                 return <></>
               }
             }
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
-
-      {(() => {
-        switch (batchesTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{batchesTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Batches in slot</h4>
-                <BatchesList
-                  batches={batchesTask.data.batches}
-                  hideForgerAddr
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
-
+          })()}
+        </div>
+      </Container>
     </div>
   )
 }
