@@ -43,7 +43,6 @@ function UserAccount ({
                   <>
                     <section>
                       <h4 className={classes.title}>User Address</h4>
-
                       <div className={classes.row}>
                         <div className={classes.col}>
                           Hermez address:
