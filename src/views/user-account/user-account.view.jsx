@@ -43,19 +43,34 @@ function UserAccount ({
                   <>
                     <section>
                       <h4 className={classes.title}>User Address</h4>
-                      <div>
-                        Hermez address: {accountTask.data.accounts[0].bjj}
+
+                      <div className={classes.row}>
+                        <div className={classes.col}>
+                          Hermez address:
+                        </div>
+                        <div className={classes.col}>
+                          {accountTask.data.accounts[0].bjj}
+                        </div>
                       </div>
-                      <div>
-                        Ethereum address: {accountTask.data.accounts[0].hezEthereumAddress}
+                      <div className={classes.row}>
+                        <div className={classes.col}>
+                          Ethereum address:
+                        </div>
+                        <div className={classes.col}>
+                          {accountTask.data.accounts[0].hezEthereumAddress}
+                        </div>
                       </div>
-                      <div>
-                        Token accounts: {accountTask.data.accounts.length}
+                      <div className={classes.row}>
+                        <div className={classes.col}>
+                          Token accounts:
+                        </div>
+                        <div className={classes.col}>
+                          {accountTask.data.accounts.length}
+                        </div>
                       </div>
                     </section>
                     <section>
                       <h4>Token Accounts</h4>
-
                       {accountTask.data.accounts.map((account, index) =>
                         <div
                           key={account.accountIndex}

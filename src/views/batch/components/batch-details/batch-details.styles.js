@@ -15,9 +15,9 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
   },
   colLast: {
     fontWeight: theme.fontWeights.bold,
-    maxWidth: theme.spacing(50),
+    maxWidth: theme.spacing(52),
     overflowWrap: 'break-word',
-    lineHeight: `${theme.spacing(3)}px`,
+    lineHeight: `${theme.spacing(3)}px`
   },
   status: {
     fontWeight: theme.fontWeights.medium,
