@@ -2,45 +2,59 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import useBatchDetailsStyles from './batch-details.styles'
+import angleDown from '../../../../images/icons/angle-down.svg'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
 
   return (
-    <div className={classes.row}>
-      <div>
-        Batch: {batch.batchNum}
+    <div>
+      <div className={classes.row}>
+        <div className={classes.col}>Eth Block Hash</div>
+        <div className={classes.col}>{batch.ethereumBlockHash}</div>
       </div>
-
-      <div>
-        Eth Block Hash {batch.ethereumBlockHash}
+      <div className={classes.row}>
+        <div className={classes.col}>Eth Block Number</div>
+        <div className={classes.col}>{batch.ethereumBlockNum}</div>
       </div>
-      <div>
-        Eth Block Number {batch.ethereumBlockNum}
+      <div className={classes.row}>
+        <div className={classes.col}>Status</div>
+        <div className={`${classes.col} ${classes.status}`}>TODO</div>
       </div>
-      <div>
-        Status TODO
+      <div className={classes.row}>
+        <div className={classes.col}>Timestamp</div>
+        <div className={classes.col}>{batch.timestamp}</div>
       </div>
-      <div>
-        Timestamp {batch.timestamp}
+      <div className={classes.row}>
+        <div className={classes.col}>Fees Collected</div>
+        <div className={classes.col}>{batch.historicTotalCollectedFeesUSD} USD</div>
       </div>
-      <div>
-        Fees Collected {batch.historicTotalCollectedFeesUSD} USD
+      <div className={classes.row}>
+        <div className={classes.col}>Coordinator</div>
+        <div className={`${classes.col} ${classes.link}`}><Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link></div>
       </div>
-      <div>
-        <Link to={`/coordinator/${batch.forgerAddr}`}>Coordinator: {batch.forgerAddr}</Link>
+      {/* TODO Add see details functionality */}
+      <button
+        className={classes.seeDetails}
+      >
+        See details
+        <img src={angleDown} className={classes.icon} alt='See details' />
+      </button>
+      <div className={classes.row}>
+        <div className={classes.col}>Number of txs</div>
+        <div className={classes.col}>{batch.forgeL1TransactionsNum}</div>
       </div>
-      <div>
-        Number of txs {batch.forgeL1TransactionsNum}
+      <div className={classes.row}>
+        <div className={classes.col}>Slot</div>
+        <div className={`${classes.col} ${classes.link}`}><Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link></div>
       </div>
-      <div>
-        Slot: <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
+      <div className={classes.row}>
+        <div className={classes.col}>State root</div>
+        <div className={classes.col}>{batch.stateRoot}</div>
       </div>
-      <div>
-        State root {batch.stateRoot}
-      </div>
-      <div>
-        Exit root {batch.exitRoot}
+      <div className={classes.row}>
+        <div className={classes.col}>Exit root</div>
+        <div className={classes.col}>{batch.exitRoot}</div>
       </div>
     </div>
   )

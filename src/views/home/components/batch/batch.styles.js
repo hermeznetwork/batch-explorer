@@ -7,18 +7,20 @@ const useBatchStyles = createUseStyles(theme => ({
     alignItems: 'start',
     justifyContent: 'space-between',
     background: theme.palette.white,
-    borderRadius: theme.spacing(3),
+    borderRadius: '24px',
     minHeight: theme.spacing(19.5),
     width: theme.spacing(39),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5)
   },
+  batchWrapper: {
+    width: '100%'
+  },
   batch: {
     background: theme.palette.grey.light,
-    borderRadius: theme.spacing(2),
+    borderRadius: '26px',
     color: theme.palette.grey.main,
     padding: theme.spacing(2),
-    width: '100%',
     textAlign: 'center'
   },
   transaction: {

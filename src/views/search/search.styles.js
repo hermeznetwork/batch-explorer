@@ -12,7 +12,7 @@ const useSearchStyles = createUseStyles(theme => ({
     height: theme.spacing(6.5),
     padding: theme.spacing(2),
     color: theme.palette.grey.main,
-    borderRadius: theme.spacing(2),
+    borderRadius: '16px',
     width: '100%',
     marginRight: `-${theme.spacing(6.5)}px`,
     '&::-webkit-outer-spin-button,&::-webkit-inner-spin-button': {
@@ -27,7 +27,7 @@ const useSearchStyles = createUseStyles(theme => ({
     width: theme.spacing(6.5),
     height: theme.spacing(6.5),
     right: 0,
-    borderRadius: theme.spacing(2),
+    borderRadius: '16px',
     border: 0,
     cursor: 'pointer',
     backgroundColor: theme.palette.secondary.main
