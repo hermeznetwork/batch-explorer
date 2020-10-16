@@ -70,7 +70,6 @@ function Coordinator ({
                     <h4 className={classes.title}>Forged batches</h4>
                     <BatchesList
                       batches={batchesTask.data.batches}
-                      hideForgerAddr
                     />
                   </section>
                 )
@@ -121,7 +120,6 @@ Coordinator.propTypes = {
     ),
     error: PropTypes.string
   }),
-  hideForgerAddr: PropTypes.bool,
   onLoadCoordinator: PropTypes.func.isRequired,
   coordinatorTask: PropTypes.shape({
     status: PropTypes.string.isRequired,

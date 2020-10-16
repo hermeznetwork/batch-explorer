@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import Batch from '../batch/batch.view'
 import useBatchesListStyles from './batches-list.styles'
 
-function BatchesList ({ batches, hideForgerAddr }) {
+function BatchesList ({ batches }) {
   const classes = useBatchesListStyles()
 
   return (
@@ -20,7 +20,6 @@ function BatchesList ({ batches, hideForgerAddr }) {
             batchTxNum={batch.forgeL1TransactionsNum}
             batchForgerAddr={batch.forgerAddr}
             batchTimeStamp={batch.timeStamp}
-            hideForgerAddr={hideForgerAddr}
           />
         </div>
       )}
@@ -33,8 +32,7 @@ BatchesList.propTypes = {
     PropTypes.shape({
       batchNum: PropTypes.number.isRequired
     })
-  ),
-  hideForgerAddr: PropTypes.bool
+  )
 }
 
 export default BatchesList

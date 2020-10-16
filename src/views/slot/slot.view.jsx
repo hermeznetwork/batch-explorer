@@ -101,7 +101,6 @@ function Slot ({
                     <h4 className={classes.title}>Batches in slot</h4>
                     <BatchesList
                       batches={batchesTask.data.batches}
-                      hideForgerAddr
                     />
                   </section>
                 )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import useBatchStyles from './batch.styles'
 
-function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp, hideForgerAddr }) {
+function Batch ({ batchNum, batchTxNum, batchTimeStamp }) {
   const classes = useBatchStyles()
 
   const diff = new Date(new Date() - new Date(batchTimeStamp * 1000))
@@ -37,13 +37,6 @@ function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp, hideFor
           {batchTxNum}
         </div>
       </div>
-
-      {
-        hideForgerAddr
-          ? <></>
-          : <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
-      }
-
     </section>
   )
 }
