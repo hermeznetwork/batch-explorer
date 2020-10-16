@@ -8,21 +8,21 @@ const useTransactionsListItemStyles = createUseStyles(theme => ({
     borderBottom: '1px solid' + theme.palette.grey.veryLight
   },
   col: {
-    fontWeight: theme.fontWeights.bold
-  },
-  colFirst: {
-    width: theme.spacing(40),
-    paddingRight: theme.spacing(3),
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis'
-  },
-  colLast: {
-    width: theme.spacing(20),
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    textAlign: 'right'
+    fontWeight: theme.fontWeights.bold,
+    '&:last-child': {
+      width: theme.spacing(20),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      textAlign: 'right'
+    },
+    '&:first-child': {
+      width: theme.spacing(40),
+      paddingRight: theme.spacing(3),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
+    }
   },
   link: {
     color: theme.palette.secondary.main

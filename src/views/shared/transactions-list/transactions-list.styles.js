@@ -10,19 +10,21 @@ const useTransactionsListStyles = createUseStyles(theme => ({
   link: {
     width: theme.spacing(40)
   },
-  colFirst: {
-    width: theme.spacing(40),
-    paddingRight: theme.spacing(3),
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis'
-  },
-  colLast: {
-    width: theme.spacing(20),
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    textAlign: 'right'
+  col: {
+    '&:first-child': {
+      width: theme.spacing(40),
+      paddingRight: theme.spacing(3),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
+    },
+    '&:last-child': {
+      width: theme.spacing(20),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      textAlign: 'right'
+    }
   }
 }))
 
