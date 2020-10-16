@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { getTokenAmountString } from '../../../utils/bigint-decimals-converter'
 
 import useBidStyles from './bid.styles'
 
@@ -11,10 +12,10 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
       <section>
         <div className={classes.row}>
           <div className={classes.col}>
-          Coordinator
+            Coordinator
           </div>
           <div className={classes.col}>
-          Bid amount
+            Bid amount
           </div>
         </div>
         <div className={classes.row}>
@@ -22,7 +23,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
             <Link to={`/coordinator/${forgerAddr}`}>{forgerAddr}</Link>
           </div>
           <div className={classes.col}>
-            {bidValue}
+            {getTokenAmountString(bidValue)}
           </div>
         </div>
       </section>
@@ -49,7 +50,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
             {numberOfBids}
           </div>
           <div className={classes.col}>
-            {bidValue}
+            {getTokenAmountString(bidValue)}
           </div>
         </div>
       </section>
