@@ -8,13 +8,13 @@ function Transaction ({ transactionId, amount, tokenSymbol, isToken }) {
 
   return (
     <div className={classes.row}>
-      <div className={`${classes.col} ${classes.colFirst} ${classes.link}`}><Link to={`/transaction/${transactionId}`}>{transactionId}</Link></div>
+      <div className={`${classes.col} ${classes.link}`}><Link to={`/transaction/${transactionId}`}>{transactionId}</Link></div>
       {
         isToken
           ? <></>
           : <div className={classes.col}>{tokenSymbol}</div>
       }
-      <div className={`${classes.col} ${classes.colLast}`}>{amount}</div>
+      <div className={classes.col}>{amount}</div>
     </div>
   )
 }
