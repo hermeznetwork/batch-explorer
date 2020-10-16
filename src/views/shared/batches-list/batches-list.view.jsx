@@ -9,24 +9,22 @@ function BatchesList ({ batches, hideForgerAddr }) {
   const classes = useBatchesListStyles()
 
   return (
-    <div>
-      <section>
-        {batches.map((batch, index) =>
-          <div
-            key={batch.batchNum}
-            className={clsx({ [classes.batch]: index > 0 })}
-          >
-            <Batch
-              batchNum={batch.batchNum}
-              batchTxNum={batch.forgeL1TransactionsNum}
-              batchForgerAddr={batch.forgerAddr}
-              batchTimeStamp={batch.timeStamp}
-              hideForgerAddr={hideForgerAddr}
-            />
-          </div>
-        )}
-      </section>
-    </div>
+    <section>
+      {batches.map((batch, index) =>
+        <div
+          key={batch.batchNum}
+          className={clsx({ [classes.batch]: index > 0 })}
+        >
+          <Batch
+            batchNum={batch.batchNum}
+            batchTxNum={batch.forgeL1TransactionsNum}
+            batchForgerAddr={batch.forgerAddr}
+            batchTimeStamp={batch.timeStamp}
+            hideForgerAddr={hideForgerAddr}
+          />
+        </div>
+      )}
+    </section>
   )
 }
 

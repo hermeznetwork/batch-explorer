@@ -14,22 +14,37 @@ function Batch ({ batchNum, batchTxNum, batchForgerAddr, batchTimeStamp, hideFor
   const formattedTime = !days ? hours + minutes + seconds : days
 
   return (
-    <div className={classes.row}>
-      <Link to={`/batch/${batchNum}`}>
-        Batch: {batchNum}
-      </Link>
-      <div>
-        Txs: {batchTxNum}
+    <section>
+      <div className={classes.row}>
+        <div className={classes.col}>
+          Batch
+        </div>
+        <div className={classes.col}>
+          Age
+        </div>
+        <div className={classes.col}>
+          Transactions
+        </div>
       </div>
+      <div className={classes.row}>
+        <div className={`${classes.col} ${classes.link}`}>
+          <Link to={`/batch/${batchNum}`}>{batchNum}</Link>
+        </div>
+        <div className={classes.col}>
+          {formattedTime}
+        </div>
+        <div className={classes.col}>
+          {batchTxNum}
+        </div>
+      </div>
+
       {
         hideForgerAddr
           ? <></>
           : <Link to={`/coordinator/${batchForgerAddr}`}>Coordinator: {batchForgerAddr}</Link>
       }
-      <div>
-        TODO {formattedTime}
-      </div>
-    </div>
+
+    </section>
   )
 }
 

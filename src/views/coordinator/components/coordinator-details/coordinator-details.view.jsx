@@ -1,22 +1,41 @@
 import React from 'react'
 
+import useCoordinatorDetailsStyles from './coordinator-details.styles'
+
 function CoordinatorDetails ({ coordinator }) {
+  const classes = useCoordinatorDetailsStyles()
+
   return (
     <section>
-      <div>
-        Forger address: {coordinator.forgerAddr}
+      <div className={classes.row}>
+        <div className={classes.col}>
+          Forger address
+        </div>
+        <div className={classes.col}>
+          {coordinator.forgerAddr}
+        </div>
       </div>
-      <div>
-        Withdrawal address: {coordinator.withdrawAddr}
+      <div className={classes.row}>
+        <div className={classes.col}>
+          Withdrawal address
+        </div>
+        <div className={classes.col}>
+          {coordinator.withdrawAddr}
+        </div>
       </div>
-      <div>
-        <a
-          href={coordinator.URL}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          {coordinator.URL}
-        </a>
+      <div className={classes.row}>
+        <div className={classes.col}>
+          URL
+        </div>
+        <div className={`${classes.col} ${classes.link}`}>
+          <a
+            href={coordinator.URL}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {coordinator.URL}
+          </a>
+        </div>
       </div>
     </section>
   )

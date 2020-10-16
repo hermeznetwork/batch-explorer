@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
-const useBatchStyles = createUseStyles(theme => ({
+const useBidStyles = createUseStyles(theme => ({
   row: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -19,4 +19,4 @@ const useBatchStyles = createUseStyles(theme => ({
   }
 }))
 
-export default useBatchStyles
+export default useBidStyles

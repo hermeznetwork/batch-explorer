@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import useCoordinatorStyles from './coordinator.styles'
 import Spinner from '../shared/spinner/spinner.view'
+import Container from '../shared/container/container.view'
 import CoordinatorDetails from './components/coordinator-details/coordinator-details.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
 import BidsList from '../shared/bids-list/bids-list.view'
@@ -28,79 +29,83 @@ function Coordinator ({
   }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
 
   return (
-    <div>
-      {(() => {
-        switch (coordinatorTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{coordinatorTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Coordinator info</h4>
-                <CoordinatorDetails
-                  coordinator={coordinatorTask.data}
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
+    <div className={classes.root}>
+      <Container disableTopGutter>
+        <div className={classes.wrapper}>
+          {(() => {
+            switch (coordinatorTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{coordinatorTask.error}</p>
+              }
+              case 'successful': {
+                return (
+                  <section>
+                    <h4 className={classes.title}>Coordinator info</h4>
+                    <CoordinatorDetails
+                      coordinator={coordinatorTask.data}
+                    />
+                  </section>
+                )
+              }
+              default: {
+                return <></>
+              }
+            }
+          })()}
 
-      {(() => {
-        switch (batchesTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{batchesTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Forged batches</h4>
-                <BatchesList
-                  batches={batchesTask.data.batches}
-                  hideForgerAddr
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
+          {(() => {
+            switch (batchesTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{batchesTask.error}</p>
+              }
+              case 'successful': {
+                return (
+                  <section>
+                    <h4 className={classes.title}>Forged batches</h4>
+                    <BatchesList
+                      batches={batchesTask.data.batches}
+                      hideForgerAddr
+                    />
+                  </section>
+                )
+              }
+              default: {
+                return <></>
+              }
+            }
+          })()}
 
-      {(() => {
-        switch (bidsTask.status) {
-          case 'loading': {
-            return <Spinner />
-          }
-          case 'failed': {
-            return <p>{bidsTask.error}</p>
-          }
-          case 'successful': {
-            return (
-              <section>
-                <h4 className={classes.title}>Winner bids</h4>
-                <BidsList
-                  bids={bidsTask.data.bids}
-                />
-              </section>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
+          {(() => {
+            switch (bidsTask.status) {
+              case 'loading': {
+                return <Spinner />
+              }
+              case 'failed': {
+                return <p>{bidsTask.error}</p>
+              }
+              case 'successful': {
+                return (
+                  <section>
+                    <h4 className={classes.title}>Winner bids</h4>
+                    <BidsList
+                      bids={bidsTask.data.bids}
+                    />
+                  </section>
+                )
+              }
+              default: {
+                return <></>
+              }
+            }
+          })()}
+        </div>
+      </Container>
     </div>
   )
 }
