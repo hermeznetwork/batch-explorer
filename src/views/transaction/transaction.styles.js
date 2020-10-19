@@ -14,9 +14,9 @@ const useTransactionStyles = createUseStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: `${theme.spacing(2.5)}px 0`,
-    borderBottom: '1px solid' + theme.palette.grey.veryLight,
+    borderBottom: `1px solid ${theme.palette.grey.veryLight}`,
     '&:first-child': {
-      borderTop: '1px solid' + theme.palette.grey.veryLight
+      borderTop: `1px solid ${theme.palette.grey.veryLight}`
     }
   },
   col: {
