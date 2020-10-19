@@ -27,8 +27,7 @@ BatchesList.propTypes = {
     PropTypes.shape({
       batchNum: PropTypes.number.isRequired
     })
-  ),
-  hideForgerAddr: PropTypes.bool
+  )
 }
 
 export default BatchesList
