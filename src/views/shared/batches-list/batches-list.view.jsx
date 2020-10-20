@@ -1,32 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import clsx from 'clsx'
 
 import Batch from '../batch/batch.view'
-import useBatchesListStyles from './batches-list.styles'
 
-function BatchesList ({ batches, hideForgerAddr }) {
-  const classes = useBatchesListStyles()
-
+function BatchesList ({ batches }) {
   return (
-    <div>
-      <section>
-        {batches.map((batch, index) =>
-          <div
-            key={batch.batchNum}
-            className={clsx({ [classes.batch]: index > 0 })}
-          >
-            <Batch
-              batchNum={batch.batchNum}
-              batchTxNum={batch.forgeL1TransactionsNum}
-              batchForgerAddr={batch.forgerAddr}
-              batchTimeStamp={batch.timeStamp}
-              hideForgerAddr={hideForgerAddr}
-            />
-          </div>
-        )}
-      </section>
-    </div>
+    <section>
+      {batches.map((batch, index) =>
+        <div
+          key={batch.batchNum}
+        >
+          <Batch
+            batchNum={batch.batchNum}
+            batchTxNum={batch.forgeL1TransactionsNum}
+            batchForgerAddr={batch.forgerAddr}
+            batchTimeStamp={batch.timeStamp}
+          />
+        </div>
+      )}
+    </section>
   )
 }
 
@@ -35,8 +27,7 @@ BatchesList.propTypes = {
     PropTypes.shape({
       batchNum: PropTypes.number.isRequired
     })
-  ),
-  hideForgerAddr: PropTypes.bool
+  )
 }
 
 export default BatchesList
