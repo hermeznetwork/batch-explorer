@@ -21,7 +21,11 @@ const useCoordinatorDetailsStyles = createUseStyles(theme => ({
     }
   },
   link: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    '&:hover': {
+      color: theme.palette.orange.dark,
+      textDecoration: 'underline'
+    }
   }
 }))
 

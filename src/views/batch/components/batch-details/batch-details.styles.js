@@ -29,7 +29,11 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
     textAlign: 'center'
   },
   link: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    '&:hover': {
+      color: theme.palette.orange.dark,
+      textDecoration: 'underline'
+    }
   },
   seeDetails: {
     fontWeight: theme.fontWeights.bold,
