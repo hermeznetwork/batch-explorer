@@ -8,7 +8,7 @@ const useSearchStyles = createUseStyles(theme => ({
   input: {
     border: 0,
     outline: 'none',
-    caretColor: theme.palette.orange,
+    caretColor: theme.palette.orange.main,
     height: theme.spacing(6.5),
     padding: theme.spacing(2),
     color: theme.palette.grey.main,
@@ -30,7 +30,10 @@ const useSearchStyles = createUseStyles(theme => ({
     borderRadius: '16px',
     border: 0,
     cursor: 'pointer',
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.orange.dark
+    }
   }
 }))
 
