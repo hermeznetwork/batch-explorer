@@ -125,24 +125,10 @@ function UserAccount ({
 }
 
 UserAccount.propTypes = {
-  accountTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        hezEthereumAddress: PropTypes.string.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
-  transactionsList: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        TxID: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  })
+  onLoadAccount: PropTypes.func.isRequired,
+  accountTask: PropTypes.object.isRequired,
+  onLoadTransactions: PropTypes.func.isRequired,
+  transactionsTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

@@ -87,25 +87,9 @@ function Home ({
 
 Home.propTypes = {
   onLoadBatches: PropTypes.func.isRequired,
-  batchesTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        batchNum: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
+  batchesTask: PropTypes.object.isRequired,
   onLoadOverview: PropTypes.func.isRequired,
-  overviewTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        LastBatch: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  })
+  overviewTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

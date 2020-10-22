@@ -21,11 +21,11 @@ function fetchBids (slotNum, forgerAddr) {
   }
 }
 
-function fetchBatches (forgerAddr, minBatchNum, maxBatchNum) {
+function fetchBatches (forgerAddr, slotNum) {
   return (dispatch) => {
     dispatch(slotActions.loadBatches())
 
-    return rollupApi.getBatches(forgerAddr, minBatchNum, maxBatchNum)
+    return rollupApi.getBatches(forgerAddr, slotNum)
       .then(res => dispatch(slotActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(slotActions.loadBatchesFailure(err)))
   }

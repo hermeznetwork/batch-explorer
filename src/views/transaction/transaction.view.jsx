@@ -177,15 +177,8 @@ function Transaction ({
 }
 
 Transaction.propTypes = {
-  transactionTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        transactionId: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  })
+  onLoadTransaction: PropTypes.func.isRequired,
+  transactionTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

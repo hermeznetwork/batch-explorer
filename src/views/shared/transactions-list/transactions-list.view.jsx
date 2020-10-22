@@ -40,9 +40,9 @@ function TransactionsList ({ transactions, isToken }) {
 TransactionsList.propTypes = {
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
-      TxID: PropTypes.string.isRequired,
-      Amount: PropTypes.number.isRequired,
-      Fee: PropTypes.number
+      id: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      fee: PropTypes.number
     })
   )
 }

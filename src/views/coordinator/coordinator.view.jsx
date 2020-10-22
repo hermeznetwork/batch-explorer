@@ -111,35 +111,11 @@ function Coordinator ({
 
 Coordinator.propTypes = {
   onLoadBatches: PropTypes.func.isRequired,
-  batchesTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        batchNum: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
+  batchesTask: PropTypes.object.isRequired,
   onLoadCoordinator: PropTypes.func.isRequired,
-  coordinatorTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        forgerAddr: PropTypes.string.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
+  coordinatorTask: PropTypes.object.isRequired,
   onLoadBids: PropTypes.func.isRequired,
-  bidsTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        forgerAddr: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  })
+  bidsTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

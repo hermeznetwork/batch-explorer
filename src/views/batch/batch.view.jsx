@@ -85,24 +85,9 @@ function Batch ({
 
 Batch.propTypes = {
   onLoadBatch: PropTypes.func.isRequired,
-  batchTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        batchNum: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
-  batchTransactionsList: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        TxID: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  })
+  batchTask: PropTypes.object.isRequired,
+  onLoadBatchTransactionsList: PropTypes.func.isRequired,
+  batchTransactionsTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
