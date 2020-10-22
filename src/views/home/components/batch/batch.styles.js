@@ -17,11 +17,14 @@ const useBatchStyles = createUseStyles(theme => ({
     width: '100%'
   },
   batch: {
-    background: theme.palette.grey.light,
+    background: theme.palette.grey.veryLight,
     borderRadius: '26px',
     color: theme.palette.grey.main,
     padding: theme.spacing(2),
-    textAlign: 'center'
+    textAlign: 'center',
+    '&:hover': {
+      background: theme.palette.grey.light
+    }
   },
   transaction: {
     paddingTop: theme.spacing(4)

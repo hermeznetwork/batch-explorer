@@ -18,8 +18,9 @@ const theme = {
     white: '#ffffff',
     black: '#2b2b2b',
     grey: {
-      veryLight: '#e1e1f1',
-      light: '#f3f3f8',
+      ultraLight: '#e1e1f1',
+      veryLight: '#f3f3f8',
+      light: '#e9e9f1',
       main: '#888baa',
       dark: '#7a7c89'
     },

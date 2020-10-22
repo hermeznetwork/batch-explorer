@@ -14,7 +14,7 @@ const useTokenAccountsStyles = createUseStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: `${theme.spacing(3)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.veryLight}`
+    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`
   },
   col: {
     '&:last-child': {
