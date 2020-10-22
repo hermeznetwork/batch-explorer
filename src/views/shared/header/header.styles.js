@@ -25,10 +25,26 @@ const useMainHeaderStyles = createUseStyles(theme => ({
   },
   link: {
     fontWeight: theme.fontWeights.bold,
-    marginRight: theme.spacing(2.5)
-  },
-  linkLast: {
-    marginRight: 0
+    marginRight: theme.spacing(2.5),
+    position: 'relative',
+    paddingBottom: theme.spacing(0.5),
+    '&::after': {
+      position: 'absolute',
+      height: '2px',
+      bottom: 0,
+      backgroundColor: theme.palette.black,
+      width: 0,
+      left: '50%',
+      transform: 'translateX(-50%)',
+      transition: 'all 0.25s ease',
+      content: '\'\''
+    },
+    '&:hover::after': {
+      width: '100%'
+    },
+    '&:last-child': {
+      marginRight: 0
+    }
   },
   search: {
     marginBottom: theme.spacing(7)
