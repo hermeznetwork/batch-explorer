@@ -5,7 +5,7 @@ const useAccountDetailsStyles = createUseStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: `${theme.spacing(3)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.veryLight}`,
+    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
     fontWeight: theme.fontWeights.bold,
     '&:first-child': {
       fontWeight: theme.fontWeights.medium
@@ -28,7 +28,11 @@ const useAccountDetailsStyles = createUseStyles(theme => ({
     }
   },
   link: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    '&:hover': {
+      color: theme.palette.orange.dark,
+      textDecoration: 'underline'
+    }
   }
 }))
 

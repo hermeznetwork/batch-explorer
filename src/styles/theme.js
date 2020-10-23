@@ -18,13 +18,17 @@ const theme = {
     white: '#ffffff',
     black: '#2b2b2b',
     grey: {
-      veryLight: '#e1e1f1',
-      light: '#f3f3f8',
+      ultraLight: '#e1e1f1',
+      veryLight: '#f3f3f8',
+      light: '#e9e9f1',
       main: '#888baa',
       dark: '#7a7c89'
     },
     red: '#ff4b40',
-    orange: '#ffa600',
+    orange: {
+      main: '#ffa600',
+      dark: '#d44d20'
+    },
     green: {
       light: 'rgba(33,150,83,0.1)',
       main: '#219653'

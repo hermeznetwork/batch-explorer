@@ -14,9 +14,9 @@ const useTransactionStyles = createUseStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: `${theme.spacing(2.5)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.veryLight}`,
+    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
     '&:first-child': {
-      borderTop: `1px solid ${theme.palette.grey.veryLight}`
+      borderTop: `1px solid ${theme.palette.grey.ultraLight}`
     }
   },
   col: {
@@ -38,11 +38,15 @@ const useTransactionStyles = createUseStyles(theme => ({
     textAlign: 'center'
   },
   link: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    '&:hover': {
+      color: theme.palette.orange.dark,
+      textDecoration: 'underline'
+    }
   },
   seeDetails: {
     fontWeight: theme.fontWeights.bold,
-    background: theme.palette.grey.light,
+    background: theme.palette.grey.veryLight,
     borderRadius: '8px',
     color: theme.palette.grey.main,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2)}px`,
@@ -50,7 +54,10 @@ const useTransactionStyles = createUseStyles(theme => ({
     marginTop: theme.spacing(3),
     width: 'fit-content',
     border: 0,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover': {
+      background: theme.palette.grey.light
+    }
   },
   icon: {
     paddingLeft: theme.spacing(0.5)

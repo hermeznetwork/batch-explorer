@@ -5,9 +5,9 @@ const useSlotDetailsStyles = createUseStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: `${theme.spacing(2.5)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.veryLight}`,
+    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
     '&:first-child': {
-      borderTop: `1px solid ${theme.palette.grey.veryLight}`
+      borderTop: `1px solid ${theme.palette.grey.ultraLight}`
     }
   },
   col: {
@@ -21,7 +21,11 @@ const useSlotDetailsStyles = createUseStyles(theme => ({
     }
   },
   link: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    '&:hover': {
+      color: theme.palette.orange.dark,
+      textDecoration: 'underline'
+    }
   }
 }))
 
