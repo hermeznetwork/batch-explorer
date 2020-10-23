@@ -19,8 +19,8 @@ function isBjjAddress (test) {
 
 async function getAccounts (address, tokenId) {
   const params = {
-    ...(isEthereumAddress(address) ? { 'hezEthereumAddress': address } : {} ),
-    ...(isBjjAddress(address) ? { 'BJJ': address } : {} ),
+    ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
+    ...(isBjjAddress(address) ? { BJJ: address } : {}),
     ...(tokenId ? { tokenId } : {})
   }
   const response = await axios.get(
@@ -33,8 +33,8 @@ async function getAccounts (address, tokenId) {
 
 async function getHistoryTransactions (address, tokenId, batchNum, accountIndex) {
   const params = {
-    ...(isEthereumAddress(address) ? { 'hezEthereumAddress': address } : {} ),
-    ...(isBjjAddress(address) ? { 'BJJ': address } : {} ),
+    ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
+    ...(isBjjAddress(address) ? { BJJ: address } : {}),
     ...(tokenId ? { tokenId } : {}),
     ...(batchNum ? { batchNum } : {}),
     ...(accountIndex ? { accountIndex } : {})
@@ -65,11 +65,10 @@ async function getTokens () {
   return response.data
 }
 
-async function getBatches (forgerAddr, minBatchNum, maxBatchNum) {
+async function getBatches (forgerAddr, slotNum) {
   const params = {
     ...(forgerAddr ? { forgerAddr } : {}),
-    ...(minBatchNum ? { minBatchNum } : {}),
-    ...(maxBatchNum ? { maxBatchNum } : {})
+    ...(slotNum ? { slotNum } : {})
   }
   const response = await axios.get(
     `${baseApiUrl}/batches`,

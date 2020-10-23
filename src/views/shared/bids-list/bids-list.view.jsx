@@ -24,7 +24,7 @@ function BidsList ({ bids, isSlot }) {
 BidsList.propTypes = {
   bids: PropTypes.arrayOf(
     PropTypes.shape({
-      ForgerAddr: PropTypes.string.isRequired
+      forgerAddr: PropTypes.string.isRequired
     })
   )
 }
