@@ -29,12 +29,9 @@ function Slot ({
 
   React.useEffect(() => {
     if (slotTask.status === 'successful') {
-      const minBatchNum = slotTask.data.batchNums[0]
-      const maxBatchNum = slotTask.data.batchNums[slotTask.data.batchNums.length - 1]
-
-      onLoadBatches(minBatchNum, maxBatchNum)
+      onLoadBatches(slotNum)
     }
-  }, [slotTask, onLoadBatches])
+  }, [slotTask, slotNum, onLoadBatches])
 
   return (
     <div className={classes.root}>
@@ -118,35 +115,11 @@ function Slot ({
 
 Slot.propTypes = {
   onLoadSlot: PropTypes.func.isRequired,
-  slotTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        slotNum: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
+  slotTask: PropTypes.object.isRequired,
   onLoadBids: PropTypes.func.isRequired,
-  bidsTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        slotNum: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  }),
+  bidsTask: PropTypes.object.isRequired,
   onLoadBatches: PropTypes.func.isRequired,
-  batchesTask: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        batchNum: PropTypes.number.isRequired
-      })
-    ),
-    error: PropTypes.string
-  })
+  batchesTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -158,7 +131,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadSlot: (slotNum) => dispatch(fetchSlot(slotNum)),
   onLoadBids: (slotNum) => dispatch(fetchBids(slotNum, undefined)),
-  onLoadBatches: (minBatchNum, maxBatchNum) => dispatch(fetchBatches(undefined, minBatchNum, maxBatchNum))
+  onLoadBatches: (slotNum) => dispatch(fetchBatches(undefined, slotNum))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Slot)
