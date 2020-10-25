@@ -12,7 +12,23 @@ const useBidStyles = createUseStyles(theme => ({
     }
   },
   col: {
-    fontWeight: theme.fontWeights.bold
+    fontWeight: theme.fontWeights.bold,
+    '&:first-child': {
+      paddingRight: theme.spacing(3),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
+    },
+    '&:last-child': {
+      maxWidth: theme.spacing(11),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      [`${theme.breakpoints.sm}`]: {
+        maxWidth: theme.spacing(20),
+        textAlign: 'right'
+      }
+    }
   },
   link: {
     color: theme.palette.secondary.main,
