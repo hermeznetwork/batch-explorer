@@ -10,11 +10,15 @@ const useSearchStyles = createUseStyles(theme => ({
     outline: 'none',
     caretColor: theme.palette.orange.main,
     height: theme.spacing(6.5),
-    padding: theme.spacing(2),
+    padding: `${theme.spacing(2)}px ${theme.spacing(9)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
     color: theme.palette.grey.main,
     borderRadius: '16px',
     width: '100%',
     marginRight: `-${theme.spacing(6.5)}px`,
+    textOverflow: 'ellipsis',
+    [theme.breakpoints.sm]: {
+      padding: theme.spacing(2)
+    },
     '&::-webkit-outer-spin-button,&::-webkit-inner-spin-button': {
       '-webkit-appearance': 'none',
       margin: 0

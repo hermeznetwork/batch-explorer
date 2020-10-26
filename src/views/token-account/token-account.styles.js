@@ -11,10 +11,12 @@ const useTokenAccountsStyles = createUseStyles(theme => ({
     fontSize: theme.spacing(3)
   },
   row: {
-    display: 'flex',
-    justifyContent: 'space-between',
     padding: `${theme.spacing(3)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`
+    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
+    [theme.breakpoints.sm]: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
   },
   col: {
     '&:last-child': {
@@ -23,7 +25,11 @@ const useTokenAccountsStyles = createUseStyles(theme => ({
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      textAlign: 'right'
+      marginTop: theme.spacing(1.5),
+      [theme.breakpoints.sm]: {
+        textAlign: 'right',
+        marginTop: 0
+      }
     }
   },
   link: {

@@ -11,12 +11,14 @@ const useTransactionStyles = createUseStyles(theme => ({
     fontSize: theme.spacing(3)
   },
   row: {
-    display: 'flex',
-    justifyContent: 'space-between',
     padding: `${theme.spacing(2.5)}px 0`,
     borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
     '&:first-child': {
       borderTop: `1px solid ${theme.palette.grey.ultraLight}`
+    },
+    [theme.breakpoints.sm]: {
+      display: 'flex',
+      justifyContent: 'space-between'
     }
   },
   col: {
@@ -25,7 +27,11 @@ const useTransactionStyles = createUseStyles(theme => ({
       fontWeight: theme.fontWeights.bold,
       maxWidth: theme.spacing(50),
       overflowWrap: 'break-word',
-      lineHeight: `${theme.spacing(3)}px`
+      lineHeight: `${theme.spacing(3)}px`,
+      marginTop: theme.spacing(1.5),
+      [theme.breakpoints.sm]: {
+        marginTop: 0
+      }
     }
   },
   status: {

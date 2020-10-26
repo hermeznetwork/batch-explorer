@@ -11,7 +11,7 @@ function SlotDetails ({ slot, bids }) {
       <div>
         <div className={classes.row}>
           <div className={classes.col}>
-            Slot:
+            Slot
           </div>
           <div className={classes.col}>
             {slot.slotNum}
@@ -55,7 +55,7 @@ function SlotDetails ({ slot, bids }) {
     return (
       <div>
         <div className={classes.row}>
-          Slot: {slot.slotNum}
+          Slot {slot.slotNum}
         </div>
         <div className={classes.row}>
           Status: Open Auction

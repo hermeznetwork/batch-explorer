@@ -24,9 +24,20 @@ const useOverviewStyles = createUseStyles(theme => ({
     background: theme.palette.white,
     borderRadius: '24px',
     minHeight: theme.spacing(19.5),
-    width: theme.spacing(39),
+    flexBasis: 0,
+    flexGrow: 1,
+    marginRight: theme.spacing(1),
+
     marginBottom: theme.spacing(3),
-    padding: theme.spacing(2.5)
+    padding: theme.spacing(2.5),
+    '&:last-child': {
+      marginRight: theme.spacing(0)
+    }
+  },
+  [theme.breakpoints.sm]: {
+    col: {
+      marginRight: theme.spacing(2.5)
+    }
   }
 }))
 

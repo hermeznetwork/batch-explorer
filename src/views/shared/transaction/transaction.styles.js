@@ -17,11 +17,14 @@ const useTransactionsListItemStyles = createUseStyles(theme => ({
       textAlign: 'right'
     },
     '&:first-child': {
-      width: theme.spacing(40),
+      width: theme.spacing(20),
       paddingRight: theme.spacing(3),
       overflow: 'hidden',
       whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
+      textOverflow: 'ellipsis',
+      [theme.breakpoints.sm]: {
+        width: theme.spacing(40)
+      }
     }
   },
   link: {

@@ -2,12 +2,14 @@ import { createUseStyles } from 'react-jss'
 
 const useSlotDetailsStyles = createUseStyles(theme => ({
   row: {
-    display: 'flex',
-    justifyContent: 'space-between',
     padding: `${theme.spacing(2.5)}px 0`,
     borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
     '&:first-child': {
       borderTop: `1px solid ${theme.palette.grey.ultraLight}`
+    },
+    [theme.breakpoints.sm]: {
+      display: 'flex',
+      justifyContent: 'space-between'
     }
   },
   col: {
@@ -17,7 +19,11 @@ const useSlotDetailsStyles = createUseStyles(theme => ({
       maxWidth: theme.spacing(52),
       overflowWrap: 'break-word',
       lineHeight: `${theme.spacing(3)}px`,
-      textAlign: 'right'
+      marginTop: theme.spacing(1.5),
+      [theme.breakpoints.sm]: {
+        textAlign: 'right',
+        marginTop: 0
+      }
     }
   },
   link: {
