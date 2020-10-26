@@ -13,7 +13,7 @@ const useTokenAccountsStyles = createUseStyles(theme => ({
   row: {
     padding: `${theme.spacing(3)}px 0`,
     borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
-    [`${theme.breakpoints.sm}`]: {
+    [theme.breakpoints.sm]: {
       display: 'flex',
       justifyContent: 'space-between'
     }
@@ -26,7 +26,7 @@ const useTokenAccountsStyles = createUseStyles(theme => ({
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       marginTop: theme.spacing(1.5),
-      [`${theme.breakpoints.sm}`]: {
+      [theme.breakpoints.sm]: {
         textAlign: 'right',
         marginTop: 0
       }

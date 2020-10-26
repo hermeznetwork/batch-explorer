@@ -16,7 +16,7 @@ const useSearchStyles = createUseStyles(theme => ({
     width: '100%',
     marginRight: `-${theme.spacing(6.5)}px`,
     textOverflow: 'ellipsis',
-    [`${theme.breakpoints.sm}`]: {
+    [theme.breakpoints.sm]: {
       padding: theme.spacing(2)
     },
     '&::-webkit-outer-spin-button,&::-webkit-inner-spin-button': {

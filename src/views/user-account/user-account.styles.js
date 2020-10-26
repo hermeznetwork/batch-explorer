@@ -16,7 +16,7 @@ const useUserAccountStyles = createUseStyles(theme => ({
     '&:first-child': {
       borderTop: `1px solid ${theme.palette.grey.ultraLight}`
     },
-    [`${theme.breakpoints.sm}`]: {
+    [theme.breakpoints.sm]: {
       display: 'flex',
       justifyContent: 'space-between'
     }
@@ -29,7 +29,7 @@ const useUserAccountStyles = createUseStyles(theme => ({
       overflowWrap: 'break-word',
       lineHeight: `${theme.spacing(3)}px`,
       marginTop: theme.spacing(1.5),
-      [`${theme.breakpoints.sm}`]: {
+      [theme.breakpoints.sm]: {
         textAlign: 'right',
         marginTop: 0
       }

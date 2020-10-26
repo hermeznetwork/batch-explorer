@@ -24,7 +24,7 @@ const useBidStyles = createUseStyles(theme => ({
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      [`${theme.breakpoints.sm}`]: {
+      [theme.breakpoints.sm]: {
         maxWidth: theme.spacing(20),
         textAlign: 'right'
       }

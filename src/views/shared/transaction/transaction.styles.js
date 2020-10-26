@@ -22,7 +22,7 @@ const useTransactionsListItemStyles = createUseStyles(theme => ({
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      [`${theme.breakpoints.sm}`]: {
+      [theme.breakpoints.sm]: {
         width: theme.spacing(40)
       }
     }

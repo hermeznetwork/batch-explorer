@@ -34,7 +34,7 @@ const useOverviewStyles = createUseStyles(theme => ({
       marginRight: theme.spacing(0)
     }
   },
-  [`${theme.breakpoints.sm}`]: {
+  [theme.breakpoints.sm]: {
     col: {
       marginRight: theme.spacing(2.5)
     }

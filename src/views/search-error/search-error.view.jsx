@@ -12,7 +12,7 @@ function Search () {
       <Container disableTopGutter>
         <div className={classes.wrapper}>
           <h4 className={classes.title}>We couldn’t find what you are looking for</h4>
-          <div>Please enter an address, a transaction hash, a batch height, an ens or a hash</div>
+          <div>Please enter an address, a transaction hash or a batch number.</div>
           <Link to='/'>Back Home</Link>
         </div>
       </Container>
