@@ -57,7 +57,7 @@ function Slot ({
                     return (
                       <>
                         <section>
-                          <h4 className={classes.title}>Slot</h4>
+                          <h4 className={classes.title}>Slot {slotTask.data.slotNum}</h4>
                           <SlotDetails
                             slot={slotTask.data}
                             bids={bidsTask.data.bids}

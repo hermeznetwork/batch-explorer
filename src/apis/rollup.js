@@ -31,6 +31,12 @@ async function getAccounts (address, tokenId) {
   return response.data
 }
 
+async function getAccount (accountIndex) {
+  const response = await axios.get(`${baseApiUrl}/accounts/${accountIndex}`)
+
+  return response.data
+}
+
 async function getHistoryTransactions (address, tokenId, batchNum, accountIndex) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
@@ -118,6 +124,7 @@ async function getBids (slotNum, forgerAddr) {
 
 export {
   getAccounts,
+  getAccount,
   getHistoryTransactions,
   getHistoryTransaction,
   getPoolTransaction,

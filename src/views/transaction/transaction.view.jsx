@@ -49,7 +49,12 @@ function Transaction ({
                         Status
                       </div>
                       <div className={classes.col}>
-                        {transactionTask.data.state}
+                        <div className={`${classes.col} ${classes.status}`}>
+                          {transactionTask.data.state === 'pend' ? 'Pending' : ''}
+                          {transactionTask.data.state === 'fing' ? 'Forging' : ''}
+                          {transactionTask.data.state === 'fged' ? 'Forged' : ''}
+                          {transactionTask.data.state === 'invl' ? 'Invalid' : ''}
+                        </div>
                       </div>
                     </div>
                     <div className={classes.row}>
@@ -68,7 +73,19 @@ function Transaction ({
                         {transactionTask.data.type}
                       </div>
                     </div>
-
+                    {transactionTask.data.fromAccountIndex
+                      ? (
+                        <>
+                          <div className={classes.row}>
+                            <div className={classes.col}>From</div>
+                            <div className={`${classes.col} ${classes.link}`}>
+                              <Link to={`/token-account/${transactionTask.data.fromAccountIndex}`}>
+                                {transactionTask.data.fromAccountIndex}
+                              </Link>
+                            </div>
+                          </div>
+                        </>
+                      ) : <></>}
                     {transactionTask.data.fromHezEthereumAddress
                       ? (
                         <>
@@ -113,7 +130,6 @@ function Transaction ({
                           </div>
                         </>
                       ) : <></>}
-
                     <div className={classes.row}>
                       <div className={classes.col}>
                         Amount
@@ -122,38 +138,58 @@ function Transaction ({
                         {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
                       </div>
                     </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
-                        Fee
-                      </div>
-                      <div className={classes.col}>
-                        {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
-                        Slot
-                      </div>
-                      <div className={`${classes.col} ${classes.link}`}>
-                        <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
-                        Included in batch
-                      </div>
-                      <div className={`${classes.col} ${classes.link}`}>
-                        <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
-                        Position in batch
-                      </div>
-                      <div className={classes.col}>
-                        {transactionTask.data.position}
-                      </div>
-                    </div>
+                    {transactionTask.data.fee
+                      ? (
+                        <>
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Fee
+                            </div>
+                            <div className={classes.col}>
+                              {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
+                            </div>
+                          </div>
+                        </>
+                      ) : <></>}
+                    {transactionTask.data.slot
+                      ? (
+                        <>
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Slot
+                            </div>
+                            <div className={`${classes.col} ${classes.link}`}>
+                              <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
+                            </div>
+                          </div>
+                        </>
+                      ) : <></>}
+                    {transactionTask.data.batchNum
+                      ? (
+                        <>
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Included in batch
+                            </div>
+                            <div className={`${classes.col} ${classes.link}`}>
+                              <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
+                            </div>
+                          </div>
+                        </>
+                      ) : <></>}
+                    {transactionTask.data.position
+                      ? (
+                        <>
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Position in batch
+                            </div>
+                            <div className={classes.col}>
+                              {transactionTask.data.position}
+                            </div>
+                          </div>
+                        </>
+                      ) : <></>}
                     <div className={classes.row}>
                       <div className={classes.col}>
                         Nonce

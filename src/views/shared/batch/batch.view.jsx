@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 import useBatchStyles from './batch.styles'
 
-function Batch ({ batchNum, batchTxNum, batchTimeStamp }) {
+function Batch ({ batch }) {
   const classes = useBatchStyles()
 
-  const diff = new Date(new Date() - new Date(batchTimeStamp * 1000))
+  const diff = new Date(new Date() - new Date(batch.timestamp * 1000))
   const seconds = ('0' + diff.getSeconds()).substr(-2) + 's ago'
   const minutes = ('0' + diff.getMinutes()).substr(-2) + 'm '
   const hours = diff.getHours() + 'h '
@@ -28,13 +28,13 @@ function Batch ({ batchNum, batchTxNum, batchTimeStamp }) {
       </div>
       <div className={classes.row}>
         <div className={`${classes.col} ${classes.link}`}>
-          <Link to={`/batch/${batchNum}`}>{batchNum}</Link>
+          <Link to={`/batch/${batch.batchNum}`}>{batch.batchNum}</Link>
         </div>
         <div className={classes.col}>
           {formattedTime}
         </div>
         <div className={classes.col}>
-          {batchTxNum}
+          {batch.forgeL1TransactionsNum}
         </div>
       </div>
     </section>

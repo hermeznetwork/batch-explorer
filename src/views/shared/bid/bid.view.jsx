@@ -23,7 +23,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
             <Link to={`/coordinator/${forgerAddr}`}>{forgerAddr}</Link>
           </div>
           <div className={classes.col}>
-            {getTokenAmountString(bidValue)}
+            {getTokenAmountString(bidValue)} HEZ
           </div>
         </div>
       </section>
@@ -50,7 +50,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
             {numberOfBids}
           </div>
           <div className={classes.col}>
-            {getTokenAmountString(bidValue)}
+            {getTokenAmountString(bidValue)} HEZ
           </div>
         </div>
       </section>

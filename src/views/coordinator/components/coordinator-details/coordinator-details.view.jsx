@@ -17,10 +17,10 @@ function CoordinatorDetails ({ coordinator }) {
       </div>
       <div className={classes.row}>
         <div className={classes.col}>
-          Withdrawal address
+          Bidder address
         </div>
         <div className={classes.col}>
-          {coordinator.withdrawAddr}
+          {coordinator.bidderAddr}
         </div>
       </div>
       <div className={classes.row}>

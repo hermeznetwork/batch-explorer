@@ -27,7 +27,7 @@ function Overview ({ overview }) {
             {overview.transactionsPerBatch}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            Last 24 hrs
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ function Overview ({ overview }) {
             {overview.batchFrequency}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-           TODO
+            Last 24 hrs
           </div>
         </div>
         <div className={classes.col}>
@@ -52,7 +52,7 @@ function Overview ({ overview }) {
             {overview.transactionsPerSecond}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            Last 24 hrs
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@ function Overview ({ overview }) {
             {overview.avgTransactionFee}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            Last 24 hrs
           </div>
         </div>
       </div>
