@@ -78,7 +78,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
                               {transactionTask.data.fromAccountIndex}
                             </Link>
                           </div>
@@ -89,7 +89,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/user-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.L1Info.fromHezEthereumAddress}`}>
                               From: {transactionTask.data.fromAccountIndex}
                             </Link>
                           </div>
@@ -100,7 +100,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                             </Link>
                           </div>
@@ -111,7 +111,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/user-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.toBjj}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                             </Link>
                           </div>

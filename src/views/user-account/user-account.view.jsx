@@ -19,12 +19,12 @@ function UserAccount ({
   transactionsTask
 }) {
   const classes = useUserAccountStyles()
-  const { hezEthereumAddress } = useParams()
+  const { address } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(hezEthereumAddress)
-    onLoadTransactions(hezEthereumAddress)
-  }, [hezEthereumAddress, onLoadAccount, onLoadTransactions])
+    onLoadAccount(address)
+    onLoadTransactions(address)
+  }, [address, onLoadAccount, onLoadTransactions])
 
   return (
     <div className={classes.root}>
@@ -134,8 +134,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (hezEthereumAddress) => dispatch(fetchAccount(hezEthereumAddress)),
-  onLoadTransactions: (hezEthereumAddress) => dispatch(fetchTransactions(hezEthereumAddress))
+  onLoadAccount: (address) => dispatch(fetchAccount(address)),
+  onLoadTransactions: (address) => dispatch(fetchTransactions(address))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)
