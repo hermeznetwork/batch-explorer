@@ -30,7 +30,7 @@ function SlotDetails ({ slot, bids }) {
             Winner bid
           </div>
           <div className={classes.col}>
-            TODO
+            {slot.winner.timeStamp}
           </div>
         </div>
         <div className={classes.row}>

@@ -19,7 +19,7 @@ function BatchDetails ({ batch }) {
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Status</div>
-        <div className={`${classes.col} ${classes.status}`}>TODO</div>
+        <div className={`${classes.col} ${classes.status}`}>Completed</div>
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Timestamp</div>

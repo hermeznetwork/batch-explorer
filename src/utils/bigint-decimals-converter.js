@@ -10,7 +10,8 @@ import { ethers } from 'ethers'
  *
  */
 function getTokenAmountString (amountBigInt, decimals) {
-  return ethers.utils.formatUnits(amountBigInt, decimals)
+  // All amounts need to be rouded to a maximum of 6 decimals
+  return parseFloat(ethers.utils.formatUnits(amountBigInt, decimals)).toFixed(6)
 }
 
 /**
