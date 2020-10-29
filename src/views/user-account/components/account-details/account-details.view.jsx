@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import getPartiallyHiddenAddress from '../../../../utils/address-shortener'
 
 import useAccountDetailsStyles from './account-details.styles'
 
-function AccountDetails ({ ethereumAddress, hezEthereumAddress, tokenSymbol, balance, tokenId, accountIndex }) {
+function AccountDetails ({ tokenSymbol, balance, accountIndex }) {
   const classes = useAccountDetailsStyles()
 
   return (
@@ -14,7 +13,7 @@ function AccountDetails ({ ethereumAddress, hezEthereumAddress, tokenSymbol, bal
           Token
         </div>
         <div className={classes.col}>
-          Eth address
+          Address
         </div>
         <div className={classes.col}>
           Balance
@@ -22,10 +21,10 @@ function AccountDetails ({ ethereumAddress, hezEthereumAddress, tokenSymbol, bal
       </div>
       <div className={classes.row}>
         <div className={`${classes.col} ${classes.link}`}>
-          <Link to={`/token-account/${hezEthereumAddress}/${tokenId}/${accountIndex}`}>{tokenSymbol}</Link>
+          <Link to={`/token-account/${accountIndex}`}>{tokenSymbol}</Link>
         </div>
         <div className={classes.col}>
-          {getPartiallyHiddenAddress(ethereumAddress)}
+          {accountIndex}
         </div>
         <div className={classes.col}>
           {balance}

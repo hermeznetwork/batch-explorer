@@ -73,25 +73,12 @@ function Transaction ({
                         {transactionTask.data.type}
                       </div>
                     </div>
-                    {transactionTask.data.fromAccountIndex
-                      ? (
-                        <>
-                          <div className={classes.row}>
-                            <div className={classes.col}>From</div>
-                            <div className={`${classes.col} ${classes.link}`}>
-                              <Link to={`/token-account/${transactionTask.data.fromAccountIndex}`}>
-                                {transactionTask.data.fromAccountIndex}
-                              </Link>
-                            </div>
-                          </div>
-                        </>
-                      ) : <></>}
                     {transactionTask.data.fromHezEthereumAddress
                       ? (
                         <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/token-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                               {transactionTask.data.fromAccountIndex}
                             </Link>
                           </div>
@@ -102,7 +89,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/token-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.L1Info.fromHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.fromAccountIndex}`}>
                               From: {transactionTask.data.fromAccountIndex}
                             </Link>
                           </div>
@@ -113,7 +100,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/token-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                             </Link>
                           </div>
@@ -124,7 +111,7 @@ function Transaction ({
                         <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/token-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
+                            <Link to={`/user-account/${transactionTask.data.toBjj}/${transactionTask.data.token.tokenId}/${transactionTask.data.toAccountIndex}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                             </Link>
                           </div>

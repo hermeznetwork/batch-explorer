@@ -17,12 +17,12 @@ function TokenAccount ({
   transactionsTask
 }) {
   const classes = useTokenAccountStyles()
-  const { address, tokenId, accountIndex } = useParams()
+  const { accountIndex } = useParams()
 
   React.useEffect(() => {
-    onLoadAccount(address, tokenId)
+    onLoadAccount(accountIndex)
     onLoadTransactions(accountIndex)
-  }, [address, tokenId, accountIndex, onLoadAccount, onLoadTransactions])
+  }, [accountIndex, onLoadAccount, onLoadTransactions])
 
   return (
     <div className={classes.root}>
@@ -45,7 +45,7 @@ function TokenAccount ({
                         Token address
                       </div>
                       <div className={classes.col}>
-                        {accountTask.data.accounts[0].accountIndex}
+                        {accountTask.data.accountIndex}
                       </div>
                     </div>
                     <div className={classes.row}>
@@ -53,7 +53,7 @@ function TokenAccount ({
                         Token
                       </div>
                       <div className={classes.col}>
-                        {accountTask.data.accounts[0].token.symbol}
+                        {accountTask.data.token.symbol}
                       </div>
                     </div>
                     <div className={classes.row}>
@@ -61,7 +61,7 @@ function TokenAccount ({
                         Balance
                       </div>
                       <div className={classes.col}>
-                        {getTokenAmountString(accountTask.data.accounts[0].balance, accountTask.data.accounts[0].token.decimals)}
+                        {getTokenAmountString(accountTask.data.balance, accountTask.data.token.decimals)}
                       </div>
                     </div>
                   </section>
@@ -116,7 +116,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (address, tokenId) => dispatch(fetchAccount(address, tokenId)),
+  onLoadAccount: (accountIndex) => dispatch(fetchAccount(accountIndex)),
   onLoadTransactions: (accountIndex) => dispatch(fetchTransactions(accountIndex))
 })
 

@@ -34,7 +34,7 @@ const routes = [
     component: Slot
   },
   {
-    path: '/token-account/:address/:tokenId/:accountIndex',
+    path: '/token-account/:accountIndex',
     component: TokenAccount
   },
   {
