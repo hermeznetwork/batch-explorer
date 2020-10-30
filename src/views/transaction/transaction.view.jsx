@@ -86,37 +86,46 @@ function Transaction ({
                     </div>
                     {transactionTask.data.fromHezEthereumAddress
                       ? (
-                        <>
+                        <div className={classes.row}>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
                             <Button
                               icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromAccountIndex)}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromHezEthereumAddress)}
                             />
                             <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
                               {transactionTask.data.fromAccountIndex}
                             </Link>
                           </div>
-                        </>
+                        </div>
                       ) : <></>}
-                    {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.L1Info
+                    {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromBjj
                       ? (
-                        <>
+                        <div className={classes.row}>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
                             <Button
                               icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromAccountIndex)}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromBjj)}
                             />
-                            <Link to={`/user-account/${transactionTask.data.L1Info.fromHezEthereumAddress}`}>
+                            <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
                               From: {transactionTask.data.fromAccountIndex}
                             </Link>
                           </div>
-                        </>
+                        </div>
+                      ) : <></>}
+                    {!transactionTask.data.fromHezEthereumAddress && !transactionTask.data.fromBjj && transactionTask.data.fromAccountIndex
+                      ? (
+                        <div className={classes.row}>
+                          <div className={classes.col}>From</div>
+                          <div className={classes.col}>
+                            {transactionTask.data.fromAccountIndex}
+                          </div>
+                        </div>
                       ) : <></>}
                     {transactionTask.data.toHezEthereumAddress
                       ? (
-                        <>
+                        <div className={classes.row}>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
                             <Button
@@ -127,11 +136,11 @@ function Transaction ({
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                             </Link>
                           </div>
-                        </>
+                        </div>
                       ) : <></>}
                     {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
                       ? (
-                        <>
+                        <div className={classes.row}>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
                             <Button
@@ -142,7 +151,16 @@ function Transaction ({
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                             </Link>
                           </div>
-                        </>
+                        </div>
+                      ) : <></>}
+                    {!transactionTask.data.toHezEthereumAddress && !transactionTask.data.toBjj && transactionTask.data.toAccountIndex
+                      ? (
+                        <div className={classes.row}>
+                          <div className={classes.col}>To</div>
+                          <div className={classes.col}>
+                            {transactionTask.data.toAccountIndex}
+                          </div>
+                        </div>
                       ) : <></>}
                     <div className={classes.row}>
                       <div className={classes.col}>
@@ -154,55 +172,47 @@ function Transaction ({
                     </div>
                     {transactionTask.data.fee
                       ? (
-                        <>
-                          <div className={classes.row}>
-                            <div className={classes.col}>
-                              Fee
-                            </div>
-                            <div className={classes.col}>
-                              {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
-                            </div>
+                        <div className={classes.row}>
+                          <div className={classes.col}>
+                            Fee
                           </div>
-                        </>
+                          <div className={classes.col}>
+                            {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
+                          </div>
+                        </div>
                       ) : <></>}
                     {transactionTask.data.slot
                       ? (
-                        <>
-                          <div className={classes.row}>
-                            <div className={classes.col}>
-                              Slot
-                            </div>
-                            <div className={`${classes.col} ${classes.link}`}>
-                              <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
-                            </div>
+                        <div className={classes.row}>
+                          <div className={classes.col}>
+                            Slot
                           </div>
-                        </>
+                          <div className={`${classes.col} ${classes.link}`}>
+                            <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
+                          </div>
+                        </div>
                       ) : <></>}
                     {transactionTask.data.batchNum
                       ? (
-                        <>
-                          <div className={classes.row}>
-                            <div className={classes.col}>
-                              Included in batch
-                            </div>
-                            <div className={`${classes.col} ${classes.link}`}>
-                              <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
-                            </div>
+                        <div className={classes.row}>
+                          <div className={classes.col}>
+                            Included in batch
                           </div>
-                        </>
+                          <div className={`${classes.col} ${classes.link}`}>
+                            <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
+                          </div>
+                        </div>
                       ) : <></>}
                     {transactionTask.data.position
                       ? (
-                        <>
-                          <div className={classes.row}>
-                            <div className={classes.col}>
-                              Position in batch
-                            </div>
-                            <div className={classes.col}>
-                              {transactionTask.data.position}
-                            </div>
+                        <div className={classes.row}>
+                          <div className={classes.col}>
+                            Position in batch
                           </div>
-                        </>
+                          <div className={classes.col}>
+                            {transactionTask.data.position}
+                          </div>
+                        </div>
                       ) : <></>}
                     <div className={classes.row}>
                       <div className={classes.col}>
