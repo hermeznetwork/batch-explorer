@@ -1,3 +1,9 @@
+/**
+ * Copy given string to the clipboard
+ *
+ * @param {String} text - String to be copied
+ *
+ */
 function copyToClipboard (text) {
   const textArea = document.createElement('textarea')
 

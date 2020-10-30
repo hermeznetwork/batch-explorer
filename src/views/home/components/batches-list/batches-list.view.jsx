@@ -9,13 +9,10 @@ function BatchesList ({ batches }) {
 
   return (
     <section className={classes.row}>
-      {batches.map((batch, index) =>
+      {batches.map((batch) =>
         <Batch
-          batchNum={batch.batchNum}
-          batchTxNum={batch.forgeL1TransactionsNum}
-          batchForgerAddr={batch.forgerAddr}
-          batchTimeStamp={batch.timeStamp}
-          key={batch.batchNum}
+          batch={batch}
+          key={batch.itemId}
         />
       )}
     </section>
