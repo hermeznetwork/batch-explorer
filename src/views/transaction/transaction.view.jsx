@@ -8,6 +8,9 @@ import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import { fetchTransaction } from '../../store/transaction/transaction.thunks'
+import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
+import { copyToClipboard } from '../../utils/dom'
+import Button from '../shared/button/button.view'
 
 function Transaction ({
   onLoadTransaction,
@@ -15,6 +18,10 @@ function Transaction ({
 }) {
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
+
+  function handleCopyToClipboardClick (item) {
+    copyToClipboard(item)
+  }
 
   React.useEffect(() => {
     onLoadTransaction(transactionId)
@@ -41,6 +48,10 @@ function Transaction ({
                         Transaction ID
                       </div>
                       <div className={classes.col}>
+                        <Button
+                          icon={<CopyIcon />}
+                          onClick={() => handleCopyToClipboardClick(transactionTask.data.id)}
+                        />
                         {transactionTask.data.id}
                       </div>
                     </div>
@@ -78,6 +89,10 @@ function Transaction ({
                         <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
+                            <Button
+                              icon={<CopyIcon />}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromAccountIndex)}
+                            />
                             <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
                               {transactionTask.data.fromAccountIndex}
                             </Link>
@@ -89,6 +104,10 @@ function Transaction ({
                         <>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
+                            <Button
+                              icon={<CopyIcon />}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromAccountIndex)}
+                            />
                             <Link to={`/user-account/${transactionTask.data.L1Info.fromHezEthereumAddress}`}>
                               From: {transactionTask.data.fromAccountIndex}
                             </Link>
@@ -100,6 +119,10 @@ function Transaction ({
                         <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
+                            <Button
+                              icon={<CopyIcon />}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress)}
+                            />
                             <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                             </Link>
@@ -111,6 +134,10 @@ function Transaction ({
                         <>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
+                            <Button
+                              icon={<CopyIcon />}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj)}
+                            />
                             <Link to={`/user-account/${transactionTask.data.toBjj}`}>
                               {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                             </Link>

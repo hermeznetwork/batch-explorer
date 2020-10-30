@@ -11,6 +11,9 @@ import Container from '../shared/container/container.view'
 import AccountDetails from './components/account-details/account-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchAccount, fetchTransactions } from '../../store/user-account/user-account.thunks'
+import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
+import { copyToClipboard } from '../../utils/dom'
+import Button from '../shared/button/button.view'
 
 function UserAccount ({
   onLoadAccount,
@@ -20,6 +23,10 @@ function UserAccount ({
 }) {
   const classes = useUserAccountStyles()
   const { address } = useParams()
+
+  function handleCopyToClipboardClick (item) {
+    copyToClipboard(item)
+  }
 
   React.useEffect(() => {
     onLoadAccount(address)
@@ -45,17 +52,25 @@ function UserAccount ({
                       <h4 className={classes.title}>User Address</h4>
                       <div className={classes.row}>
                         <div className={classes.col}>
-                          Hermez address:
+                          Hermez address
                         </div>
                         <div className={classes.col}>
+                          <Button
+                            icon={<CopyIcon />}
+                            onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].bjj)}
+                          />
                           {accountTask.data.accounts[0].bjj}
                         </div>
                       </div>
                       <div className={classes.row}>
                         <div className={classes.col}>
-                          Ethereum address:
+                          Ethereum address
                         </div>
                         <div className={classes.col}>
+                          <Button
+                            icon={<CopyIcon />}
+                            onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].hezEthereumAddress)}
+                          />
                           {accountTask.data.accounts[0].hezEthereumAddress}
                         </div>
                       </div>

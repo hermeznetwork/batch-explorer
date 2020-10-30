@@ -3,15 +3,28 @@ import { Link } from 'react-router-dom'
 
 import useBatchDetailsStyles from './batch-details.styles'
 import angleDown from '../../../../images/icons/angle-down.svg'
+import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
+import { copyToClipboard } from '../../../../utils/dom'
+import Button from '../../../shared/button/button.view'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
+
+  function handleCopyToClipboardClick (item) {
+    copyToClipboard(item)
+  }
 
   return (
     <div>
       <div className={classes.row}>
         <div className={classes.col}>Eth Block Hash</div>
-        <div className={classes.col}>{batch.ethereumBlockHash}</div>
+        <div className={classes.col}>
+          <Button
+            icon={<CopyIcon />}
+            onClick={() => handleCopyToClipboardClick(batch.ethereumBlockHash)}
+          />
+          {batch.ethereumBlockHash}
+        </div>
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Eth Block Number</div>
@@ -31,7 +44,13 @@ function BatchDetails ({ batch }) {
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Coordinator</div>
-        <div className={`${classes.col} ${classes.link}`}><Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link></div>
+        <div className={`${classes.col} ${classes.link}`}>
+          <Button
+            icon={<CopyIcon />}
+            onClick={() => handleCopyToClipboardClick(batch.forgerAddr)}
+          />
+          <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
+        </div>
       </div>
       {/* TODO Add see details functionality */}
       <button
@@ -50,11 +69,23 @@ function BatchDetails ({ batch }) {
       </div>
       <div className={classes.row}>
         <div className={classes.col}>State root</div>
-        <div className={classes.col}>{batch.stateRoot}</div>
+        <div className={classes.col}>
+          <Button
+            icon={<CopyIcon />}
+            onClick={() => handleCopyToClipboardClick(batch.stateRoot)}
+          />
+          {batch.stateRoot}
+        </div>
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Exit root</div>
-        <div className={classes.col}>{batch.exitRoot}</div>
+        <div className={classes.col}>
+          <Button
+            icon={<CopyIcon />}
+            onClick={() => handleCopyToClipboardClick(batch.exitRoot)}
+          />
+          {batch.exitRoot}
+        </div>
       </div>
     </div>
   )
