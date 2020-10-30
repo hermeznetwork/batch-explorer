@@ -36,7 +36,7 @@ function BatchDetails ({ batch }) {
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Timestamp</div>
-        <div className={classes.col}>{batch.timestamp}</div>
+        <div className={classes.col}>{new Date(batch.timestamp).toLocaleString()}</div>
       </div>
       <div className={classes.row}>
         <div className={classes.col}>Fees Collected</div>

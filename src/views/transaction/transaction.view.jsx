@@ -73,7 +73,7 @@ function Transaction ({
                         Timestamp
                       </div>
                       <div className={classes.col}>
-                        {transactionTask.data.timestamp}
+                        {new Date(transactionTask.data.timestamp).toLocaleString()}
                       </div>
                     </div>
                     <div className={classes.row}>
