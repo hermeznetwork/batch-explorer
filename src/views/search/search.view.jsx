@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import useSearchStyles from './search.styles'
 import search from '../../images/icons/search-glass.svg'
@@ -47,10 +46,6 @@ function Search ({
       >
         <img src={search} alt='Search' />
       </button>
-      {/* TODO: Remove this link once Transactions page is done, since User account page should be linked from there */}
-      <strong style={{ position: 'absolute', top: 0, left: '45%', color: 'rebeccapurple' }}>
-        <Link to='/user-account/hez:0xaa942cfcd25ad4d90a62358b0dd84f33b398262a'>TEST USER ACCOUNT</Link>
-      </strong>
     </div>
   )
 }

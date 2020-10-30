@@ -52,7 +52,6 @@ function BatchDetails ({ batch }) {
           <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
         </div>
       </div>
-      {/* TODO Add see details functionality */}
       <button
         className={classes.seeDetails}
       >
