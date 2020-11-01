@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useTransactionStyles from './transaction.styles'
@@ -11,6 +12,8 @@ import { fetchTransaction } from '../../store/transaction/transaction.thunks'
 import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
 import { copyToClipboard } from '../../utils/dom'
 import Button from '../shared/button/button.view'
+import angleDown from '../../images/icons/angle-down.svg'
+import angleUp from '../../images/icons/angle-up.svg'
 
 function Transaction ({
   onLoadTransaction,
@@ -18,9 +21,18 @@ function Transaction ({
 }) {
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
+  const [areDeailsVisible, seeDetailsVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
+  }
+
+  function handleSeedetailsClick () {
+    seeDetailsVisible(true)
+  }
+
+  function handleClosedetailsClick () {
+    seeDetailsVisible(false)
   }
 
   React.useEffect(() => {
@@ -181,47 +193,75 @@ function Transaction ({
                           </div>
                         </div>
                       ) : <></>}
-                    {transactionTask.data.slot
-                      ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>
-                            Slot
+                    <div className={clsx({
+                      [classes.seeDetailsHidden]: true,
+                      [classes.seeDetailsVisible]: areDeailsVisible
+                    })}
+                    >
+                      {transactionTask.data.slot
+                        ? (
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Slot
+                            </div>
+                            <div className={`${classes.col} ${classes.link}`}>
+                              <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
+                            </div>
                           </div>
-                          <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
+                        ) : <></>}
+                      {transactionTask.data.batchNum
+                        ? (
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Included in batch
+                            </div>
+                            <div className={`${classes.col} ${classes.link}`}>
+                              <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
+                            </div>
                           </div>
+                        ) : <></>}
+                      {transactionTask.data.position
+                        ? (
+                          <div className={classes.row}>
+                            <div className={classes.col}>
+                              Position in batch
+                            </div>
+                            <div className={classes.col}>
+                              {transactionTask.data.position}
+                            </div>
+                          </div>
+                        ) : <></>}
+                      <div className={classes.row}>
+                        <div className={classes.col}>
+                          Nonce
                         </div>
-                      ) : <></>}
-                    {transactionTask.data.batchNum
-                      ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>
-                            Included in batch
-                          </div>
-                          <div className={`${classes.col} ${classes.link}`}>
-                            <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
-                          </div>
+                        <div className={classes.col}>
+                          {transactionTask.data.nonce}
                         </div>
-                      ) : <></>}
-                    {transactionTask.data.position
-                      ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>
-                            Position in batch
-                          </div>
-                          <div className={classes.col}>
-                            {transactionTask.data.position}
-                          </div>
-                        </div>
-                      ) : <></>}
-                    <div className={classes.row}>
-                      <div className={classes.col}>
-                        Nonce
-                      </div>
-                      <div className={classes.col}>
-                        {transactionTask.data.nonce}
                       </div>
                     </div>
+                    <button
+                      className={clsx({
+                        [classes.seeDetailsButton]: true,
+                        [classes.seeDetailsButtonHidden]: areDeailsVisible,
+                        [classes.seeDetailsVisible]: true
+                      })}
+                      onClick={() => handleSeedetailsClick()}
+                    >
+                        See details
+                      <img src={angleDown} className={classes.icon} alt='See details' />
+                    </button>
+                    <button
+                      className={clsx({
+                        [classes.seeDetailsButton]: true,
+                        [classes.seeDetailsHidden]: true,
+                        [classes.seeDetailsVisible]: areDeailsVisible
+                      })}
+                      onClick={() => handleClosedetailsClick()}
+                    >
+                        Close details
+                      <img src={angleUp} className={classes.icon} alt='Close details' />
+                    </button>
                   </section>
                 )
               }

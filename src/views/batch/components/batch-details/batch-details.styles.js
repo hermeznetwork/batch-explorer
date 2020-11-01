@@ -41,7 +41,10 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
       textDecoration: 'underline'
     }
   },
-  seeDetails: {
+  icon: {
+    paddingLeft: theme.spacing(1)
+  },
+  seeDetailsButton: {
     fontWeight: theme.fontWeights.bold,
     background: theme.palette.grey.veryLight,
     borderRadius: '16px',
@@ -54,10 +57,19 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
     cursor: 'pointer',
     '&:hover': {
       background: theme.palette.grey.light
+    },
+    '&:focus': {
+      outline: 'none'
     }
   },
-  icon: {
-    paddingLeft: theme.spacing(0.5)
+  seeDetailsHidden: {
+    display: 'none'
+  },
+  seeDetailsVisible: {
+    display: 'block'
+  },
+  seeDetailsButtonHidden: {
+    display: 'none'
   }
 }))
 
