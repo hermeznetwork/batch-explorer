@@ -11,11 +11,11 @@ function fetchAccount (accountIndex) {
   }
 }
 
-function fetchTransactions (accountIndex) {
+function fetchTransactions (accountIndex, fromItem) {
   return (dispatch) => {
     dispatch(tokenAccountActionTypes.loadTransactions())
 
-    return rollupApi.getHistoryTransactions(undefined, undefined, undefined, accountIndex)
+    return rollupApi.getHistoryTransactions(undefined, undefined, undefined, accountIndex, fromItem)
       .then(res => dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res)))
       .catch(err => dispatch(tokenAccountActionTypes.loadTransactionsFailure(err)))
   }

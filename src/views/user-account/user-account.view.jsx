@@ -17,7 +17,7 @@ import Button from '../shared/button/button.view'
 
 function UserAccount ({
   onLoadAccount,
-  accountTask,
+  accountsTask,
   onLoadTransactions,
   transactionsTask
 }) {
@@ -38,12 +38,12 @@ function UserAccount ({
       <Container disableTopGutter>
         <div className={classes.wrapper}>
           {(() => {
-            switch (accountTask.status) {
+            switch (accountsTask.status) {
               case 'loading': {
                 return <Spinner />
               }
               case 'failed': {
-                return <p>{accountTask.error}</p>
+                return <p>{accountsTask.error}</p>
               }
               case 'successful': {
                 return (
@@ -57,9 +57,9 @@ function UserAccount ({
                         <div className={classes.col}>
                           <Button
                             icon={<CopyIcon />}
-                            onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].bjj)}
+                            onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].bjj)}
                           />
-                          {accountTask.data.accounts[0].bjj}
+                          {accountsTask.data.accounts[0].bjj}
                         </div>
                       </div>
                       <div className={classes.row}>
@@ -69,23 +69,23 @@ function UserAccount ({
                         <div className={classes.col}>
                           <Button
                             icon={<CopyIcon />}
-                            onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].hezEthereumAddress)}
+                            onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].hezEthereumAddress)}
                           />
-                          {accountTask.data.accounts[0].hezEthereumAddress}
+                          {accountsTask.data.accounts[0].hezEthereumAddress}
                         </div>
                       </div>
                       <div className={classes.row}>
                         <div className={classes.col}>
-                          Token accounts:
+                          Token accounts
                         </div>
                         <div className={classes.col}>
-                          {accountTask.data.accounts.length}
+                          {accountsTask.data.accounts.length}
                         </div>
                       </div>
                     </section>
                     <section>
                       <h4>Token Accounts</h4>
-                      {accountTask.data.accounts.map((account, index) =>
+                      {accountsTask.data.accounts.map((account, index) =>
                         <div
                           key={account.accountIndex}
                           className={clsx({ [classes.account]: index > 0 })}
@@ -138,13 +138,13 @@ function UserAccount ({
 
 UserAccount.propTypes = {
   onLoadAccount: PropTypes.func.isRequired,
-  accountTask: PropTypes.object.isRequired,
+  accountsTask: PropTypes.object.isRequired,
   onLoadTransactions: PropTypes.func.isRequired,
   transactionsTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  accountTask: state.userAccount.accountTask,
+  accountsTask: state.userAccount.accountsTask,
   transactionsTask: state.userAccount.transactionsTask
 })
 
