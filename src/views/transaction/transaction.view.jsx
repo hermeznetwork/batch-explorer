@@ -192,7 +192,6 @@ function Transaction ({
                                 </Link>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       ) : <></>}

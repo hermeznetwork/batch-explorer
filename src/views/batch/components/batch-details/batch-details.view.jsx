@@ -73,7 +73,6 @@ function BatchDetails ({ batch }) {
               <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
             </div>
           </div>
-
         </div>
       </div>
       <div className={clsx({
@@ -120,7 +119,6 @@ function BatchDetails ({ batch }) {
                 {batch.exitRoot}
               </div>
             </div>
-
           </div>
         </div>
       </div>

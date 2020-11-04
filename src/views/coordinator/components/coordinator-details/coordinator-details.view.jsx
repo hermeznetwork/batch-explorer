@@ -30,7 +30,6 @@ function CoordinatorDetails ({ coordinator }) {
               {coordinator.forgerAddr}
             </div>
           </div>
-
         </div>
       </div>
       <div className={classes.row}>
