@@ -55,7 +55,7 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
   seeDetailsButton: {
     fontWeight: theme.fontWeights.bold,
     background: theme.palette.grey.veryLight,
-    borderRadius: '16px',
+    borderRadius: 16,
     color: theme.palette.black,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2)}px`,
     textAlign: 'center',

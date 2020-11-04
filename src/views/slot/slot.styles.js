@@ -14,7 +14,7 @@ const useSlotStyles = createUseStyles(theme => ({
     background: theme.palette.grey.veryLight,
     width: 'fit-content',
     marginTop: theme.spacing(3),
-    borderRadius: '16px'
+    borderRadius: 16
   },
   toggle: {
     fontWeight: theme.fontWeights.bold,
@@ -24,16 +24,16 @@ const useSlotStyles = createUseStyles(theme => ({
     textAlign: 'center',
     width: 'fit-content',
     border: 0,
-    borderRadius: '16px',
+    borderRadius: 16,
     cursor: 'pointer',
     minWidth: theme.spacing(17),
     '&:hover': {
       background: theme.palette.grey.light,
       '&:first-child': {
-        borderRadius: '16px'
+        borderRadius: 16
       },
       '&:last-child': {
-        borderRadius: '16px'
+        borderRadius: 16
       }
     },
     '&:focus': {
@@ -51,10 +51,10 @@ const useSlotStyles = createUseStyles(theme => ({
     border: `1px solid ${theme.palette.grey.ultraLight}`,
     padding: `${theme.spacing(1.5) - 1}px ${theme.spacing(2) - 1}px`,
     '&:first-child': {
-      borderRadius: '16px'
+      borderRadius: 16
     },
     '&:last-child': {
-      borderRadius: '16px'
+      borderRadius: 16
     }
   },
   notActive: {
