@@ -64,10 +64,10 @@ const useCoordinatorStyles = createUseStyles(theme => ({
   hidden: {
     display: 'none'
   },
-  forgedBatchesVisible: {
+  firstTabVisible: {
     display: 'block'
   },
-  winnerBidsVisible: {
+  secondTabVisible: {
     display: 'block'
   }
 }))

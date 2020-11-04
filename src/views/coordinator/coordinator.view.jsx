@@ -22,8 +22,8 @@ function Coordinator ({
 }) {
   const classes = useCoordinatorStyles()
   const { coordinatorId } = useParams()
-  const [isForgedBatchesVisible, forgedBatchesVisible] = React.useState()
-  const [isWinnerBidsVisible, winnerBidsVisible] = React.useState()
+  const [isFirstTabVisible, firstTabVisible] = React.useState()
+  const [isSecondTabVisible, secondTabVisible] = React.useState()
 
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
@@ -32,13 +32,13 @@ function Coordinator ({
   }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
 
   function handleForgedBatchesClick () {
-    forgedBatchesVisible(true)
-    winnerBidsVisible(false)
+    firstTabVisible(true)
+    secondTabVisible(false)
   }
 
   function handleWinnerBidsClick () {
-    forgedBatchesVisible(false)
-    winnerBidsVisible(true)
+    firstTabVisible(false)
+    secondTabVisible(true)
   }
 
   return (
@@ -86,7 +86,7 @@ function Coordinator ({
                           className={clsx({
                             [classes.toggle]: true,
                             [classes.active]: true,
-                            [classes.notActive]: isWinnerBidsVisible
+                            [classes.notActive]: isSecondTabVisible
                           })}
                           onClick={() => handleForgedBatchesClick()}
                         >
@@ -95,8 +95,8 @@ function Coordinator ({
                         <button
                           className={clsx({
                             [classes.toggle]: true,
-                            [classes.active]: isWinnerBidsVisible,
-                            [classes.notActive]: isForgedBatchesVisible
+                            [classes.active]: isSecondTabVisible,
+                            [classes.notActive]: isFirstTabVisible
                           })}
                           onClick={() => handleWinnerBidsClick()}
                         >
@@ -106,8 +106,8 @@ function Coordinator ({
                     </section>
 
                     <div className={clsx({
-                      [classes.hidden]: isWinnerBidsVisible,
-                      [classes.forgedBatchesVisible]: isForgedBatchesVisible
+                      [classes.hidden]: isSecondTabVisible,
+                      [classes.firstTabVisible]: isFirstTabVisible
                     })}
                     >
                       <BatchesList
@@ -136,7 +136,7 @@ function Coordinator ({
                   <>
                     <div className={clsx({
                       [classes.hidden]: true,
-                      [classes.winnerBidsVisible]: isWinnerBidsVisible
+                      [classes.secondTabVisible]: isSecondTabVisible
                     })}
                     >
                       <BidsList
