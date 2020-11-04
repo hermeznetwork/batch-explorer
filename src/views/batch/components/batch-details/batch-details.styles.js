@@ -48,7 +48,7 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
     fontWeight: theme.fontWeights.bold,
     background: theme.palette.grey.veryLight,
     borderRadius: '16px',
-    color: theme.palette.grey.main,
+    color: theme.palette.black,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2)}px`,
     textAlign: 'center',
     marginTop: theme.spacing(3),

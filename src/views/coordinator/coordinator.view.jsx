@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 
 import useCoordinatorStyles from './coordinator.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -21,12 +22,24 @@ function Coordinator ({
 }) {
   const classes = useCoordinatorStyles()
   const { coordinatorId } = useParams()
+  const [isForgedBatchesVisible, forgedBatchesVisible] = React.useState()
+  const [isWinnerBidsVisible, winnerBidsVisible] = React.useState()
 
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
     onLoadCoordinator(coordinatorId)
     onLoadBids(coordinatorId)
   }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
+
+  function handleForgedBatchesClick () {
+    forgedBatchesVisible(true)
+    winnerBidsVisible(false)
+  }
+
+  function handleWinnerBidsClick () {
+    forgedBatchesVisible(false)
+    winnerBidsVisible(true)
+  }
 
   return (
     <div className={classes.root}>
@@ -66,12 +79,42 @@ function Coordinator ({
               }
               case 'successful': {
                 return (
-                  <section>
-                    <h4 className={classes.title}>Forged batches</h4>
-                    <BatchesList
-                      batches={batchesTask.data.batches}
-                    />
-                  </section>
+                  <>
+                    <section>
+                      <div className={classes.toggleWrapper}>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: true,
+                            [classes.notActive]: isWinnerBidsVisible
+                          })}
+                          onClick={() => handleForgedBatchesClick()}
+                        >
+                          Forged batches
+                        </button>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: isWinnerBidsVisible,
+                            [classes.notActive]: isForgedBatchesVisible
+                          })}
+                          onClick={() => handleWinnerBidsClick()}
+                        >
+                          Winner bids
+                        </button>
+                      </div>
+                    </section>
+
+                    <div className={clsx({
+                      [classes.hidden]: isWinnerBidsVisible,
+                      [classes.forgedBatchesVisible]: isForgedBatchesVisible
+                    })}
+                    >
+                      <BatchesList
+                        batches={batchesTask.data.batches}
+                      />
+                    </div>
+                  </>
                 )
               }
               default: {
@@ -90,12 +133,17 @@ function Coordinator ({
               }
               case 'successful': {
                 return (
-                  <section>
-                    <h4 className={classes.title}>Winner bids</h4>
-                    <BidsList
-                      bids={bidsTask.data.bids}
-                    />
-                  </section>
+                  <>
+                    <div className={clsx({
+                      [classes.hidden]: true,
+                      [classes.winnerBidsVisible]: isWinnerBidsVisible
+                    })}
+                    >
+                      <BidsList
+                        bids={bidsTask.data.bids}
+                      />
+                    </div>
+                  </>
                 )
               }
               default: {
