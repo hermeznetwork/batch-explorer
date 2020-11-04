@@ -23,9 +23,21 @@ function UserAccount ({
 }) {
   const classes = useUserAccountStyles()
   const { address } = useParams()
+  const [isFirstTabVisible, firstTabVisible] = React.useState()
+  const [isSecondTabVisible, secondTabVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
+  }
+
+  function handleFirstTabClick () {
+    firstTabVisible(true)
+    secondTabVisible(false)
+  }
+
+  function handleSecondTabClick () {
+    firstTabVisible(false)
+    secondTabVisible(true)
   }
 
   React.useEffect(() => {
@@ -84,19 +96,46 @@ function UserAccount ({
                       </div>
                     </section>
                     <section>
-                      <h4>Token Accounts</h4>
-                      {accountTask.data.accounts.map((account, index) =>
-                        <div
-                          key={account.accountIndex}
-                          className={clsx({ [classes.account]: index > 0 })}
+                      <div className={classes.toggleWrapper}>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: true,
+                            [classes.notActive]: isSecondTabVisible
+                          })}
+                          onClick={() => handleFirstTabClick()}
                         >
-                          <AccountDetails
-                            tokenSymbol={account.token.symbol}
-                            balance={getTokenAmountString(account.balance, account.token.decimals)}
-                            accountIndex={account.accountIndex}
-                          />
-                        </div>
-                      )}
+                          Token accounts
+                        </button>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: isSecondTabVisible,
+                            [classes.notActive]: isFirstTabVisible
+                          })}
+                          onClick={() => handleSecondTabClick()}
+                        >
+                          Transactions
+                        </button>
+                      </div>
+                      <div className={clsx({
+                        [classes.hidden]: isSecondTabVisible,
+                        [classes.firstTabVisible]: isFirstTabVisible
+                      })}
+                      >
+                        {accountTask.data.accounts.map((account, index) =>
+                          <div
+                            key={account.accountIndex}
+                            className={clsx({ [classes.account]: index > 0 })}
+                          >
+                            <AccountDetails
+                              tokenSymbol={account.token.symbol}
+                              balance={getTokenAmountString(account.balance, account.token.decimals)}
+                              accountIndex={account.accountIndex}
+                            />
+                          </div>
+                        )}
+                      </div>
                     </section>
                   </>
                 )
@@ -118,10 +157,15 @@ function UserAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <h4>Transactions</h4>
-                    <TransactionsList
-                      transactions={transactionsTask.data.transactions}
-                    />
+                    <div className={clsx({
+                      [classes.hidden]: true,
+                      [classes.secondTabVisible]: isSecondTabVisible
+                    })}
+                    >
+                      <TransactionsList
+                        transactions={transactionsTask.data.transactions}
+                      />
+                    </div>
                   </section>
                 )
               }

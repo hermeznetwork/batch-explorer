@@ -25,21 +25,21 @@ function Coordinator ({
   const [isFirstTabVisible, firstTabVisible] = React.useState()
   const [isSecondTabVisible, secondTabVisible] = React.useState()
 
+  function handleFirstTabClick () {
+    firstTabVisible(true)
+    secondTabVisible(false)
+  }
+
+  function handleSecondTabClick () {
+    firstTabVisible(false)
+    secondTabVisible(true)
+  }
+
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
     onLoadCoordinator(coordinatorId)
     onLoadBids(coordinatorId)
   }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
-
-  function handleForgedBatchesClick () {
-    firstTabVisible(true)
-    secondTabVisible(false)
-  }
-
-  function handleWinnerBidsClick () {
-    firstTabVisible(false)
-    secondTabVisible(true)
-  }
 
   return (
     <div className={classes.root}>
@@ -80,30 +80,28 @@ function Coordinator ({
               case 'successful': {
                 return (
                   <>
-                    <section>
-                      <div className={classes.toggleWrapper}>
-                        <button
-                          className={clsx({
-                            [classes.toggle]: true,
-                            [classes.active]: true,
-                            [classes.notActive]: isSecondTabVisible
-                          })}
-                          onClick={() => handleForgedBatchesClick()}
-                        >
-                          Forged batches
-                        </button>
-                        <button
-                          className={clsx({
-                            [classes.toggle]: true,
-                            [classes.active]: isSecondTabVisible,
-                            [classes.notActive]: isFirstTabVisible
-                          })}
-                          onClick={() => handleWinnerBidsClick()}
-                        >
-                          Winner bids
-                        </button>
-                      </div>
-                    </section>
+                    <div className={classes.toggleWrapper}>
+                      <button
+                        className={clsx({
+                          [classes.toggle]: true,
+                          [classes.active]: true,
+                          [classes.notActive]: isSecondTabVisible
+                        })}
+                        onClick={() => handleFirstTabClick()}
+                      >
+                        Forged batches
+                      </button>
+                      <button
+                        className={clsx({
+                          [classes.toggle]: true,
+                          [classes.active]: isSecondTabVisible,
+                          [classes.notActive]: isFirstTabVisible
+                        })}
+                        onClick={() => handleSecondTabClick()}
+                      >
+                        Winner bids
+                      </button>
+                    </div>
 
                     <div className={clsx({
                       [classes.hidden]: isSecondTabVisible,
@@ -133,17 +131,15 @@ function Coordinator ({
               }
               case 'successful': {
                 return (
-                  <>
-                    <div className={clsx({
-                      [classes.hidden]: true,
-                      [classes.secondTabVisible]: isSecondTabVisible
-                    })}
-                    >
-                      <BidsList
-                        bids={bidsTask.data.bids}
-                      />
-                    </div>
-                  </>
+                  <div className={clsx({
+                    [classes.hidden]: true,
+                    [classes.secondTabVisible]: isSecondTabVisible
+                  })}
+                  >
+                    <BidsList
+                      bids={bidsTask.data.bids}
+                    />
+                  </div>
                 )
               }
               default: {

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 
 import useSlotStyles from './slot.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -21,6 +22,18 @@ function Slot ({
 }) {
   const classes = useSlotStyles()
   const { slotNum } = useParams()
+  const [isFirstTabVisible, firstTabVisible] = React.useState()
+  const [isSecondTabVisible, secondTabVisible] = React.useState()
+
+  function handleFirstTabClick () {
+    firstTabVisible(true)
+    secondTabVisible(false)
+  }
+
+  function handleSecondTabClick () {
+    firstTabVisible(false)
+    secondTabVisible(true)
+  }
 
   React.useEffect(() => {
     onLoadSlot(slotNum)
@@ -64,11 +77,52 @@ function Slot ({
                           />
                         </section>
                         <section>
-                          <h4 className={classes.title}>Bids</h4>
-                          <BidsList
-                            bids={bidsTask.data.bids}
-                            isSlot
-                          />
+                          {batchesTask.status === 'successful'
+                            ? (
+                              <>
+                                <div className={classes.toggleWrapper}>
+                                  <button
+                                    className={clsx({
+                                      [classes.toggle]: true,
+                                      [classes.active]: true,
+                                      [classes.notActive]: isSecondTabVisible
+                                    })}
+                                    onClick={() => handleFirstTabClick()}
+                                  >
+                                Bids
+                                  </button>
+                                  <button
+                                    className={clsx({
+                                      [classes.toggle]: true,
+                                      [classes.active]: isSecondTabVisible,
+                                      [classes.notActive]: isFirstTabVisible
+                                    })}
+                                    onClick={() => handleSecondTabClick()}
+                                  >
+                                Batches in slot
+                                  </button>
+                                </div>
+
+                                <div className={clsx({
+                                  [classes.hidden]: isSecondTabVisible,
+                                  [classes.firstTabVisible]: isFirstTabVisible
+                                })}
+                                >
+                                  <BidsList
+                                    bids={bidsTask.data.bids}
+                                    isSlot
+                                  />
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <h4 className={classes.title}>Bids</h4>
+                                <BidsList
+                                  bids={bidsTask.data.bids}
+                                  isSlot
+                                />
+                              </>
+                            )}
                         </section>
                       </>
                     )
@@ -95,10 +149,15 @@ function Slot ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Batches in slot</h4>
-                    <BatchesList
-                      batches={batchesTask.data.batches}
-                    />
+                    <div className={clsx({
+                      [classes.hidden]: true,
+                      [classes.secondTabVisible]: isSecondTabVisible
+                    })}
+                    >
+                      <BatchesList
+                        batches={batchesTask.data.batches}
+                      />
+                    </div>
                   </section>
                 )
               }
