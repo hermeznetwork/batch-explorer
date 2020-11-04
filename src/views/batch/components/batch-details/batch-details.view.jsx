@@ -30,11 +30,17 @@ function BatchDetails ({ batch }) {
       <div className={classes.row}>
         <div className={classes.col}>Eth Block Hash</div>
         <div className={classes.col}>
-          <Button
-            icon={<CopyIcon />}
-            onClick={() => handleCopyToClipboardClick(batch.ethereumBlockHash)}
-          />
-          {batch.ethereumBlockHash}
+          <div className={classes.rowWrapped}>
+            <div>
+              <Button
+                icon={<CopyIcon />}
+                onClick={() => handleCopyToClipboardClick(batch.ethereumBlockHash)}
+              />
+            </div>
+            <div className={classes.colWrapped}>
+              {batch.ethereumBlockHash}
+            </div>
+          </div>
         </div>
       </div>
       <div className={classes.row}>
@@ -56,11 +62,18 @@ function BatchDetails ({ batch }) {
       <div className={classes.row}>
         <div className={classes.col}>Coordinator</div>
         <div className={`${classes.col} ${classes.link}`}>
-          <Button
-            icon={<CopyIcon />}
-            onClick={() => handleCopyToClipboardClick(batch.forgerAddr)}
-          />
-          <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
+          <div className={classes.rowWrapped}>
+            <div>
+              <Button
+                icon={<CopyIcon />}
+                onClick={() => handleCopyToClipboardClick(batch.forgerAddr)}
+              />
+            </div>
+            <div className={classes.colWrapped}>
+              <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
+            </div>
+          </div>
+
         </div>
       </div>
       <div className={clsx({
@@ -79,21 +92,35 @@ function BatchDetails ({ batch }) {
         <div className={classes.row}>
           <div className={classes.col}>State root</div>
           <div className={classes.col}>
-            <Button
-              icon={<CopyIcon />}
-              onClick={() => handleCopyToClipboardClick(batch.stateRoot)}
-            />
-            {batch.stateRoot}
+            <div className={classes.rowWrapped}>
+              <div>
+                <Button
+                  icon={<CopyIcon />}
+                  onClick={() => handleCopyToClipboardClick(batch.stateRoot)}
+                />
+              </div>
+              <div className={classes.colWrapped}>
+                {batch.stateRoot}
+              </div>
+            </div>
+
           </div>
         </div>
         <div className={classes.row}>
           <div className={classes.col}>Exit root</div>
           <div className={classes.col}>
-            <Button
-              icon={<CopyIcon />}
-              onClick={() => handleCopyToClipboardClick(batch.exitRoot)}
-            />
-            {batch.exitRoot}
+            <div className={classes.rowWrapped}>
+              <div>
+                <Button
+                  icon={<CopyIcon />}
+                  onClick={() => handleCopyToClipboardClick(batch.exitRoot)}
+                />
+              </div>
+              <div className={classes.colWrapped}>
+                {batch.exitRoot}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

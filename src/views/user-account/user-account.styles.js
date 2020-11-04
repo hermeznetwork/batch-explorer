@@ -21,6 +21,11 @@ const useUserAccountStyles = createUseStyles(theme => ({
       justifyContent: 'space-between'
     }
   },
+  rowWrapped: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: theme.spacing(50)
+  },
   col: {
     fontWeight: theme.fontWeights.medium,
     '&:last-child': {
@@ -34,6 +39,9 @@ const useUserAccountStyles = createUseStyles(theme => ({
         marginTop: 0
       }
     }
+  },
+  colWrapped: {
+    maxWidth: theme.spacing(45)
   },
   toggleWrapper: {
     background: theme.palette.grey.veryLight,

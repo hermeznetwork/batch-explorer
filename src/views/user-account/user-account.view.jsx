@@ -67,11 +67,17 @@ function UserAccount ({
                           Hermez address
                         </div>
                         <div className={classes.col}>
-                          <Button
-                            icon={<CopyIcon />}
-                            onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].bjj)}
-                          />
-                          {accountTask.data.accounts[0].bjj}
+                          <div className={classes.rowWrapped}>
+                            <div>
+                              <Button
+                                icon={<CopyIcon />}
+                                onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].bjj)}
+                              />
+                            </div>
+                            <div className={classes.colWrapped}>
+                              {accountTask.data.accounts[0].bjj}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className={classes.row}>
@@ -79,11 +85,17 @@ function UserAccount ({
                           Ethereum address
                         </div>
                         <div className={classes.col}>
-                          <Button
-                            icon={<CopyIcon />}
-                            onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].hezEthereumAddress)}
-                          />
-                          {accountTask.data.accounts[0].hezEthereumAddress}
+                          <div className={classes.rowWrapped}>
+                            <div>
+                              <Button
+                                icon={<CopyIcon />}
+                                onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].hezEthereumAddress)}
+                              />
+                            </div>
+                            <div className={classes.colWrapped}>
+                              {accountTask.data.accounts[0].hezEthereumAddress}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className={classes.row}>
