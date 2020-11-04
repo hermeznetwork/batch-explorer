@@ -14,6 +14,7 @@ import { fetchAccount, fetchTransactions } from '../../store/user-account/user-a
 import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
 import { copyToClipboard } from '../../utils/dom'
 import Button from '../shared/button/button.view'
+import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 
 function UserAccount ({
   onLoadAccount,
@@ -90,11 +91,24 @@ function UserAccount ({
                           key={account.accountIndex}
                           className={clsx({ [classes.account]: index > 0 })}
                         >
-                          <AccountDetails
-                            tokenSymbol={account.token.symbol}
-                            balance={getTokenAmountString(account.balance, account.token.decimals)}
-                            accountIndex={account.accountIndex}
-                          />
+                          <InfiniteScroll
+                            asyncTaskStatus={accountsTask.status}
+                            paginationData={accountsTask.data.pagination}
+                            onLoadNextPage={(fromItem) => {
+                              if (accountsTask.status === 'successful') {
+                                onLoadAccount(
+                                  accountsTask.data.accounts[0].hezEthereumAddress,
+                                  fromItem
+                                )
+                              }
+                            }}
+                          >
+                            <AccountDetails
+                              tokenSymbol={account.token.symbol}
+                              balance={getTokenAmountString(account.balance, account.token.decimals)}
+                              accountIndex={account.accountIndex}
+                            />
+                          </InfiniteScroll>
                         </div>
                       )}
                     </section>
@@ -119,9 +133,22 @@ function UserAccount ({
                 return (
                   <section>
                     <h4>Transactions</h4>
-                    <TransactionsList
-                      transactions={transactionsTask.data.transactions}
-                    />
+                    <InfiniteScroll
+                      asyncTaskStatus={transactionsTask.status}
+                      paginationData={transactionsTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (transactionsTask.status === 'successful') {
+                          onLoadTransactions(
+                            accountsTask.data.accounts[0].hezEthereumAddress,
+                            fromItem
+                          )
+                        }
+                      }}
+                    >
+                      <TransactionsList
+                        transactions={transactionsTask.data.transactions}
+                      />
+                    </InfiniteScroll>
                   </section>
                 )
               }
@@ -149,8 +176,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (address) => dispatch(fetchAccount(address)),
-  onLoadTransactions: (address) => dispatch(fetchTransactions(address))
+  onLoadAccount: (address, fromItem) => dispatch(fetchAccount(address, fromItem)),
+  onLoadTransactions: (address, fromItem) => dispatch(fetchTransactions(address, fromItem))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

@@ -17,7 +17,7 @@ function loadAccount () {
 function loadAccountSuccess (accounts) {
   return {
     type: userAccountActionTypes.LOAD_ACCOUNT_SUCCESS,
-    accounts
+    data: accounts
   }
 }
 
@@ -36,7 +36,7 @@ function loadTransactions () {
 function loadTransactionsSuccess (transactions) {
   return {
     type: userAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS,
-    transactions
+    data: transactions
   }
 }
 
