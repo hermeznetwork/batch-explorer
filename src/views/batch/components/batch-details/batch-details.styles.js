@@ -52,7 +52,7 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
   icon: {
     paddingLeft: theme.spacing(1)
   },
-  seeDetailsButton: {
+  detailButton: {
     fontWeight: theme.fontWeights.bold,
     background: theme.palette.grey.veryLight,
     borderRadius: 16,
@@ -70,13 +70,13 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
       outline: 'none'
     }
   },
-  seeDetailsHidden: {
+  detailHidden: {
     display: 'none'
   },
-  seeDetailsVisible: {
+  detailVisible: {
     display: 'block'
   },
-  seeDetailsButtonHidden: {
+  detailButtonHidden: {
     display: 'none'
   }
 }))

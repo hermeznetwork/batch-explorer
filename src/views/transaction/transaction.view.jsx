@@ -224,8 +224,8 @@ function Transaction ({
                         </div>
                       ) : <></>}
                     <div className={clsx({
-                      [classes.seeDetailsHidden]: true,
-                      [classes.seeDetailsVisible]: areDeailsVisible
+                      [classes.detailHidden]: true,
+                      [classes.detailVisible]: areDeailsVisible
                     })}
                     >
                       {transactionTask.data.slot
@@ -272,9 +272,9 @@ function Transaction ({
                     </div>
                     <button
                       className={clsx({
-                        [classes.seeDetailsButton]: true,
-                        [classes.seeDetailsButtonHidden]: areDeailsVisible,
-                        [classes.seeDetailsVisible]: true
+                        [classes.detailButton]: true,
+                        [classes.detailButtonHidden]: areDeailsVisible,
+                        [classes.detailVisible]: true
                       })}
                       onClick={() => handleSeedetailsClick()}
                     >
@@ -283,9 +283,9 @@ function Transaction ({
                     </button>
                     <button
                       className={clsx({
-                        [classes.seeDetailsButton]: true,
-                        [classes.seeDetailsHidden]: true,
-                        [classes.seeDetailsVisible]: areDeailsVisible
+                        [classes.detailButton]: true,
+                        [classes.detailHidden]: true,
+                        [classes.detailVisible]: areDeailsVisible
                       })}
                       onClick={() => handleClosedetailsClick()}
                     >

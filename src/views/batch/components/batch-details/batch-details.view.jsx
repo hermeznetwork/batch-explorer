@@ -76,8 +76,8 @@ function BatchDetails ({ batch }) {
         </div>
       </div>
       <div className={clsx({
-        [classes.seeDetailsHidden]: true,
-        [classes.seeDetailsVisible]: areDeailsVisible
+        [classes.detailHidden]: true,
+        [classes.detailVisible]: areDeailsVisible
       })}
       >
         <div className={classes.row}>
@@ -124,9 +124,9 @@ function BatchDetails ({ batch }) {
       </div>
       <button
         className={clsx({
-          [classes.seeDetailsButton]: true,
-          [classes.seeDetailsButtonHidden]: areDeailsVisible,
-          [classes.seeDetailsVisible]: true
+          [classes.detailButton]: true,
+          [classes.detailButtonHidden]: areDeailsVisible,
+          [classes.detailVisible]: true
         })}
         onClick={() => handleSeedetailsClick()}
       >
@@ -135,9 +135,9 @@ function BatchDetails ({ batch }) {
       </button>
       <button
         className={clsx({
-          [classes.seeDetailsButton]: true,
-          [classes.seeDetailsHidden]: true,
-          [classes.seeDetailsVisible]: areDeailsVisible
+          [classes.detailButton]: true,
+          [classes.detailHidden]: true,
+          [classes.detailVisible]: areDeailsVisible
         })}
         onClick={() => handleClosedetailsClick()}
       >
