@@ -1,4 +1,5 @@
 import React from 'react'
+import getTimeAgo from '../../../../utils/time-converter'
 
 import useOverviewStyles from './overview.styles'
 
@@ -13,10 +14,10 @@ function Overview ({ overview }) {
             Last batch:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.lastBatch}
+            {overview.network.lastBatch.batchNum}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            {getTimeAgo(overview.network.lastBatch.timestamp)}
           </div>
         </div>
         <div className={classes.col}>
@@ -24,10 +25,10 @@ function Overview ({ overview }) {
             Avg transactions per batch:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.transactionsPerBatch}
+            {overview.metrics.transactionsPerBatch}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            Last 24 hrs
           </div>
         </div>
       </div>
@@ -38,10 +39,10 @@ function Overview ({ overview }) {
             Avg Batch Time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.batchFrequency}
+            {overview.metrics.batchFrequency}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-           TODO
+            Last 24 hrs
           </div>
         </div>
         <div className={classes.col}>
@@ -49,10 +50,10 @@ function Overview ({ overview }) {
             Transactions Per Second:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.transactionsPerSecond}
+            {overview.metrics.transactionsPerSecond}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            Last 24 hrs
           </div>
         </div>
       </div>
@@ -63,10 +64,10 @@ function Overview ({ overview }) {
             Total Wallets:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.totalBJJs}
+            {overview.metrics.totalBJJs}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            {overview.totalAccounts} accounts
+            {overview.metrics.totalAccounts} accounts
           </div>
         </div>
         <div className={classes.col}>
@@ -74,10 +75,10 @@ function Overview ({ overview }) {
             Avg transaction fee:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.avgTransactionFee}
+            {overview.metrics.avgTransactionFee}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            TODO
+            Last 24 hrs
           </div>
         </div>
       </div>

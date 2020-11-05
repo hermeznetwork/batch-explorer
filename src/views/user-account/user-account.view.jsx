@@ -11,6 +11,9 @@ import Container from '../shared/container/container.view'
 import AccountDetails from './components/account-details/account-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchAccount, fetchTransactions } from '../../store/user-account/user-account.thunks'
+import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
+import { copyToClipboard } from '../../utils/dom'
+import Button from '../shared/button/button.view'
 
 function UserAccount ({
   onLoadAccount,
@@ -19,12 +22,28 @@ function UserAccount ({
   transactionsTask
 }) {
   const classes = useUserAccountStyles()
-  const { hezEthereumAddress } = useParams()
+  const { address } = useParams()
+  const [isFirstTabVisible, setFirstTabVisible] = React.useState()
+  const [isSecondTabVisible, setSecondTabVisible] = React.useState()
+
+  function handleCopyToClipboardClick (item) {
+    copyToClipboard(item)
+  }
+
+  function handleFirstTabClick () {
+    setFirstTabVisible(true)
+    setSecondTabVisible(false)
+  }
+
+  function handleSecondTabClick () {
+    setFirstTabVisible(false)
+    setSecondTabVisible(true)
+  }
 
   React.useEffect(() => {
-    onLoadAccount(hezEthereumAddress)
-    onLoadTransactions(hezEthereumAddress)
-  }, [hezEthereumAddress, onLoadAccount, onLoadTransactions])
+    onLoadAccount(address)
+    onLoadTransactions(address)
+  }, [address, onLoadAccount, onLoadTransactions])
 
   return (
     <div className={classes.root}>
@@ -45,18 +64,38 @@ function UserAccount ({
                       <h4 className={classes.title}>User Address</h4>
                       <div className={classes.row}>
                         <div className={classes.col}>
-                          Hermez address:
+                          Hermez address
                         </div>
                         <div className={classes.col}>
-                          {accountTask.data.accounts[0].bjj}
+                          <div className={classes.rowWrapped}>
+                            <div>
+                              <Button
+                                icon={<CopyIcon />}
+                                onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].bjj)}
+                              />
+                            </div>
+                            <div className={classes.colWrapped}>
+                              {accountTask.data.accounts[0].bjj}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className={classes.row}>
                         <div className={classes.col}>
-                          Ethereum address:
+                          Ethereum address
                         </div>
                         <div className={classes.col}>
-                          {accountTask.data.accounts[0].hezEthereumAddress}
+                          <div className={classes.rowWrapped}>
+                            <div>
+                              <Button
+                                icon={<CopyIcon />}
+                                onClick={() => handleCopyToClipboardClick(accountTask.data.accounts[0].hezEthereumAddress)}
+                              />
+                            </div>
+                            <div className={classes.colWrapped}>
+                              {accountTask.data.accounts[0].hezEthereumAddress}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className={classes.row}>
@@ -69,22 +108,46 @@ function UserAccount ({
                       </div>
                     </section>
                     <section>
-                      <h4>Token Accounts</h4>
-                      {accountTask.data.accounts.map((account, index) =>
-                        <div
-                          key={account.accountIndex}
-                          className={clsx({ [classes.account]: index > 0 })}
+                      <div className={classes.toggleWrapper}>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: true,
+                            [classes.notActive]: isSecondTabVisible
+                          })}
+                          onClick={() => handleFirstTabClick()}
                         >
-                          <AccountDetails
-                            tokenSymbol={account.token.symbol}
-                            ethereumAddress={account.token.ethereumAddress}
-                            hezEthereumAddress={account.hezEthereumAddress}
-                            balance={getTokenAmountString(account.balance, account.token.decimals)}
-                            tokenId={account.token.id}
-                            accountIndex={account.accountIndex}
-                          />
-                        </div>
-                      )}
+                          Token accounts
+                        </button>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: isSecondTabVisible,
+                            [classes.notActive]: isFirstTabVisible
+                          })}
+                          onClick={() => handleSecondTabClick()}
+                        >
+                          Transactions
+                        </button>
+                      </div>
+                      <div className={clsx({
+                        [classes.hidden]: isSecondTabVisible,
+                        [classes.firstTabVisible]: isFirstTabVisible
+                      })}
+                      >
+                        {accountTask.data.accounts.map((account, index) =>
+                          <div
+                            key={account.accountIndex}
+                            className={clsx({ [classes.account]: index > 0 })}
+                          >
+                            <AccountDetails
+                              tokenSymbol={account.token.symbol}
+                              balance={getTokenAmountString(account.balance, account.token.decimals)}
+                              accountIndex={account.accountIndex}
+                            />
+                          </div>
+                        )}
+                      </div>
                     </section>
                   </>
                 )
@@ -106,10 +169,15 @@ function UserAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <h4>Transactions</h4>
-                    <TransactionsList
-                      transactions={transactionsTask.data.transactions}
-                    />
+                    <div className={clsx({
+                      [classes.hidden]: true,
+                      [classes.secondTabVisible]: isSecondTabVisible
+                    })}
+                    >
+                      <TransactionsList
+                        transactions={transactionsTask.data.transactions}
+                      />
+                    </div>
                   </section>
                 )
               }
@@ -137,8 +205,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (hezEthereumAddress) => dispatch(fetchAccount(hezEthereumAddress)),
-  onLoadTransactions: (hezEthereumAddress) => dispatch(fetchTransactions(hezEthereumAddress))
+  onLoadAccount: (address) => dispatch(fetchAccount(address)),
+  onLoadTransactions: (address) => dispatch(fetchTransactions(address))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

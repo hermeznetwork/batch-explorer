@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { getTokenAmountString } from '../../../../utils/bigint-decimals-converter'
 
 import useSlotDetailsStyles from './slot-details.styles'
 
@@ -9,14 +10,6 @@ function SlotDetails ({ slot, bids }) {
   if (slot.closedAuction) {
     return (
       <div>
-        <div className={classes.row}>
-          <div className={classes.col}>
-            Slot
-          </div>
-          <div className={classes.col}>
-            {slot.slotNum}
-          </div>
-        </div>
         <div className={classes.row}>
           <div className={classes.col}>
             Status
@@ -38,7 +31,7 @@ function SlotDetails ({ slot, bids }) {
             Winner bid
           </div>
           <div className={classes.col}>
-            TODO
+            {getTokenAmountString(slot.winnerBid.bidValue)} HEZ
           </div>
         </div>
         <div className={classes.row}>
@@ -55,13 +48,20 @@ function SlotDetails ({ slot, bids }) {
     return (
       <div>
         <div className={classes.row}>
-          Slot {slot.slotNum}
+          <div className={classes.col}>
+            Status
+          </div>
+          <div className={classes.col}>
+            Open Auction
+          </div>
         </div>
         <div className={classes.row}>
-          Status: Open Auction
-        </div>
-        <div className={classes.row}>
-          Bids: {bids.length}
+          <div className={classes.col}>
+            Bids
+          </div>
+          <div className={classes.col}>
+            {bids.length}
+          </div>
         </div>
       </div>
     )

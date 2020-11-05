@@ -22,7 +22,7 @@ const routes = [
     component: Coordinator
   },
   {
-    path: '/user-account/:hezEthereumAddress',
+    path: '/user-account/:address',
     component: UserAccount
   },
   {
@@ -34,7 +34,7 @@ const routes = [
     component: Slot
   },
   {
-    path: '/token-account/:address/:tokenId/:accountIndex',
+    path: '/token-account/:accountIndex',
     component: TokenAccount
   },
   {
