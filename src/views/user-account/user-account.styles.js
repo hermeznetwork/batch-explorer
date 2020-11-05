@@ -62,10 +62,7 @@ const useUserAccountStyles = createUseStyles(theme => ({
     minWidth: theme.spacing(17),
     '&:hover': {
       background: theme.palette.grey.light,
-      '&:first-child': {
-        borderRadius: 16
-      },
-      '&:last-child': {
+      '&:first-child, &:last-child': {
         borderRadius: 16
       }
     },
@@ -83,10 +80,7 @@ const useUserAccountStyles = createUseStyles(theme => ({
     background: theme.palette.white,
     border: `1px solid ${theme.palette.grey.ultraLight}`,
     padding: `${theme.spacing(1.5) - 1}px ${theme.spacing(2) - 1}px`,
-    '&:first-child': {
-      borderRadius: 16
-    },
-    '&:last-child': {
+    '&:first-child, &:last-child': {
       borderRadius: 16
     }
   },

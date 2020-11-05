@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { getTokenAmountString } from '../../../../utils/bigint-decimals-converter'
 
 import useSlotDetailsStyles from './slot-details.styles'
 
@@ -30,7 +31,7 @@ function SlotDetails ({ slot, bids }) {
             Winner bid
           </div>
           <div className={classes.col}>
-            {slot.winner.timeStamp}
+            {getTokenAmountString(slot.winnerBid.bidValue)} HEZ
           </div>
         </div>
         <div className={classes.row}>
