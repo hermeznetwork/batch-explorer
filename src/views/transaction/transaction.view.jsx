@@ -27,11 +27,11 @@ function Transaction ({
     copyToClipboard(item)
   }
 
-  function handleSeedetailsClick () {
+  function handleDetailClick () {
     setDetailsVisible(true)
   }
 
-  function handleClosedetailsClick () {
+  function handleCloseDetailClick () {
     setDetailsVisible(false)
   }
 
@@ -276,7 +276,7 @@ function Transaction ({
                         [classes.detailButtonHidden]: areDeailsVisible,
                         [classes.detailVisible]: true
                       })}
-                      onClick={() => handleSeedetailsClick()}
+                      onClick={() => handleDetailClick()}
                     >
                         See details
                       <img src={angleDown} className={classes.icon} alt='See details' />
@@ -287,7 +287,7 @@ function Transaction ({
                         [classes.detailHidden]: true,
                         [classes.detailVisible]: areDeailsVisible
                       })}
-                      onClick={() => handleClosedetailsClick()}
+                      onClick={() => handleCloseDetailClick()}
                     >
                         Close details
                       <img src={angleUp} className={classes.icon} alt='Close details' />

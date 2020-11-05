@@ -17,11 +17,11 @@ function BatchDetails ({ batch }) {
     copyToClipboard(item)
   }
 
-  function handleSeedetailsClick () {
+  function handleDetailClick () {
     setDetailsVisible(true)
   }
 
-  function handleClosedetailsClick () {
+  function handleCloseDetailClick () {
     setDetailsVisible(false)
   }
 
@@ -128,7 +128,7 @@ function BatchDetails ({ batch }) {
           [classes.detailButtonHidden]: areDeailsVisible,
           [classes.detailVisible]: true
         })}
-        onClick={() => handleSeedetailsClick()}
+        onClick={() => handleDetailClick()}
       >
         See details
         <img src={angleDown} className={classes.icon} alt='See details' />
@@ -139,7 +139,7 @@ function BatchDetails ({ batch }) {
           [classes.detailHidden]: true,
           [classes.detailVisible]: areDeailsVisible
         })}
-        onClick={() => handleClosedetailsClick()}
+        onClick={() => handleCloseDetailClick()}
       >
         Close details
         <img src={angleUp} className={classes.icon} alt='Close details' />
