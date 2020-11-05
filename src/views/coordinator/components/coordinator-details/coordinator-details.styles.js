@@ -12,6 +12,11 @@ const useCoordinatorDetailsStyles = createUseStyles(theme => ({
       justifyContent: 'space-between'
     }
   },
+  rowWrapped: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: theme.spacing(50)
+  },
   col: {
     fontWeight: theme.fontWeights.medium,
     '&:last-child': {
@@ -25,6 +30,9 @@ const useCoordinatorDetailsStyles = createUseStyles(theme => ({
         marginTop: 0
       }
     }
+  },
+  colWrapped: {
+    maxWidth: theme.spacing(45)
   },
   link: {
     color: theme.palette.secondary.main,

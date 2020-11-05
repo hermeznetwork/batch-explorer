@@ -24,9 +24,21 @@ function UserAccount ({
 }) {
   const classes = useUserAccountStyles()
   const { address } = useParams()
+  const [isFirstTabVisible, setFirstTabVisible] = React.useState()
+  const [isSecondTabVisible, setSecondTabVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
+  }
+
+  function handleFirstTabClick () {
+    setFirstTabVisible(true)
+    setSecondTabVisible(false)
+  }
+
+  function handleSecondTabClick () {
+    setFirstTabVisible(false)
+    setSecondTabVisible(true)
   }
 
   React.useEffect(() => {
@@ -56,11 +68,17 @@ function UserAccount ({
                           Hermez address
                         </div>
                         <div className={classes.col}>
-                          <Button
-                            icon={<CopyIcon />}
-                            onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].bjj)}
-                          />
-                          {accountsTask.data.accounts[0].bjj}
+                          <div className={classes.rowWrapped}>
+                            <div>
+                              <Button
+                                icon={<CopyIcon />}
+                                onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].bjj)}
+                              />
+                            </div>
+                            <div className={classes.colWrapped}>
+                              {accountsTask.data.accounts[0].bjj}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className={classes.row}>
@@ -68,11 +86,17 @@ function UserAccount ({
                           Ethereum address
                         </div>
                         <div className={classes.col}>
-                          <Button
-                            icon={<CopyIcon />}
-                            onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].hezEthereumAddress)}
-                          />
-                          {accountsTask.data.accounts[0].hezEthereumAddress}
+                          <div className={classes.rowWrapped}>
+                            <div>
+                              <Button
+                                icon={<CopyIcon />}
+                                onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].hezEthereumAddress)}
+                              />
+                            </div>
+                            <div className={classes.colWrapped}>
+                              {accountsTask.data.accounts[0].hezEthereumAddress}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className={classes.row}>
@@ -85,32 +109,59 @@ function UserAccount ({
                       </div>
                     </section>
                     <section>
-                      <h4>Token Accounts</h4>
-                      {accountsTask.data.accounts.map((account, index) =>
-                        <div
-                          key={account.accountIndex}
-                          className={clsx({ [classes.account]: index > 0 })}
+                      <div className={classes.toggleWrapper}>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: true,
+                            [classes.notActive]: isSecondTabVisible
+                          })}
+                          onClick={() => handleFirstTabClick()}
                         >
-                          <InfiniteScroll
-                            asyncTaskStatus={accountsTask.status}
-                            paginationData={accountsTask.data.pagination}
-                            onLoadNextPage={(fromItem) => {
-                              if (accountsTask.status === 'successful') {
-                                onLoadAccount(
-                                  accountsTask.data.accounts[0].hezEthereumAddress,
-                                  fromItem
-                                )
-                              }
-                            }}
+                          Token accounts
+                        </button>
+                        <button
+                          className={clsx({
+                            [classes.toggle]: true,
+                            [classes.active]: isSecondTabVisible,
+                            [classes.notActive]: isFirstTabVisible
+                          })}
+                          onClick={() => handleSecondTabClick()}
+                        >
+                          Transactions
+                        </button>
+                      </div>
+                      <div className={clsx({
+                        [classes.hidden]: isSecondTabVisible,
+                        [classes.firstTabVisible]: isFirstTabVisible
+                      })}
+                      >
+                        {accountsTask.data.accounts.map((account, index) =>
+                          <div
+                            key={account.accountIndex}
+                            className={clsx({ [classes.account]: index > 0 })}
                           >
-                            <AccountDetails
-                              tokenSymbol={account.token.symbol}
-                              balance={getTokenAmountString(account.balance, account.token.decimals)}
-                              accountIndex={account.accountIndex}
-                            />
-                          </InfiniteScroll>
-                        </div>
-                      )}
+                            <InfiniteScroll
+                              asyncTaskStatus={accountsTask.status}
+                              paginationData={accountsTask.data.pagination}
+                              onLoadNextPage={(fromItem) => {
+                                if (accountsTask.status === 'successful') {
+                                  onLoadAccount(
+                                    accountsTask.data.accounts[0].hezEthereumAddress,
+                                    fromItem
+                                  )
+                                }
+                              }}
+                            >
+                              <AccountDetails
+                                tokenSymbol={account.token.symbol}
+                                balance={getTokenAmountString(account.balance, account.token.decimals)}
+                                accountIndex={account.accountIndex}
+                              />
+                            </InfiniteScroll>
+                          </div>
+                        )}
+                      </div>
                     </section>
                   </>
                 )
@@ -132,23 +183,28 @@ function UserAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <h4>Transactions</h4>
-                    <InfiniteScroll
-                      asyncTaskStatus={transactionsTask.status}
-                      paginationData={transactionsTask.data.pagination}
-                      onLoadNextPage={(fromItem) => {
-                        if (transactionsTask.status === 'successful') {
-                          onLoadTransactions(
-                            accountsTask.data.accounts[0].hezEthereumAddress,
-                            fromItem
-                          )
-                        }
-                      }}
+                    <div className={clsx({
+                      [classes.hidden]: true,
+                      [classes.secondTabVisible]: isSecondTabVisible
+                    })}
                     >
-                      <TransactionsList
-                        transactions={transactionsTask.data.transactions}
-                      />
-                    </InfiniteScroll>
+                      <InfiniteScroll
+                        asyncTaskStatus={transactionsTask.status}
+                        paginationData={transactionsTask.data.pagination}
+                        onLoadNextPage={(fromItem) => {
+                          if (transactionsTask.status === 'successful') {
+                            onLoadTransactions(
+                              accountsTask.data.accounts[0].hezEthereumAddress,
+                              fromItem
+                            )
+                          }
+                        }}
+                      >
+                        <TransactionsList
+                          transactions={transactionsTask.data.transactions}
+                        />
+                      </InfiniteScroll>
+                    </div>
                   </section>
                 )
               }

@@ -11,18 +11,18 @@ import Button from '../../../shared/button/button.view'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
-  const [areDeailsVisible, seeDetailsVisible] = React.useState()
+  const [areDeailsVisible, setDetailsVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
   }
 
-  function handleSeedetailsClick () {
-    seeDetailsVisible(true)
+  function handleDetailClick () {
+    setDetailsVisible(true)
   }
 
-  function handleClosedetailsClick () {
-    seeDetailsVisible(false)
+  function handleCloseDetailClick () {
+    setDetailsVisible(false)
   }
 
   return (
@@ -30,11 +30,17 @@ function BatchDetails ({ batch }) {
       <div className={classes.row}>
         <div className={classes.col}>Eth Block Hash</div>
         <div className={classes.col}>
-          <Button
-            icon={<CopyIcon />}
-            onClick={() => handleCopyToClipboardClick(batch.ethereumBlockHash)}
-          />
-          {batch.ethereumBlockHash}
+          <div className={classes.rowWrapped}>
+            <div>
+              <Button
+                icon={<CopyIcon />}
+                onClick={() => handleCopyToClipboardClick(batch.ethereumBlockHash)}
+              />
+            </div>
+            <div className={classes.colWrapped}>
+              {batch.ethereumBlockHash}
+            </div>
+          </div>
         </div>
       </div>
       <div className={classes.row}>
@@ -56,16 +62,22 @@ function BatchDetails ({ batch }) {
       <div className={classes.row}>
         <div className={classes.col}>Coordinator</div>
         <div className={`${classes.col} ${classes.link}`}>
-          <Button
-            icon={<CopyIcon />}
-            onClick={() => handleCopyToClipboardClick(batch.forgerAddr)}
-          />
-          <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
+          <div className={classes.rowWrapped}>
+            <div>
+              <Button
+                icon={<CopyIcon />}
+                onClick={() => handleCopyToClipboardClick(batch.forgerAddr)}
+              />
+            </div>
+            <div className={classes.colWrapped}>
+              <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
+            </div>
+          </div>
         </div>
       </div>
       <div className={clsx({
-        [classes.seeDetailsHidden]: true,
-        [classes.seeDetailsVisible]: areDeailsVisible
+        [classes.detailHidden]: true,
+        [classes.detailVisible]: areDeailsVisible
       })}
       >
         <div className={classes.row}>
@@ -79,42 +91,55 @@ function BatchDetails ({ batch }) {
         <div className={classes.row}>
           <div className={classes.col}>State root</div>
           <div className={classes.col}>
-            <Button
-              icon={<CopyIcon />}
-              onClick={() => handleCopyToClipboardClick(batch.stateRoot)}
-            />
-            {batch.stateRoot}
+            <div className={classes.rowWrapped}>
+              <div>
+                <Button
+                  icon={<CopyIcon />}
+                  onClick={() => handleCopyToClipboardClick(batch.stateRoot)}
+                />
+              </div>
+              <div className={classes.colWrapped}>
+                {batch.stateRoot}
+              </div>
+            </div>
+
           </div>
         </div>
         <div className={classes.row}>
           <div className={classes.col}>Exit root</div>
           <div className={classes.col}>
-            <Button
-              icon={<CopyIcon />}
-              onClick={() => handleCopyToClipboardClick(batch.exitRoot)}
-            />
-            {batch.exitRoot}
+            <div className={classes.rowWrapped}>
+              <div>
+                <Button
+                  icon={<CopyIcon />}
+                  onClick={() => handleCopyToClipboardClick(batch.exitRoot)}
+                />
+              </div>
+              <div className={classes.colWrapped}>
+                {batch.exitRoot}
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <button
         className={clsx({
-          [classes.seeDetailsButton]: true,
-          [classes.seeDetailsButtonHidden]: areDeailsVisible,
-          [classes.seeDetailsVisible]: true
+          [classes.detailButton]: true,
+          [classes.detailButtonHidden]: areDeailsVisible,
+          [classes.detailVisible]: true
         })}
-        onClick={() => handleSeedetailsClick()}
+        onClick={() => handleDetailClick()}
       >
         See details
         <img src={angleDown} className={classes.icon} alt='See details' />
       </button>
       <button
         className={clsx({
-          [classes.seeDetailsButton]: true,
-          [classes.seeDetailsHidden]: true,
-          [classes.seeDetailsVisible]: areDeailsVisible
+          [classes.detailButton]: true,
+          [classes.detailHidden]: true,
+          [classes.detailVisible]: areDeailsVisible
         })}
-        onClick={() => handleClosedetailsClick()}
+        onClick={() => handleCloseDetailClick()}
       >
         Close details
         <img src={angleUp} className={classes.icon} alt='Close details' />

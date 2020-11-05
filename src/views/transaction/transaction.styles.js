@@ -20,6 +20,11 @@ const useTransactionStyles = createUseStyles(theme => ({
       justifyContent: 'space-between'
     }
   },
+  rowWrapped: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: theme.spacing(50)
+  },
   col: {
     fontWeight: theme.fontWeights.medium,
     '&:last-child': {
@@ -32,6 +37,9 @@ const useTransactionStyles = createUseStyles(theme => ({
         marginTop: 0
       }
     }
+  },
+  colWrapped: {
+    maxWidth: theme.spacing(45)
   },
   status: {
     fontWeight: theme.fontWeights.medium,
@@ -52,11 +60,11 @@ const useTransactionStyles = createUseStyles(theme => ({
   icon: {
     paddingLeft: theme.spacing(1)
   },
-  seeDetailsButton: {
+  detailButton: {
     fontWeight: theme.fontWeights.bold,
     background: theme.palette.grey.veryLight,
-    borderRadius: '16px',
-    color: theme.palette.grey.main,
+    borderRadius: 16,
+    color: theme.palette.black,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2)}px`,
     textAlign: 'center',
     marginTop: theme.spacing(3),
@@ -70,13 +78,13 @@ const useTransactionStyles = createUseStyles(theme => ({
       outline: 'none'
     }
   },
-  seeDetailsHidden: {
+  detailHidden: {
     display: 'none'
   },
-  seeDetailsVisible: {
+  detailVisible: {
     display: 'block'
   },
-  seeDetailsButtonHidden: {
+  detailButtonHidden: {
     display: 'none'
   }
 }))

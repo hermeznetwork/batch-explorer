@@ -21,18 +21,18 @@ function Transaction ({
 }) {
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
-  const [areDeailsVisible, seeDetailsVisible] = React.useState()
+  const [areDeailsVisible, setDetailsVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
   }
 
-  function handleSeedetailsClick () {
-    seeDetailsVisible(true)
+  function handleDetailClick () {
+    setDetailsVisible(true)
   }
 
-  function handleClosedetailsClick () {
-    seeDetailsVisible(false)
+  function handleCloseDetailClick () {
+    setDetailsVisible(false)
   }
 
   React.useEffect(() => {
@@ -60,11 +60,17 @@ function Transaction ({
                         Transaction ID
                       </div>
                       <div className={classes.col}>
-                        <Button
-                          icon={<CopyIcon />}
-                          onClick={() => handleCopyToClipboardClick(transactionTask.data.id)}
-                        />
-                        {transactionTask.data.id}
+                        <div className={classes.rowWrapped}>
+                          <div>
+                            <Button
+                              icon={<CopyIcon />}
+                              onClick={() => handleCopyToClipboardClick(transactionTask.data.id)}
+                            />
+                          </div>
+                          <div className={classes.colWrapped}>
+                            {transactionTask.data.id}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className={classes.row}>
@@ -101,13 +107,19 @@ function Transaction ({
                         <div className={classes.row}>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Button
-                              icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromHezEthereumAddress)}
-                            />
-                            <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
-                              {transactionTask.data.fromAccountIndex}
-                            </Link>
+                            <div className={classes.rowWrapped}>
+                              <div>
+                                <Button
+                                  icon={<CopyIcon />}
+                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.fromHezEthereumAddress)}
+                                />
+                              </div>
+                              <div className={classes.colWrapped}>
+                                <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
+                                  {transactionTask.data.fromAccountIndex}
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ) : <></>}
@@ -116,13 +128,19 @@ function Transaction ({
                         <div className={classes.row}>
                           <div className={classes.col}>From</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Button
-                              icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.fromBjj)}
-                            />
-                            <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
-                              From: {transactionTask.data.fromAccountIndex}
-                            </Link>
+                            <div className={classes.rowWrapped}>
+                              <div>
+                                <Button
+                                  icon={<CopyIcon />}
+                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.fromBjj)}
+                                />
+                              </div>
+                              <div className={classes.colWrapped}>
+                                <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
+                                  From: {transactionTask.data.fromAccountIndex}
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ) : <></>}
@@ -140,13 +158,19 @@ function Transaction ({
                         <div className={classes.row}>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Button
-                              icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress)}
-                            />
-                            <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
-                              {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
-                            </Link>
+                            <div className={classes.rowWrapped}>
+                              <div>
+                                <Button
+                                  icon={<CopyIcon />}
+                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress)}
+                                />
+                              </div>
+                              <div className={classes.colWrapped}>
+                                <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
+                                  {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ) : <></>}
@@ -155,13 +179,19 @@ function Transaction ({
                         <div className={classes.row}>
                           <div className={classes.col}>To</div>
                           <div className={`${classes.col} ${classes.link}`}>
-                            <Button
-                              icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj)}
-                            />
-                            <Link to={`/user-account/${transactionTask.data.toBjj}`}>
-                              {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
-                            </Link>
+                            <div className={classes.rowWrapped}>
+                              <div>
+                                <Button
+                                  icon={<CopyIcon />}
+                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj)}
+                                />
+                              </div>
+                              <div className={classes.colWrapped}>
+                                <Link to={`/user-account/${transactionTask.data.toBjj}`}>
+                                  {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ) : <></>}
@@ -194,8 +224,8 @@ function Transaction ({
                         </div>
                       ) : <></>}
                     <div className={clsx({
-                      [classes.seeDetailsHidden]: true,
-                      [classes.seeDetailsVisible]: areDeailsVisible
+                      [classes.detailHidden]: true,
+                      [classes.detailVisible]: areDeailsVisible
                     })}
                     >
                       {transactionTask.data.slot
@@ -242,22 +272,22 @@ function Transaction ({
                     </div>
                     <button
                       className={clsx({
-                        [classes.seeDetailsButton]: true,
-                        [classes.seeDetailsButtonHidden]: areDeailsVisible,
-                        [classes.seeDetailsVisible]: true
+                        [classes.detailButton]: true,
+                        [classes.detailButtonHidden]: areDeailsVisible,
+                        [classes.detailVisible]: true
                       })}
-                      onClick={() => handleSeedetailsClick()}
+                      onClick={() => handleDetailClick()}
                     >
                         See details
                       <img src={angleDown} className={classes.icon} alt='See details' />
                     </button>
                     <button
                       className={clsx({
-                        [classes.seeDetailsButton]: true,
-                        [classes.seeDetailsHidden]: true,
-                        [classes.seeDetailsVisible]: areDeailsVisible
+                        [classes.detailButton]: true,
+                        [classes.detailHidden]: true,
+                        [classes.detailVisible]: areDeailsVisible
                       })}
-                      onClick={() => handleClosedetailsClick()}
+                      onClick={() => handleCloseDetailClick()}
                     >
                         Close details
                       <img src={angleUp} className={classes.icon} alt='Close details' />

@@ -19,11 +19,17 @@ function CoordinatorDetails ({ coordinator }) {
           Forger address
         </div>
         <div className={classes.col}>
-          <Button
-            icon={<CopyIcon />}
-            onClick={() => handleCopyToClipboardClick(coordinator.forgerAddr)}
-          />
-          {coordinator.forgerAddr}
+          <div className={classes.rowWrapped}>
+            <div>
+              <Button
+                icon={<CopyIcon />}
+                onClick={() => handleCopyToClipboardClick(coordinator.forgerAddr)}
+              />
+            </div>
+            <div className={classes.colWrapped}>
+              {coordinator.forgerAddr}
+            </div>
+          </div>
         </div>
       </div>
       <div className={classes.row}>
@@ -31,11 +37,18 @@ function CoordinatorDetails ({ coordinator }) {
           Bidder address
         </div>
         <div className={classes.col}>
-          <Button
-            icon={<CopyIcon />}
-            onClick={() => handleCopyToClipboardClick(coordinator.bidderAddr)}
-          />
-          {coordinator.bidderAddr}
+          <div className={classes.rowWrapped}>
+            <div>
+              <Button
+                icon={<CopyIcon />}
+                onClick={() => handleCopyToClipboardClick(coordinator.bidderAddr)}
+              />
+            </div>
+            <div className={classes.colWrapped}>
+              {coordinator.bidderAddr}
+            </div>
+          </div>
+
         </div>
       </div>
       <div className={classes.row}>

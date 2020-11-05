@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import clsx from 'clsx'
 
 import useCoordinatorStyles from './coordinator.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -21,6 +22,18 @@ function Coordinator ({
 }) {
   const classes = useCoordinatorStyles()
   const { coordinatorId } = useParams()
+  const [isFirstTabVisible, setFirstTabVisible] = React.useState()
+  const [isSecondTabVisible, setSecondTabVisible] = React.useState()
+
+  function handleFirstTabClick () {
+    setFirstTabVisible(true)
+    setSecondTabVisible(false)
+  }
+
+  function handleSecondTabClick () {
+    setFirstTabVisible(false)
+    setSecondTabVisible(true)
+  }
 
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
@@ -66,12 +79,40 @@ function Coordinator ({
               }
               case 'successful': {
                 return (
-                  <section>
-                    <h4 className={classes.title}>Forged batches</h4>
-                    <BatchesList
-                      batches={batchesTask.data.batches}
-                    />
-                  </section>
+                  <>
+                    <div className={classes.toggleWrapper}>
+                      <button
+                        className={clsx({
+                          [classes.toggle]: true,
+                          [classes.active]: true,
+                          [classes.notActive]: isSecondTabVisible
+                        })}
+                        onClick={() => handleFirstTabClick()}
+                      >
+                        Forged batches
+                      </button>
+                      <button
+                        className={clsx({
+                          [classes.toggle]: true,
+                          [classes.active]: isSecondTabVisible,
+                          [classes.notActive]: isFirstTabVisible
+                        })}
+                        onClick={() => handleSecondTabClick()}
+                      >
+                        Winner bids
+                      </button>
+                    </div>
+
+                    <div className={clsx({
+                      [classes.hidden]: isSecondTabVisible,
+                      [classes.firstTabVisible]: isFirstTabVisible
+                    })}
+                    >
+                      <BatchesList
+                        batches={batchesTask.data.batches}
+                      />
+                    </div>
+                  </>
                 )
               }
               default: {
@@ -90,12 +131,15 @@ function Coordinator ({
               }
               case 'successful': {
                 return (
-                  <section>
-                    <h4 className={classes.title}>Winner bids</h4>
+                  <div className={clsx({
+                    [classes.hidden]: true,
+                    [classes.secondTabVisible]: isSecondTabVisible
+                  })}
+                  >
                     <BidsList
                       bids={bidsTask.data.bids}
                     />
-                  </section>
+                  </div>
                 )
               }
               default: {
