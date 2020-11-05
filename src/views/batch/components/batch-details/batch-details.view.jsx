@@ -11,18 +11,18 @@ import Button from '../../../shared/button/button.view'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
-  const [areDeailsVisible, seeDetailsVisible] = React.useState()
+  const [areDeailsVisible, setDetailsVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
   }
 
   function handleSeedetailsClick () {
-    seeDetailsVisible(true)
+    setDetailsVisible(true)
   }
 
   function handleClosedetailsClick () {
-    seeDetailsVisible(false)
+    setDetailsVisible(false)
   }
 
   return (

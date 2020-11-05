@@ -21,18 +21,18 @@ function Transaction ({
 }) {
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
-  const [areDeailsVisible, seeDetailsVisible] = React.useState()
+  const [areDeailsVisible, setDetailsVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
   }
 
   function handleSeedetailsClick () {
-    seeDetailsVisible(true)
+    setDetailsVisible(true)
   }
 
   function handleClosedetailsClick () {
-    seeDetailsVisible(false)
+    setDetailsVisible(false)
   }
 
   React.useEffect(() => {
