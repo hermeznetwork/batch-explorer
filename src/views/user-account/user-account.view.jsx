@@ -23,21 +23,21 @@ function UserAccount ({
 }) {
   const classes = useUserAccountStyles()
   const { address } = useParams()
-  const [isFirstTabVisible, firstTabVisible] = React.useState()
-  const [isSecondTabVisible, secondTabVisible] = React.useState()
+  const [isFirstTabVisible, setFirstTabVisible] = React.useState()
+  const [isSecondTabVisible, setSecondTabVisible] = React.useState()
 
   function handleCopyToClipboardClick (item) {
     copyToClipboard(item)
   }
 
   function handleFirstTabClick () {
-    firstTabVisible(true)
-    secondTabVisible(false)
+    setFirstTabVisible(true)
+    setSecondTabVisible(false)
   }
 
   function handleSecondTabClick () {
-    firstTabVisible(false)
-    secondTabVisible(true)
+    setFirstTabVisible(false)
+    setSecondTabVisible(true)
   }
 
   React.useEffect(() => {

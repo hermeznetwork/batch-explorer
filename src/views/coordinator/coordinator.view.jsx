@@ -22,17 +22,17 @@ function Coordinator ({
 }) {
   const classes = useCoordinatorStyles()
   const { coordinatorId } = useParams()
-  const [isFirstTabVisible, firstTabVisible] = React.useState()
-  const [isSecondTabVisible, secondTabVisible] = React.useState()
+  const [isFirstTabVisible, setFirstTabVisible] = React.useState()
+  const [isSecondTabVisible, setSecondTabVisible] = React.useState()
 
   function handleFirstTabClick () {
-    firstTabVisible(true)
-    secondTabVisible(false)
+    setFirstTabVisible(true)
+    setSecondTabVisible(false)
   }
 
   function handleSecondTabClick () {
-    firstTabVisible(false)
-    secondTabVisible(true)
+    setFirstTabVisible(false)
+    setSecondTabVisible(true)
   }
 
   React.useEffect(() => {
