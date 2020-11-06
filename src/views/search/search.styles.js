@@ -37,6 +37,9 @@ const useSearchStyles = createUseStyles(theme => ({
     backgroundColor: theme.palette.secondary.main,
     '&:hover': {
       backgroundColor: theme.palette.orange.dark
+    },
+    '&:focus': {
+      outline: 'none'
     }
   }
 }))
