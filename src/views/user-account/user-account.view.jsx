@@ -10,14 +10,14 @@ import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import AccountDetails from './components/account-details/account-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
-import { fetchAccount, fetchTransactions } from '../../store/user-account/user-account.thunks'
+import { fetchAccounts, fetchTransactions } from '../../store/user-account/user-account.thunks'
 import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
 import { copyToClipboard } from '../../utils/dom'
 import Button from '../shared/button/button.view'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 
 function UserAccount ({
-  onLoadAccount,
+  onLoadAccounts,
   accountsTask,
   onLoadTransactions,
   transactionsTask
@@ -42,9 +42,9 @@ function UserAccount ({
   }
 
   React.useEffect(() => {
-    onLoadAccount(address)
+    onLoadAccounts(address)
     onLoadTransactions(address)
-  }, [address, onLoadAccount, onLoadTransactions])
+  }, [address, onLoadAccounts, onLoadTransactions])
 
   return (
     <div className={classes.root}>
@@ -146,7 +146,7 @@ function UserAccount ({
                               paginationData={accountsTask.data.pagination}
                               onLoadNextPage={(fromItem) => {
                                 if (accountsTask.status === 'successful') {
-                                  onLoadAccount(
+                                  onLoadAccounts(
                                     accountsTask.data.accounts[0].hezEthereumAddress,
                                     fromItem
                                   )
@@ -220,7 +220,7 @@ function UserAccount ({
 }
 
 UserAccount.propTypes = {
-  onLoadAccount: PropTypes.func.isRequired,
+  onLoadAccounts: PropTypes.func.isRequired,
   accountsTask: PropTypes.object.isRequired,
   onLoadTransactions: PropTypes.func.isRequired,
   transactionsTask: PropTypes.object.isRequired
@@ -232,7 +232,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadAccount: (address, fromItem) => dispatch(fetchAccount(address, fromItem)),
+  onLoadAccounts: (address, fromItem) => dispatch(fetchAccounts(address, fromItem)),
   onLoadTransactions: (address, fromItem) => dispatch(fetchTransactions(address, fromItem))
 })
 

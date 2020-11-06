@@ -1,7 +1,7 @@
 import * as userAccountActionTypes from './user-account.actions'
 import * as rollupApi from '../../apis/rollup'
 
-function fetchAccount (address, fromItem) {
+function fetchAccounts (address, fromItem) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadAccount())
 
@@ -21,4 +21,4 @@ function fetchTransactions (address, fromItem) {
   }
 }
 
-export { fetchAccount, fetchTransactions }
+export { fetchAccounts, fetchTransactions }

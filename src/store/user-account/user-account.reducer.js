@@ -1,7 +1,7 @@
 import { userAccountActionTypes } from './user-account.actions'
 import { getPaginationData } from '../../utils/api'
 
-const initialUserAccountReducer = {
+const initialUserAccountState = {
   accountsTask: {
     status: 'pending'
   },
@@ -10,7 +10,7 @@ const initialUserAccountReducer = {
   }
 }
 
-function userAccountReducer (state = initialUserAccountReducer, action) {
+function userAccountReducer (state = initialUserAccountState, action) {
   switch (action.type) {
     case userAccountActionTypes.LOAD_ACCOUNT: {
       return {
@@ -81,7 +81,7 @@ function userAccountReducer (state = initialUserAccountReducer, action) {
       }
     }
     case userAccountActionTypes.RESET_STATE: {
-      return initialUserAccountReducer
+      return initialUserAccountState
     }
     default: {
       return state
