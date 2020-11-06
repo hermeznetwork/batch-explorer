@@ -3,6 +3,7 @@ import axios from 'axios'
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const hezEthereumAddressPattern = new RegExp('^hez:0x[a-fA-F0-9]{40}$')
 const bjjAddressPattern = new RegExp('^hez:[A-Za-z0-9_-]{44}$')
+const DEFAULT_PAGE_SIZE = 20
 
 function isEthereumAddress (test) {
   if (hezEthereumAddressPattern.test(test)) {
@@ -17,11 +18,19 @@ function isBjjAddress (test) {
   return false
 }
 
-async function getAccounts (address, tokenId) {
+function getPageData (fromItem) {
+  return {
+    ...(fromItem !== undefined ? { fromItem } : {}),
+    limit: DEFAULT_PAGE_SIZE
+  }
+}
+
+async function getAccounts (address, tokenId, fromItem) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
-    ...(tokenId ? { tokenId } : {})
+    ...(tokenId ? { tokenId } : {}),
+    ...getPageData(fromItem)
   }
   const response = await axios.get(
       `${baseApiUrl}/accounts`,
@@ -37,13 +46,14 @@ async function getAccount (accountIndex) {
   return response.data
 }
 
-async function getHistoryTransactions (address, tokenId, batchNum, accountIndex) {
+async function getHistoryTransactions (address, tokenId, batchNum, accountIndex, fromItem) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
     ...(tokenId ? { tokenId } : {}),
     ...(batchNum ? { batchNum } : {}),
-    ...(accountIndex ? { accountIndex } : {})
+    ...(accountIndex ? { accountIndex } : {}),
+    ...getPageData(fromItem)
   }
   const response = await axios.get(
     `${baseApiUrl}/transactions-history`,

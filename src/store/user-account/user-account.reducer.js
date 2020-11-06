@@ -1,7 +1,8 @@
 import { userAccountActionTypes } from './user-account.actions'
+import { getPaginationData } from '../../utils/api'
 
-const initialUserAccountReducer = {
-  accountTask: {
+const initialUserAccountState = {
+  accountsTask: {
     status: 'pending'
   },
   transactionsTask: {
@@ -9,29 +10,37 @@ const initialUserAccountReducer = {
   }
 }
 
-function userAccountReducer (state = initialUserAccountReducer, action) {
+function userAccountReducer (state = initialUserAccountState, action) {
   switch (action.type) {
     case userAccountActionTypes.LOAD_ACCOUNT: {
       return {
         ...state,
-        accountTask: {
-          status: 'loading'
-        }
+        accountsTask: state.accountsTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.accountsTask.data }
       }
     }
     case userAccountActionTypes.LOAD_ACCOUNT_SUCCESS: {
+      const accounts = state.accountsTask.status === 'reloading'
+        ? [...state.accountsTask.data.accounts, ...action.data.accounts]
+        : action.data.accounts
+      const pagination = getPaginationData(
+        action.data.accounts,
+        action.data.pagination
+      )
+
       return {
         ...state,
-        accountTask: {
+        accountsTask: {
           status: 'successful',
-          data: action.account
+          data: { accounts, pagination }
         }
       }
     }
     case userAccountActionTypes.LOAD_ACCOUNT_FAILURE: {
       return {
         ...state,
-        accountTask: {
+        accountsTask: {
           status: 'failed',
           error: 'An error ocurred loading the account'
         }
@@ -40,17 +49,25 @@ function userAccountReducer (state = initialUserAccountReducer, action) {
     case userAccountActionTypes.LOAD_TRANSACTIONS: {
       return {
         ...state,
-        transactionsTask: {
-          status: 'loading'
-        }
+        transactionsTask: state.transactionsTask.status === 'successful'
+          ? { status: 'reloading', data: state.transactionsTask.data }
+          : { status: 'loading' }
       }
     }
     case userAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS: {
+      const transactions = state.transactionsTask.status === 'reloading'
+        ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
+        : action.data.transactions
+      const pagination = getPaginationData(
+        action.data.transactions,
+        action.data.pagination
+      )
+
       return {
         ...state,
         transactionsTask: {
           status: 'successful',
-          data: action.transactions
+          data: { transactions, pagination }
         }
       }
     }
@@ -62,6 +79,9 @@ function userAccountReducer (state = initialUserAccountReducer, action) {
           error: 'An error ocurred loading the transactions'
         }
       }
+    }
+    case userAccountActionTypes.RESET_STATE: {
+      return initialUserAccountState
     }
     default: {
       return state

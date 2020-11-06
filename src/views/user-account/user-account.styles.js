@@ -35,7 +35,6 @@ const useUserAccountStyles = createUseStyles(theme => ({
       lineHeight: `${theme.spacing(3)}px`,
       marginTop: theme.spacing(1.5),
       [theme.breakpoints.sm]: {
-        textAlign: 'right',
         marginTop: 0
       }
     }
