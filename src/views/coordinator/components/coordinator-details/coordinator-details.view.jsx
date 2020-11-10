@@ -1,16 +1,10 @@
 import React from 'react'
 
-import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
-import { copyToClipboard } from '../../../../utils/dom'
-import Button from '../../../shared/button/button.view'
+import CopyToClipboardButton from '../../../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 
 function CoordinatorDetails ({ coordinator }) {
-  function handleCopyToClipboardClick (item) {
-    copyToClipboard(item)
-  }
-
   return (
     <section>
       <Row>
@@ -19,12 +13,7 @@ function CoordinatorDetails ({ coordinator }) {
         </Col>
         <Col>
           <Row wrapped>
-            <div>
-              <Button
-                icon={<CopyIcon />}
-                onClick={() => handleCopyToClipboardClick(coordinator.forgerAddr)}
-              />
-            </div>
+            <CopyToClipboardButton content={coordinator.forgerAddr} />
             <Col wrapped>
               {coordinator.forgerAddr}
             </Col>
@@ -37,12 +26,7 @@ function CoordinatorDetails ({ coordinator }) {
         </Col>
         <Col>
           <Row wrapped>
-            <div>
-              <Button
-                icon={<CopyIcon />}
-                onClick={() => handleCopyToClipboardClick(coordinator.bidderAddr)}
-              />
-            </div>
+            <CopyToClipboardButton content={coordinator.bidderAddr} />
             <Col wrapped>
               {coordinator.bidderAddr}
             </Col>

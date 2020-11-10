@@ -5,19 +5,13 @@ import clsx from 'clsx'
 import useBatchDetailsStyles from './batch-details.styles'
 import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
 import { ReactComponent as AngleUp } from '../../../../images/icons/angle-up.svg'
-import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
-import { copyToClipboard } from '../../../../utils/dom'
-import Button from '../../../shared/button/button.view'
+import CopyToClipboardButton from '../../../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
-
-  function handleCopyToClipboardClick (item) {
-    copyToClipboard(item)
-  }
 
   function handleDetailClick () {
     setDetailsVisible(true)
@@ -35,12 +29,7 @@ function BatchDetails ({ batch }) {
         </Col>
         <Col>
           <Row wrapped>
-            <div>
-              <Button
-                icon={<CopyIcon />}
-                onClick={() => handleCopyToClipboardClick(batch.ethereumBlockHash)}
-              />
-            </div>
+            <CopyToClipboardButton content={batch.ethereumBlockHash} />
             <Col wrapped>
               {batch.ethereumBlockHash}
             </Col>
@@ -67,12 +56,7 @@ function BatchDetails ({ batch }) {
         <Col>Coordinator</Col>
         <Col link>
           <Row wrapped>
-            <div>
-              <Button
-                icon={<CopyIcon />}
-                onClick={() => handleCopyToClipboardClick(batch.forgerAddr)}
-              />
-            </div>
+            <CopyToClipboardButton content={batch.forgerAddr} />
             <Col wrapped>
               <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
             </Col>
@@ -96,12 +80,7 @@ function BatchDetails ({ batch }) {
           <Col>State root</Col>
           <Col>
             <Row wrapped>
-              <div>
-                <Button
-                  icon={<CopyIcon />}
-                  onClick={() => handleCopyToClipboardClick(batch.stateRoot)}
-                />
-              </div>
+              <CopyToClipboardButton content={batch.stateRoot} />
               <Col wrapped>
                 {batch.stateRoot}
               </Col>
@@ -112,12 +91,7 @@ function BatchDetails ({ batch }) {
           <Col>Exit root</Col>
           <Col>
             <Row wrapped>
-              <div>
-                <Button
-                  icon={<CopyIcon />}
-                  onClick={() => handleCopyToClipboardClick(batch.exitRoot)}
-                />
-              </div>
+              <CopyToClipboardButton content={batch.exitRoot} />
               <Col wrapped>
                 {batch.exitRoot}
               </Col>

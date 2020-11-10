@@ -9,11 +9,9 @@ import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import AccountDetails from './components/account-details/account-details.view'
-import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchAccounts, fetchTransactions } from '../../store/user-account/user-account.thunks'
-import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
-import { copyToClipboard } from '../../utils/dom'
-import Button from '../shared/button/button.view'
+import TransactionsList from '../shared/transactions-list/transactions-list.view'
+import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
@@ -29,10 +27,6 @@ function UserAccount ({
   const { address } = useParams()
   const [isFirstTabVisible, setFirstTabVisible] = React.useState()
   const [isSecondTabVisible, setSecondTabVisible] = React.useState()
-
-  function handleCopyToClipboardClick (item) {
-    copyToClipboard(item)
-  }
 
   function handleFirstTabClick () {
     setFirstTabVisible(true)
@@ -72,12 +66,7 @@ function UserAccount ({
                         </Col>
                         <Col>
                           <Row wrapped>
-                            <div>
-                              <Button
-                                icon={<CopyIcon />}
-                                onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].bjj)}
-                              />
-                            </div>
+                            <CopyToClipboardButton content={accountsTask.data.accounts[0].bjj} />
                             <Col wrapped>
                               {accountsTask.data.accounts[0].bjj}
                             </Col>
@@ -90,12 +79,7 @@ function UserAccount ({
                         </Col>
                         <Col>
                           <Row wrapped>
-                            <div>
-                              <Button
-                                icon={<CopyIcon />}
-                                onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].hezEthereumAddress)}
-                              />
-                            </div>
+                            <CopyToClipboardButton content={accountsTask.data.accounts[0].hezEthereumAddress} />
                             <Col wrapped>
                               {accountsTask.data.accounts[0].hezEthereumAddress}
                             </Col>
