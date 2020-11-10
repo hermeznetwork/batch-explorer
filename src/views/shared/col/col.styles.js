@@ -1,17 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
-const useSlotDetailsStyles = createUseStyles(theme => ({
-  row: {
-    padding: `${theme.spacing(2.5)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
-    '&:first-child': {
-      borderTop: `1px solid ${theme.palette.grey.ultraLight}`
-    },
-    [theme.breakpoints.sm]: {
-      display: 'flex',
-      justifyContent: 'space-between'
-    }
-  },
+const useColStyles = createUseStyles(theme => ({
   col: {
     fontWeight: theme.fontWeights.medium,
     '&:last-child': {
@@ -26,6 +15,15 @@ const useSlotDetailsStyles = createUseStyles(theme => ({
       }
     }
   },
+  status: {
+    fontWeight: theme.fontWeights.medium,
+    background: theme.palette.green.light,
+    borderRadius: '8px',
+    color: theme.palette.green.main,
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
+    margin: `-${theme.spacing(0.5)}px`,
+    textAlign: 'center'
+  },
   link: {
     color: theme.palette.secondary.main,
     '&:hover': {
@@ -35,4 +33,4 @@ const useSlotDetailsStyles = createUseStyles(theme => ({
   }
 }))
 
-export default useSlotDetailsStyles
+export default useColStyles

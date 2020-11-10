@@ -1,68 +1,66 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { getTokenAmountString } from '../../../../utils/bigint-decimals-converter'
-
-import useSlotDetailsStyles from './slot-details.styles'
+import Row from '../../../shared/row/row'
+import Col from '../../../shared/col/col'
 
 function SlotDetails ({ slot, bids }) {
-  const classes = useSlotDetailsStyles()
-
   if (slot.closedAuction) {
     return (
       <div>
-        <div className={classes.row}>
-          <div className={classes.col}>
+        <Row>
+          <Col>
             Status
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col>
             Closed Auction
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             Bids
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col>
             {bids.length}
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             Winner bid
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col>
             {getTokenAmountString(slot.winnerBid.bidValue)} HEZ
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             Coordinator
-          </div>
-          <div className={`${classes.col} ${classes.link}`}>
+          </Col>
+          <Col link>
             <Link to={`/coordinator/${slot.winner.forgerAddr}`}>{slot.winner.forgerAddr}</Link>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     )
   } else {
     return (
       <div>
-        <div className={classes.row}>
-          <div className={classes.col}>
+        <Row>
+          <Col>
             Status
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col>
             Open Auction
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             Bids
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col>
             {bids.length}
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     )
   }

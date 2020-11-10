@@ -8,6 +8,8 @@ import angleUp from '../../../../images/icons/angle-up.svg'
 import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
 import { copyToClipboard } from '../../../../utils/dom'
 import Button from '../../../shared/button/button.view'
+import Row from '../../../shared/row/row'
+import Col from '../../../shared/col/col'
 
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
@@ -27,9 +29,11 @@ function BatchDetails ({ batch }) {
 
   return (
     <div>
-      <div className={classes.row}>
-        <div className={classes.col}>Eth Block Hash</div>
-        <div className={classes.col}>
+      <Row>
+        <Col>
+          Eth Block Hash
+        </Col>
+        <Col>
           <div className={classes.rowWrapped}>
             <div>
               <Button
@@ -41,27 +45,27 @@ function BatchDetails ({ batch }) {
               {batch.ethereumBlockHash}
             </div>
           </div>
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>Eth Block Number</div>
-        <div className={classes.col}>{batch.ethereumBlockNum}</div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>Status</div>
-        <div className={`${classes.col} ${classes.status}`}>Completed</div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>Timestamp</div>
-        <div className={classes.col}>{new Date(batch.timestamp).toLocaleString()}</div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>Fees Collected</div>
-        <div className={classes.col}>{batch.historicTotalCollectedFeesUSD} USD</div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>Coordinator</div>
-        <div className={`${classes.col} ${classes.link}`}>
+        </Col>
+      </Row>
+      <Row>
+        <Col>Eth Block Number</Col>
+        <Col>{batch.ethereumBlockNum}</Col>
+      </Row>
+      <Row>
+        <Col>Status</Col>
+        <Col status>Completed</Col>
+      </Row>
+      <Row>
+        <Col>Timestamp</Col>
+        <Col>{new Date(batch.timestamp).toLocaleString()}</Col>
+      </Row>
+      <Row>
+        <Col>Fees Collected</Col>
+        <Col>{batch.historicTotalCollectedFeesUSD} USD</Col>
+      </Row>
+      <Row>
+        <Col>Coordinator</Col>
+        <Col link>
           <div className={classes.rowWrapped}>
             <div>
               <Button
@@ -73,24 +77,24 @@ function BatchDetails ({ batch }) {
               <Link to={`/coordinator/${batch.forgerAddr}`}>{batch.forgerAddr}</Link>
             </div>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
       <div className={clsx({
         [classes.detailHidden]: true,
         [classes.detailVisible]: areDeailsVisible
       })}
       >
-        <div className={classes.row}>
-          <div className={classes.col}>Number of txs</div>
-          <div className={classes.col}>{batch.forgeL1TransactionsNum}</div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>Slot</div>
-          <div className={`${classes.col} ${classes.link}`}><Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link></div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>State root</div>
-          <div className={classes.col}>
+        <Row>
+          <Col>Number of txs</Col>
+          <Col>{batch.forgeL1TransactionsNum}</Col>
+        </Row>
+        <Row>
+          <Col>Slot</Col>
+          <Col link><Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link></Col>
+        </Row>
+        <Row>
+          <Col>State root</Col>
+          <Col>
             <div className={classes.rowWrapped}>
               <div>
                 <Button
@@ -102,12 +106,11 @@ function BatchDetails ({ batch }) {
                 {batch.stateRoot}
               </div>
             </div>
-
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={classes.col}>Exit root</div>
-          <div className={classes.col}>
+          </Col>
+        </Row>
+        <Row>
+          <Col>Exit root</Col>
+          <Col>
             <div className={classes.rowWrapped}>
               <div>
                 <Button
@@ -119,8 +122,8 @@ function BatchDetails ({ batch }) {
                 {batch.exitRoot}
               </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
       <button
         className={clsx({

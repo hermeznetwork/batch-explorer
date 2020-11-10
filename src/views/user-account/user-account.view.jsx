@@ -15,6 +15,8 @@ import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
 import { copyToClipboard } from '../../utils/dom'
 import Button from '../shared/button/button.view'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import Row from '../shared/row/row'
+import Col from '../shared/col/col'
 
 function UserAccount ({
   onLoadAccounts,
@@ -63,11 +65,11 @@ function UserAccount ({
                   <>
                     <section>
                       <h4 className={classes.title}>User Address</h4>
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                      <Row>
+                        <Col>
                           Hermez address
-                        </div>
-                        <div className={classes.col}>
+                        </Col>
+                        <Col>
                           <div className={classes.rowWrapped}>
                             <div>
                               <Button
@@ -79,13 +81,13 @@ function UserAccount ({
                               {accountsTask.data.accounts[0].bjj}
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
                           Ethereum address
-                        </div>
-                        <div className={classes.col}>
+                        </Col>
+                        <Col>
                           <div className={classes.rowWrapped}>
                             <div>
                               <Button
@@ -97,16 +99,16 @@ function UserAccount ({
                               {accountsTask.data.accounts[0].hezEthereumAddress}
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
                           Token accounts
-                        </div>
-                        <div className={classes.col}>
+                        </Col>
+                        <Col>
                           {accountsTask.data.accounts.length}
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     </section>
                     <section>
                       <div className={classes.toggleWrapper}>

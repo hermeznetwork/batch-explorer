@@ -4,6 +4,8 @@ import useCoordinatorDetailsStyles from './coordinator-details.styles'
 import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
 import { copyToClipboard } from '../../../../utils/dom'
 import Button from '../../../shared/button/button.view'
+import Row from '../../../shared/row/row'
+import Col from '../../../shared/col/col'
 
 function CoordinatorDetails ({ coordinator }) {
   const classes = useCoordinatorDetailsStyles()
@@ -14,11 +16,11 @@ function CoordinatorDetails ({ coordinator }) {
 
   return (
     <section>
-      <div className={classes.row}>
-        <div className={classes.col}>
+      <Row>
+        <Col>
           Forger address
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col>
           <div className={classes.rowWrapped}>
             <div>
               <Button
@@ -30,13 +32,13 @@ function CoordinatorDetails ({ coordinator }) {
               {coordinator.forgerAddr}
             </div>
           </div>
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           Bidder address
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col>
           <div className={classes.rowWrapped}>
             <div>
               <Button
@@ -48,14 +50,13 @@ function CoordinatorDetails ({ coordinator }) {
               {coordinator.bidderAddr}
             </div>
           </div>
-
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           URL
-        </div>
-        <div className={`${classes.col} ${classes.link}`}>
+        </Col>
+        <Col link>
           <a
             href={coordinator.URL}
             target='_blank'
@@ -63,8 +64,8 @@ function CoordinatorDetails ({ coordinator }) {
           >
             {coordinator.URL}
           </a>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </section>
   )
 }
