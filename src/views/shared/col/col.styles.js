@@ -6,6 +6,8 @@ const useColStyles = createUseStyles(theme => ({
     '&:last-child': {
       fontWeight: theme.fontWeights.bold,
       maxWidth: theme.spacing(52),
+      // token-accounts
+      // width: theme.spacing(20),
       overflowWrap: 'break-word',
       lineHeight: `${theme.spacing(3)}px`,
       marginTop: theme.spacing(1.5),

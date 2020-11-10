@@ -14,6 +14,8 @@ import { ReactComponent as AngleDown } from '../../images/icons/angle-down.svg'
 import { ReactComponent as AngleUp } from '../../images/icons/angle-up.svg'
 import { copyToClipboard } from '../../utils/dom'
 import Button from '../shared/button/button.view'
+import Row from '../shared/row/row'
+import Col from '../shared/col/col'
 
 function Transaction ({
   onLoadTransaction,
@@ -55,11 +57,11 @@ function Transaction ({
                 return (
                   <section>
                     <h4 className={classes.title}>Transaction summary</h4>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                    <Row>
+                      <Col>
                         Transaction ID
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         <div className={classes.rowWrapped}>
                           <div>
                             <Button
@@ -71,42 +73,42 @@ function Transaction ({
                             {transactionTask.data.id}
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Status
-                      </div>
-                      <div className={classes.col}>
-                        <div className={`${classes.col} ${classes.status}`}>
+                      </Col>
+                      <Col>
+                        <Col status>
                           {transactionTask.data.state === 'pend' ? 'Pending' : ''}
                           {transactionTask.data.state === 'fing' ? 'Forging' : ''}
                           {transactionTask.data.state === 'fged' ? 'Forged' : ''}
                           {transactionTask.data.state === 'invl' ? 'Invalid' : ''}
-                        </div>
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                        </Col>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Timestamp
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {new Date(transactionTask.data.timestamp).toLocaleString()}
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Type of transaction
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {transactionTask.data.type}
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
                     {transactionTask.data.fromHezEthereumAddress
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>From</div>
-                          <div className={`${classes.col} ${classes.link}`}>
+                        <Row>
+                          <Col>From</Col>
+                          <Col link>
                             <div className={classes.rowWrapped}>
                               <div>
                                 <Button
@@ -120,14 +122,14 @@ function Transaction ({
                                 </Link>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromBjj
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>From</div>
-                          <div className={`${classes.col} ${classes.link}`}>
+                        <Row>
+                          <Col>From</Col>
+                          <Col link>
                             <div className={classes.rowWrapped}>
                               <div>
                                 <Button
@@ -141,23 +143,23 @@ function Transaction ({
                                 </Link>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && !transactionTask.data.fromBjj && transactionTask.data.fromAccountIndex
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>From</div>
-                          <div className={classes.col}>
+                        <Row>
+                          <Col>From</Col>
+                          <Col>
                             {transactionTask.data.fromAccountIndex}
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {transactionTask.data.toHezEthereumAddress
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>To</div>
-                          <div className={`${classes.col} ${classes.link}`}>
+                        <Row>
+                          <Col>To</Col>
+                          <Col link>
                             <div className={classes.rowWrapped}>
                               <div>
                                 <Button
@@ -171,14 +173,14 @@ function Transaction ({
                                 </Link>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>To</div>
-                          <div className={`${classes.col} ${classes.link}`}>
+                        <Row>
+                          <Col>To</Col>
+                          <Col link>
                             <div className={classes.rowWrapped}>
                               <div>
                                 <Button
@@ -192,36 +194,36 @@ function Transaction ({
                                 </Link>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.toHezEthereumAddress && !transactionTask.data.toBjj && transactionTask.data.toAccountIndex
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>To</div>
-                          <div className={classes.col}>
+                        <Row>
+                          <Col>To</Col>
+                          <Col>
                             {transactionTask.data.toAccountIndex}
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                    <Row>
+                      <Col>
                         Amount
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
                     {transactionTask.data.fee
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>
+                        <Row>
+                          <Col>
                             Fee
-                          </div>
-                          <div className={classes.col}>
+                          </Col>
+                          <Col>
                             {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     <div className={clsx({
                       [classes.detailHidden]: true,
@@ -230,45 +232,45 @@ function Transaction ({
                     >
                       {transactionTask.data.slot
                         ? (
-                          <div className={classes.row}>
-                            <div className={classes.col}>
+                          <Row>
+                            <Col>
                               Slot
-                            </div>
-                            <div className={`${classes.col} ${classes.link}`}>
+                            </Col>
+                            <Col link>
                               <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         ) : <></>}
                       {transactionTask.data.batchNum
                         ? (
-                          <div className={classes.row}>
-                            <div className={classes.col}>
+                          <Row>
+                            <Col>
                               Included in batch
-                            </div>
-                            <div className={`${classes.col} ${classes.link}`}>
+                            </Col>
+                            <Col link>
                               <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         ) : <></>}
                       {transactionTask.data.position
                         ? (
-                          <div className={classes.row}>
-                            <div className={classes.col}>
+                          <Row>
+                            <Col>
                               Position in batch
-                            </div>
-                            <div className={classes.col}>
+                            </Col>
+                            <Col>
                               {transactionTask.data.position}
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         ) : <></>}
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                      <Row>
+                        <Col>
                           Nonce
-                        </div>
-                        <div className={classes.col}>
+                        </Col>
+                        <Col>
                           {transactionTask.data.nonce}
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     </div>
                     <button
                       className={clsx({
