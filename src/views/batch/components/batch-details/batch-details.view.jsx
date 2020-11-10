@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 import useBatchDetailsStyles from './batch-details.styles'
-import angleDown from '../../../../images/icons/angle-down.svg'
-import angleUp from '../../../../images/icons/angle-up.svg'
+import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
+import { ReactComponent as AngleUp } from '../../../../images/icons/angle-up.svg'
 import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
 import { copyToClipboard } from '../../../../utils/dom'
 import Button from '../../../shared/button/button.view'
@@ -134,7 +134,7 @@ function BatchDetails ({ batch }) {
         onClick={() => handleDetailClick()}
       >
         See details
-        <img src={angleDown} className={classes.icon} alt='See details' />
+        <AngleDown className={classes.icon} />
       </button>
       <button
         className={clsx({
@@ -145,7 +145,7 @@ function BatchDetails ({ batch }) {
         onClick={() => handleCloseDetailClick()}
       >
         Close details
-        <img src={angleUp} className={classes.icon} alt='Close details' />
+        <AngleUp className={classes.icon} />
       </button>
     </div>
   )

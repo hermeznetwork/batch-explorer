@@ -10,7 +10,7 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
     maxWidth: theme.spacing(45)
   },
   icon: {
-    paddingLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1)
   },
   detailButton: {
     fontWeight: theme.fontWeights.bold,

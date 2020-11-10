@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import useHeaderStyles from './header.styles'
-import logo from '../../../images/logo.svg'
+import { ReactComponent as Logo } from '../../../images/logo.svg'
 import Container from '../container/container.view'
 import Search from '../../search/search.view'
 
@@ -18,7 +18,7 @@ function Header () {
               <Link
                 to='/'
               >
-                <img src={logo} alt='Hermez logo' />
+                <Logo />
               </Link>
             </div>
             <div className={classes.links}>

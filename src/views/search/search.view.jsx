@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import useSearchStyles from './search.styles'
-import search from '../../images/icons/search-glass.svg'
+import { ReactComponent as MagnifyingGlass } from '../../images/icons/magnifying-glass.svg'
 
 function Search ({
   changeRoute
@@ -20,7 +20,7 @@ function Search ({
   function handleSearch () {
     if (hezEthereumAddressPattern.test(searchTerm) || bjjAddressPattern.test(searchTerm)) {
       changeRoute(`/user-account/${searchTerm}`)
-    } else if (batchNumPattern.test(searchTerm)) {
+    } else if (batchNumPattern.test(searchTerm) && searchTerm !== '') {
       changeRoute(`/batch/${searchTerm}`)
     } else if (transactionIdPattern.test(searchTerm)) {
       changeRoute(`/transaction/${searchTerm}`)
@@ -44,7 +44,7 @@ function Search ({
         onClick={handleSearch}
         className={classes.button}
       >
-        <img src={search} alt='Search' />
+        <MagnifyingGlass />
       </button>
     </div>
   )
