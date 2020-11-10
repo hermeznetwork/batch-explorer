@@ -4,14 +4,6 @@ const useTransactionStyles = createUseStyles(theme => ({
   wrapper: {
     width: '100%'
   },
-  title: {
-    marginTop: theme.spacing(8),
-    paddingBottom: theme.spacing(5),
-    fontWeight: theme.fontWeights.extraBold,
-    fontSize: theme.spacing(3),
-    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
-    marginBlockEnd: 0
-  },
   rowWrapped: {
     display: 'flex',
     justifyContent: 'space-between',

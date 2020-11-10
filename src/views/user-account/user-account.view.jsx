@@ -17,6 +17,7 @@ import Button from '../shared/button/button.view'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
+import Title from '../shared/title/title'
 
 function UserAccount ({
   onLoadAccounts,
@@ -64,7 +65,7 @@ function UserAccount ({
                 return (
                   <>
                     <section>
-                      <h4 className={classes.title}>User Address</h4>
+                      <Title>User Address</Title>
                       <Row>
                         <Col>
                           Hermez address

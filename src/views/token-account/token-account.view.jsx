@@ -11,6 +11,7 @@ import TransactionsList from '../shared/transactions-list/transactions-list.view
 import { fetchAccount, fetchTransactions } from '../../store/token-account/token-account.thunks'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
+import Title from '../shared/title/title'
 
 function TokenAccount ({
   onLoadAccount,
@@ -41,7 +42,7 @@ function TokenAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Token account</h4>
+                    <Title>Token account</Title>
                     <Row>
                       <Col>
                         Token address

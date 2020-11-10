@@ -11,6 +11,7 @@ import CoordinatorDetails from './components/coordinator-details/coordinator-det
 import BatchesList from '../shared/batches-list/batches-list.view'
 import BidsList from '../shared/bids-list/bids-list.view'
 import { fetchBatches, fetchCoordinator, fetchBids } from '../../store/coordinator/coordinator.thunks'
+import Title from '../shared/title/title'
 
 function Coordinator ({
   onLoadBatches,
@@ -56,7 +57,7 @@ function Coordinator ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Coordinator info</h4>
+                    <Title>Coordinator info</Title>
                     <CoordinatorDetails
                       coordinator={coordinatorTask.data}
                     />

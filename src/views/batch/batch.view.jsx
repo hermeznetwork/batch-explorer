@@ -10,6 +10,7 @@ import Container from '../shared/container/container.view'
 import BatchDetails from './components/batch-details/batch-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
+import Title from '../shared/title/title'
 
 function Batch ({
   onLoadBatch,
@@ -41,7 +42,7 @@ function Batch ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={`${classes.title} ${classes.titleFirst}`}>Batch {batchTask.data.batchNum}</h4>
+                    <Title>Batch {batchTask.data.batchNum}</Title>
                     <BatchDetails
                       batch={batchTask.data}
                     />
@@ -65,7 +66,7 @@ function Batch ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Batch transactions</h4>
+                    <Title>Batch transactions</Title>
                     <TransactionsList
                       transactions={batchTransactionsTask.data.transactions}
                     />

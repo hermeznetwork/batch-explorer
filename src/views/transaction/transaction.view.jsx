@@ -16,6 +16,7 @@ import { copyToClipboard } from '../../utils/dom'
 import Button from '../shared/button/button.view'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
+import Title from '../shared/title/title'
 
 function Transaction ({
   onLoadTransaction,
@@ -56,7 +57,7 @@ function Transaction ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Transaction summary</h4>
+                    <Title>Transaction summary</Title>
                     <Row>
                       <Col>
                         Transaction ID

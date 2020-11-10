@@ -11,6 +11,7 @@ import SlotDetails from './components/slot-details/slot-details.view'
 import BidsList from '../shared/bids-list/bids-list.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchSlot, fetchBids, fetchBatches } from '../../store/slot/slot.thunks'
+import Title from '../shared/title/title'
 
 function Slot ({
   onLoadSlot,
@@ -70,7 +71,7 @@ function Slot ({
                     return (
                       <>
                         <section>
-                          <h4 className={classes.title}>Slot {slotTask.data.slotNum}</h4>
+                          <Title>Slot {slotTask.data.slotNum}</Title>
                           <SlotDetails
                             slot={slotTask.data}
                             bids={bidsTask.data.bids}
@@ -116,7 +117,7 @@ function Slot ({
                               </>
                             ) : (
                               <>
-                                <h4 className={classes.title}>Bids</h4>
+                                <Title>Bids</Title>
                                 <BidsList
                                   bids={bidsTask.data.bids}
                                   isSlot
