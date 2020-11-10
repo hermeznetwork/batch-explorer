@@ -17,6 +17,13 @@ const useColStyles = createUseStyles(theme => ({
       }
     }
   },
+  colWrapped: {
+    // button 4.5 + root wrapper margins 2 x 4.5 = 11.5
+    maxWidth: `calc(100% - ${theme.spacing(11.5)}px)`,
+    [theme.breakpoints.sm]: {
+      maxWidth: theme.spacing(45)
+    }
+  },
   status: {
     fontWeight: theme.fontWeights.medium,
     background: theme.palette.green.light,

@@ -63,17 +63,17 @@ function Transaction ({
                         Transaction ID
                       </Col>
                       <Col>
-                        <div className={classes.rowWrapped}>
+                        <Row wrapped>
                           <div>
                             <Button
                               icon={<CopyIcon />}
                               onClick={() => handleCopyToClipboardClick(transactionTask.data.id)}
                             />
                           </div>
-                          <div className={classes.colWrapped}>
+                          <Col wrapped>
                             {transactionTask.data.id}
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
                     <Row>
@@ -110,19 +110,19 @@ function Transaction ({
                         <Row>
                           <Col>From</Col>
                           <Col link>
-                            <div className={classes.rowWrapped}>
+                            <Row wrapped>
                               <div>
                                 <Button
                                   icon={<CopyIcon />}
                                   onClick={() => handleCopyToClipboardClick(transactionTask.data.fromHezEthereumAddress)}
                                 />
                               </div>
-                              <div className={classes.colWrapped}>
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
                                   {transactionTask.data.fromAccountIndex}
                                 </Link>
-                              </div>
-                            </div>
+                              </Col>
+                            </Row>
                           </Col>
                         </Row>
                       ) : <></>}
@@ -131,19 +131,19 @@ function Transaction ({
                         <Row>
                           <Col>From</Col>
                           <Col link>
-                            <div className={classes.rowWrapped}>
+                            <Row wrapped>
                               <div>
                                 <Button
                                   icon={<CopyIcon />}
                                   onClick={() => handleCopyToClipboardClick(transactionTask.data.fromBjj)}
                                 />
                               </div>
-                              <div className={classes.colWrapped}>
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
                                   From: {transactionTask.data.fromAccountIndex}
                                 </Link>
-                              </div>
-                            </div>
+                              </Col>
+                            </Row>
                           </Col>
                         </Row>
                       ) : <></>}
@@ -161,19 +161,19 @@ function Transaction ({
                         <Row>
                           <Col>To</Col>
                           <Col link>
-                            <div className={classes.rowWrapped}>
+                            <Row wrapped>
                               <div>
                                 <Button
                                   icon={<CopyIcon />}
                                   onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress)}
                                 />
                               </div>
-                              <div className={classes.colWrapped}>
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
                                   {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                                 </Link>
-                              </div>
-                            </div>
+                              </Col>
+                            </Row>
                           </Col>
                         </Row>
                       ) : <></>}
@@ -182,19 +182,19 @@ function Transaction ({
                         <Row>
                           <Col>To</Col>
                           <Col link>
-                            <div className={classes.rowWrapped}>
+                            <Row wrapped>
                               <div>
                                 <Button
                                   icon={<CopyIcon />}
                                   onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj)}
                                 />
                               </div>
-                              <div className={classes.colWrapped}>
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toBjj}`}>
                                   {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                                 </Link>
-                              </div>
-                            </div>
+                              </Col>
+                            </Row>
                           </Col>
                         </Row>
                       ) : <></>}

@@ -71,17 +71,17 @@ function UserAccount ({
                           Hermez address
                         </Col>
                         <Col>
-                          <div className={classes.rowWrapped}>
+                          <Row wrapped>
                             <div>
                               <Button
                                 icon={<CopyIcon />}
                                 onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].bjj)}
                               />
                             </div>
-                            <div className={classes.colWrapped}>
+                            <Col wrapped>
                               {accountsTask.data.accounts[0].bjj}
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
                       <Row>
@@ -89,17 +89,17 @@ function UserAccount ({
                           Ethereum address
                         </Col>
                         <Col>
-                          <div className={classes.rowWrapped}>
+                          <Row wrapped>
                             <div>
                               <Button
                                 icon={<CopyIcon />}
                                 onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].hezEthereumAddress)}
                               />
                             </div>
-                            <div className={classes.colWrapped}>
+                            <Col wrapped>
                               {accountsTask.data.accounts[0].hezEthereumAddress}
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
                       <Row>

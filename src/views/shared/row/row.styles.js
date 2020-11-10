@@ -11,6 +11,15 @@ const useRowStyles = createUseStyles(theme => ({
       display: 'flex',
       justifyContent: 'space-between'
     }
+  },
+  rowWrapped: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    maxWidth: theme.spacing(50),
+    [theme.breakpoints.sm]: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
   }
 }))
 

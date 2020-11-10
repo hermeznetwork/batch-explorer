@@ -4,14 +4,6 @@ const useUserAccountStyles = createUseStyles(theme => ({
   wrapper: {
     width: '100%'
   },
-  rowWrapped: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    maxWidth: theme.spacing(50)
-  },
-  colWrapped: {
-    maxWidth: theme.spacing(45)
-  },
   toggleWrapper: {
     background: theme.palette.grey.veryLight,
     width: 'fit-content',
