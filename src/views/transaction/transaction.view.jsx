@@ -9,11 +9,12 @@ import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import { fetchTransaction } from '../../store/transaction/transaction.thunks'
-import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
 import { ReactComponent as AngleDown } from '../../images/icons/angle-down.svg'
 import { ReactComponent as AngleUp } from '../../images/icons/angle-up.svg'
-import { copyToClipboard } from '../../utils/dom'
-import Button from '../shared/button/button.view'
+import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
+import Row from '../shared/row/row'
+import Col from '../shared/col/col'
+import Title from '../shared/title/title'
 
 function Transaction ({
   onLoadTransaction,
@@ -22,10 +23,6 @@ function Transaction ({
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
-
-  function handleCopyToClipboardClick (item) {
-    copyToClipboard(item)
-  }
 
   function handleDetailClick () {
     setDetailsVisible(true)
@@ -54,174 +51,159 @@ function Transaction ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Transaction summary</h4>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                    <Title>Transaction summary</Title>
+                    <Row>
+                      <Col>
                         Transaction ID
-                      </div>
-                      <div className={classes.col}>
-                        <div className={classes.rowWrapped}>
-                          <div>
-                            <Button
-                              icon={<CopyIcon />}
-                              onClick={() => handleCopyToClipboardClick(transactionTask.data.id)}
-                            />
-                          </div>
-                          <div className={classes.colWrapped}>
+                      </Col>
+                      <Col>
+                        <Row wrapped>
+                          <CopyToClipboardButton content={transactionTask.data.id} />
+                          <Col wrapped>
                             {transactionTask.data.id}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Status
-                      </div>
-                      <div className={classes.col}>
-                        <div className={`${classes.col} ${classes.status}`}>
+                      </Col>
+                      <Col>
+                        <Col status>
                           {transactionTask.data.state === 'pend' ? 'Pending' : ''}
                           {transactionTask.data.state === 'fing' ? 'Forging' : ''}
                           {transactionTask.data.state === 'fged' ? 'Forged' : ''}
                           {transactionTask.data.state === 'invl' ? 'Invalid' : ''}
-                        </div>
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                        </Col>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Timestamp
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {new Date(transactionTask.data.timestamp).toLocaleString()}
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Type of transaction
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {transactionTask.data.type}
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
                     {transactionTask.data.fromHezEthereumAddress
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>From</div>
-                          <div className={`${classes.col} ${classes.link}`}>
-                            <div className={classes.rowWrapped}>
-                              <div>
-                                <Button
-                                  icon={<CopyIcon />}
-                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.fromHezEthereumAddress)}
-                                />
-                              </div>
-                              <div className={classes.colWrapped}>
+                        <Row>
+                          <Col>From</Col>
+                          <Col link>
+                            <Row wrapped>
+                              <CopyToClipboardButton content={transactionTask.data.fromAccountIndex} />
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
                                   {transactionTask.data.fromAccountIndex}
                                 </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromBjj
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>From</div>
-                          <div className={`${classes.col} ${classes.link}`}>
-                            <div className={classes.rowWrapped}>
-                              <div>
-                                <Button
-                                  icon={<CopyIcon />}
-                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.fromBjj)}
-                                />
-                              </div>
-                              <div className={classes.colWrapped}>
+                        <Row>
+                          <Col>From</Col>
+                          <Col link>
+                            <Row wrapped>
+                              <CopyToClipboardButton content={transactionTask.data.fromAccountIndex} />
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
-                                  From: {transactionTask.data.fromAccountIndex}
+                                  {transactionTask.data.fromAccountIndex}
                                 </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && !transactionTask.data.fromBjj && transactionTask.data.fromAccountIndex
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>From</div>
-                          <div className={classes.col}>
-                            {transactionTask.data.fromAccountIndex}
-                          </div>
-                        </div>
+                        <Row>
+                          <Col>From</Col>
+                          <Col>
+                            <Row wrapped>
+                              <CopyToClipboardButton content={transactionTask.data.fromAccountIndex} />
+                              <Col wrapped>
+                                {transactionTask.data.fromAccountIndex}
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {transactionTask.data.toHezEthereumAddress
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>To</div>
-                          <div className={`${classes.col} ${classes.link}`}>
-                            <div className={classes.rowWrapped}>
-                              <div>
-                                <Button
-                                  icon={<CopyIcon />}
-                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress)}
-                                />
-                              </div>
-                              <div className={classes.colWrapped}>
+                        <Row>
+                          <Col>To</Col>
+                          <Col link>
+                            <Row wrapped>
+                              <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress} />
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
                                   {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
                                 </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>To</div>
-                          <div className={`${classes.col} ${classes.link}`}>
-                            <div className={classes.rowWrapped}>
-                              <div>
-                                <Button
-                                  icon={<CopyIcon />}
-                                  onClick={() => handleCopyToClipboardClick(transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj)}
-                                />
-                              </div>
-                              <div className={classes.colWrapped}>
+                        <Row>
+                          <Col>To</Col>
+                          <Col link>
+                            <Row wrapped>
+                              <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj} />
+                              <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toBjj}`}>
                                   {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
                                 </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     {!transactionTask.data.toHezEthereumAddress && !transactionTask.data.toBjj && transactionTask.data.toAccountIndex
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>To</div>
-                          <div className={classes.col}>
-                            {transactionTask.data.toAccountIndex}
-                          </div>
-                        </div>
+                        <Row>
+                          <Col>To</Col>
+                          <Col>
+                            <Row wrapped>
+                              <CopyToClipboardButton content={transactionTask.data.toAccountIndex} />
+                              <Col wrapped>
+                                {transactionTask.data.toAccountIndex}
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       ) : <></>}
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                    <Row>
+                      <Col>
                         Amount
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
                     {transactionTask.data.fee
                       ? (
-                        <div className={classes.row}>
-                          <div className={classes.col}>
+                        <Row>
+                          <Col>
                             Fee
-                          </div>
-                          <div className={classes.col}>
+                          </Col>
+                          <Col>
                             {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       ) : <></>}
                     <div className={clsx({
                       [classes.detailHidden]: true,
@@ -230,45 +212,45 @@ function Transaction ({
                     >
                       {transactionTask.data.slot
                         ? (
-                          <div className={classes.row}>
-                            <div className={classes.col}>
+                          <Row>
+                            <Col>
                               Slot
-                            </div>
-                            <div className={`${classes.col} ${classes.link}`}>
+                            </Col>
+                            <Col link>
                               <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         ) : <></>}
                       {transactionTask.data.batchNum
                         ? (
-                          <div className={classes.row}>
-                            <div className={classes.col}>
+                          <Row>
+                            <Col>
                               Included in batch
-                            </div>
-                            <div className={`${classes.col} ${classes.link}`}>
+                            </Col>
+                            <Col link>
                               <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         ) : <></>}
                       {transactionTask.data.position
                         ? (
-                          <div className={classes.row}>
-                            <div className={classes.col}>
+                          <Row>
+                            <Col>
                               Position in batch
-                            </div>
-                            <div className={classes.col}>
+                            </Col>
+                            <Col>
                               {transactionTask.data.position}
-                            </div>
-                          </div>
+                            </Col>
+                          </Row>
                         ) : <></>}
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                      <Row>
+                        <Col>
                           Nonce
-                        </div>
-                        <div className={classes.col}>
+                        </Col>
+                        <Col>
                           {transactionTask.data.nonce}
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     </div>
                     <button
                       className={clsx({

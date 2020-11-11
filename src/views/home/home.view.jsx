@@ -9,6 +9,7 @@ import Container from '../shared/container/container.view'
 import BatchesList from './components/batches-list/batches-list.view'
 import Overview from './components/overview/overview.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
+import Title from '../shared/title/title'
 
 function Home ({
   onLoadBatches,
@@ -40,7 +41,7 @@ function Home ({
                 return (
                   <>
                     <section className={classes.section}>
-                      <h4 className={classes.title}>Overview</h4>
+                      <Title>Overview</Title>
                       <Overview
                         overview={overviewTask.data}
                       />
@@ -66,7 +67,7 @@ function Home ({
                 return (
                   <>
                     <section className={classes.section}>
-                      <h4 className={classes.title}>Batches</h4>
+                      <Title>Batches</Title>
                       <BatchesList
                         batches={batchesTask.data.batches}
                       />

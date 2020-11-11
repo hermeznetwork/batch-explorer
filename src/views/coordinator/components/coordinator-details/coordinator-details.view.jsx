@@ -1,61 +1,43 @@
 import React from 'react'
 
-import useCoordinatorDetailsStyles from './coordinator-details.styles'
-import { ReactComponent as CopyIcon } from '../../../../images/icons/copy.svg'
-import { copyToClipboard } from '../../../../utils/dom'
-import Button from '../../../shared/button/button.view'
+import CopyToClipboardButton from '../../../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
+import Row from '../../../shared/row/row'
+import Col from '../../../shared/col/col'
 
 function CoordinatorDetails ({ coordinator }) {
-  const classes = useCoordinatorDetailsStyles()
-
-  function handleCopyToClipboardClick (item) {
-    copyToClipboard(item)
-  }
-
   return (
     <section>
-      <div className={classes.row}>
-        <div className={classes.col}>
+      <Row>
+        <Col>
           Forger address
-        </div>
-        <div className={classes.col}>
-          <div className={classes.rowWrapped}>
-            <div>
-              <Button
-                icon={<CopyIcon />}
-                onClick={() => handleCopyToClipboardClick(coordinator.forgerAddr)}
-              />
-            </div>
-            <div className={classes.colWrapped}>
+        </Col>
+        <Col>
+          <Row wrapped>
+            <CopyToClipboardButton content={coordinator.forgerAddr} />
+            <Col wrapped>
               {coordinator.forgerAddr}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           Bidder address
-        </div>
-        <div className={classes.col}>
-          <div className={classes.rowWrapped}>
-            <div>
-              <Button
-                icon={<CopyIcon />}
-                onClick={() => handleCopyToClipboardClick(coordinator.bidderAddr)}
-              />
-            </div>
-            <div className={classes.colWrapped}>
+        </Col>
+        <Col>
+          <Row wrapped>
+            <CopyToClipboardButton content={coordinator.bidderAddr} />
+            <Col wrapped>
               {coordinator.bidderAddr}
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.col}>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           URL
-        </div>
-        <div className={`${classes.col} ${classes.link}`}>
+        </Col>
+        <Col link>
           <a
             href={coordinator.URL}
             target='_blank'
@@ -63,8 +45,8 @@ function CoordinatorDetails ({ coordinator }) {
           >
             {coordinator.URL}
           </a>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </section>
   )
 }

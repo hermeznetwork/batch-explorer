@@ -1,22 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
-const useCoordinatorDetailsStyles = createUseStyles(theme => ({
-  row: {
-    padding: `${theme.spacing(2.5)}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
-    '&:first-child': {
-      borderTop: `1px solid ${theme.palette.grey.ultraLight}`
-    },
-    [theme.breakpoints.sm]: {
-      display: 'flex',
-      justifyContent: 'space-between'
-    }
-  },
-  rowWrapped: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    maxWidth: theme.spacing(50)
-  },
+const useColStyles = createUseStyles(theme => ({
   col: {
     fontWeight: theme.fontWeights.medium,
     '&:last-child': {
@@ -32,7 +16,19 @@ const useCoordinatorDetailsStyles = createUseStyles(theme => ({
     }
   },
   colWrapped: {
-    maxWidth: theme.spacing(45)
+    maxWidth: `calc(100% - ${theme.spacing(11.5)}px)`,
+    [theme.breakpoints.sm]: {
+      maxWidth: theme.spacing(45)
+    }
+  },
+  status: {
+    fontWeight: theme.fontWeights.medium,
+    background: theme.palette.green.light,
+    borderRadius: '8px',
+    color: theme.palette.green.main,
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
+    margin: `-${theme.spacing(0.5)}px`,
+    textAlign: 'center'
   },
   link: {
     color: theme.palette.secondary.main,
@@ -43,4 +39,4 @@ const useCoordinatorDetailsStyles = createUseStyles(theme => ({
   }
 }))
 
-export default useCoordinatorDetailsStyles
+export default useColStyles

@@ -9,12 +9,13 @@ import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import AccountDetails from './components/account-details/account-details.view'
-import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchAccounts, fetchTransactions } from '../../store/user-account/user-account.thunks'
-import { ReactComponent as CopyIcon } from '../../images/icons/copy.svg'
-import { copyToClipboard } from '../../utils/dom'
-import Button from '../shared/button/button.view'
+import TransactionsList from '../shared/transactions-list/transactions-list.view'
+import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import Row from '../shared/row/row'
+import Col from '../shared/col/col'
+import Title from '../shared/title/title'
 
 function UserAccount ({
   onLoadAccounts,
@@ -26,10 +27,6 @@ function UserAccount ({
   const { address } = useParams()
   const [isFirstTabVisible, setFirstTabVisible] = React.useState()
   const [isSecondTabVisible, setSecondTabVisible] = React.useState()
-
-  function handleCopyToClipboardClick (item) {
-    copyToClipboard(item)
-  }
 
   function handleFirstTabClick () {
     setFirstTabVisible(true)
@@ -62,51 +59,41 @@ function UserAccount ({
                 return (
                   <>
                     <section>
-                      <h4 className={classes.title}>User Address</h4>
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                      <Title>User Address</Title>
+                      <Row>
+                        <Col>
                           Hermez address
-                        </div>
-                        <div className={classes.col}>
-                          <div className={classes.rowWrapped}>
-                            <div>
-                              <Button
-                                icon={<CopyIcon />}
-                                onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].bjj)}
-                              />
-                            </div>
-                            <div className={classes.colWrapped}>
+                        </Col>
+                        <Col>
+                          <Row wrapped>
+                            <CopyToClipboardButton content={accountsTask.data.accounts[0].bjj} />
+                            <Col wrapped>
                               {accountsTask.data.accounts[0].bjj}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
                           Ethereum address
-                        </div>
-                        <div className={classes.col}>
-                          <div className={classes.rowWrapped}>
-                            <div>
-                              <Button
-                                icon={<CopyIcon />}
-                                onClick={() => handleCopyToClipboardClick(accountsTask.data.accounts[0].hezEthereumAddress)}
-                              />
-                            </div>
-                            <div className={classes.colWrapped}>
+                        </Col>
+                        <Col>
+                          <Row wrapped>
+                            <CopyToClipboardButton content={accountsTask.data.accounts[0].hezEthereumAddress} />
+                            <Col wrapped>
                               {accountsTask.data.accounts[0].hezEthereumAddress}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className={classes.row}>
-                        <div className={classes.col}>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
                           Token accounts
-                        </div>
-                        <div className={classes.col}>
+                        </Col>
+                        <Col>
                           {accountsTask.data.accounts.length}
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     </section>
                     <section>
                       <div className={classes.toggleWrapper}>

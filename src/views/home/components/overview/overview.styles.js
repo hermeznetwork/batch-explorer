@@ -27,7 +27,6 @@ const useOverviewStyles = createUseStyles(theme => ({
     flexBasis: 0,
     flexGrow: 1,
     marginRight: theme.spacing(1),
-
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5),
     '&:last-child': {

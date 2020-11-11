@@ -47,7 +47,7 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     }
   },
   search: {
-    marginBottom: theme.spacing(7)
+    marginBottom: theme.spacing(2)
   }
 }))
 

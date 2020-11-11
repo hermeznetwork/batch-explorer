@@ -9,6 +9,9 @@ import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchAccount, fetchTransactions } from '../../store/token-account/token-account.thunks'
+import Row from '../shared/row/row'
+import Col from '../shared/col/col'
+import Title from '../shared/title/title'
 
 function TokenAccount ({
   onLoadAccount,
@@ -39,31 +42,31 @@ function TokenAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Token account</h4>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                    <Title>Token account</Title>
+                    <Row>
+                      <Col>
                         Token address
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {accountTask.data.accountIndex}
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Token
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {accountTask.data.token.symbol}
-                      </div>
-                    </div>
-                    <div className={classes.row}>
-                      <div className={classes.col}>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
                         Balance
-                      </div>
-                      <div className={classes.col}>
+                      </Col>
+                      <Col>
                         {getTokenAmountString(accountTask.data.balance, accountTask.data.token.decimals)}
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
                   </section>
                 )
               }

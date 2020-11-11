@@ -4,12 +4,6 @@ const useCoordinatorStyles = createUseStyles(theme => ({
   wrapper: {
     width: '100%'
   },
-  title: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(5),
-    fontWeight: theme.fontWeights.extraBold,
-    fontSize: theme.spacing(3)
-  },
   toggleWrapper: {
     background: theme.palette.grey.veryLight,
     width: 'fit-content',
