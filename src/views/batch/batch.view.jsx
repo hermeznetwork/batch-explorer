@@ -34,7 +34,12 @@ function Batch ({
           {(() => {
             switch (batchTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Batch</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{batchTask.error}</p>
@@ -58,7 +63,12 @@ function Batch ({
           {(() => {
             switch (batchTransactionsTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Batch transactions</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{batchTransactionsTask.error}</p>

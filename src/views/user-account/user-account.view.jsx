@@ -50,7 +50,12 @@ function UserAccount ({
           {(() => {
             switch (accountsTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>User address</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{accountsTask.error}</p>
@@ -162,7 +167,12 @@ function UserAccount ({
           {(() => {
             switch (transactionsTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Transactions</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{transactionsTask.error}</p>

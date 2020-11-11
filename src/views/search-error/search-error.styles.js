@@ -7,6 +7,9 @@ const useSearchStyles = createUseStyles(theme => ({
   wrapper: {
     width: '100%'
   },
+  backButtonWrapper: {
+    marginTop: theme.spacing(3)
+  },
   backButton: {
     fontWeight: theme.fontWeights.bold,
     background: theme.palette.grey.veryLight,
