@@ -7,11 +7,7 @@ function Row ({ children }) {
 
   return (
     <h4 className={classes.title}>
-      {React.Children.toArray(children).map((child, index) =>
-        <span key={index}>
-          {child}
-        </span>
-      )}
+      {children}
     </h4>
   )
 }

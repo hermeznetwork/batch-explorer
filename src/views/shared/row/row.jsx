@@ -7,11 +7,7 @@ function Row ({ children, wrapped }) {
 
   return (
     <div className={wrapped ? classes.rowWrapped : classes.row}>
-      {children.map((child, index) =>
-        <div key={index}>
-          {child}
-        </div>
-      )}
+      {children}
     </div>
   )
 }

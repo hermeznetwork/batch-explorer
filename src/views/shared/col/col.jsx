@@ -7,11 +7,7 @@ function Col ({ children, status, link, wrapped }) {
 
   return (
     <div className={`${wrapped ? classes.colWrapped : classes.col} ${status ? classes.status : ''} ${link ? classes.link : ''}`}>
-      {React.Children.toArray(children).map((child, index) =>
-        <div key={index}>
-          {child}
-        </div>
-      )}
+      {children}
     </div>
   )
 }
