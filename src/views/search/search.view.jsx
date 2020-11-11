@@ -35,7 +35,7 @@ function Search ({
     <div className={classes.root}>
       <input
         value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
+        onChange={e => setSearchTerm(e.target.value.trim())}
         type='text'
         placeholder='Search for a transaction, an address, or a batch'
         className={classes.input}
