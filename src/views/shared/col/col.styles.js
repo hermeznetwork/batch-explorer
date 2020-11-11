@@ -17,6 +17,11 @@ const useColStyles = createUseStyles(theme => ({
   },
   colWrapped: {
     maxWidth: `calc(100% - ${theme.spacing(11.5)}px)`,
+    '&:last-child': {
+      [theme.breakpoints.sm]: {
+        textAlign: 'left'
+      }
+    },
     [theme.breakpoints.sm]: {
       maxWidth: theme.spacing(45)
     }
