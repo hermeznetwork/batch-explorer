@@ -21,6 +21,25 @@ const useColStyles = createUseStyles(theme => ({
       maxWidth: theme.spacing(45)
     }
   },
+  colFlex: {
+    fontWeight: theme.fontWeights.bold,
+    '&:first-child': {
+      paddingRight: theme.spacing(3),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis'
+    },
+    '&:last-child': {
+      maxWidth: theme.spacing(11),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      [theme.breakpoints.sm]: {
+        maxWidth: theme.spacing(20),
+        textAlign: 'right'
+      }
+    }
+  },
   status: {
     fontWeight: theme.fontWeights.medium,
     background: theme.palette.green.light,

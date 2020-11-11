@@ -14,7 +14,7 @@ const useSearchStyles = createUseStyles(theme => ({
     color: theme.palette.secondary.main,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2)}px`,
     textAlign: 'center',
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5),
     width: 'fit-content',
     border: 0,
     cursor: 'pointer',

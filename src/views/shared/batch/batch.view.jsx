@@ -2,35 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import getTimeAgo from '../../../utils/time-converter'
 
-import useBatchStyles from './batch.styles'
+import Row from '../../shared/row/row'
+import Col from '../../shared/col/col'
 
 function Batch ({ batch }) {
-  const classes = useBatchStyles()
-
   return (
     <section>
-      <div className={classes.row}>
-        <div className={classes.col}>
+      <Row flex>
+        <Col flex>
           Batch
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           Age
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           Transactions
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={`${classes.col} ${classes.link}`}>
+        </Col>
+      </Row>
+      <Row flex>
+        <Col link flex>
           <Link to={`/batch/${batch.batchNum}`}>{batch.batchNum}</Link>
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           {getTimeAgo(batch.timestamp)}
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           {batch.forgeL1TransactionsNum}
-        </div>
-      </div>
+        </Col>
+      </Row>
     </section>
   )
 }
