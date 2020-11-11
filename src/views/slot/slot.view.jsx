@@ -54,7 +54,12 @@ function Slot ({
           {(() => {
             switch (slotTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Slot</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{slotTask.error}</p>
@@ -62,7 +67,12 @@ function Slot ({
               case 'successful': {
                 switch (bidsTask.status) {
                   case 'loading': {
-                    return <Spinner />
+                    return (
+                      <>
+                        <Title>Bids</Title>
+                        <Spinner />
+                      </>
+                    )
                   }
                   case 'failed': {
                     return <p>{bidsTask.error}</p>
@@ -142,7 +152,12 @@ function Slot ({
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Batches</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{batchesTask.error}</p>

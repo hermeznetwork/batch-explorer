@@ -49,7 +49,12 @@ function Coordinator ({
           {(() => {
             switch (coordinatorTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Coordinator info</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{coordinatorTask.error}</p>
@@ -73,7 +78,12 @@ function Coordinator ({
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Batches</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{batchesTask.error}</p>
@@ -125,7 +135,12 @@ function Coordinator ({
           {(() => {
             switch (bidsTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Bids</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{bidsTask.error}</p>

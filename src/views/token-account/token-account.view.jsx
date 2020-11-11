@@ -34,7 +34,12 @@ function TokenAccount ({
           {(() => {
             switch (accountTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Token account</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{accountTask.error}</p>
@@ -79,7 +84,12 @@ function TokenAccount ({
           {(() => {
             switch (transactionsTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Transactions</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{transactionsTask.error}</p>

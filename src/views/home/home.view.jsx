@@ -32,7 +32,12 @@ function Home ({
           {(() => {
             switch (overviewTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Overview</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{overviewTask.error}</p>
@@ -58,7 +63,12 @@ function Home ({
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Batches</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{batchesTask.error}</p>

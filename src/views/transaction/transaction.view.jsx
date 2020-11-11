@@ -43,7 +43,12 @@ function Transaction ({
           {(() => {
             switch (transactionTask.status) {
               case 'loading': {
-                return <Spinner />
+                return (
+                  <>
+                    <Title>Transaction summary</Title>
+                    <Spinner />
+                  </>
+                )
               }
               case 'failed': {
                 return <p>{transactionTask.error}</p>
