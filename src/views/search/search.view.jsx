@@ -29,6 +29,7 @@ function Search ({
     } else {
       changeRoute('/search-error')
     }
+    setSearchTerm('')
   }
 
   return (
