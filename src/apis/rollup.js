@@ -26,11 +26,11 @@ function getPageData (fromItem) {
   }
 }
 
-async function getAccounts (address, tokenId, fromItem) {
+async function getAccounts (address, tokenIds, fromItem) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
-    ...(tokenId ? { tokenId } : {}),
+    ...(tokenIds ? { tokenIds } : {}),
     ...getPageData(fromItem)
   }
   return extractJSON(axios.get(`${baseApiUrl}/accounts`, { params }))
@@ -40,11 +40,11 @@ async function getAccount (accountIndex) {
   return extractJSON(axios.get(`${baseApiUrl}/accounts/${accountIndex}`))
 }
 
-async function getTransactions (address, tokenId, batchNum, accountIndex, fromItem) {
+async function getTransactions (address, tokenIds, batchNum, accountIndex, fromItem) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
-    ...(tokenId ? { tokenId } : {}),
+    ...(tokenIds ? { tokenIds } : {}),
     ...(batchNum ? { batchNum } : {}),
     ...(accountIndex ? { accountIndex } : {}),
     ...getPageData(fromItem)
