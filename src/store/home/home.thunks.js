@@ -15,7 +15,7 @@ function fetchOverview () {
   return (dispatch) => {
     dispatch(homeActions.loadOverview())
 
-    return rollupApi.getOverview()
+    return rollupApi.getState()
       .then((res) => dispatch(homeActions.loadOverviewSuccess(res)))
       .catch(err => dispatch(homeActions.loadOverviewFailure(err)))
   }

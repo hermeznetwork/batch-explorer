@@ -84,8 +84,11 @@ async function getCoordinator (forgerAddr) {
   return extractJSON(axios.get(`${baseApiUrl}/coordinators/${forgerAddr}`))
 }
 
-async function getOverview () {
-  return extractJSON(axios.get(`${baseApiUrl}/state`))
+async function getState () {
+  const state = await extractJSON(axios.get(`${baseApiUrl}/state`))
+  // state.withdrawalDelayer.emergencyMode = true
+  state.rollup.buckets[0].withdrawals = 0
+  return state
 }
 
 async function getSlot (slotNum) {
@@ -110,7 +113,7 @@ export {
   getBatches,
   getBatch,
   getCoordinator,
-  getOverview,
+  getState,
   getSlot,
   getBids
 }
