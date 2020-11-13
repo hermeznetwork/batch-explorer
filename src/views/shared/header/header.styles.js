@@ -19,6 +19,13 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     fontSize: theme.spacing(1.5),
     marginTop: theme.spacing(5)
   },
+  search: {
+    marginBottom: theme.spacing(2)
+  },
+  linksWrapper: {
+    width: '100vw',
+    height: '100vh'
+  },
   links: {
     display: 'flex',
     alignItems: 'center'
@@ -46,8 +53,18 @@ const useMainHeaderStyles = createUseStyles(theme => ({
       marginRight: 0
     }
   },
-  search: {
-    marginBottom: theme.spacing(2)
+  menuButton: {
+    border: '0',
+    background: 'transparent',
+    [theme.breakpoints.sm]: {
+      display: 'none'
+    }
+  },
+  active: {
+    display: 'block'
+  },
+  notActive: {
+    display: 'none'
   }
 }))
 
