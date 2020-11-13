@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { extractJSON } from './http.js'
 
 const baseApiUrl = process.env.REACT_APP_ROLLUP_API_URL
 const hezEthereumAddressPattern = new RegExp('^hez:0x[a-fA-F0-9]{40}$')
@@ -32,21 +33,14 @@ async function getAccounts (address, tokenId, fromItem) {
     ...(tokenId ? { tokenId } : {}),
     ...getPageData(fromItem)
   }
-  const response = await axios.get(
-      `${baseApiUrl}/accounts`,
-      { params }
-  )
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/accounts`, { params }))
 }
 
 async function getAccount (accountIndex) {
-  const response = await axios.get(`${baseApiUrl}/accounts/${accountIndex}`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/accounts/${accountIndex}`))
 }
 
-async function getHistoryTransactions (address, tokenId, batchNum, accountIndex, fromItem) {
+async function getTransactions (address, tokenId, batchNum, accountIndex, fromItem) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
@@ -55,30 +49,23 @@ async function getHistoryTransactions (address, tokenId, batchNum, accountIndex,
     ...(accountIndex ? { accountIndex } : {}),
     ...getPageData(fromItem)
   }
-  const response = await axios.get(
-    `${baseApiUrl}/transactions-history`,
-    { params }
-  )
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/transactions-history`, { params }))
 }
 
 async function getHistoryTransaction (transactionId) {
-  const response = await axios.get(`${baseApiUrl}/transactions-history/${transactionId}`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/transactions-history/${transactionId}`))
 }
 
 async function getPoolTransaction (transactionId) {
-  const response = await axios.get(`${baseApiUrl}/transactions-pool/${transactionId}`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/transactions-pool/${transactionId}`))
 }
 
-async function getTokens () {
-  const response = await axios.get(`${baseApiUrl}/tokens`)
+async function getTokens (tokenIds) {
+  const params = {
+    ...(tokenIds ? { ids: tokenIds.join(',') } : {})
+  }
 
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/tokens`, { params }))
 }
 
 async function getBatches (forgerAddr, slotNum) {
@@ -86,36 +73,23 @@ async function getBatches (forgerAddr, slotNum) {
     ...(forgerAddr ? { forgerAddr } : {}),
     ...(slotNum ? { slotNum } : {})
   }
-  const response = await axios.get(
-    `${baseApiUrl}/batches`,
-    { params }
-  )
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/batches`, { params }))
 }
 
 async function getBatch (batchNum) {
-  const response = await axios.get(`${baseApiUrl}/batches/${batchNum}`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/batches/${batchNum}`))
 }
 
 async function getCoordinator (forgerAddr) {
-  const response = await axios.get(`${baseApiUrl}/coordinators/${forgerAddr}`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/coordinators/${forgerAddr}`))
 }
 
 async function getOverview () {
-  const response = await axios.get(`${baseApiUrl}/state`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/state`))
 }
 
 async function getSlot (slotNum) {
-  const response = await axios.get(`${baseApiUrl}/slots/${slotNum}`)
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/slots/${slotNum}`))
 }
 
 async function getBids (slotNum, forgerAddr) {
@@ -123,19 +97,13 @@ async function getBids (slotNum, forgerAddr) {
     ...(slotNum ? { slotNum } : {}),
     ...(forgerAddr ? { forgerAddr } : {})
   }
-
-  const response = await axios.get(
-    `${baseApiUrl}/bids`,
-    { params }
-  )
-
-  return response.data
+  return extractJSON(axios.get(`${baseApiUrl}/bids`, { params }))
 }
 
 export {
   getAccounts,
   getAccount,
-  getHistoryTransactions,
+  getTransactions,
   getHistoryTransaction,
   getPoolTransaction,
   getTokens,

@@ -15,7 +15,7 @@ function fetchTransactions (accountIndex, fromItem) {
   return (dispatch) => {
     dispatch(tokenAccountActionTypes.loadTransactions())
 
-    return rollupApi.getHistoryTransactions(undefined, undefined, undefined, accountIndex, fromItem)
+    return rollupApi.getTransactions(undefined, undefined, undefined, accountIndex, fromItem)
       .then(res => dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res)))
       .catch(err => dispatch(tokenAccountActionTypes.loadTransactionsFailure(err)))
   }

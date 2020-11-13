@@ -15,7 +15,7 @@ function fetchBatchTransactions (batchNum) {
   return (dispatch) => {
     dispatch(batchActions.loadBatchTransactions())
 
-    return rollupApi.getHistoryTransactions(undefined, undefined, batchNum)
+    return rollupApi.getTransactions(undefined, undefined, batchNum)
       .then((res) => { dispatch(batchActions.loadBatchTransactionsSuccess(res)) })
       .catch(err => dispatch(batchActions.loadBatchTransactionsFailure(err)))
   }
