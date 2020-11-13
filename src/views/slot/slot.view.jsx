@@ -62,7 +62,12 @@ function Slot ({
                 )
               }
               case 'failed': {
-                return <p>{slotTask.error}</p>
+                return (
+                  <>
+                    <Title>Slot</Title>
+                    <p>{slotTask.error}</p>
+                  </>
+                )
               }
               case 'successful': {
                 switch (bidsTask.status) {
@@ -75,7 +80,12 @@ function Slot ({
                     )
                   }
                   case 'failed': {
-                    return <p>{bidsTask.error}</p>
+                    return (
+                      <>
+                        <Title>Bids</Title>
+                        <p>{bidsTask.error}</p>
+                      </>
+                    )
                   }
                   case 'successful': {
                     return (
@@ -160,7 +170,12 @@ function Slot ({
                 )
               }
               case 'failed': {
-                return <p>{batchesTask.error}</p>
+                return (
+                  <>
+                    <Title>Batches</Title>
+                    <p>{batchesTask.error}</p>
+                  </>
+                )
               }
               case 'successful': {
                 return (

@@ -47,15 +47,11 @@ function UserAccount ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>User Address</Title>
           {(() => {
             switch (accountsTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>User address</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{accountsTask.error}</p>
@@ -64,7 +60,6 @@ function UserAccount ({
                 return (
                   <>
                     <section>
-                      <Title>User Address</Title>
                       <Row>
                         <Col>
                           Hermez address
@@ -175,7 +170,12 @@ function UserAccount ({
                 )
               }
               case 'failed': {
-                return <p>{transactionsTask.error}</p>
+                return (
+                  <>
+                    <Title>Transactions</Title>
+                    <p>{transactionsTask.error}</p>
+                  </>
+                )
               }
               case 'successful': {
                 return (

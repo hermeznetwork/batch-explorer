@@ -46,15 +46,11 @@ function Coordinator ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Coordinator info</Title>
           {(() => {
             switch (coordinatorTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Coordinator info</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{coordinatorTask.error}</p>
@@ -62,7 +58,6 @@ function Coordinator ({
               case 'successful': {
                 return (
                   <section>
-                    <Title>Coordinator info</Title>
                     <CoordinatorDetails
                       coordinator={coordinatorTask.data}
                     />
@@ -86,7 +81,12 @@ function Coordinator ({
                 )
               }
               case 'failed': {
-                return <p>{batchesTask.error}</p>
+                return (
+                  <>
+                    <Title>Batches</Title>
+                    <p>{batchesTask.error}</p>
+                  </>
+                )
               }
               case 'successful': {
                 return (
@@ -143,7 +143,12 @@ function Coordinator ({
                 )
               }
               case 'failed': {
-                return <p>{bidsTask.error}</p>
+                return (
+                  <>
+                    <Title>Bids</Title>
+                    <p>{bidsTask.error}</p>
+                  </>
+                )
               }
               case 'successful': {
                 return (
