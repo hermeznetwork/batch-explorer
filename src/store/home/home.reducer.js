@@ -1,4 +1,5 @@
 import { homeActionTypes } from './home.actions'
+import { getPaginationData } from '../../utils/api'
 
 const initialHomeState = {
   batchesTask: {
@@ -20,11 +21,16 @@ function homeReducer (state = initialHomeState, action) {
       }
     }
     case homeActionTypes.LOAD_BATCHES_SUCCESS: {
+      const batches = state.batchesTask.status === 'reloading'
+        ? [...state.batchesTask.data.batches, ...action.data.batches]
+        : action.data.batches
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         batchesTask: {
           status: 'successful',
-          data: action.batches
+          data: { batches, pagination }
         }
       }
     }

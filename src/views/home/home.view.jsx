@@ -9,6 +9,7 @@ import Container from '../shared/container/container.view'
 import BatchesList from './components/batches-list/batches-list.view'
 import Overview from './components/overview/overview.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
+import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Title from '../shared/title/title'
 
 function Home ({
@@ -78,9 +79,21 @@ function Home ({
                   <>
                     <section className={classes.section}>
                       <Title>Batches</Title>
-                      <BatchesList
-                        batches={batchesTask.data.batches}
-                      />
+                      <InfiniteScroll
+                        asyncTaskStatus={batchesTask.status}
+                        paginationData={batchesTask.data.pagination}
+                        onLoadNextPage={(fromItem) => {
+                          if (batchesTask.status === 'successful') {
+                            onLoadBatches(
+                              fromItem
+                            )
+                          }
+                        }}
+                      >
+                        <BatchesList
+                          batches={batchesTask.data.batches}
+                        />
+                      </InfiniteScroll>
                     </section>
                   </>
                 )
@@ -109,7 +122,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatches: () => dispatch(fetchBatches()),
+  onLoadBatches: (fromItem) => dispatch(fetchBatches(fromItem)),
   onLoadOverview: () => dispatch(fetchOverview())
 })
 

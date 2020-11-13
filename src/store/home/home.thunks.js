@@ -1,11 +1,11 @@
 import * as homeActions from './home.actions'
 import * as rollupApi from '../../apis/rollup'
 
-function fetchBatches () {
+function fetchBatches (fromItem) {
   return (dispatch) => {
     dispatch(homeActions.loadBatches())
 
-    return rollupApi.getBatches()
+    return rollupApi.getBatches(fromItem)
       .then(res => dispatch(homeActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(homeActions.loadBatchesFailure(err)))
   }

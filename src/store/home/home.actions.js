@@ -16,7 +16,7 @@ function loadBatches () {
 function loadBatchesSuccess (batches) {
   return {
     type: homeActionTypes.LOAD_BATCHES_SUCCESS,
-    batches
+    data: batches
   }
 }
 
@@ -45,11 +45,18 @@ function loadOverviewFailure () {
   }
 }
 
+function resetState () {
+  return {
+    type: homeActionTypes.RESET_STATE
+  }
+}
+
 export {
   loadBatches,
   loadBatchesSuccess,
   loadBatchesFailure,
   loadOverview,
   loadOverviewSuccess,
-  loadOverviewFailure
+  loadOverviewFailure,
+  resetState
 }
