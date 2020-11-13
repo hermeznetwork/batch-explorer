@@ -7,7 +7,8 @@ const useUserAccountStyles = createUseStyles(theme => ({
   toggleWrapper: {
     background: theme.palette.grey.veryLight,
     width: 'fit-content',
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(9),
+    marginBottom: theme.spacing(4),
     borderRadius: 16
   },
   toggle: {

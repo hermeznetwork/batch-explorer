@@ -20,6 +20,16 @@ const useRowStyles = createUseStyles(theme => ({
       display: 'flex',
       justifyContent: 'space-between'
     }
+  },
+  rowFlex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: `${theme.spacing(3)}px 0`,
+    borderBottom: `1px solid ${theme.palette.grey.ultraLight}`,
+    fontWeight: theme.fontWeights.bold,
+    '&:first-child': {
+      fontWeight: theme.fontWeights.medium
+    }
   }
 }))
 
