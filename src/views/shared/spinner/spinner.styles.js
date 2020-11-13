@@ -5,7 +5,14 @@ const useSpinnerStyles = createUseStyles(theme => ({
     from: { transform: 'rotate(0deg)' },
     to: { transform: 'rotate(360deg)' }
   },
-  root: ({ size }) => ({
+  root: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(3)
+  },
+  container: ({ size }) => ({
     width: size,
     height: size,
     overflow: 'hidden'

@@ -14,8 +14,8 @@ function Search () {
         <div className={classes.wrapper}>
           <Title>We couldn’t find what you are looking for</Title>
           <div>Please enter an address, a transaction hash or a batch number.</div>
-          <div className={classes.backButton}>
-            <Link to='/'>Back Home</Link>
+          <div className={classes.backButtonWrapper}>
+            <Link to='/' className={classes.backButton}>Back Home</Link>
           </div>
         </div>
       </Container>

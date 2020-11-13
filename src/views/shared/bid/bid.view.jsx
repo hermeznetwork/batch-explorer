@@ -2,57 +2,56 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { getTokenAmountString } from '../../../utils/bigint-decimals-converter'
 
-import useBidStyles from './bid.styles'
+import Row from '../../shared/row/row'
+import Col from '../../shared/col/col'
 
 function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
-  const classes = useBidStyles()
-
   if (isSlot) {
     return (
       <section>
-        <div className={classes.row}>
-          <div className={classes.col}>
+        <Row flex>
+          <Col flex>
             Coordinator
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col flex>
             Bid amount
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={`${classes.col} ${classes.link}`}>
+          </Col>
+        </Row>
+        <Row flex>
+          <Col link flex>
             <Link to={`/coordinator/${forgerAddr}`}>{forgerAddr}</Link>
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col flex>
             {getTokenAmountString(bidValue)} HEZ
-          </div>
-        </div>
+          </Col>
+        </Row>
       </section>
     )
   } else {
     return (
       <section>
-        <div className={classes.row}>
-          <div className={classes.col}>
+        <Row flex>
+          <Col flex>
             Slot
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col flex>
             Bids
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col flex>
             Bid amount
-          </div>
-        </div>
-        <div className={classes.row}>
-          <div className={`${classes.col} ${classes.link}`}>
+          </Col>
+        </Row>
+        <Row flex>
+          <Col link flex>
             <Link to={`/slot/${slotNum}`}>{slotNum}</Link>
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col flex>
             {numberOfBids}
-          </div>
-          <div className={classes.col}>
+          </Col>
+          <Col flex>
             {getTokenAmountString(bidValue)} HEZ
-          </div>
-        </div>
+          </Col>
+        </Row>
       </section>
     )
   }
