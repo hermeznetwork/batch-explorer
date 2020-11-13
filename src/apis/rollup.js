@@ -30,7 +30,7 @@ async function getAccounts (address, tokenIds, fromItem) {
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
-    ...(tokenIds ? { tokenIds } : {}),
+    ...(tokenIds ? { tokenIds: tokenIds.join(',') } : {}),
     ...getPageData(fromItem)
   }
   return extractJSON(axios.get(`${baseApiUrl}/accounts`, { params }))
@@ -44,7 +44,7 @@ async function getTransactions (address, tokenIds, batchNum, accountIndex, fromI
   const params = {
     ...(isEthereumAddress(address) ? { hezEthereumAddress: address } : {}),
     ...(isBjjAddress(address) ? { BJJ: address } : {}),
-    ...(tokenIds ? { tokenIds } : {}),
+    ...(tokenIds ? { tokenIds: tokenIds.join(',') } : {}),
     ...(batchNum ? { batchNum } : {}),
     ...(accountIndex ? { accountIndex } : {}),
     ...getPageData(fromItem)

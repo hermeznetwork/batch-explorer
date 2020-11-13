@@ -5,7 +5,7 @@ function fetchAccounts (address, fromItem) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadAccount())
 
-    return rollupApi.getAccounts(address, fromItem)
+    return rollupApi.getAccounts(address, undefined, fromItem)
       .then(res => dispatch(userAccountActionTypes.loadAccountSuccess(res)))
       .catch(err => dispatch(userAccountActionTypes.loadAccountFailure(err)))
   }
