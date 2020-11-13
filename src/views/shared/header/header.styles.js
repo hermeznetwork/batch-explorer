@@ -31,6 +31,13 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     alignItems: 'center'
   },
   link: {
+    display: 'flex',
+    marginTop: theme.spacing(10),
+    fontSize: theme.spacing(3),
+    [theme.breakpoints.sm]: {
+      marginTop: theme.spacing(0),
+      fontSize: theme.spacing(2)
+    },
     fontWeight: theme.fontWeights.bold,
     marginRight: theme.spacing(2.5),
     position: 'relative',
@@ -60,11 +67,25 @@ const useMainHeaderStyles = createUseStyles(theme => ({
       display: 'none'
     }
   },
+  closeMenuButton: {
+    textAlign: 'right',
+    width: '100%'
+  },
   active: {
     display: 'block'
   },
   notActive: {
     display: 'none'
+  },
+  hide: {
+    [theme.breakpoints.sm]: {
+      display: 'none'
+    }
+  },
+  show: {
+    [theme.breakpoints.sm]: {
+      display: 'flex'
+    }
   }
 }))
 

@@ -51,7 +51,8 @@ function Header () {
                 className={clsx({
                   [classes.menuButton]: true,
                   [classes.active]: true,
-                  [classes.notActive]: isMenuVisible
+                  [classes.notActive]: isMenuVisible,
+                  [classes.hide]: true
                 })}
                 onClick={() => handleOpenMenuClick()}
               >
@@ -60,8 +61,10 @@ function Header () {
               <button
                 className={clsx({
                   [classes.menuButton]: true,
+                  [classes.closeMenuButton]: true,
                   [classes.active]: isMenuVisible,
-                  [classes.notActive]: !isMenuVisible
+                  [classes.notActive]: !isMenuVisible,
+                  [classes.hide]: true
                 })}
                 onClick={() => handleCloseMenuClick()}
               >
@@ -71,7 +74,8 @@ function Header () {
               <div className={clsx({
                 [classes.links]: true,
                 [classes.active]: isMenuVisible,
-                [classes.notActive]: !isMenuVisible
+                [classes.notActive]: !isMenuVisible,
+                [classes.show]: true
               })}
               >
                 <Link to='/' className={classes.link}>Hermez wallet</Link>
