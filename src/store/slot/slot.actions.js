@@ -38,7 +38,7 @@ function loadBids () {
 function loadBidsSuccess (bids) {
   return {
     type: slotActionTypes.LOAD_BIDS_SUCCESS,
-    bids
+    data: bids
   }
 }
 
@@ -57,13 +57,19 @@ function loadBatches () {
 function loadBatchesSuccess (batches) {
   return {
     type: slotActionTypes.LOAD_BATCHES_SUCCESS,
-    batches
+    data: batches
   }
 }
 
 function loadBatchesFailure () {
   return {
     type: slotActionTypes.LOAD_BATCHES_FAILURE
+  }
+}
+
+function resetState () {
+  return {
+    type: slotActionTypes.RESET_STATE
   }
 }
 
@@ -76,5 +82,6 @@ export {
   loadBidsFailure,
   loadBatches,
   loadBatchesSuccess,
-  loadBatchesFailure
+  loadBatchesFailure,
+  resetState
 }

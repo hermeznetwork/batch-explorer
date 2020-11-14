@@ -38,7 +38,7 @@ function loadBatches () {
 function loadBatchesSuccess (batches) {
   return {
     type: coordinatorActionTypes.LOAD_BATCHES_SUCCESS,
-    batches
+    data: batches
   }
 }
 
@@ -57,13 +57,19 @@ function loadBids () {
 function loadBidsSuccess (bids) {
   return {
     type: coordinatorActionTypes.LOAD_BIDS_SUCCESS,
-    bids
+    data: bids
   }
 }
 
 function loadBidsFailure () {
   return {
     type: coordinatorActionTypes.LOAD_BIDS_FAILURE
+  }
+}
+
+function resetState () {
+  return {
+    type: coordinatorActionTypes.RESET_STATE
   }
 }
 
@@ -76,5 +82,6 @@ export {
   loadBatchesFailure,
   loadBids,
   loadBidsSuccess,
-  loadBidsFailure
+  loadBidsFailure,
+  resetState
 }
