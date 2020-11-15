@@ -15,9 +15,9 @@ function homeReducer (state = initialHomeState, action) {
     case homeActionTypes.LOAD_BATCHES: {
       return {
         ...state,
-        batchesTask: {
-          status: 'loading'
-        }
+        batchesTask: state.batchesTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.batchesTask.data }
       }
     }
     case homeActionTypes.LOAD_BATCHES_SUCCESS: {
@@ -68,6 +68,9 @@ function homeReducer (state = initialHomeState, action) {
           error: 'An error ocurred loading the stats and metrics'
         }
       }
+    }
+    case homeActionTypes.RESET_STATE: {
+      return initialHomeState
     }
     default: {
       return state

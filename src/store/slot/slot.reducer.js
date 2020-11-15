@@ -44,9 +44,9 @@ function slotReducer (state = initialSlotState, action) {
     case slotActionTypes.LOAD_BIDS: {
       return {
         ...state,
-        bidsTask: {
-          status: 'loading'
-        }
+        bidsTask: state.bidsTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.bidsTask.data }
       }
     }
     case slotActionTypes.LOAD_BIDS_SUCCESS: {
@@ -75,9 +75,9 @@ function slotReducer (state = initialSlotState, action) {
     case slotActionTypes.LOAD_BATCHES: {
       return {
         ...state,
-        batchesTask: {
-          status: 'loading'
-        }
+        batchesTask: state.batchesTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.batchesTask.data }
       }
     }
     case slotActionTypes.LOAD_BATCHES_SUCCESS: {
@@ -99,9 +99,12 @@ function slotReducer (state = initialSlotState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error ocurred loading the batch'
+          error: 'An error ocurred loading the batches'
         }
       }
+    }
+    case slotActionTypes.RESET_STATE: {
+      return initialSlotState
     }
     default: {
       return state
