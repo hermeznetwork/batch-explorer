@@ -125,8 +125,9 @@ function Slot ({
                                     paginationData={bidsTask.data.pagination}
                                     onLoadNextPage={(fromItem) => {
                                       if (bidsTask.status === 'successful') {
-                                        onLoadBatches(
+                                        onLoadBids(
                                           slotNum,
+                                          undefined,
                                           fromItem
                                         )
                                       }
