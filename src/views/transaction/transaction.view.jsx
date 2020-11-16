@@ -40,15 +40,11 @@ function Transaction ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Transaction summary</Title>
           {(() => {
             switch (transactionTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Transaction summary</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{transactionTask.error}</p>
@@ -56,7 +52,6 @@ function Transaction ({
               case 'successful': {
                 return (
                   <section>
-                    <Title>Transaction summary</Title>
                     <Row>
                       <Col>
                         Transaction ID
