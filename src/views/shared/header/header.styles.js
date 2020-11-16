@@ -24,7 +24,11 @@ const useMainHeaderStyles = createUseStyles(theme => ({
   },
   linksWrapper: {
     width: '100vw',
-    height: '100vh'
+    height: '100vh',
+    [theme.breakpoints.sm]: {
+      width: 'auto',
+      height: 'auto'
+    }
   },
   links: {
     display: 'flex',
@@ -77,7 +81,10 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     display: 'block'
   },
   notActive: {
-    display: 'none'
+    display: 'none',
+    [theme.breakpoints.sm]: {
+      display: 'block'
+    }
   },
   hide: {
     [theme.breakpoints.sm]: {
