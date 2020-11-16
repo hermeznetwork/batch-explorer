@@ -69,8 +69,9 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     }
   },
   closeMenuButton: {
-    textAlign: 'right',
-    width: '100%'
+    position: 'absolute',
+    right: theme.spacing(2),
+    padding: `0 ${theme.spacing(2)}px ${theme.spacing(3)}px`
   },
   active: {
     display: 'block'
