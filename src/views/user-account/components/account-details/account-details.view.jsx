@@ -1,35 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import useAccountDetailsStyles from './account-details.styles'
+import Row from '../../../shared/row/row'
+import Col from '../../../shared/col/col'
 
 function AccountDetails ({ tokenSymbol, balance, accountIndex }) {
-  const classes = useAccountDetailsStyles()
-
   return (
     <section>
-      <div className={classes.row}>
-        <div className={classes.col}>
+      <Row flex>
+        <Col flex>
           Token
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           Address
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           Balance
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={`${classes.col} ${classes.link}`}>
+        </Col>
+      </Row>
+      <Row flex>
+        <Col link flex>
           <Link to={`/token-account/${accountIndex}`}>{tokenSymbol}</Link>
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           {accountIndex}
-        </div>
-        <div className={classes.col}>
+        </Col>
+        <Col flex>
           {balance}
-        </div>
-      </div>
+        </Col>
+      </Row>
     </section>
   )
 }
