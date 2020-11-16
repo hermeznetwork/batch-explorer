@@ -63,6 +63,7 @@ const useMainHeaderStyles = createUseStyles(theme => ({
   menuButton: {
     border: '0',
     background: 'transparent',
+    outline: 'none',
     [theme.breakpoints.sm]: {
       display: 'none'
     }
