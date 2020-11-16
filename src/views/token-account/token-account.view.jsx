@@ -31,15 +31,11 @@ function TokenAccount ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Token account</Title>
           {(() => {
             switch (accountTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Token account</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{accountTask.error}</p>
@@ -47,7 +43,6 @@ function TokenAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <Title>Token account</Title>
                     <Row>
                       <Col>
                         Token address
@@ -81,15 +76,11 @@ function TokenAccount ({
             }
           })()}
 
+          <Title>Transactions</Title>
           {(() => {
             switch (transactionsTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Transactions</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{transactionsTask.error}</p>
@@ -97,7 +88,6 @@ function TokenAccount ({
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Transactions</h4>
                     <TransactionsList
                       transactions={transactionsTask.data.transactions}
                       isToken
