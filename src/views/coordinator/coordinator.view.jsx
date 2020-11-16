@@ -47,15 +47,11 @@ function Coordinator ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Coordinator info</Title>
           {(() => {
             switch (coordinatorTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Coordinator info</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{coordinatorTask.error}</p>
@@ -63,7 +59,6 @@ function Coordinator ({
               case 'successful': {
                 return (
                   <section>
-                    <Title>Coordinator info</Title>
                     <CoordinatorDetails
                       coordinator={coordinatorTask.data}
                     />
@@ -76,15 +71,34 @@ function Coordinator ({
             }
           })()}
 
+          <>
+            <div className={classes.toggleWrapper}>
+              <button
+                className={clsx({
+                  [classes.toggle]: true,
+                  [classes.active]: true,
+                  [classes.notActive]: isSecondTabVisible
+                })}
+                onClick={() => handleFirstTabClick()}
+              >
+                Forged batches
+              </button>
+              <button
+                className={clsx({
+                  [classes.toggle]: true,
+                  [classes.active]: isSecondTabVisible,
+                  [classes.notActive]: isFirstTabVisible
+                })}
+                onClick={() => handleSecondTabClick()}
+              >
+                Winner bids
+              </button>
+            </div>
+          </>
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{batchesTask.error}</p>
@@ -149,12 +163,7 @@ function Coordinator ({
           {(() => {
             switch (bidsTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Bids</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{bidsTask.error}</p>

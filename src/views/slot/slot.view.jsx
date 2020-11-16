@@ -52,15 +52,11 @@ function Slot ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Slot</Title>
           {(() => {
             switch (slotTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Slot</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{slotTask.error}</p>
@@ -68,12 +64,7 @@ function Slot ({
               case 'successful': {
                 switch (bidsTask.status) {
                   case 'loading': {
-                    return (
-                      <>
-                        <Title>Bids</Title>
-                        <Spinner />
-                      </>
-                    )
+                    return <Spinner />
                   }
                   case 'failed': {
                     return <p>{bidsTask.error}</p>
@@ -181,12 +172,7 @@ function Slot ({
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{batchesTask.error}</p>

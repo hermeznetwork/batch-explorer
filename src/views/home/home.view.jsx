@@ -30,29 +30,22 @@ function Home ({
     <div className={classes.root}>
       <Container backgroundColor={theme.palette.primary.main} disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Overview</Title>
           {(() => {
             switch (overviewTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Overview</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{overviewTask.error}</p>
               }
               case 'successful': {
                 return (
-                  <>
-                    <section className={classes.section}>
-                      <Title>Overview</Title>
-                      <Overview
-                        overview={overviewTask.data}
-                      />
-                    </section>
-                  </>
+                  <section className={classes.section}>
+                    <Overview
+                      overview={overviewTask.data}
+                    />
+                  </section>
                 )
               }
               default: {
@@ -61,15 +54,11 @@ function Home ({
             }
           })()}
 
+          <Title>Batches</Title>
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
                 return <p>{batchesTask.error}</p>
