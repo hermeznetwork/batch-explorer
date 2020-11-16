@@ -162,20 +162,10 @@ function UserAccount ({
           {(() => {
             switch (transactionsTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Transactions</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Transactions</Title>
-                    <p>{transactionsTask.error}</p>
-                  </>
-                )
+                return <p>{transactionsTask.error}</p>
               }
               case 'successful': {
                 return (

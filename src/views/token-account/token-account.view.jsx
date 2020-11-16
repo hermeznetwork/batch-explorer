@@ -76,28 +76,18 @@ function TokenAccount ({
             }
           })()}
 
+          <Title>Transactions</Title>
           {(() => {
             switch (transactionsTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Transactions</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Transactions</Title>
-                    <p>{transactionsTask.error}</p>
-                  </>
-                )
+                return <p>{transactionsTask.error}</p>
               }
               case 'successful': {
                 return (
                   <section>
-                    <h4 className={classes.title}>Transactions</h4>
                     <TransactionsList
                       transactions={transactionsTask.data.transactions}
                       isToken

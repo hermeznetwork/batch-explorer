@@ -53,29 +53,19 @@ function Home ({
             }
           })()}
 
+          <Title>Batches</Title>
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <p>{batchesTask.error}</p>
-                  </>
-                )
+                return <p>{batchesTask.error}</p>
               }
               case 'successful': {
                 return (
                   <>
                     <section className={classes.section}>
-                      <Title>Batches</Title>
                       <BatchesList
                         batches={batchesTask.data.batches}
                       />

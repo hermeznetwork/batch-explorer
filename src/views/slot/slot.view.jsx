@@ -51,41 +51,22 @@ function Slot ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
+          <Title>Slot</Title>
           {(() => {
             switch (slotTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Slot</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Slot</Title>
-                    <p>{slotTask.error}</p>
-                  </>
-                )
+                return <p>{slotTask.error}</p>
               }
               case 'successful': {
                 switch (bidsTask.status) {
                   case 'loading': {
-                    return (
-                      <>
-                        <Title>Bids</Title>
-                        <Spinner />
-                      </>
-                    )
+                    return <Spinner />
                   }
                   case 'failed': {
-                    return (
-                      <>
-                        <Title>Bids</Title>
-                        <p>{bidsTask.error}</p>
-                      </>
-                    )
+                    return <p>{bidsTask.error}</p>
                   }
                   case 'successful': {
                     return (
@@ -162,20 +143,10 @@ function Slot ({
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <p>{batchesTask.error}</p>
-                  </>
-                )
+                return <p>{batchesTask.error}</p>
               }
               case 'successful': {
                 return (

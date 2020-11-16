@@ -70,60 +70,49 @@ function Coordinator ({
             }
           })()}
 
+          <>
+            <div className={classes.toggleWrapper}>
+              <button
+                className={clsx({
+                  [classes.toggle]: true,
+                  [classes.active]: true,
+                  [classes.notActive]: isSecondTabVisible
+                })}
+                onClick={() => handleFirstTabClick()}
+              >
+                Forged batches
+              </button>
+              <button
+                className={clsx({
+                  [classes.toggle]: true,
+                  [classes.active]: isSecondTabVisible,
+                  [classes.notActive]: isFirstTabVisible
+                })}
+                onClick={() => handleSecondTabClick()}
+              >
+                Winner bids
+              </button>
+            </div>
+          </>
           {(() => {
             switch (batchesTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Batches</Title>
-                    <p>{batchesTask.error}</p>
-                  </>
-                )
+                return <p>{batchesTask.error}</p>
               }
               case 'successful': {
                 return (
-                  <>
-                    <div className={classes.toggleWrapper}>
-                      <button
-                        className={clsx({
-                          [classes.toggle]: true,
-                          [classes.active]: true,
-                          [classes.notActive]: isSecondTabVisible
-                        })}
-                        onClick={() => handleFirstTabClick()}
-                      >
-                        Forged batches
-                      </button>
-                      <button
-                        className={clsx({
-                          [classes.toggle]: true,
-                          [classes.active]: isSecondTabVisible,
-                          [classes.notActive]: isFirstTabVisible
-                        })}
-                        onClick={() => handleSecondTabClick()}
-                      >
-                        Winner bids
-                      </button>
-                    </div>
-
-                    <div className={clsx({
-                      [classes.hidden]: isSecondTabVisible,
-                      [classes.firstTabVisible]: isFirstTabVisible
-                    })}
-                    >
-                      <BatchesList
-                        batches={batchesTask.data.batches}
-                      />
-                    </div>
-                  </>
+                  <div className={clsx({
+                    [classes.hidden]: isSecondTabVisible,
+                    [classes.firstTabVisible]: isFirstTabVisible
+                  })}
+                  >
+                    <BatchesList
+                      batches={batchesTask.data.batches}
+                    />
+                  </div>
                 )
               }
               default: {
@@ -135,20 +124,10 @@ function Coordinator ({
           {(() => {
             switch (bidsTask.status) {
               case 'loading': {
-                return (
-                  <>
-                    <Title>Bids</Title>
-                    <Spinner />
-                  </>
-                )
+                return <Spinner />
               }
               case 'failed': {
-                return (
-                  <>
-                    <Title>Bids</Title>
-                    <p>{bidsTask.error}</p>
-                  </>
-                )
+                return <p>{bidsTask.error}</p>
               }
               case 'successful': {
                 return (
