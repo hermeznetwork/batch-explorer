@@ -19,11 +19,29 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     fontSize: theme.spacing(1.5),
     marginTop: theme.spacing(5)
   },
+  search: {
+    marginBottom: theme.spacing(2)
+  },
+  linksWrapper: {
+    width: '100vw',
+    height: '100vh',
+    [theme.breakpoints.sm]: {
+      width: 'auto',
+      height: 'auto'
+    }
+  },
   links: {
     display: 'flex',
     alignItems: 'center'
   },
   link: {
+    display: 'flex',
+    marginTop: theme.spacing(10),
+    fontSize: theme.spacing(3),
+    [theme.breakpoints.sm]: {
+      marginTop: theme.spacing(0),
+      fontSize: theme.spacing(2)
+    },
     fontWeight: theme.fontWeights.bold,
     marginRight: theme.spacing(2.5),
     position: 'relative',
@@ -46,8 +64,37 @@ const useMainHeaderStyles = createUseStyles(theme => ({
       marginRight: 0
     }
   },
-  search: {
-    marginBottom: theme.spacing(2)
+  menuButton: {
+    border: '0',
+    background: 'transparent',
+    outline: 'none',
+    [theme.breakpoints.sm]: {
+      display: 'none'
+    }
+  },
+  closeMenuButton: {
+    position: 'absolute',
+    right: theme.spacing(2),
+    padding: `0 ${theme.spacing(2)}px ${theme.spacing(3)}px`
+  },
+  active: {
+    display: 'block'
+  },
+  notActive: {
+    display: 'none',
+    [theme.breakpoints.sm]: {
+      display: 'block'
+    }
+  },
+  hide: {
+    [theme.breakpoints.sm]: {
+      display: 'none'
+    }
+  },
+  show: {
+    [theme.breakpoints.sm]: {
+      display: 'flex'
+    }
   }
 }))
 
