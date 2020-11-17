@@ -16,12 +16,14 @@ import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
+import { resetState } from '../../store/user-account/user-account.actions'
 
 function UserAccount ({
   onLoadAccounts,
   accountsTask,
   onLoadTransactions,
-  transactionsTask
+  transactionsTask,
+  onCleanup
 }) {
   const classes = useUserAccountStyles()
   const { address } = useParams()
@@ -42,6 +44,8 @@ function UserAccount ({
     onLoadAccounts(address)
     onLoadTransactions(address)
   }, [address, onLoadAccounts, onLoadTransactions])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   return (
     <div className={classes.root}>
@@ -220,7 +224,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadAccounts: (address, fromItem) => dispatch(fetchAccounts(address, fromItem)),
-  onLoadTransactions: (address, fromItem) => dispatch(fetchTransactions(address, fromItem))
+  onLoadTransactions: (address, fromItem) => dispatch(fetchTransactions(address, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

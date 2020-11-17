@@ -13,6 +13,7 @@ import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchSlot, fetchBids, fetchBatches } from '../../store/slot/slot.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Title from '../shared/title/title'
+import { resetState } from '../../store/slot/slot.actions'
 
 function Slot ({
   onLoadSlot,
@@ -20,7 +21,8 @@ function Slot ({
   onLoadBids,
   bidsTask,
   onLoadBatches,
-  batchesTask
+  batchesTask,
+  onCleanup
 }) {
   const classes = useSlotStyles()
   const { slotNum } = useParams()
@@ -47,6 +49,8 @@ function Slot ({
       onLoadBatches(slotNum)
     }
   }, [slotTask, slotNum, onLoadBatches])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   return (
     <div className={classes.root}>
@@ -235,7 +239,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadSlot: (slotNum) => dispatch(fetchSlot(slotNum)),
   onLoadBids: (slotNum, fromItem) => dispatch(fetchBids(slotNum, undefined, fromItem)),
-  onLoadBatches: (slotNum, fromItem) => dispatch(fetchBatches(undefined, slotNum, fromItem))
+  onLoadBatches: (slotNum, fromItem) => dispatch(fetchBatches(undefined, slotNum, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Slot)

@@ -13,6 +13,7 @@ import BidsList from '../shared/bids-list/bids-list.view'
 import { fetchBatches, fetchCoordinator, fetchBids } from '../../store/coordinator/coordinator.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Title from '../shared/title/title'
+import { resetState } from '../../store/coordinator/coordinator.actions'
 
 function Coordinator ({
   onLoadBatches,
@@ -20,7 +21,8 @@ function Coordinator ({
   onLoadCoordinator,
   coordinatorTask,
   onLoadBids,
-  bidsTask
+  bidsTask,
+  onCleanup
 }) {
   const classes = useCoordinatorStyles()
   const { coordinatorId } = useParams()
@@ -42,6 +44,8 @@ function Coordinator ({
     onLoadCoordinator(coordinatorId)
     onLoadBids(coordinatorId)
   }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   return (
     <div className={classes.root}>
@@ -105,53 +109,28 @@ function Coordinator ({
               }
               case 'successful': {
                 return (
-                  <>
-                    <div className={classes.toggleWrapper}>
-                      <button
-                        className={clsx({
-                          [classes.toggle]: true,
-                          [classes.active]: true,
-                          [classes.notActive]: isSecondTabVisible
-                        })}
-                        onClick={() => handleFirstTabClick()}
-                      >
-                        Forged batches
-                      </button>
-                      <button
-                        className={clsx({
-                          [classes.toggle]: true,
-                          [classes.active]: isSecondTabVisible,
-                          [classes.notActive]: isFirstTabVisible
-                        })}
-                        onClick={() => handleSecondTabClick()}
-                      >
-                        Winner bids
-                      </button>
-                    </div>
-
-                    <div className={clsx({
-                      [classes.hidden]: isSecondTabVisible,
-                      [classes.firstTabVisible]: isFirstTabVisible
-                    })}
+                  <div className={clsx({
+                    [classes.hidden]: isSecondTabVisible,
+                    [classes.firstTabVisible]: isFirstTabVisible
+                  })}
+                  >
+                    <InfiniteScroll
+                      asyncTaskStatus={batchesTask.status}
+                      paginationData={batchesTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (batchesTask.status === 'successful') {
+                          onLoadBatches(
+                            coordinatorId,
+                            fromItem
+                          )
+                        }
+                      }}
                     >
-                      <InfiniteScroll
-                        asyncTaskStatus={batchesTask.status}
-                        paginationData={batchesTask.data.pagination}
-                        onLoadNextPage={(fromItem) => {
-                          if (batchesTask.status === 'successful') {
-                            onLoadBatches(
-                              coordinatorId,
-                              fromItem
-                            )
-                          }
-                        }}
-                      >
-                        <BatchesList
-                          batches={batchesTask.data.batches}
-                        />
-                      </InfiniteScroll>
-                    </div>
-                  </>
+                      <BatchesList
+                        batches={batchesTask.data.batches}
+                      />
+                    </InfiniteScroll>
+                  </div>
                 )
               }
               default: {
@@ -223,7 +202,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatches: (coordinatorId, fromItem) => dispatch(fetchBatches(coordinatorId, undefined, fromItem)),
   onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId)),
-  onLoadBids: (coordinatorId, fromItem) => dispatch(fetchBids(undefined, coordinatorId, fromItem))
+  onLoadBids: (coordinatorId, fromItem) => dispatch(fetchBids(undefined, coordinatorId, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Coordinator)

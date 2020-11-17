@@ -11,17 +11,21 @@ import Overview from './components/overview/overview.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import Title from '../shared/title/title'
+import { resetState } from '../../store/home/home.actions'
 
 function Home ({
   onLoadBatches,
   batchesTask,
   onLoadOverview,
-  overviewTask
+  overviewTask,
+  onCleanup
 }) {
   React.useEffect(() => {
     onLoadBatches()
     onLoadOverview()
   }, [onLoadBatches, onLoadOverview])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   const theme = useTheme()
   const classes = useHomeStyles()
@@ -67,7 +71,6 @@ function Home ({
                 return (
                   <>
                     <section className={classes.section}>
-                      <Title>Batches</Title>
                       <InfiniteScroll
                         asyncTaskStatus={batchesTask.status}
                         paginationData={batchesTask.data.pagination}
@@ -112,7 +115,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatches: (fromItem) => dispatch(fetchBatches(fromItem)),
-  onLoadOverview: () => dispatch(fetchOverview())
+  onLoadOverview: () => dispatch(fetchOverview()),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
