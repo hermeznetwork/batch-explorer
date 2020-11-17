@@ -1,29 +1,86 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 
 import useHeaderStyles from './header.styles'
 import { ReactComponent as Logo } from '../../../images/logo.svg'
 import Container from '../container/container.view'
 import Search from '../../search/search.view'
+import { ReactComponent as Close } from '../../../images/icons/close.svg'
+import { ReactComponent as Menu } from '../../../images/icons/menu.svg'
 
 function Header () {
   const classes = useHeaderStyles()
+  const [isMenuVisible, setMenuVisible] = React.useState()
+
+  function handleOpenMenuClick () {
+    setMenuVisible(true)
+  }
+
+  function handleCloseMenuClick () {
+    setMenuVisible(false)
+  }
 
   return (
     <header className={classes.root}>
       <Container disableVerticalGutters>
         <div className={classes.wrapper}>
-          <div className={`${classes.row} ${classes.logoAndLinks}`}>
-            <div>
+          <div className={clsx({
+            [classes.row]: true,
+            [classes.logoAndLinks]: true
+
+          })}
+          >
+            <div className={clsx({
+              [classes.logo]: true,
+              [classes.active]: true,
+              [classes.notActive]: isMenuVisible
+            })}
+            >
               <Link
                 to='/'
               >
                 <Logo />
               </Link>
             </div>
-            <div className={classes.links}>
-              <Link to='/' className={classes.link}>Hermez wallet</Link>
-              <Link to='https://twitter.com/hermez_network' className={classes.link}>Twitter</Link>
+            <div className={clsx({
+              [classes.linksWrapper]: isMenuVisible
+            })}
+            >
+              <button
+                className={clsx({
+                  [classes.menuButton]: true,
+                  [classes.active]: true,
+                  [classes.notActive]: isMenuVisible,
+                  [classes.hide]: true
+                })}
+                onClick={() => handleOpenMenuClick()}
+              >
+                <Menu className={classes.icon} />
+              </button>
+              <button
+                className={clsx({
+                  [classes.menuButton]: true,
+                  [classes.closeMenuButton]: true,
+                  [classes.active]: isMenuVisible,
+                  [classes.notActive]: !isMenuVisible,
+                  [classes.hide]: true
+                })}
+                onClick={() => handleCloseMenuClick()}
+              >
+                <Close className={classes.icon} />
+              </button>
+
+              <div className={clsx({
+                [classes.links]: true,
+                [classes.active]: isMenuVisible,
+                [classes.notActive]: !isMenuVisible,
+                [classes.show]: true
+              })}
+              >
+                <Link to='/' className={classes.link}>Hermez wallet</Link>
+                <Link to='https://twitter.com/hermez_network' className={classes.link}>Twitter</Link>
+              </div>
             </div>
           </div>
           <div className={`${classes.row} ${classes.headline}`}>
