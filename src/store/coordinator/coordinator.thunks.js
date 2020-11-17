@@ -15,7 +15,7 @@ function fetchBatches (forgerAddr, fromItem) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBatches())
 
-    return CoordinatorAPI.getBatches(forgerAddr)
+    return CoordinatorAPI.getBatches(forgerAddr, fromItem)
       .then(res => dispatch(coordinatorActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBatchesFailure(err)))
   }
@@ -25,7 +25,7 @@ function fetchBids (slotNum, forgerAddr, fromItem) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBids())
 
-    return CoordinatorAPI.getBids(slotNum, forgerAddr)
+    return CoordinatorAPI.getBids(slotNum, forgerAddr, fromItem)
       .then(res => dispatch(coordinatorActions.loadBidsSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBidsFailure(err)))
   }

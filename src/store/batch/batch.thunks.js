@@ -11,14 +11,14 @@ function fetchBatch (batchNum) {
   }
 }
 
-function fetchBatchTransactions (batchNum) {
+function fetchTransactions (batchNum, fromItem) {
   return (dispatch) => {
-    dispatch(batchActions.loadBatchTransactions())
+    dispatch(batchActions.loadTransactions())
 
-    return CoordinatorAPI.getTransactions(undefined, undefined, batchNum)
-      .then((res) => { dispatch(batchActions.loadBatchTransactionsSuccess(res)) })
-      .catch(err => dispatch(batchActions.loadBatchTransactionsFailure(err)))
+    return CoordinatorAPI.getTransactions(undefined, undefined, batchNum, undefined, fromItem)
+      .then(res => dispatch(batchActions.loadTransactionsSuccess(res)))
+      .catch(err => dispatch(batchActions.loadTransactionsFailure(err)))
   }
 }
 
-export { fetchBatch, fetchBatchTransactions }
+export { fetchBatch, fetchTransactions }

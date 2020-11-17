@@ -12,8 +12,8 @@ import BidsList from '../shared/bids-list/bids-list.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchSlot, fetchBids, fetchBatches } from '../../store/slot/slot.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
-import Title from '../shared/title/title'
 import { resetState } from '../../store/slot/slot.actions'
+import Title from '../shared/title/title'
 
 function Slot ({
   onLoadSlot,
@@ -73,6 +73,7 @@ function Slot ({
                   case 'failed': {
                     return <p>{bidsTask.error}</p>
                   }
+                  case 'reloading':
                   case 'successful': {
                     return (
                       <>
@@ -181,6 +182,7 @@ function Slot ({
               case 'failed': {
                 return <p>{batchesTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <section>

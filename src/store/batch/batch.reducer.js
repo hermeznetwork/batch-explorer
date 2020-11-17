@@ -1,10 +1,11 @@
 import { batchActionTypes } from './batch.actions'
+import { getPaginationData } from '../../utils/api'
 
 const initialBatchState = {
   batchTask: {
     status: 'pending'
   },
-  batchTransactionsTask: {
+  transactionsTask: {
     status: 'pending'
   }
 }
@@ -40,28 +41,36 @@ function batchReducer (state = initialBatchState, action) {
     case batchActionTypes.LOAD_BATCH_TRANSACTIONS: {
       return {
         ...state,
-        batchTransactionsTask: {
-          status: 'loading'
-        }
+        transactionsTask: state.transactionsTask.status === 'successful'
+          ? { status: 'reloading', data: state.transactionsTask.data }
+          : { status: 'loading' }
       }
     }
     case batchActionTypes.LOAD_BATCH_TRANSACTIONS_SUCCESS: {
+      const transactions = state.transactionsTask.status === 'reloading'
+        ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
+        : action.data.transactions
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
-        batchTransactionsTask: {
+        transactionsTask: {
           status: 'successful',
-          data: action.transactions
+          data: { transactions, pagination }
         }
       }
     }
     case batchActionTypes.LOAD_BATCH_TRANSACTIONS_FAILURE: {
       return {
         ...state,
-        batchTransactionsTask: {
+        transactionsTask: {
           status: 'failed',
           error: 'An error ocurred loading the batch transactions'
         }
       }
+    }
+    case batchActionTypes.RESET_STATE: {
+      return initialBatchState
     }
     default: {
       return state

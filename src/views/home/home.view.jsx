@@ -10,8 +10,8 @@ import BatchesList from './components/batches-list/batches-list.view'
 import Overview from './components/overview/overview.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
-import Title from '../shared/title/title'
 import { resetState } from '../../store/home/home.actions'
+import Title from '../shared/title/title'
 
 function Home ({
   onLoadBatches,
@@ -67,27 +67,26 @@ function Home ({
               case 'failed': {
                 return <p>{batchesTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
-                  <>
-                    <section className={classes.section}>
-                      <InfiniteScroll
-                        asyncTaskStatus={batchesTask.status}
-                        paginationData={batchesTask.data.pagination}
-                        onLoadNextPage={(fromItem) => {
-                          if (batchesTask.status === 'successful') {
-                            onLoadBatches(
-                              fromItem
-                            )
-                          }
-                        }}
-                      >
-                        <BatchesList
-                          batches={batchesTask.data.batches}
-                        />
-                      </InfiniteScroll>
-                    </section>
-                  </>
+                  <section className={classes.section}>
+                    <InfiniteScroll
+                      asyncTaskStatus={batchesTask.status}
+                      paginationData={batchesTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (batchesTask.status === 'successful') {
+                          onLoadBatches(
+                            fromItem
+                          )
+                        }
+                      }}
+                    >
+                      <BatchesList
+                        batches={batchesTask.data.batches}
+                      />
+                    </InfiniteScroll>
+                  </section>
                 )
               }
               default: {

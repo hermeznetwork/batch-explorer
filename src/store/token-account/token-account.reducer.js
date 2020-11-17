@@ -1,6 +1,7 @@
 import { tokenAccountActionTypes } from './token-account.actions'
+import { getPaginationData } from '../../utils/api'
 
-const initialTokenAccountReducer = {
+const initialTokenAccountState = {
   accountTask: {
     status: 'pending'
   },
@@ -9,7 +10,7 @@ const initialTokenAccountReducer = {
   }
 }
 
-function tokenAccountReducer (state = initialTokenAccountReducer, action) {
+function tokenAccountReducer (state = initialTokenAccountState, action) {
   switch (action.type) {
     case tokenAccountActionTypes.LOAD_ACCOUNT: {
       return {
@@ -40,17 +41,22 @@ function tokenAccountReducer (state = initialTokenAccountReducer, action) {
     case tokenAccountActionTypes.LOAD_TRANSACTIONS: {
       return {
         ...state,
-        transactionsTask: {
-          status: 'loading'
-        }
+        transactionsTask: state.transactionsTask.status === 'successful'
+          ? { status: 'reloading', data: state.transactionsTask.data }
+          : { status: 'loading' }
       }
     }
     case tokenAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS: {
+      const transactions = state.transactionsTask.status === 'reloading'
+        ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
+        : action.data.transactions
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         transactionsTask: {
           status: 'successful',
-          data: action.transactions
+          data: { transactions, pagination }
         }
       }
     }
@@ -62,6 +68,9 @@ function tokenAccountReducer (state = initialTokenAccountReducer, action) {
           error: 'An error ocurred loading the transactions'
         }
       }
+    }
+    case tokenAccountActionTypes.RESET_STATE: {
+      return initialTokenAccountState
     }
     default: {
       return state

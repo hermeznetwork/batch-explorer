@@ -5,7 +5,7 @@ function fetchBatches (fromItem) {
   return (dispatch) => {
     dispatch(homeActions.loadBatches())
 
-    return CoordinatorAPI.getBatches()
+    return CoordinatorAPI.getBatches(fromItem)
       .then(res => dispatch(homeActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(homeActions.loadBatchesFailure(err)))
   }

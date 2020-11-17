@@ -12,8 +12,8 @@ import BatchesList from '../shared/batches-list/batches-list.view'
 import BidsList from '../shared/bids-list/bids-list.view'
 import { fetchBatches, fetchCoordinator, fetchBids } from '../../store/coordinator/coordinator.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
-import Title from '../shared/title/title'
 import { resetState } from '../../store/coordinator/coordinator.actions'
+import Title from '../shared/title/title'
 
 function Coordinator ({
   onLoadBatches,
@@ -107,6 +107,7 @@ function Coordinator ({
               case 'failed': {
                 return <p>{batchesTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <div className={clsx({
@@ -147,6 +148,7 @@ function Coordinator ({
               case 'failed': {
                 return <p>{bidsTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <div className={clsx({
