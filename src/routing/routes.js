@@ -38,7 +38,7 @@ const routes = [
     component: TokenAccount
   },
   {
-    path: '/search-error',
+    path: '/search-error/:searchTerm',
     component: SearchError
   }
 ]
