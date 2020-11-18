@@ -81,7 +81,6 @@ function Batch ({
               }
               case 'reloading':
               case 'successful': {
-                console.log('transactionsTask.data: ', transactionsTask.data)
                 return (
                   <section>
                     <InfiniteScroll
