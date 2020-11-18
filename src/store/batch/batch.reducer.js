@@ -38,7 +38,7 @@ function batchReducer (state = initialBatchState, action) {
         }
       }
     }
-    case batchActionTypes.LOAD_BATCH_TRANSACTIONS: {
+    case batchActionTypes.LOAD_TRANSACTIONS: {
       return {
         ...state,
         transactionsTask: state.transactionsTask.status === 'successful'
@@ -46,7 +46,7 @@ function batchReducer (state = initialBatchState, action) {
           : { status: 'loading' }
       }
     }
-    case batchActionTypes.LOAD_BATCH_TRANSACTIONS_SUCCESS: {
+    case batchActionTypes.LOAD_TRANSACTIONS_SUCCESS: {
       const transactions = state.transactionsTask.status === 'reloading'
         ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
         : action.data.transactions
@@ -60,7 +60,7 @@ function batchReducer (state = initialBatchState, action) {
         }
       }
     }
-    case batchActionTypes.LOAD_BATCH_TRANSACTIONS_FAILURE: {
+    case batchActionTypes.LOAD_TRANSACTIONS_FAILURE: {
       return {
         ...state,
         transactionsTask: {

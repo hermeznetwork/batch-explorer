@@ -2,9 +2,9 @@ export const batchActionTypes = {
   LOAD_BATCH: '[BATCH] LOAD BATCH',
   LOAD_BATCH_SUCCESS: '[BATCH] LOAD BATCH SUCCESS',
   LOAD_BATCH_FAILURE: '[BATCH] LOAD BATCH FAILURE',
-  LOAD_BATCH_TRANSACTIONS: '[BATCH] LOAD BATCH TRANSACTIONS',
-  LOAD_BATCH_TRANSACTIONS_SUCCESS: '[BATCH] LOAD BATCH TRANSACTIONS SUCCESS',
-  LOAD_BATCH_TRANSACTIONS_FAILURE: '[BATCH] LOAD BATCH TRANSACTIONS FAILURE',
+  LOAD_TRANSACTIONS: '[BATCH] LOAD TRANSACTIONS',
+  LOAD_TRANSACTIONS_SUCCESS: '[BATCH] LOAD TRANSACTIONS SUCCESS',
+  LOAD_TRANSACTIONS_FAILURE: '[BATCH] LOAD TRANSACTIONS FAILURE',
   RESET_STATE: '[BATCH] RESET STATE'
 }
 
@@ -29,20 +29,20 @@ function loadBatchFailure () {
 
 function loadTransactions () {
   return {
-    type: batchActionTypes.LOAD_BATCH_TRANSACTIONS
+    type: batchActionTypes.LOAD_TRANSACTIONS
   }
 }
 
 function loadTransactionsSuccess (transactions) {
   return {
-    type: batchActionTypes.LOAD_BATCH_TRANSACTIONS_SUCCESS,
+    type: batchActionTypes.LOAD_TRANSACTIONS_SUCCESS,
     data: transactions
   }
 }
 
 function loadTransactionsFailure () {
   return {
-    type: batchActionTypes.LOAD_BATCH_TRANSACTIONS_FAILURE
+    type: batchActionTypes.LOAD_TRANSACTIONS_FAILURE
   }
 }
 
