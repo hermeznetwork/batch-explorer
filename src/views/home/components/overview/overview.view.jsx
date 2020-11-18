@@ -39,7 +39,7 @@ function Overview ({ overview }) {
             Avg Batch Time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.batchFrequency}
+            {overview.metrics.batchFrequency}"
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
@@ -75,7 +75,7 @@ function Overview ({ overview }) {
             Avg transaction fee:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.avgTransactionFee}
+            {overview.metrics.avgTransactionFee} USD
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
