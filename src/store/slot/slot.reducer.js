@@ -1,4 +1,5 @@
 import { slotActionTypes } from './slot.actions'
+import { getPaginationData } from '../../utils/api'
 
 const initialSlotState = {
   slotTask: {
@@ -43,17 +44,22 @@ function slotReducer (state = initialSlotState, action) {
     case slotActionTypes.LOAD_BIDS: {
       return {
         ...state,
-        bidsTask: {
-          status: 'loading'
-        }
+        bidsTask: state.bidsTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.bidsTask.data }
       }
     }
     case slotActionTypes.LOAD_BIDS_SUCCESS: {
+      const bids = state.bidsTask.status === 'reloading'
+        ? [...state.bidsTask.data.bids, ...action.data.bids]
+        : action.data.bids
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         bidsTask: {
           status: 'successful',
-          data: action.bids
+          data: { bids, pagination }
         }
       }
     }
@@ -69,17 +75,22 @@ function slotReducer (state = initialSlotState, action) {
     case slotActionTypes.LOAD_BATCHES: {
       return {
         ...state,
-        batchesTask: {
-          status: 'loading'
-        }
+        batchesTask: state.batchesTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.batchesTask.data }
       }
     }
     case slotActionTypes.LOAD_BATCHES_SUCCESS: {
+      const batches = state.batchesTask.status === 'reloading'
+        ? [...state.batchesTask.data.batches, ...action.data.batches]
+        : action.data.batches
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         batchesTask: {
           status: 'successful',
-          data: action.batches
+          data: { batches, pagination }
         }
       }
     }
@@ -88,9 +99,12 @@ function slotReducer (state = initialSlotState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error ocurred loading the batch'
+          error: 'An error ocurred loading the batches'
         }
       }
+    }
+    case slotActionTypes.RESET_STATE: {
+      return initialSlotState
     }
     default: {
       return state

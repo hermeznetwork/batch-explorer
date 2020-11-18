@@ -9,6 +9,8 @@ import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import { fetchAccount, fetchTransactions } from '../../store/token-account/token-account.thunks'
+import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import { resetState } from '../../store/token-account/token-account.actions'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
@@ -17,7 +19,8 @@ function TokenAccount ({
   onLoadAccount,
   accountTask,
   onLoadTransactions,
-  transactionsTask
+  transactionsTask,
+  onCleanup
 }) {
   const classes = useTokenAccountStyles()
   const { accountIndex } = useParams()
@@ -26,6 +29,8 @@ function TokenAccount ({
     onLoadAccount(accountIndex)
     onLoadTransactions(accountIndex)
   }, [accountIndex, onLoadAccount, onLoadTransactions])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   return (
     <div className={classes.root}>
@@ -85,13 +90,27 @@ function TokenAccount ({
               case 'failed': {
                 return <p>{transactionsTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <section>
-                    <TransactionsList
-                      transactions={transactionsTask.data.transactions}
-                      isToken
-                    />
+                    <InfiniteScroll
+                      asyncTaskStatus={transactionsTask.status}
+                      paginationData={transactionsTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (transactionsTask.status === 'successful') {
+                          onLoadTransactions(
+                            accountIndex,
+                            fromItem
+                          )
+                        }
+                      }}
+                    >
+                      <TransactionsList
+                        transactions={transactionsTask.data.transactions}
+                        isToken
+                      />
+                    </InfiniteScroll>
                   </section>
                 )
               }
@@ -120,7 +139,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadAccount: (accountIndex) => dispatch(fetchAccount(accountIndex)),
-  onLoadTransactions: (accountIndex) => dispatch(fetchTransactions(accountIndex))
+  onLoadTransactions: (accountIndex, fromItem) => dispatch(fetchTransactions(accountIndex, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TokenAccount)

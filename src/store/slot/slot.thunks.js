@@ -11,21 +11,21 @@ function fetchSlot (slotNum) {
   }
 }
 
-function fetchBids (slotNum, forgerAddr) {
+function fetchBids (slotNum, forgerAddr, fromItem) {
   return (dispatch) => {
     dispatch(slotActions.loadBids())
 
-    return CoordinatorAPI.getBids(slotNum, forgerAddr)
+    return CoordinatorAPI.getBids(slotNum, forgerAddr, fromItem)
       .then(res => dispatch(slotActions.loadBidsSuccess(res)))
       .catch(err => dispatch(slotActions.loadBidsFailure(err)))
   }
 }
 
-function fetchBatches (forgerAddr, slotNum) {
+function fetchBatches (forgerAddr, slotNum, fromItem) {
   return (dispatch) => {
     dispatch(slotActions.loadBatches())
 
-    return CoordinatorAPI.getBatches(forgerAddr, slotNum)
+    return CoordinatorAPI.getBatches(forgerAddr, slotNum, fromItem)
       .then(res => dispatch(slotActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(slotActions.loadBatchesFailure(err)))
   }

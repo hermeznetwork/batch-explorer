@@ -4,7 +4,8 @@ export const tokenAccountActionTypes = {
   LOAD_ACCOUNT_FAILURE: '[TOKEN ACCOUNT] LOAD ACCOUNT FAILURE',
   LOAD_TRANSACTIONS: '[TOKEN ACCOUNT] LOAD TRANSACTIONS',
   LOAD_TRANSACTIONS_SUCCESS: '[TOKEN ACCOUNT] LOAD TRANSACTIONS SUCCESS',
-  LOAD_TRANSACTIONS_FAILURE: '[TOKEN ACCOUNT] LOAD TRANSACTIONS FAILURE'
+  LOAD_TRANSACTIONS_FAILURE: '[TOKEN ACCOUNT] LOAD TRANSACTIONS FAILURE',
+  RESET_STATE: '[TOKEN ACCOUNT] RESET_STATE'
 }
 
 function loadAccount () {
@@ -35,7 +36,7 @@ function loadTransactions () {
 function loadTransactionsSuccess (transactions) {
   return {
     type: tokenAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS,
-    transactions
+    data: transactions
   }
 }
 
@@ -45,11 +46,18 @@ function loadTransactionsFailure () {
   }
 }
 
+function resetState () {
+  return {
+    type: tokenAccountActionTypes.RESET_STATE
+  }
+}
+
 export {
   loadAccount,
   loadAccountSuccess,
   loadAccountFailure,
   loadTransactions,
   loadTransactionsSuccess,
-  loadTransactionsFailure
+  loadTransactionsFailure,
+  resetState
 }

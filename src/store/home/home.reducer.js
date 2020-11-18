@@ -1,4 +1,5 @@
 import { homeActionTypes } from './home.actions'
+import { getPaginationData } from '../../utils/api'
 
 const initialHomeState = {
   batchesTask: {
@@ -14,17 +15,22 @@ function homeReducer (state = initialHomeState, action) {
     case homeActionTypes.LOAD_BATCHES: {
       return {
         ...state,
-        batchesTask: {
-          status: 'loading'
-        }
+        batchesTask: state.batchesTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.batchesTask.data }
       }
     }
     case homeActionTypes.LOAD_BATCHES_SUCCESS: {
+      const batches = state.batchesTask.status === 'reloading'
+        ? [...state.batchesTask.data.batches, ...action.data.batches]
+        : action.data.batches
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         batchesTask: {
           status: 'successful',
-          data: action.batches
+          data: { batches, pagination }
         }
       }
     }
@@ -62,6 +68,9 @@ function homeReducer (state = initialHomeState, action) {
           error: 'An error ocurred loading the stats and metrics'
         }
       }
+    }
+    case homeActionTypes.RESET_STATE: {
+      return initialHomeState
     }
     default: {
       return state

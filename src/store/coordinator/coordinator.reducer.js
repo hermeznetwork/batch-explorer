@@ -1,4 +1,5 @@
 import { coordinatorActionTypes } from './coordinator.actions'
+import { getPaginationData } from '../../utils/api'
 
 const initialCoordinatorState = {
   coordinatorTask: {
@@ -43,17 +44,22 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
     case coordinatorActionTypes.LOAD_BATCHES: {
       return {
         ...state,
-        batchesTask: {
-          status: 'loading'
-        }
+        batchesTask: state.batchesTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.batchesTask.data }
       }
     }
     case coordinatorActionTypes.LOAD_BATCHES_SUCCESS: {
+      const batches = state.batchesTask.status === 'reloading'
+        ? [...state.batchesTask.data.batches, ...action.data.batches]
+        : action.data.batches
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         batchesTask: {
           status: 'successful',
-          data: action.batches
+          data: { batches, pagination }
         }
       }
     }
@@ -69,17 +75,22 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
     case coordinatorActionTypes.LOAD_BIDS: {
       return {
         ...state,
-        bidsTask: {
-          status: 'loading'
-        }
+        bidsTask: state.bidsTask.status === 'pending'
+          ? { status: 'loading' }
+          : { status: 'reloading', data: state.bidsTask.data }
       }
     }
     case coordinatorActionTypes.LOAD_BIDS_SUCCESS: {
+      const bids = state.bidsTask.status === 'reloading'
+        ? [...state.bidsTask.data.bids, ...action.data.bids]
+        : action.data.bids
+      const pagination = getPaginationData(action.data.pendingItems)
+
       return {
         ...state,
         bidsTask: {
           status: 'successful',
-          data: action.bids
+          data: { bids, pagination }
         }
       }
     }
@@ -91,6 +102,9 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
           error: 'An error ocurred loading bids'
         }
       }
+    }
+    case coordinatorActionTypes.RESET_STATE: {
+      return initialCoordinatorState
     }
     default: {
       return state

@@ -11,6 +11,8 @@ import SlotDetails from './components/slot-details/slot-details.view'
 import BidsList from '../shared/bids-list/bids-list.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
 import { fetchSlot, fetchBids, fetchBatches } from '../../store/slot/slot.thunks'
+import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import { resetState } from '../../store/slot/slot.actions'
 import Title from '../shared/title/title'
 
 function Slot ({
@@ -19,7 +21,8 @@ function Slot ({
   onLoadBids,
   bidsTask,
   onLoadBatches,
-  batchesTask
+  batchesTask,
+  onCleanup
 }) {
   const classes = useSlotStyles()
   const { slotNum } = useParams()
@@ -47,6 +50,8 @@ function Slot ({
     }
   }, [slotTask, slotNum, onLoadBatches])
 
+  React.useEffect(() => onCleanup, [onCleanup])
+
   return (
     <div className={classes.root}>
       <Container disableTopGutter>
@@ -68,6 +73,7 @@ function Slot ({
                   case 'failed': {
                     return <p>{bidsTask.error}</p>
                   }
+                  case 'reloading':
                   case 'successful': {
                     return (
                       <>
@@ -110,19 +116,47 @@ function Slot ({
                                   [classes.firstTabVisible]: isFirstTabVisible
                                 })}
                                 >
-                                  <BidsList
-                                    bids={bidsTask.data.bids}
-                                    isSlot
-                                  />
+                                  <InfiniteScroll
+                                    asyncTaskStatus={bidsTask.status}
+                                    paginationData={bidsTask.data.pagination}
+                                    onLoadNextPage={(fromItem) => {
+                                      if (bidsTask.status === 'successful') {
+                                        onLoadBids(
+                                          slotNum,
+                                          undefined,
+                                          fromItem
+                                        )
+                                      }
+                                    }}
+                                  >
+                                    <BidsList
+                                      bids={bidsTask.data.bids}
+                                      isSlot
+                                    />
+                                  </InfiniteScroll>
                                 </div>
                               </>
                             ) : (
                               <>
                                 <Title>Bids</Title>
-                                <BidsList
-                                  bids={bidsTask.data.bids}
-                                  isSlot
-                                />
+                                <InfiniteScroll
+                                  asyncTaskStatus={bidsTask.status}
+                                  paginationData={bidsTask.data.pagination}
+                                  onLoadNextPage={(fromItem) => {
+                                    if (bidsTask.status === 'successful') {
+                                      onLoadBids(
+                                        slotNum,
+                                        undefined,
+                                        fromItem
+                                      )
+                                    }
+                                  }}
+                                >
+                                  <BidsList
+                                    bids={bidsTask.data.bids}
+                                    isSlot
+                                  />
+                                </InfiniteScroll>
                               </>
                             )}
                         </section>
@@ -148,6 +182,7 @@ function Slot ({
               case 'failed': {
                 return <p>{batchesTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <section>
@@ -156,9 +191,23 @@ function Slot ({
                       [classes.secondTabVisible]: isSecondTabVisible
                     })}
                     >
-                      <BatchesList
-                        batches={batchesTask.data.batches}
-                      />
+                      <InfiniteScroll
+                        asyncTaskStatus={batchesTask.status}
+                        paginationData={batchesTask.data.pagination}
+                        onLoadNextPage={(fromItem) => {
+                          if (batchesTask.status === 'successful') {
+                            onLoadBatches(
+                              undefined,
+                              slotNum,
+                              fromItem
+                            )
+                          }
+                        }}
+                      >
+                        <BatchesList
+                          batches={batchesTask.data.batches}
+                        />
+                      </InfiniteScroll>
                     </div>
                   </section>
                 )
@@ -191,8 +240,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadSlot: (slotNum) => dispatch(fetchSlot(slotNum)),
-  onLoadBids: (slotNum) => dispatch(fetchBids(slotNum, undefined)),
-  onLoadBatches: (slotNum) => dispatch(fetchBatches(undefined, slotNum))
+  onLoadBids: (slotNum, fromItem) => dispatch(fetchBids(slotNum, undefined, fromItem)),
+  onLoadBatches: (slotNum, fromItem) => dispatch(fetchBatches(undefined, slotNum, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Slot)

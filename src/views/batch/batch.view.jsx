@@ -9,14 +9,17 @@ import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import BatchDetails from './components/batch-details/batch-details.view'
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
-import { fetchBatch, fetchBatchTransactions } from '../../store/batch/batch.thunks'
+import { fetchBatch, fetchTransactions } from '../../store/batch/batch.thunks'
+import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import { resetState } from '../../store/batch/batch.actions'
 import Title from '../shared/title/title'
 
 function Batch ({
   onLoadBatch,
   batchTask,
-  onLoadBatchTransactionsList,
-  batchTransactionsTask
+  onLoadTransactions,
+  transactionsTask,
+  onCleanup
 }) {
   const theme = useTheme()
   const classes = useBatchStyles()
@@ -24,8 +27,10 @@ function Batch ({
 
   React.useEffect(() => {
     onLoadBatch(batchNum)
-    onLoadBatchTransactionsList(batchNum)
-  }, [batchNum, onLoadBatch, onLoadBatchTransactionsList])
+    onLoadTransactions(batchNum)
+  }, [batchNum, onLoadBatch, onLoadTransactions])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   return (
     <div className={classes.root}>
@@ -67,19 +72,33 @@ function Batch ({
 
           <Title>Batch transactions</Title>
           {(() => {
-            switch (batchTransactionsTask.status) {
+            switch (transactionsTask.status) {
               case 'loading': {
                 return <Spinner />
               }
               case 'failed': {
-                return <p>{batchTransactionsTask.error}</p>
+                return <p>{transactionsTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <section>
-                    <TransactionsList
-                      transactions={batchTransactionsTask.data.transactions}
-                    />
+                    <InfiniteScroll
+                      asyncTaskStatus={transactionsTask.status}
+                      paginationData={transactionsTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (transactionsTask.status === 'successful') {
+                          onLoadTransactions(
+                            batchNum,
+                            fromItem
+                          )
+                        }
+                      }}
+                    >
+                      <TransactionsList
+                        transactions={transactionsTask.data.transactions}
+                      />
+                    </InfiniteScroll>
                   </section>
                 )
               }
@@ -97,18 +116,19 @@ function Batch ({
 Batch.propTypes = {
   onLoadBatch: PropTypes.func.isRequired,
   batchTask: PropTypes.object.isRequired,
-  onLoadBatchTransactionsList: PropTypes.func.isRequired,
-  batchTransactionsTask: PropTypes.object.isRequired
+  onLoadTransactions: PropTypes.func.isRequired,
+  transactionsTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
   batchTask: state.batch.batchTask,
-  batchTransactionsTask: state.batch.batchTransactionsTask
+  transactionsTask: state.batch.transactionsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatch: (batchNum) => dispatch(fetchBatch(batchNum)),
-  onLoadBatchTransactionsList: (batchNum) => dispatch(fetchBatchTransactions(batchNum))
+  onLoadTransactions: (batchNum, fromItem) => dispatch(fetchTransactions(batchNum, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Batch)

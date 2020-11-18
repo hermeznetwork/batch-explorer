@@ -13,6 +13,7 @@ import { fetchAccounts, fetchTransactions } from '../../store/user-account/user-
 import TransactionsList from '../shared/transactions-list/transactions-list.view'
 import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import { resetState } from '../../store/user-account/user-account.actions'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
@@ -21,7 +22,8 @@ function UserAccount ({
   onLoadAccounts,
   accountsTask,
   onLoadTransactions,
-  transactionsTask
+  transactionsTask,
+  onCleanup
 }) {
   const classes = useUserAccountStyles()
   const { address } = useParams()
@@ -42,6 +44,8 @@ function UserAccount ({
     onLoadAccounts(address)
     onLoadTransactions(address)
   }, [address, onLoadAccounts, onLoadTransactions])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   return (
     <div className={classes.root}>
@@ -167,6 +171,7 @@ function UserAccount ({
               case 'failed': {
                 return <p>{transactionsTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <section>
@@ -220,7 +225,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadAccounts: (address, fromItem) => dispatch(fetchAccounts(address, fromItem)),
-  onLoadTransactions: (address, fromItem) => dispatch(fetchTransactions(address, fromItem))
+  onLoadTransactions: (address, fromItem) => dispatch(fetchTransactions(address, fromItem)),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAccount)

@@ -9,18 +9,23 @@ import Container from '../shared/container/container.view'
 import BatchesList from './components/batches-list/batches-list.view'
 import Overview from './components/overview/overview.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
+import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
+import { resetState } from '../../store/home/home.actions'
 import Title from '../shared/title/title'
 
 function Home ({
   onLoadBatches,
   batchesTask,
   onLoadOverview,
-  overviewTask
+  overviewTask,
+  onCleanup
 }) {
   React.useEffect(() => {
     onLoadBatches()
     onLoadOverview()
   }, [onLoadBatches, onLoadOverview])
+
+  React.useEffect(() => onCleanup, [onCleanup])
 
   const theme = useTheme()
   const classes = useHomeStyles()
@@ -62,15 +67,26 @@ function Home ({
               case 'failed': {
                 return <p>{batchesTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
-                  <>
-                    <section className={classes.section}>
+                  <section className={classes.section}>
+                    <InfiniteScroll
+                      asyncTaskStatus={batchesTask.status}
+                      paginationData={batchesTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (batchesTask.status === 'successful') {
+                          onLoadBatches(
+                            fromItem
+                          )
+                        }
+                      }}
+                    >
                       <BatchesList
                         batches={batchesTask.data.batches}
                       />
-                    </section>
-                  </>
+                    </InfiniteScroll>
+                  </section>
                 )
               }
               default: {
@@ -97,8 +113,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatches: () => dispatch(fetchBatches()),
-  onLoadOverview: () => dispatch(fetchOverview())
+  onLoadBatches: (fromItem) => dispatch(fetchBatches(fromItem)),
+  onLoadOverview: () => dispatch(fetchOverview()),
+  onCleanup: () => dispatch(resetState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
