@@ -50,7 +50,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Fees Collected</Col>
-        <Col>{batch.historicTotalCollectedFeesUSD} USD</Col>
+        <Col>&#36;{batch.historicTotalCollectedFeesUSD}</Col>
       </Row>
       <Row>
         <Col>Coordinator</Col>

@@ -75,7 +75,7 @@ function Overview ({ overview }) {
             Avg tx fee:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.avgTransactionFee} USD
+            &#36;{overview.metrics.avgTransactionFee}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
