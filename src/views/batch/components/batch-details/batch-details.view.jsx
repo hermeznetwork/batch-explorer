@@ -42,7 +42,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Status</Col>
-        <Col status>Completed</Col>
+        <Col><div className={classes.status}>Completed</div></Col>
       </Row>
       <Row>
         <Col>Timestamp</Col>

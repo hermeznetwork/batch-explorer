@@ -39,15 +39,6 @@ const useColStyles = createUseStyles(theme => ({
       }
     }
   },
-  status: {
-    fontWeight: theme.fontWeights.medium,
-    background: theme.palette.green.light,
-    borderRadius: '8px',
-    color: theme.palette.green.main,
-    padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
-    margin: `-${theme.spacing(0.5)}px`,
-    textAlign: 'center'
-  },
   link: {
     color: theme.palette.secondary.main,
     '&:hover': {
