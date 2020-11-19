@@ -85,7 +85,7 @@ function Slot ({
                           />
                         </section>
                         <section>
-                          {batchesTask.status === 'successful'
+                          {batchesTask.status === 'reloading' || batchesTask.status === 'successful'
                             ? (
                               <>
                                 <div className={classes.toggleWrapper}>
