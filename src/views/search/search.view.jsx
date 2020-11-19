@@ -16,7 +16,7 @@ function Search ({
   const bjjAddressPattern = new RegExp('^hez:[A-Za-z0-9_-]{44}$')
   const batchNumPattern = new RegExp('^[0-4]?\\d{0,9}$')
   const transactionIdPattern = new RegExp('^0x00[a-fA-F0-9]{22}|^0x01[a-fA-F0-9]{22}|^0x02[a-fA-F0-9]{22}$')
-  const accountIndexPattern = new RegExp('^hez:[a-zA-Z0-9]{3}:[0-9]{0,9}$')
+  const accountIndexPattern = new RegExp('^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$')
 
   function handleSearch () {
     if (hezEthereumAddressPattern.test(searchTerm) || bjjAddressPattern.test(searchTerm)) {
