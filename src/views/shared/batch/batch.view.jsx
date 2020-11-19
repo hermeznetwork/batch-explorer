@@ -7,18 +7,7 @@ import Col from '../../shared/col/col'
 
 function Batch ({ batch }) {
   return (
-    <section>
-      <Row flex>
-        <Col flex>
-          Batch
-        </Col>
-        <Col flex>
-          Age
-        </Col>
-        <Col flex>
-          Transactions
-        </Col>
-      </Row>
+    <>
       <Row flex>
         <Col link flex>
           <Link to={`/batch/${batch.batchNum}`}>{batch.batchNum}</Link>
@@ -30,7 +19,7 @@ function Batch ({ batch }) {
           {batch.forgeL1TransactionsNum}
         </Col>
       </Row>
-    </section>
+    </>
   )
 }
 

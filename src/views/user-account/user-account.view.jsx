@@ -60,6 +60,7 @@ function UserAccount ({
               case 'failed': {
                 return <p>{accountsTask.error}</p>
               }
+              case 'reloading':
               case 'successful': {
                 return (
                   <>
@@ -127,6 +128,17 @@ function UserAccount ({
                         [classes.firstTabVisible]: isFirstTabVisible
                       })}
                       >
+                        <Row flex>
+                          <Col flex>
+                            Token
+                          </Col>
+                          <Col flex>
+                            Address
+                          </Col>
+                          <Col flex>
+                            Balance
+                          </Col>
+                        </Row>
                         {accountsTask.data.accounts.map((account, index) =>
                           <div
                             key={account.accountIndex}
