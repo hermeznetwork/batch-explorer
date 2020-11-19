@@ -33,6 +33,18 @@ const useTransactionsListItemStyles = createUseStyles(theme => ({
       color: theme.palette.orange.dark,
       textDecoration: 'underline'
     }
+  },
+  shorthenedAddress: {
+    display: 'block',
+    [theme.breakpoints.sm]: {
+      display: 'none'
+    }
+  },
+  notShorthenedAddress: {
+    display: 'none',
+    [theme.breakpoints.sm]: {
+      display: 'block'
+    }
   }
 }))
 

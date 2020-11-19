@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import getPartiallyHiddenAddress from '../../../utils/address-shortener'
 
 import useTransactionStyles from './transaction.styles'
 
@@ -8,7 +9,12 @@ function Transaction ({ transactionId, amount, tokenSymbol, isToken }) {
 
   return (
     <div className={classes.row}>
-      <div className={`${classes.col} ${classes.link}`}><Link to={`/transaction/${transactionId}`}>{transactionId}</Link></div>
+      <div className={`${classes.col} ${classes.link}`}>
+        <Link to={`/transaction/${transactionId}`}>
+          <span className={classes.shorthenedAddress}>{getPartiallyHiddenAddress(transactionId)}</span>
+          <span className={classes.notShorthenedAddress}>{transactionId}</span>
+        </Link>
+      </div>
       {
         isToken
           ? <></>

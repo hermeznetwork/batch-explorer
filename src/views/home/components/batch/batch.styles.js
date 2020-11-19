@@ -11,7 +11,7 @@ const useBatchStyles = createUseStyles(theme => ({
     minHeight: theme.spacing(19.5),
     width: theme.spacing(39),
     marginBottom: theme.spacing(3),
-    padding: theme.spacing(2.5)
+    padding: `${theme.spacing(2.5)}px ${theme.spacing(2.5)}px ${theme.spacing(4)}px`
   },
   batchWrapper: {
     width: '100%'
@@ -27,13 +27,15 @@ const useBatchStyles = createUseStyles(theme => ({
     }
   },
   transaction: {
-    paddingTop: theme.spacing(4)
+    paddingTop: theme.spacing(4),
+    paddingLeft: theme.spacing(1)
   },
   transactionNumber: {
     fontWeight: theme.fontWeights.extraBold
   },
   coordinator: {
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(1)
   },
   coordinatorLink: {
     color: theme.palette.secondary.main,
@@ -42,7 +44,8 @@ const useBatchStyles = createUseStyles(theme => ({
   },
   time: {
     color: theme.palette.grey.main,
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(1)
   }
 }))
 
