@@ -18,7 +18,7 @@ const useBatchStyles = createUseStyles(theme => ({
   },
   batch: {
     background: theme.palette.grey.veryLight,
-    borderRadius: '26px',
+    borderRadius: theme.spacing(2),
     color: theme.palette.grey.main,
     padding: theme.spacing(2),
     textAlign: 'center',

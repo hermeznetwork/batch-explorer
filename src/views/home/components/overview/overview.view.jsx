@@ -22,7 +22,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Avg transactions per batch:
+            Avg txs per batch:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.transactionsPerBatch}
@@ -47,7 +47,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Transactions Per Second:
+            Txs Per Second:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.transactionsPerSecond}
@@ -72,7 +72,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Avg transaction fee:
+            Avg tx fee:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.avgTransactionFee} USD
