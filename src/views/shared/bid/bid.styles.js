@@ -1,13 +1,13 @@
 import { createUseStyles } from 'react-jss'
 
 const UseBidStyles = createUseStyles(theme => ({
-  shorthenedAddress: {
+  shortenedAddress: {
     display: 'block',
     [theme.breakpoints.sm]: {
       display: 'none'
     }
   },
-  notShorthenedAddress: {
+  notShortenedAddress: {
     display: 'none',
     [theme.breakpoints.sm]: {
       display: 'block'

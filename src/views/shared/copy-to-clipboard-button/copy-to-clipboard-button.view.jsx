@@ -13,12 +13,11 @@ function CopyToClipboardButton ({ content }) {
   }
 
   return (
-    <div className={classes.buttonWrapper}>
-      <Button
-        icon={<CopyIcon />}
-        onClick={() => handleCopyToClipboardClick(content)}
-      />
-    </div>
+    <Button
+      icon={<CopyIcon />}
+      onClick={() => handleCopyToClipboardClick(content)}
+      className={classes.buttonWrapper}
+    />
   )
 }
 

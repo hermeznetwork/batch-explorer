@@ -15,8 +15,8 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
       <Row flex>
         <Col link flex>
           <Link to={`/coordinator/${forgerAddr}`}>
-            <span className={classes.shorthenedAddress}>{getPartiallyHiddenAddress(forgerAddr)}</span>
-            <span className={classes.notShorthenedAddress}>{forgerAddr}</span>
+            <span className={classes.shortenedAddress}>{getPartiallyHiddenAddress(forgerAddr)}</span>
+            <span className={classes.notShortenedAddress}>{forgerAddr}</span>
           </Link>
         </Col>
         <Col flex>
