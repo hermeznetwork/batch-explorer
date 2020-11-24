@@ -24,10 +24,20 @@ function Transaction ({
   const classes = useTransactionStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
 
+  /**
+   * Handles detial button click
+   *
+   * @returns {void}
+   */
   function handleDetailClick () {
     setDetailsVisible(true)
   }
 
+  /**
+   * Handles close detail button click
+   *
+   * @returns {void}
+   */
   function handleCloseDetailClick () {
     setDetailsVisible(false)
   }

@@ -18,6 +18,11 @@ function Search ({
   const transactionIdPattern = new RegExp('^0x00[a-fA-F0-9]{22}|^0x01[a-fA-F0-9]{22}|^0x02[a-fA-F0-9]{22}$')
   const accountIndexPattern = new RegExp('^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$')
 
+  /**
+   * Handles route change based on a pattern recognition
+   *
+   * @returns {void}
+   */
   function handleSearch () {
     if (hezEthereumAddressPattern.test(searchTerm) || bjjAddressPattern.test(searchTerm)) {
       changeRoute(`/user-account/${searchTerm}`)

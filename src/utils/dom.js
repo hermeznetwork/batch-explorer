@@ -1,6 +1,5 @@
 /**
  * Copy given string to the clipboard
- *
  * @param {String} text - String to be copied
  *
  */
