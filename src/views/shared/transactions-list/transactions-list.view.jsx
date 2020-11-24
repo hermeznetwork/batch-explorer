@@ -12,7 +12,7 @@ function TransactionsList ({ transactions, isToken }) {
   return (
     <section>
       <div className={classes.row}>
-        <div className={`${classes.col} ${classes.link}`}>Transaction ID</div>
+        <div className={`${classes.col} ${classes.link}`}>Tx ID</div>
         {
           isToken
             ? <></>
