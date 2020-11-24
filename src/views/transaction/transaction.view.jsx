@@ -70,11 +70,13 @@ function Transaction ({
                         Status
                       </Col>
                       <Col>
-                        <Col status>
-                          {transactionTask.data.state === 'pend' ? 'Pending' : ''}
-                          {transactionTask.data.state === 'fing' ? 'Forging' : ''}
-                          {transactionTask.data.state === 'fged' ? 'Forged' : ''}
-                          {transactionTask.data.state === 'invl' ? 'Invalid' : ''}
+                        <Col>
+                          <div className={classes.status}>
+                            {transactionTask.data.state === 'pend' ? 'Pending' : ''}
+                            {transactionTask.data.state === 'fing' ? 'Forging' : ''}
+                            {transactionTask.data.state === 'fged' ? 'Forged' : ''}
+                            {transactionTask.data.state === 'invl' ? 'Invalid' : ''}
+                          </div>
                         </Col>
                       </Col>
                     </Row>

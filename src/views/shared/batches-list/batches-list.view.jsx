@@ -16,7 +16,7 @@ function BatchesList ({ batches }) {
           Age
         </Col>
         <Col flex>
-          Transactions
+          Txs
         </Col>
       </Row>
       {batches.map((batch) =>

@@ -8,9 +8,15 @@ const useOverviewStyles = createUseStyles(theme => ({
   firstRow: {
     fontSize: theme.spacing(1.75),
     color: theme.palette.grey.main,
-    borderLeft: '3px solid' + theme.palette.secondary.main,
-    paddingLeft: theme.spacing(0.5),
-    marginBottom: theme.spacing(3)
+    marginBottom: theme.spacing(3),
+    '&::before': {
+      content: '""',
+      background: theme.palette.orange.main,
+      marginRight: theme.spacing(0.75),
+      borderRadius: theme.spacing(1),
+      width: '3px',
+      height: theme.spacing(2)
+    }
   },
   secondRow: {
     fontSize: theme.spacing(5),
