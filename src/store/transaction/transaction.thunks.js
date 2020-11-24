@@ -2,6 +2,11 @@ import * as transactionActionTypes from './transaction.actions'
 import { CoordinatorAPI } from 'hermezjs'
 import { HttpStatusCode } from 'hermezjs/src/http'
 
+/**
+ * Fetches the details of a transaction
+ * @param {string} transactionId - Transaction id
+ * @returns {void}
+ */
 function fetchTransaction (transactionId) {
   return (dispatch) => {
     dispatch(transactionActionTypes.loadTransaction())

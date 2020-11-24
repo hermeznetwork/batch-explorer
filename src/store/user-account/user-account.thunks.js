@@ -1,6 +1,11 @@
 import * as userAccountActionTypes from './user-account.actions'
 import { CoordinatorAPI } from 'hermezjs'
 
+/**
+ * Fetches the account details (for a list of accounts) for the specified address
+ * @param {string} address - can be hezEthereumAddress or BJJ
+ * @returns {void}
+ */
 function fetchAccounts (address, fromItem) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadAccount())
@@ -11,6 +16,11 @@ function fetchAccounts (address, fromItem) {
   }
 }
 
+/**
+ * Fetches the transactions details for the specified address
+ * @param {string} address - can be hezEthereumAddress or BJJ
+ * @returns {void}
+ */
 function fetchTransactions (address, fromItem) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadTransactions())

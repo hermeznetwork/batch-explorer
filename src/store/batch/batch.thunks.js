@@ -1,6 +1,11 @@
 import * as batchActions from './batch.actions'
 import { CoordinatorAPI } from 'hermezjs'
 
+/**
+ * Fetches the batch details for the specified batch number
+ * @param {string} batchNum - Batch number
+ * @returns {void}
+ */
 function fetchBatch (batchNum) {
   return (dispatch) => {
     dispatch(batchActions.loadBatch())
@@ -11,6 +16,11 @@ function fetchBatch (batchNum) {
   }
 }
 
+/**
+ * Fetches the transactions details for the specified batch number
+ * @param {string} batchNum - Batch number
+ * @returns {void}
+ */
 function fetchTransactions (batchNum, fromItem) {
   return (dispatch) => {
     dispatch(batchActions.loadTransactions())

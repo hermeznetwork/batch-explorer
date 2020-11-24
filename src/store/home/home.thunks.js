@@ -1,6 +1,11 @@
 import * as homeActions from './home.actions'
 import { CoordinatorAPI } from 'hermezjs'
 
+/**
+ * Fetches the complete list of batches
+ *
+ * @returns {void}
+ */
 function fetchBatches (fromItem) {
   return (dispatch) => {
     dispatch(homeActions.loadBatches())
@@ -11,6 +16,11 @@ function fetchBatches (fromItem) {
   }
 }
 
+/**
+ * Fetches information that represents the current state of the network, metrics and statistics.
+ *
+ * @returns {void}
+ */
 function fetchOverview () {
   return (dispatch) => {
     dispatch(homeActions.loadOverview())
