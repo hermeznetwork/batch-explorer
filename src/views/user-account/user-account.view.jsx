@@ -71,8 +71,8 @@ function UserAccount ({
                         </Col>
                         <Col>
                           <Row wrapped>
-                            <CopyToClipboardButton content={accountsTask.data.accounts[0].bjj} />
                             <Col wrapped>
+                              <CopyToClipboardButton content={accountsTask.data.accounts[0].bjj} />
                               {accountsTask.data.accounts[0].bjj}
                             </Col>
                           </Row>
@@ -133,7 +133,7 @@ function UserAccount ({
                             Token
                           </Col>
                           <Col flex>
-                            Address
+                            <span className={classes.alignedMiddleColumn}>Address</span>
                           </Col>
                           <Col flex>
                             Balance

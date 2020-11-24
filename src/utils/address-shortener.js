@@ -4,7 +4,7 @@
  * @returns {string}
  */
 function getPartiallyHiddenAddress (address) {
-  const firstAddressSlice = address.slice(0, 8)
+  const firstAddressSlice = address.slice(0, 6)
   const secondAddressSlice = address.slice(
     address.length - 4,
     address.length

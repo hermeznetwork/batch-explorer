@@ -23,9 +23,11 @@ const useUserAccountStyles = createUseStyles(theme => ({
     cursor: 'pointer',
     minWidth: theme.spacing(17),
     '&:hover': {
-      background: theme.palette.grey.light,
       '&:first-child, &:last-child': {
         borderRadius: 16
+      },
+      '&:last-child': {
+        background: theme.palette.grey.light
       }
     },
     '&:focus': {
@@ -59,6 +61,9 @@ const useUserAccountStyles = createUseStyles(theme => ({
   },
   secondTabVisible: {
     display: 'block'
+  },
+  alignedMiddleColumn: {
+    paddingRight: theme.spacing(3)
   }
 }))
 
