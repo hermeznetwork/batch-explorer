@@ -139,31 +139,31 @@ function UserAccount ({
                             Balance
                           </Col>
                         </Row>
-                        {accountsTask.data.accounts.map((account, index) =>
-                          <div
-                            key={account.accountIndex}
-                            className={clsx({ [classes.account]: index > 0 })}
-                          >
-                            <InfiniteScroll
-                              asyncTaskStatus={accountsTask.status}
-                              paginationData={accountsTask.data.pagination}
-                              onLoadNextPage={(fromItem) => {
-                                if (accountsTask.status === 'successful') {
-                                  onLoadAccounts(
-                                    accountsTask.data.accounts[0].hezEthereumAddress,
-                                    fromItem
-                                  )
-                                }
-                              }}
+                        <InfiniteScroll
+                          asyncTaskStatus={accountsTask.status}
+                          paginationData={accountsTask.data.pagination}
+                          onLoadNextPage={(fromItem) => {
+                            if (accountsTask.status === 'successful') {
+                              onLoadAccounts(
+                                accountsTask.data.accounts[0].hezEthereumAddress,
+                                fromItem
+                              )
+                            }
+                          }}
+                        >
+                          {accountsTask.data.accounts.map((account, index) =>
+                            <div
+                              key={account.accountIndex}
+                              className={clsx({ [classes.account]: index > 0 })}
                             >
                               <AccountDetails
                                 tokenSymbol={account.token.symbol}
                                 balance={getTokenAmountString(account.balance, account.token.decimals)}
                                 accountIndex={account.accountIndex}
                               />
-                            </InfiniteScroll>
-                          </div>
-                        )}
+                            </div>
+                          )}
+                        </InfiniteScroll>
                       </div>
                     </section>
                   </>
