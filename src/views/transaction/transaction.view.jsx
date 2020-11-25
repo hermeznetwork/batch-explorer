@@ -25,7 +25,7 @@ function Transaction ({
   const [areDeailsVisible, setDetailsVisible] = React.useState()
 
   /**
-   * Handles detial button click
+   * Handles detail button click, shows additional rows with data
    *
    * @returns {void}
    */
@@ -34,7 +34,7 @@ function Transaction ({
   }
 
   /**
-   * Handles close detail button click
+   * Handles close detail button click, hides additional rows with data
    *
    * @returns {void}
    */

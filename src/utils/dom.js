@@ -1,6 +1,6 @@
 /**
  * Copy given string to the clipboard
- * @param {String} text - String to be copied
+ * @param {string} text - String to be copied
  *
  */
 function copyToClipboard (text) {

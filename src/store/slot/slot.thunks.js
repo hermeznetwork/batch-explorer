@@ -2,7 +2,7 @@ import * as slotActions from './slot.actions'
 import { CoordinatorAPI } from 'hermezjs'
 
 /**
- * Fetches coordinator details for the specified slot number
+ * Fetches slot details for the specified slot number
  * @param {string} slotNum - Slot number
  * @returns {void}
  */

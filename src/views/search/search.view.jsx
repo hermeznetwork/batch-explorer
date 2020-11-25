@@ -20,6 +20,12 @@ function Search ({
 
   /**
    * Handles route change based on a pattern recognition
+   * ethereumAddressPattern ^0x[a-fA-F0-9]{40}$
+   * hezEthereumAddressPattern ^hez:0x[a-fA-F0-9]{40}$
+   * bjjAddressPattern ^hez:[A-Za-z0-9_-]{44}$
+   * batchNumPattern ^[0-4]?\\d{0,9}$
+   * transactionIdPattern ^0x00[a-fA-F0-9]{22}|^0x01[a-fA-F0-9]{22}|^0x02[a-fA-F0-9]{22}$
+   * accountIndexPattern ^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$
    *
    * @returns {void}
    */
