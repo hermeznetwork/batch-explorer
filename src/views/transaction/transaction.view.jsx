@@ -36,8 +36,6 @@ function Transaction ({
     onLoadTransaction(transactionId)
   }, [transactionId, onLoadTransaction])
 
-  console.log('transactionTask.data: ' + JSON.stringify(transactionTask.data))
-
   return (
     <div className={classes.root}>
       <Container disableTopGutter>
