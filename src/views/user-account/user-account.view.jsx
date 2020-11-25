@@ -30,11 +30,21 @@ function UserAccount ({
   const [isFirstTabVisible, setFirstTabVisible] = React.useState()
   const [isSecondTabVisible, setSecondTabVisible] = React.useState()
 
+  /**
+   * Handles first tab click
+   *
+   * @returns {void}
+   */
   function handleFirstTabClick () {
     setFirstTabVisible(true)
     setSecondTabVisible(false)
   }
 
+  /**
+   * Handles second tab click
+   *
+   * @returns {void}
+   */
   function handleSecondTabClick () {
     setFirstTabVisible(false)
     setSecondTabVisible(true)

@@ -13,10 +13,20 @@ function Header () {
   const classes = useHeaderStyles()
   const [isMenuVisible, setMenuVisible] = React.useState()
 
+  /**
+   * Handles open menu click
+   *
+   * @returns {void}
+   */
   function handleOpenMenuClick () {
     setMenuVisible(true)
   }
 
+  /**
+   * Handles close menu click
+   *
+   * @returns {void}
+   */
   function handleCloseMenuClick () {
     setMenuVisible(false)
   }

@@ -24,10 +24,20 @@ function Transaction ({
   const classes = useTransactionStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
 
+  /**
+   * Handles detail button click, shows additional rows with data
+   *
+   * @returns {void}
+   */
   function handleDetailClick () {
     setDetailsVisible(true)
   }
 
+  /**
+   * Handles close detail button click, hides additional rows with data
+   *
+   * @returns {void}
+   */
   function handleCloseDetailClick () {
     setDetailsVisible(false)
   }

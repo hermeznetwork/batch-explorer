@@ -3,10 +3,10 @@ import { ethers } from 'ethers'
 /**
  * Converts an amount to BigInt and decimals to Float
  *
- * @param {String} amountBigInt - String representing the amount as a BigInt with no decimals
- * @param {Number} decimals - Number of decimal points the amount actually has
+ * @param {string} amountBigInt - String representing the amount as a BigInt with no decimals
+ * @param {number} decimals - Number of decimal points the amount actually has
  *
- * @returns {String}
+ * @returns {string}
  *
  */
 function getTokenAmountString (amountBigInt, decimals) {
@@ -17,10 +17,10 @@ function getTokenAmountString (amountBigInt, decimals) {
 /**
  * Converts an amount in Float with decimals to BigInt
  *
- * @param {String} amountString - String representing the amount as a Float with decimals
- * @param {String} decimals - Number of decimal points the amount actually has
+ * @param {string} amountString - String representing the amount as a Float with decimals
+ * @param {string} decimals - Number of decimal points the amount actually has
  *
- * @returns {BigInt}
+ * @returns {bigint}
  *
  */
 function getTokenAmountBigInt (amountString, decimals) {

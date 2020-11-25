@@ -3,7 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import thunk from 'redux-thunk'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 
-import globalReducer from './global/global.reducer'
 import homeReducer from './home/home.reducer'
 import batchReducer from './batch/batch.reducer'
 import coordinatorReducer from './coordinator/coordinator.reducer'
@@ -14,7 +13,6 @@ import tokenAccountReducer from './token-account/token-account.reducer'
 
 function createRootReducer (history) {
   return combineReducers({
-    global: globalReducer,
     home: homeReducer,
     batch: batchReducer,
     coordinator: coordinatorReducer,
