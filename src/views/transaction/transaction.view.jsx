@@ -161,7 +161,7 @@ function Transaction ({
                               <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress} />
                               <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
-                                  {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress}
+                                  {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toHezEthereumAddress}
                                 </Link>
                               </Col>
                             </Row>
