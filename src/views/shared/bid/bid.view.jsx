@@ -7,7 +7,7 @@ import useBidStyles from './bid.styles'
 import Row from '../../shared/row/row'
 import Col from '../../shared/col/col'
 
-function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
+function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }) {
   const classes = useBidStyles()
 
   if (isSlot) {
@@ -31,7 +31,7 @@ function Bid ({ forgerAddr, bidValue, numberOfBids, slotNum, isSlot }) {
           <Link to={`/slot/${slotNum}`}>{slotNum}</Link>
         </Col>
         <Col flex>
-          {numberOfBids}
+          {totalNumberOfBidsInSlot}
         </Col>
         <Col flex>
           {getTokenAmountString(bidValue)} HEZ

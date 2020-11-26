@@ -4,7 +4,7 @@ import { getTokenAmountString } from '../../../../utils/bigint-decimals-converte
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 
-function SlotDetails ({ slot, bids }) {
+function SlotDetails ({ slot, totalNumberOfBidsInSlot }) {
   if (slot.closedAuction) {
     return (
       <div>
@@ -21,7 +21,7 @@ function SlotDetails ({ slot, bids }) {
             Bids
           </Col>
           <Col>
-            {bids.length}
+            {totalNumberOfBidsInSlot}
           </Col>
         </Row>
         <Row>
@@ -58,7 +58,7 @@ function SlotDetails ({ slot, bids }) {
             Bids
           </Col>
           <Col>
-            {bids.length}
+            {totalNumberOfBidsInSlot}
           </Col>
         </Row>
       </div>
