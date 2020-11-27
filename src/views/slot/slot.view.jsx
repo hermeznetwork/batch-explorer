@@ -91,7 +91,7 @@ function Slot ({
                           <Title>Slot {slotTask.data.slotNum}</Title>
                           <SlotDetails
                             slot={slotTask.data}
-                            bids={bidsTask.data.bids}
+                            totalNumberOfBidsInSlot={bidsTask.data.totalNumberOfBidsInSlot}
                           />
                         </section>
                         <section>

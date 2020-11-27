@@ -5,7 +5,7 @@ import Bid from '../bid/bid.view'
 import Row from '../../shared/row/row'
 import Col from '../../shared/col/col'
 
-function BidsList ({ bids, isSlot }) {
+function BidsList ({ bids, isSlot, totalNumberOfBidsInSlot }) {
   return (
     <section>
       {isSlot
@@ -37,7 +37,7 @@ function BidsList ({ bids, isSlot }) {
           <Bid
             forgerAddr={bid.forgerAddr}
             slotNum={bid.slotNum}
-            numberOfBids={bids.length}
+            totalNumberOfBidsInSlot={totalNumberOfBidsInSlot}
             bidValue={bid.bidValue}
             isSlot={isSlot}
           />

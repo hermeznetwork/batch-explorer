@@ -54,12 +54,13 @@ function slotReducer (state = initialSlotState, action) {
         ? [...state.bidsTask.data.bids, ...action.data.bids]
         : action.data.bids
       const pagination = getPaginationData(action.data.pendingItems)
+      const totalNumberOfBidsInSlot = action.data.bids.length + action.data.pendingItems
 
       return {
         ...state,
         bidsTask: {
           status: 'successful',
-          data: { bids, pagination }
+          data: { bids, pagination, totalNumberOfBidsInSlot }
         }
       }
     }
