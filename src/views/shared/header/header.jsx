@@ -88,7 +88,8 @@ function Header () {
                 [classes.show]: true
               })}
               >
-                <Link to='/' className={classes.link}>Hermez wallet</Link>
+                {/* TODO: uncomment once Wallet is live */}
+                {/* <Link to='/' className={classes.link}>Hermez wallet</Link> */}
                 <Link to='https://twitter.com/hermez_network' className={classes.link}>Twitter</Link>
               </div>
             </div>
