@@ -26,6 +26,9 @@ function homeReducer (state = initialHomeState, action) {
         : action.data.batches
       const pagination = getPaginationData(action.data.pendingItems)
 
+      // Reverse the order for displaying last bathes as first ones
+      batches.reverse()
+
       return {
         ...state,
         batchesTask: {
