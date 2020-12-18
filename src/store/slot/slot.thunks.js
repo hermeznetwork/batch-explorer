@@ -1,5 +1,5 @@
 import * as slotActions from './slot.actions'
-import { CoordinatorAPI } from 'hermezjs'
+import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches slot details for the specified slot number

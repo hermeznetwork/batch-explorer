@@ -1,5 +1,5 @@
 import * as coordinatorActions from './coordinator.actions'
-import { CoordinatorAPI } from 'hermezjs'
+import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches coordinator details for the specified bidder address

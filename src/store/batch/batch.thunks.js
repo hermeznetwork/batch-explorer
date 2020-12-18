@@ -1,5 +1,5 @@
 import * as batchActions from './batch.actions'
-import { CoordinatorAPI } from 'hermezjs'
+import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches the batch details for the specified batch number

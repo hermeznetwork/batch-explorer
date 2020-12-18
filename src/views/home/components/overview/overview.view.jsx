@@ -14,7 +14,7 @@ function Overview ({ overview }) {
             Last batch:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.network.lastBatch.batchNum}
+            {overview.network.lastBatch?.batchNum || '-'}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             {getTimeAgo(overview.network.lastBatch.timestamp)}
