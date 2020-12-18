@@ -50,7 +50,7 @@ function tokenAccountReducer (state = initialTokenAccountState, action) {
       const transactions = state.transactionsTask.status === 'reloading'
         ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
         : action.data.transactions
-      const pagination = getPaginationData(action.data.pendingItems)
+      const pagination = getPaginationData(action.data.pendingItems, transactions)
 
       return {
         ...state,
