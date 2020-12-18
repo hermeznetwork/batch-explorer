@@ -24,7 +24,7 @@ function homeReducer (state = initialHomeState, action) {
       const batches = state.batchesTask.status === 'reloading'
         ? [...state.batchesTask.data.batches, ...action.data.batches]
         : action.data.batches
-      const pagination = getPaginationData(action.data.pendingItems)
+      const pagination = getPaginationData(action.data.pendingItems, batches)
 
       // TODO: We need to do is to query the API with the order query param to DESC. This is going to require some changes in hermezjs.
       // Reverse the order for displaying last bathes as first ones

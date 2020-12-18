@@ -53,7 +53,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
       const batches = state.batchesTask.status === 'reloading'
         ? [...state.batchesTask.data.batches, ...action.data.batches]
         : action.data.batches
-      const pagination = getPaginationData(action.data.pendingItems)
+      const pagination = getPaginationData(action.data.pendingItems, batches)
 
       return {
         ...state,
@@ -84,7 +84,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
       const bids = state.bidsTask.status === 'reloading'
         ? [...state.bidsTask.data.bids, ...action.data.bids]
         : action.data.bids
-      const pagination = getPaginationData(action.data.pendingItems)
+      const pagination = getPaginationData(action.data.pendingItems, bids)
       const totalNumberOfBidsInSlot = action.data.bids.length + action.data.pendingItems
 
       return {

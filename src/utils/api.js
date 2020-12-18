@@ -4,10 +4,10 @@
  * @returns {Object} - Pagination information for the next request
  */
 
-function getPaginationData (pendingItems) {
+function getPaginationData (pendingItems, items) {
   return pendingItems === 0
     ? { hasMoreItems: false }
-    : { hasMoreItems: true }
+    : { hasMoreItems: true, fromItem: items[items.length - 1].itemId }
 }
 
 export {
