@@ -1,5 +1,5 @@
 import * as tokenAccountActionTypes from './token-account.actions'
-import { CoordinatorAPI } from 'hermezjs'
+import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches the account details for the specified account index

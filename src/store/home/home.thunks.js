@@ -1,5 +1,5 @@
 import * as homeActions from './home.actions'
-import { CoordinatorAPI } from 'hermezjs'
+import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches the complete list of batches
