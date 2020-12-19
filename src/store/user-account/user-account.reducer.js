@@ -24,7 +24,7 @@ function userAccountReducer (state = initialUserAccountState, action) {
       const accounts = state.accountsTask.status === 'reloading'
         ? [...state.accountsTask.data.accounts, ...action.data.accounts]
         : action.data.accounts
-      const pagination = getPaginationData(action.data.pendingItem, accounts)
+      const pagination = getPaginationData(action.data.pendingItems, accounts)
 
       return {
         ...state,
