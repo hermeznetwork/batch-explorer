@@ -78,13 +78,10 @@ function BatchDetails ({ batch }) {
         [classes.detailVisible]: areDeailsVisible
       })}
       >
-        {batch.forgedTransactions
-          ? (
-            <Row>
-              <Col>Number of txs</Col>
-              <Col>{batch.forgedTransactions}</Col>
-            </Row>
-          ) : <></>}
+        <Row>
+          <Col>Number of txs</Col>
+          <Col>{batch.forgeL1TransactionsNum}</Col>
+        </Row>
         <Row>
           <Col>Slot</Col>
           <Col link><Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link></Col>
