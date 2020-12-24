@@ -3,15 +3,21 @@ import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches coordinator details for the specified bidder address
- * @param {string} bidderAddr - Bidder address
+ * @param {string} forgerAddr - Forger address
  * @returns {void}
  */
-function fetchCoordinator (bidderAddr) {
+function fetchCoordinator (forgerAddr) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadCoordinator())
 
-    return CoordinatorAPI.getCoordinator(bidderAddr)
-      .then(res => dispatch(coordinatorActions.loadCoordinatorSuccess(res)))
+    return CoordinatorAPI.getCoordinators(forgerAddr)
+      .then(res => {
+        if (res.coordinators.length > 0) {
+          dispatch(coordinatorActions.loadCoordinatorSuccess(res.coordinators[0]))
+        } else {
+          dispatch(coordinatorActions.loadCoordinatorFailure('Coordinator not found'))
+        }
+      })
       .catch(err => dispatch(coordinatorActions.loadCoordinatorFailure(err)))
   }
 }
