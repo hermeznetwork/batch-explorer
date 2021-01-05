@@ -15,12 +15,9 @@ function Batch ({ batch }) {
         <Col flex>
           {getTimeAgo(batch.timestamp)}
         </Col>
-        {batch.forgedTransactions
-          ? (
-            <Col flex>
-              {batch.forgedTransactions}
-            </Col>
-          ) : <></>}
+        <Col flex>
+          {batch.forgedTransactions ? batch.forgedTransactions : 0}
+        </Col>
       </Row>
     </>
   )
