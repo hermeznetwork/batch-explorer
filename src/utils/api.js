@@ -7,7 +7,7 @@
 function getPaginationData (pendingItems, items) {
   return pendingItems === 0
     ? { hasMoreItems: false }
-    : { hasMoreItems: true, fromItem: items[items.length - 1].itemId }
+    : { hasMoreItems: true, fromItem: items[items.length - 1].itemId + 1 }
 }
 
 export {
