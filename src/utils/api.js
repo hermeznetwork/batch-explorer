@@ -3,7 +3,6 @@
  * @param {number} pendingItems - Pending items to retrieve from a paginated API endpoint
  * @returns {Object} - Pagination information for the next request
  */
-
 function getPaginationData (pendingItems, items) {
   return pendingItems === 0
     ? { hasMoreItems: false }
