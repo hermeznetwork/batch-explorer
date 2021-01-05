@@ -213,7 +213,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadBatches: (coordinatorId, fromItem) => dispatch(fetchBatches(coordinatorId, undefined, fromItem)),
+  onLoadBatches: (coordinatorId, fromItem) => dispatch(fetchBatches(coordinatorId, fromItem)),
   onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId)),
   onLoadBids: (coordinatorId, fromItem) => dispatch(fetchBids(undefined, coordinatorId, fromItem)),
   onCleanup: () => dispatch(resetState())

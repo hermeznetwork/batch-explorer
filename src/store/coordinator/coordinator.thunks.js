@@ -31,7 +31,7 @@ function fetchBatches (forgerAddr, fromItem) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBatches())
 
-    return CoordinatorAPI.getBatches(forgerAddr, fromItem)
+    return CoordinatorAPI.getBatches(forgerAddr, undefined, fromItem)
       .then(res => dispatch(coordinatorActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBatchesFailure(err)))
   }
