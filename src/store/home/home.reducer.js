@@ -25,7 +25,7 @@ function homeReducer (state = initialHomeState, action) {
       const batches = state.batchesTask.status === 'reloading'
         ? [...state.batchesTask.data.batches, ...action.data.batches]
         : action.data.batches
-      const pagination = getPaginationData(action.data.pendingItems, batches, PaginationOrder.DES)
+      const pagination = getPaginationData(action.data.pendingItems, batches, PaginationOrder.DESC)
 
       return {
         ...state,
