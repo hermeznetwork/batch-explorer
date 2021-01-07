@@ -1,5 +1,7 @@
-import * as coordinatorActions from './coordinator.actions'
 import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
+import { PaginationOrder } from '@hermeznetwork/hermezjs/src/api'
+
+import * as coordinatorActions from './coordinator.actions'
 
 /**
  * Fetches coordinator details for the specified bidder address
@@ -31,7 +33,7 @@ function fetchBatches (forgerAddr, fromItem) {
   return (dispatch) => {
     dispatch(coordinatorActions.loadBatches())
 
-    return CoordinatorAPI.getBatches(forgerAddr, undefined, fromItem)
+    return CoordinatorAPI.getBatches(forgerAddr, undefined, fromItem, PaginationOrder.DESC)
       .then(res => dispatch(coordinatorActions.loadBatchesSuccess(res)))
       .catch(err => dispatch(coordinatorActions.loadBatchesFailure(err)))
   }

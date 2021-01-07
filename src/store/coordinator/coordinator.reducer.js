@@ -1,5 +1,6 @@
 import { coordinatorActionTypes } from './coordinator.actions'
 import { getPaginationData } from '../../utils/api'
+import { PaginationOrder } from '@hermeznetwork/hermezjs/src/api'
 
 const initialCoordinatorState = {
   coordinatorTask: {
@@ -53,7 +54,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
       const batches = state.batchesTask.status === 'reloading'
         ? [...state.batchesTask.data.batches, ...action.data.batches]
         : action.data.batches
-      const pagination = getPaginationData(action.data.pendingItems, batches)
+      const pagination = getPaginationData(action.data.pendingItems, batches, PaginationOrder.DESC)
 
       return {
         ...state,
