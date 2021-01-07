@@ -16,7 +16,7 @@ function Batch ({ batch }) {
           {getTimeAgo(batch.timestamp)}
         </Col>
         <Col flex>
-          {batch.forgeL1TransactionsNum}
+          {batch.forgedTransactions ? batch.forgedTransactions : 0}
         </Col>
       </Row>
     </>

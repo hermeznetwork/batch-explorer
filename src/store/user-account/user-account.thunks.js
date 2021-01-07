@@ -1,5 +1,5 @@
 import * as userAccountActionTypes from './user-account.actions'
-import { CoordinatorAPI } from 'hermezjs'
+import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
 
 /**
  * Fetches the account details (for a list of accounts) for the specified address

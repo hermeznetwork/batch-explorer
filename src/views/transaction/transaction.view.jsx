@@ -82,10 +82,7 @@ function Transaction ({
                       <Col>
                         <Col>
                           <div className={classes.status}>
-                            {transactionTask.data.state === 'pend' ? 'Pending' : ''}
-                            {transactionTask.data.state === 'fing' ? 'Forging' : ''}
-                            {transactionTask.data.state === 'fged' ? 'Forged' : ''}
-                            {transactionTask.data.state === 'invl' ? 'Invalid' : ''}
+                            {transactionTask.data.batchNum === null ? 'Not yet forged' : 'Forged'}
                           </div>
                         </Col>
                       </Col>
@@ -158,7 +155,7 @@ function Transaction ({
                           <Col>To</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toEthereumAddress} />
+                              <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toHezEthereumAddress} />
                               <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
                                   {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toHezEthereumAddress}
@@ -255,14 +252,17 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      <Row>
-                        <Col>
-                          Nonce
-                        </Col>
-                        <Col>
-                          {transactionTask.data.nonce}
-                        </Col>
-                      </Row>
+                      {transactionTask.data.nonce
+                        ? (
+                          <Row>
+                            <Col>
+                              Nonce
+                            </Col>
+                            <Col>
+                              {transactionTask.data.nonce}
+                            </Col>
+                          </Row>
+                        ) : <></>}
                     </div>
                     <button
                       className={clsx({

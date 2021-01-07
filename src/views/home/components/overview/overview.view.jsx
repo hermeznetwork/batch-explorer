@@ -14,10 +14,10 @@ function Overview ({ overview }) {
             Last batch:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.network.lastBatch.batchNum}
+            {overview.network.lastBatch?.batchNum || '-'}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            {getTimeAgo(overview.network.lastBatch.timestamp)}
+            {overview.network.lastBatch ? getTimeAgo(overview.network.lastBatch.timestamp) : '-'}
           </div>
         </div>
         <div className={classes.col}>
@@ -25,7 +25,7 @@ function Overview ({ overview }) {
             Avg txs per batch:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.transactionsPerBatch}
+            {overview.metrics.transactionsPerBatch.toFixed(2)}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
@@ -39,7 +39,7 @@ function Overview ({ overview }) {
             Avg Batch Time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.batchFrequency}"
+            {overview.metrics.batchFrequency.toFixed(2)}"
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
@@ -50,7 +50,7 @@ function Overview ({ overview }) {
             Txs Per Second:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.transactionsPerSecond}
+            {overview.metrics.transactionsPerSecond.toFixed(2)}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
@@ -75,7 +75,7 @@ function Overview ({ overview }) {
             Avg tx fee:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            ${overview.metrics.avgTransactionFee}
+            ${overview.metrics.avgTransactionFee.toFixed(2)}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
