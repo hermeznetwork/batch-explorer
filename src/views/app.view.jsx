@@ -9,7 +9,7 @@ import useAppStyles from './app.styles'
 function App () {
   useAppStyles()
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     hermez.CoordinatorAPI.setBaseApiUrl(process.env.REACT_APP_HERMEZ_API_URL)
     hermez.Providers.setProvider(process.env.REACT_APP_ETHEREUM_PROVIDER)
   })
