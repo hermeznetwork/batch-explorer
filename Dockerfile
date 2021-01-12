@@ -14,6 +14,7 @@ COPY package*.json ./
 RUN npm install
 
 ARG HERMEZ_API_URL
+
 ENV REACT_APP_HERMEZ_API_URL=${HERMEZ_API_URL}
 
 COPY . .
