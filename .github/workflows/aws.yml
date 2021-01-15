@@ -35,7 +35,7 @@ jobs:
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG-${{ github.sha }} \
           --build-arg GIT_VERSION=${{ github.sha }} \
-          --build-arg HERMEZ_API_URL=${{ secrets.SANDBOX_HERMEZ_API_URL }} \
+          --build-arg HERMEZ_API_URL=${{ secrets.SANDBOX_HERMEZ_API_URL }}
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG-${{ github.sha }}
 
@@ -49,6 +49,6 @@ jobs:
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG-${{ github.sha }} \
           --build-arg GIT_VERSION=${{ github.sha }} \
-          --build-arg HERMEZ_API_URL=${{ secrets.INTEGRATION_HERMEZ_API_URL }} \
+          --build-arg HERMEZ_API_URL=${{ secrets.INTEGRATION_HERMEZ_API_URL }}
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG-${{ github.sha }}
