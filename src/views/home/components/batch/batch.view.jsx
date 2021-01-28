@@ -15,12 +15,9 @@ function Batch ({ batch }) {
           <div className={classes.batch}>{batch.batchNum}</div>
         </Link>
       </div>
-      {batch.forgedTransactions
-        ? (
-          <div className={classes.transaction}>
+      <div className={classes.transaction}>
           Transactions: <span className={classes.transactionNumber}>{batch.forgedTransactions}</span>
-          </div>
-        ) : <></>}
+      </div>
       <div className={classes.coordinator}>
         Coordinator:
         <span className={classes.coordinatorLink}>
