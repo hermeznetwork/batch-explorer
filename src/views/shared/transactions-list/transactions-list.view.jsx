@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { getTokenAmountString } from '../../../utils/bigint-decimals-converter'
 
 import Transaction from '../transaction/transaction.view'
 import useTransactionsListStyles from './transactions-list.styles'
+import { getTransactionAmount } from '../../../utils/transactions'
+import { getFixedTokenAmount } from '../../../utils/currencies'
 
 function TransactionsList ({ transactions, isToken }) {
   const classes = useTransactionsListStyles()
@@ -20,19 +21,27 @@ function TransactionsList ({ transactions, isToken }) {
         }
         <div className={classes.col}>Amount</div>
       </div>
-      {transactions.map((transaction, index) =>
-        <div
-          key={transaction.id}
-          className={clsx({ [classes.transaction]: index > 0 })}
-        >
-          <Transaction
-            transactionId={transaction.id}
-            amount={getTokenAmountString(transaction.amount, transaction.token.decimals)}
-            tokenSymbol={transaction.token.symbol}
-            isToken={isToken}
-          />
-        </div>
-      )}
+      {transactions.map((transaction, index) => {
+        const amount = getTransactionAmount(transaction)
+        const fixedTokenAmount = getFixedTokenAmount(
+          amount,
+          transaction.token.decimals
+        )
+
+        return (
+          <div
+            key={transaction.id}
+            className={clsx({ [classes.transaction]: index > 0 })}
+          >
+            <Transaction
+              transactionId={transaction.id}
+              amount={fixedTokenAmount}
+              tokenSymbol={transaction.token.symbol}
+              isToken={isToken}
+            />
+          </div>
+        )
+      })}
     </section>
   )
 }

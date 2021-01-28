@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
-import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useUserAccountStyles from './user-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -17,6 +16,7 @@ import { resetState } from '../../store/user-account/user-account.actions'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
+import { getFixedTokenAmount } from '../../utils/currencies'
 
 function UserAccount ({
   onLoadAccounts,
@@ -168,7 +168,7 @@ function UserAccount ({
                             >
                               <AccountDetails
                                 tokenSymbol={account.token.symbol}
-                                balance={getTokenAmountString(account.balance, account.token.decimals)}
+                                balance={getFixedTokenAmount(account.balance, account.token.decimals)}
                                 accountIndex={account.accountIndex}
                               />
                             </div>

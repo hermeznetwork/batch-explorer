@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useTokenAccountStyles from './token-account.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -14,6 +13,7 @@ import { resetState } from '../../store/token-account/token-account.actions'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
+import { getFixedTokenAmount } from '../../utils/currencies'
 
 function TokenAccount ({
   onLoadAccount,
@@ -69,7 +69,7 @@ function TokenAccount ({
                         Balance
                       </Col>
                       <Col>
-                        {getTokenAmountString(accountTask.data.balance, accountTask.data.token.decimals)}
+                        {getFixedTokenAmount(accountTask.data.balance, accountTask.data.token.decimals)}
                       </Col>
                     </Row>
                   </section>

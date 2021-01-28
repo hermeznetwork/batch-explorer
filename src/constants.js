@@ -1,0 +1,3 @@
+export const MAX_DECIMALS_UNTIL_ZERO_AMOUNT = 6
+
+export const HEZ_TOKEN_DECIMALS = 18
