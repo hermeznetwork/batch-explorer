@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getTokenAmountString } from '../../../utils/bigint-decimals-converter'
 import getPartiallyHiddenAddress from '../../../utils/address-shortener'
 
 import useBidStyles from './bid.styles'
 import Row from '../../shared/row/row'
 import Col from '../../shared/col/col'
+import { getFixedTokenAmount } from '../../../utils/currencies'
 
 function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }) {
   const classes = useBidStyles()
@@ -20,7 +20,7 @@ function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }
           </Link>
         </Col>
         <Col flex>
-          {getTokenAmountString(bidValue)} HEZ
+          {getFixedTokenAmount(bidValue, 18)} HEZ
         </Col>
       </Row>
     )
@@ -34,7 +34,7 @@ function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }
           {totalNumberOfBidsInSlot}
         </Col>
         <Col flex>
-          {getTokenAmountString(bidValue)} HEZ
+          {getFixedTokenAmount(bidValue, 18)} HEZ
         </Col>
       </Row>
     )

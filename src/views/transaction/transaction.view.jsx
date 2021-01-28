@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
-import { getTokenAmountString } from '../../utils/bigint-decimals-converter'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -15,6 +14,9 @@ import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-cl
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
+import { getFixedTokenAmount } from '../../utils/currencies'
+import { getTransactionAmount } from '../../utils/transactions'
+import { TxType } from '@hermeznetwork/hermezjs/src/tx-utils'
 
 function Transaction ({
   onLoadTransaction,
@@ -23,6 +25,26 @@ function Transaction ({
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
+
+  function getTransactionTypeLabel (transactionType) {
+    switch (transactionType) {
+      case TxType.CreateAccountDeposit:
+      case TxType.Deposit: {
+        return 'Deposit'
+      }
+      case TxType.Withdraw:
+      case TxType.Exit:
+      case TxType.ForceExit: {
+        return 'Withdraw'
+      }
+      case TxType.Transfer: {
+        return 'Transfer'
+      }
+      default: {
+        return ''
+      }
+    }
+  }
 
   /**
    * Handles detail button click, shows additional rows with data
@@ -100,7 +122,7 @@ function Transaction ({
                         Type of transaction
                       </Col>
                       <Col>
-                        {transactionTask.data.type}
+                        {getTransactionTypeLabel(transactionTask.data.type)}
                       </Col>
                     </Row>
                     {transactionTask.data.fromHezEthereumAddress
@@ -199,8 +221,8 @@ function Transaction ({
                       <Col>
                         Amount
                       </Col>
-                      <Col>
-                        {getTokenAmountString(transactionTask.data.amount, transactionTask.data.token.decimals)}
+                      <Col>{}
+                        {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>
                     {transactionTask.data.fee
@@ -210,7 +232,7 @@ function Transaction ({
                             Fee
                           </Col>
                           <Col>
-                            {getTokenAmountString(transactionTask.data.fee, transactionTask.data.token.decimals)}
+                            {getFixedTokenAmount(transactionTask.data.fee, transactionTask.data.token.decimals)}
                           </Col>
                         </Row>
                       ) : <></>}
