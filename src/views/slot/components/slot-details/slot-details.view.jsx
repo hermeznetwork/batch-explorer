@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 import { getFixedTokenAmount } from '../../../../utils/currencies'
+import { HEZ_TOKEN_DECIMALS } from '../../../../constants'
 
 function SlotDetails ({ slot, totalNumberOfBidsInSlot }) {
   if (slot.closedAuction) {
@@ -30,7 +31,7 @@ function SlotDetails ({ slot, totalNumberOfBidsInSlot }) {
             Winner bid
           </Col>
           <Col>
-            {getFixedTokenAmount(slot.winnerBid.bidValue, 18)} HEZ
+            {getFixedTokenAmount(slot.winnerBid.bidValue, HEZ_TOKEN_DECIMALS)} HEZ
           </Col>
         </Row>
         <Row>

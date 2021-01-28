@@ -221,7 +221,7 @@ function Transaction ({
                       <Col>
                         Amount
                       </Col>
-                      <Col>{}
+                      <Col>
                         {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>

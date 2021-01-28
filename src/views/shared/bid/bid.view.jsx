@@ -6,6 +6,7 @@ import useBidStyles from './bid.styles'
 import Row from '../../shared/row/row'
 import Col from '../../shared/col/col'
 import { getFixedTokenAmount } from '../../../utils/currencies'
+import { HEZ_TOKEN_DECIMALS } from '../../../constants'
 
 function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }) {
   const classes = useBidStyles()
@@ -20,7 +21,7 @@ function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }
           </Link>
         </Col>
         <Col flex>
-          {getFixedTokenAmount(bidValue, 18)} HEZ
+          {getFixedTokenAmount(bidValue, HEZ_TOKEN_DECIMALS)} HEZ
         </Col>
       </Row>
     )
@@ -34,7 +35,7 @@ function Bid ({ forgerAddr, bidValue, totalNumberOfBidsInSlot, slotNum, isSlot }
           {totalNumberOfBidsInSlot}
         </Col>
         <Col flex>
-          {getFixedTokenAmount(bidValue, 18)} HEZ
+          {getFixedTokenAmount(bidValue, HEZ_TOKEN_DECIMALS)} HEZ
         </Col>
       </Row>
     )
