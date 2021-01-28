@@ -37,7 +37,7 @@ function slotReducer (state = initialSlotState, action) {
         ...state,
         slotTask: {
           status: 'failed',
-          error: 'An error ocurred loading the slot'
+          error: 'An error ocurred. Slot does not exist or cannot be loaded.'
         }
       }
     }
@@ -69,7 +69,7 @@ function slotReducer (state = initialSlotState, action) {
         ...state,
         bidsTask: {
           status: 'failed',
-          error: 'An error ocurred loading bids'
+          error: 'An error ocurred. Bid does not exist or cannot be loaded.'
         }
       }
     }
@@ -100,7 +100,7 @@ function slotReducer (state = initialSlotState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error ocurred loading the batches'
+          error: 'An error ocurred.  Batches do not exist or cannot be loaded.'
         }
       }
     }

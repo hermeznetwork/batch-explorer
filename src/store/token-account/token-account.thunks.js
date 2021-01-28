@@ -26,7 +26,13 @@ function fetchTransactions (accountIndex, fromItem) {
     dispatch(tokenAccountActionTypes.loadTransactions())
 
     return CoordinatorAPI.getTransactions(undefined, undefined, undefined, accountIndex, fromItem)
-      .then(res => dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res)))
+      .then(res => {
+        if (res.transactions.length > 0) {
+          dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res))
+        } else {
+          dispatch(tokenAccountActionTypes.loadTransactionsFailure())
+        }
+      })
       .catch(err => dispatch(tokenAccountActionTypes.loadTransactionsFailure(err)))
   }
 }
