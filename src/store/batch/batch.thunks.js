@@ -26,7 +26,13 @@ function fetchTransactions (batchNum, fromItem) {
     dispatch(batchActions.loadTransactions())
 
     return CoordinatorAPI.getTransactions(undefined, undefined, batchNum, undefined, fromItem)
-      .then(res => dispatch(batchActions.loadTransactionsSuccess(res)))
+      .then(res => {
+        if (res.transactions.length > 0) {
+          dispatch(batchActions.loadTransactionsSuccess(res))
+        } else {
+          dispatch(batchActions.loadTransactionsFailure())
+        }
+      })
       .catch(err => dispatch(batchActions.loadTransactionsFailure(err)))
   }
 }

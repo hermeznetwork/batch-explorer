@@ -11,7 +11,13 @@ function fetchAccounts (address, fromItem) {
     dispatch(userAccountActionTypes.loadAccount())
 
     return CoordinatorAPI.getAccounts(address, undefined, fromItem)
-      .then(res => dispatch(userAccountActionTypes.loadAccountSuccess(res)))
+      .then(res => {
+        if (res.accounts.length > 0) {
+          dispatch(userAccountActionTypes.loadAccountSuccess(res))
+        } else {
+          dispatch(userAccountActionTypes.loadAccountFailure())
+        }
+      })
       .catch(err => dispatch(userAccountActionTypes.loadAccountFailure(err)))
   }
 }
@@ -26,7 +32,13 @@ function fetchTransactions (address, fromItem) {
     dispatch(userAccountActionTypes.loadTransactions())
 
     return CoordinatorAPI.getTransactions(address, undefined, undefined, undefined, fromItem)
-      .then(res => dispatch(userAccountActionTypes.loadTransactionsSuccess(res)))
+      .then(res => {
+        if (res.transactions.length > 0) {
+          dispatch(userAccountActionTypes.loadTransactionsSuccess(res))
+        } else {
+          dispatch(userAccountActionTypes.loadTransactionsFailure())
+        }
+      })
       .catch(err => dispatch(userAccountActionTypes.loadTransactionsFailure(err)))
   }
 }

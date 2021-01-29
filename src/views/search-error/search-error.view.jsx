@@ -13,8 +13,8 @@ function SearchError () {
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
-          <Title>We couldn't find "{searchTerm}"</Title>
-          <div>Please enter an address, a transaction hash or a batch number.</div>
+          <Title>We cannot find: {searchTerm}</Title>
+          <div>Please use an existing address, a transaction hash, a batch number or account index.</div>
           <div className={classes.backButtonWrapper}>
             <Link to='/' className={classes.backButton}>Back Home</Link>
           </div>
