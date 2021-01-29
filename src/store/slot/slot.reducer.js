@@ -100,7 +100,7 @@ function slotReducer (state = initialSlotState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error ocurred.  Batches do not exist or cannot be loaded.'
+          error: 'An error ocurred. Batches do not exist or cannot be loaded.'
         }
       }
     }
