@@ -34,7 +34,7 @@ function tokenAccountReducer (state = initialTokenAccountState, action) {
         ...state,
         accountTask: {
           status: 'failed',
-          error: 'An error ocurred loading the account'
+          error: 'An error ocurred. Account does not exist or cannot be loaded.'
         }
       }
     }
@@ -65,7 +65,7 @@ function tokenAccountReducer (state = initialTokenAccountState, action) {
         ...state,
         transactionsTask: {
           status: 'failed',
-          error: 'An error ocurred loading the transactions'
+          error: 'An error ocurred. Transactions do not exist or cannot be loaded.'
         }
       }
     }

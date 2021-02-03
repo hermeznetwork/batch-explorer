@@ -30,7 +30,7 @@ function transactionReducer (state = initialTransactionReducer, action) {
         ...state,
         transactionTask: {
           status: 'failed',
-          error: 'An error ocurred loading the transaction'
+          error: 'An error ocurred. Transaction does not exist or cannot be loaded.'
         }
       }
     }
