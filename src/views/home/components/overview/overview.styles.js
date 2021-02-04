@@ -3,7 +3,8 @@ import { createUseStyles } from 'react-jss'
 const useOverviewStyles = createUseStyles(theme => ({
   row: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
   },
   firstRow: {
     fontSize: theme.spacing(1.75),
@@ -30,18 +31,11 @@ const useOverviewStyles = createUseStyles(theme => ({
     background: theme.palette.white,
     borderRadius: '24px',
     minHeight: theme.spacing(19.5),
-    flexBasis: 0,
-    flexGrow: 1,
-    marginRight: theme.spacing(1),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2.5),
-    '&:last-child': {
-      marginRight: theme.spacing(0)
-    }
-  },
-  [theme.breakpoints.sm]: {
-    col: {
-      marginRight: theme.spacing(2.5)
+    width: `calc(50% - ${theme.spacing(1.25)}px)`,
+    [theme.breakpoints.sm]: {
+      width: theme.spacing(33.5)
     }
   }
 }))

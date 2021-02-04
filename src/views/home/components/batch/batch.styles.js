@@ -9,9 +9,12 @@ const useBatchStyles = createUseStyles(theme => ({
     background: theme.palette.white,
     borderRadius: '24px',
     minHeight: theme.spacing(19.5),
-    width: theme.spacing(39),
+    width: '100%',
     marginBottom: theme.spacing(3),
-    padding: `${theme.spacing(2.5)}px ${theme.spacing(2.5)}px ${theme.spacing(4)}px`
+    padding: `${theme.spacing(2.5)}px ${theme.spacing(2.5)}px ${theme.spacing(4)}px`,
+    [theme.breakpoints.sm]: {
+      width: theme.spacing(33.5)
+    }
   },
   batchWrapper: {
     width: '100%'

@@ -31,9 +31,6 @@ function Overview ({ overview }) {
             Last 24 hrs
           </div>
         </div>
-      </div>
-
-      <div className={classes.row}>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
             Avg Batch Time:
@@ -56,9 +53,6 @@ function Overview ({ overview }) {
             Last 24 hrs
           </div>
         </div>
-      </div>
-
-      <div className={classes.row}>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
             Total Wallets:
