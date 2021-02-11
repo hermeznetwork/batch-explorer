@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
+import { TxType } from '@hermeznetwork/hermezjs/src/enums'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -16,7 +17,6 @@ import Col from '../shared/col/col'
 import Title from '../shared/title/title'
 import { getFixedTokenAmount } from '../../utils/currencies'
 import { getTransactionAmount } from '../../utils/transactions'
-import { TxType } from '@hermeznetwork/hermezjs/src/tx-utils'
 
 function Transaction ({
   onLoadTransaction,
