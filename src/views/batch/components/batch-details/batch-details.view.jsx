@@ -48,7 +48,15 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Eth Block Number</Col>
-        <Col>{batch.ethereumBlockNum}</Col>
+        <Col link>
+          <a
+            href={'https://etherscan.io/block/' + batch.ethereumBlockNum}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {batch.ethereumBlockNum}
+          </a>
+        </Col>
       </Row>
       <Row>
         <Col>Status</Col>
