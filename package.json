@@ -12,7 +12,7 @@
     "lint:fix": "standard --fix"
   },
   "dependencies": {
-    "@hermeznetwork/hermezjs": "hermeznetwork/hermezjs#3c6849336f8aac3a9a7b9c3bd839427eede70d47",
+    "@hermeznetwork/hermezjs": "hermeznetwork/hermezjs#9830666c75a6ff6f371ba636c2dc4d3e0cf43cc0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

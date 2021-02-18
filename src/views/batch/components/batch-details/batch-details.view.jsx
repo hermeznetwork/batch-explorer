@@ -6,6 +6,7 @@ import useBatchDetailsStyles from './batch-details.styles'
 import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
 import { ReactComponent as AngleUp } from '../../../../images/icons/angle-up.svg'
 import CopyToClipboardButton from '../../../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
+import getPartiallyHiddenAddress from '../../../../utils/address-shortener'
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 
@@ -48,7 +49,15 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Eth Block Number</Col>
-        <Col>{batch.ethereumBlockNum}</Col>
+        <Col link>
+          <a
+            href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethereumBlockNum}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {batch.ethereumBlockNum}
+          </a>
+        </Col>
       </Row>
       <Row>
         <Col>Status</Col>
@@ -95,7 +104,7 @@ function BatchDetails ({ batch }) {
             <Row wrapped>
               <CopyToClipboardButton content={batch.stateRoot} />
               <Col wrapped>
-                {batch.stateRoot}
+                {getPartiallyHiddenAddress(batch.stateRoot)}
               </Col>
             </Row>
           </Col>
