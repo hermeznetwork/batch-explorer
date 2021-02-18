@@ -65,7 +65,7 @@ function batchReducer (state = initialBatchState, action) {
         ...state,
         transactionsTask: {
           status: 'failed',
-          error: 'Batch transactions do not exist or cannot be loaded.'
+          error: action.err
         }
       }
     }
