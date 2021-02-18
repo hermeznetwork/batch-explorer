@@ -50,7 +50,7 @@ function BatchDetails ({ batch }) {
         <Col>Eth Block Number</Col>
         <Col link>
           <a
-            href={'https://etherscan.io/block/' + batch.ethereumBlockNum}
+            href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethereumBlockNum}`}
             target='_blank'
             rel='noopener noreferrer'
           >
