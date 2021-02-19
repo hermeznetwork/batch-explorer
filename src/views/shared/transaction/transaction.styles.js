@@ -34,16 +34,24 @@ const useTransactionsListItemStyles = createUseStyles(theme => ({
       textDecoration: 'underline'
     }
   },
-  shortenedAddress: {
+  shortAddress: {
     display: 'block',
     [theme.breakpoints.sm]: {
       display: 'none'
     }
   },
-  notShortenedAddress: {
+  mediumAddress: {
     display: 'none',
     [theme.breakpoints.sm]: {
-      display: 'block'
+      display: 'block',
+      width: theme.spacing(20),
+      paddingRight: theme.spacing(3),
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      [theme.breakpoints.sm]: {
+        width: theme.spacing(40)
+      }
     }
   }
 }))
