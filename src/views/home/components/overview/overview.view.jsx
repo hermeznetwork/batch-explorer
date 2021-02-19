@@ -33,7 +33,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Avg Batch Time:
+            Avg batch time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.batchFrequency.toFixed(2)}"
@@ -44,7 +44,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Txs Per Second:
+            Txs per second:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.transactionsPerSecond.toFixed(2)}
@@ -55,7 +55,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Total Wallets:
+            Total wallets:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.totalBJJs}
