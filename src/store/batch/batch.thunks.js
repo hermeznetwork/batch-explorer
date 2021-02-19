@@ -30,10 +30,10 @@ function fetchTransactions (batchNum, fromItem) {
         if (res.transactions.length > 0) {
           dispatch(batchActions.loadTransactionsSuccess(res))
         } else {
-          dispatch(batchActions.loadTransactionsFailure())
+          dispatch(batchActions.loadTransactionsFailure('There are no transactions for this batch.'))
         }
       })
-      .catch(err => dispatch(batchActions.loadTransactionsFailure(err)))
+      .catch(dispatch(batchActions.loadTransactionsFailure('Batch transactions cannot be loaded.')))
   }
 }
 

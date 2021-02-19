@@ -40,9 +40,10 @@ function loadTransactionsSuccess (transactions) {
   }
 }
 
-function loadTransactionsFailure () {
+function loadTransactionsFailure (err) {
   return {
-    type: batchActionTypes.LOAD_TRANSACTIONS_FAILURE
+    type: batchActionTypes.LOAD_TRANSACTIONS_FAILURE,
+    err: err
   }
 }
 
