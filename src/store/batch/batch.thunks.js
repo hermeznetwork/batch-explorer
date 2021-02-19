@@ -33,7 +33,7 @@ function fetchTransactions (batchNum, fromItem) {
           dispatch(batchActions.loadTransactionsFailure('There are no transactions for this batch.'))
         }
       })
-      .catch(err => dispatch(batchActions.loadTransactionsFailure(err)))
+      .catch(dispatch(batchActions.loadTransactionsFailure('Batch transactions cannot be loaded.')))
   }
 }
 
