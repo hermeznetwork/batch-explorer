@@ -15,7 +15,7 @@ import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-cl
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
-import { getFixedTokenAmount } from '../../utils/currencies'
+import { getFixedTokenAmount, getFeeInUsd } from '../../utils/currencies'
 import { getTransactionAmount } from '../../utils/transactions'
 
 function Transaction ({
@@ -24,7 +24,7 @@ function Transaction ({
 }) {
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
-  const [areDeailsVisible, setDetailsVisible] = React.useState()
+  const [areDetailsVisible, setDetailsVisible] = React.useState()
 
   function getTransactionTypeLabel (transactionType) {
     switch (transactionType) {
@@ -225,20 +225,21 @@ function Transaction ({
                         {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>
-                    {transactionTask.data.fee
+                    {transactionTask.data.fee || transactionTask.data.L2Info?.fee
                       ? (
                         <Row>
                           <Col>
                             Fee
                           </Col>
                           <Col>
-                            {getFixedTokenAmount(transactionTask.data.fee, transactionTask.data.token.decimals)}
+                            {/* ${transactionTask.data.L2Info?.historicFeeUSD.toFixed(2) || getFeeInUsd(transactionTask.data.fee, transactionTask.data.token)} */}
+                            ${getFeeInUsd(transactionTask.data.L2Info.fee, transactionTask.data.amount, transactionTask.data.token)}
                           </Col>
                         </Row>
                       ) : <></>}
                     <div className={clsx({
                       [classes.detailHidden]: true,
-                      [classes.detailVisible]: areDeailsVisible
+                      [classes.detailVisible]: areDetailsVisible
                     })}
                     >
                       {transactionTask.data.slot
@@ -263,7 +264,7 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      {transactionTask.data.position
+                      {Number.isInteger(transactionTask.data.position)
                         ? (
                           <Row>
                             <Col>
@@ -274,14 +275,14 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      {transactionTask.data.nonce
+                      {transactionTask.data.nonce || transactionTask.data.L2Info?.nonce
                         ? (
                           <Row>
                             <Col>
                               Nonce
                             </Col>
                             <Col>
-                              {transactionTask.data.nonce}
+                              {transactionTask.data.nonce || transactionTask.data.L2Info.nonce}
                             </Col>
                           </Row>
                         ) : <></>}
@@ -289,7 +290,7 @@ function Transaction ({
                     <button
                       className={clsx({
                         [classes.detailButton]: true,
-                        [classes.detailButtonHidden]: areDeailsVisible,
+                        [classes.detailButtonHidden]: areDetailsVisible,
                         [classes.detailVisible]: true
                       })}
                       onClick={() => handleDetailClick()}
@@ -301,7 +302,7 @@ function Transaction ({
                       className={clsx({
                         [classes.detailButton]: true,
                         [classes.detailHidden]: true,
-                        [classes.detailVisible]: areDeailsVisible
+                        [classes.detailVisible]: areDetailsVisible
                       })}
                       onClick={() => handleCloseDetailClick()}
                     >

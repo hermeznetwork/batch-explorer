@@ -1,3 +1,6 @@
+import { feeFactors } from '@hermeznetwork/hermezjs/src/fee-factors'
+import { getTokenAmountString } from '@hermeznetwork/hermezjs/src/utils'
+
 import { MAX_DECIMALS_UNTIL_ZERO_AMOUNT } from '../constants'
 
 function getFixedTokenAmount (amount, decimals) {
@@ -19,6 +22,15 @@ function getFixedTokenAmount (amount, decimals) {
   return balanceWithDecimals.toFixed(significantDigitsFinal)
 }
 
+function getFeeInUsd (feeIndex, amount, token) {
+  const feeFactor = feeFactors[feeIndex]
+  const amountFloat = Number(getTokenAmountString(amount, token.decimals))
+  const feeInToken = feeFactor * amountFloat
+  const feeInFiat = feeInToken * token.USD
+  return feeInFiat.toFixed(2)
+}
+
 export {
-  getFixedTokenAmount
+  getFixedTokenAmount,
+  getFeeInUsd
 }
