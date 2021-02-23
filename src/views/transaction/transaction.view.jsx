@@ -26,6 +26,10 @@ function Transaction ({
   const classes = useTransactionStyles()
   const [areDetailsVisible, setDetailsVisible] = React.useState()
 
+  React.useEffect(() => {
+    onLoadTransaction(transactionId)
+  }, [transactionId, onLoadTransaction])
+
   function getTransactionTypeLabel (transactionType) {
     switch (transactionType) {
       case TxType.CreateAccountDeposit:
@@ -64,9 +68,17 @@ function Transaction ({
     setDetailsVisible(false)
   }
 
-  React.useEffect(() => {
-    onLoadTransaction(transactionId)
-  }, [transactionId, onLoadTransaction])
+  function shouldShowDetails () {
+    if (transactionTask.status === 'successful') {
+      return Number.isInteger(transactionTask.data.slot) ||
+        Number.isInteger(transactionTask.data.batchNum) ||
+        Number.isInteger(transactionTask.data.position) ||
+        transactionTask.data.nonce ||
+        transactionTask.data.L2Info?.nonce
+    } else {
+      return false
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -242,7 +254,7 @@ function Transaction ({
                       [classes.detailVisible]: areDetailsVisible
                     })}
                     >
-                      {transactionTask.data.slot
+                      {Number.isInteger(transactionTask.data.slot)
                         ? (
                           <Row>
                             <Col>
@@ -253,7 +265,7 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      {transactionTask.data.batchNum
+                      {Number.isInteger(transactionTask.data.batchNum)
                         ? (
                           <Row>
                             <Col>
@@ -287,28 +299,34 @@ function Transaction ({
                           </Row>
                         ) : <></>}
                     </div>
-                    <button
-                      className={clsx({
-                        [classes.detailButton]: true,
-                        [classes.detailButtonHidden]: areDetailsVisible,
-                        [classes.detailVisible]: true
-                      })}
-                      onClick={() => handleDetailClick()}
-                    >
-                        See details
-                      <AngleDown className={classes.icon} />
-                    </button>
-                    <button
-                      className={clsx({
-                        [classes.detailButton]: true,
-                        [classes.detailHidden]: true,
-                        [classes.detailVisible]: areDetailsVisible
-                      })}
-                      onClick={() => handleCloseDetailClick()}
-                    >
-                        Close details
-                      <AngleUp className={classes.icon} />
-                    </button>
+                    {
+                      shouldShowDetails() && (
+                        <div>
+                          <button
+                            className={clsx({
+                              [classes.detailButton]: true,
+                              [classes.detailButtonHidden]: areDetailsVisible,
+                              [classes.detailVisible]: true
+                            })}
+                            onClick={() => handleDetailClick()}
+                          >
+                              See details
+                            <AngleDown className={classes.icon} />
+                          </button>
+                          <button
+                            className={clsx({
+                              [classes.detailButton]: true,
+                              [classes.detailHidden]: true,
+                              [classes.detailVisible]: areDetailsVisible
+                            })}
+                            onClick={() => handleCloseDetailClick()}
+                          >
+                              Close details
+                            <AngleUp className={classes.icon} />
+                          </button>
+                        </div>
+                      )
+                    }
                   </section>
                 )
               }
