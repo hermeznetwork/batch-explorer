@@ -25,15 +25,17 @@ const useColStyles = createUseStyles(theme => ({
     '&:first-child': {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
+      textOverflow: 'ellipsis',
+      flexGrow: 1,
+      flexBasis: 0
     },
     '&:last-child': {
-      maxWidth: theme.spacing(11),
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      flexGrow: 1,
+      flexBasis: 0,
       [theme.breakpoints.sm]: {
-        maxWidth: theme.spacing(20),
         textAlign: 'right'
       }
     }
