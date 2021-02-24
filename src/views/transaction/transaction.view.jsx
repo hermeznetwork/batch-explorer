@@ -94,6 +94,7 @@ function Transaction ({
                 return <p>{transactionTask.error}</p>
               }
               case 'successful': {
+                console.log(transactionTask.data)
                 return (
                   <section>
                     <Row>
@@ -244,7 +245,7 @@ function Transaction ({
                             Fee
                           </Col>
                           <Col>
-                            ${getFeeInUsd(transactionTask.data.L2Info.fee, transactionTask.data.amount, transactionTask.data.token)}
+                            $ {transactionTask.data.L2Info ? transactionTask.data.L2Info.historicFeeUSD.toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
                           </Col>
                         </Row>
                       ) : <></>}

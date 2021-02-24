@@ -14,7 +14,7 @@ function fetchTransaction (transactionId) {
     return CoordinatorAPI.getPoolTransaction(transactionId)
       .then(res => dispatch(transactionActionTypes.loadTransactionSuccess(res)))
       .catch(err => {
-        if (err.response.status === HttpStatusCode.NOT_FOUND) {
+        if (err.response?.status === HttpStatusCode.NOT_FOUND) {
           return CoordinatorAPI.getHistoryTransaction(transactionId)
             .then(res => dispatch(transactionActionTypes.loadTransactionSuccess(res)))
             .catch(() => dispatch(transactionActionTypes.loadTransactionFailure()))
