@@ -36,7 +36,7 @@ function Overview ({ overview }) {
             Avg batch time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.batchFrequency.toFixed(2)}"
+            {overview.metrics.batchFrequency.toFixed(2)}s
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
@@ -61,7 +61,7 @@ function Overview ({ overview }) {
             {overview.metrics.totalBJJs}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            {overview.metrics.totalAccounts} accounts
+            {overview.metrics.totalAccounts} token accounts
           </div>
         </div>
         <div className={classes.col}>
