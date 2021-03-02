@@ -109,7 +109,12 @@ function Header () {
             </div>
           </div>
           <div className={`${classes.row} ${classes.headline}`}>
-            <h1>Hermez Batch Explorer</h1>
+            <h1>
+              Hermez Batch Explorer
+              {process.env.REACT_APP_HERMEZ_API_URL === 'http://api.testnet.hermez.io'
+                ? <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>
+                : ''}
+            </h1>
           </div>
           <div className={`${classes.row} ${classes.search}`}>
             <Search />
