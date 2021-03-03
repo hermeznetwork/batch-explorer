@@ -19,6 +19,11 @@ const useMainHeaderStyles = createUseStyles(theme => ({
     fontSize: theme.spacing(1.5),
     marginTop: theme.spacing(5)
   },
+  headerTestnetAddon: {
+    fontWeight: theme.fontWeights.normal,
+    fontSize: theme.spacing(2),
+    marginLeft: theme.spacing(1)
+  },
   search: {
     marginBottom: theme.spacing(2)
   },
