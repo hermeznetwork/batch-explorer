@@ -107,7 +107,7 @@ function Header () {
                   Hermez wallet
                 </a>
                 <a
-                  href=''
+                  href='/tokens'
                   target='_self'
                   rel='noopener noreferrer'
                   className={classes.link}

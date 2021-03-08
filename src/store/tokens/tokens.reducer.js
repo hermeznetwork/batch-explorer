@@ -1,4 +1,4 @@
-import * as tokensActionTypes from './tokens.actions'
+import { tokensActionTypes } from './tokens.actions'
 import { getPaginationData } from '../../utils/api'
 
 const initialTokensState = {

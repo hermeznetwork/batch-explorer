@@ -27,7 +27,7 @@ function Tokens ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
-          <Title>User Address</Title>
+          <Title>Registered Tokens</Title>
 
           {(() => {
             switch (tokensTask.status) {
@@ -73,7 +73,7 @@ Tokens.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  tokensTask: state.userAccount.tokensTask
+  tokensTask: state.tokens.tokensTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
