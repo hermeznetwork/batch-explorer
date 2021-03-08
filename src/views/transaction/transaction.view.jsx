@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
+import { TxType } from '@hermeznetwork/hermezjs/src/enums'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -14,9 +15,8 @@ import CopyToClipboardButton from '../shared/copy-to-clipboard-button/copy-to-cl
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
-import { getFixedTokenAmount } from '../../utils/currencies'
+import { getFixedTokenAmount, getFeeInUsd } from '../../utils/currencies'
 import { getTransactionAmount } from '../../utils/transactions'
-import { TxType } from '@hermeznetwork/hermezjs/src/tx-utils'
 
 function Transaction ({
   onLoadTransaction,
@@ -24,7 +24,11 @@ function Transaction ({
 }) {
   const { transactionId } = useParams()
   const classes = useTransactionStyles()
-  const [areDeailsVisible, setDetailsVisible] = React.useState()
+  const [areDetailsVisible, setDetailsVisible] = React.useState()
+
+  React.useEffect(() => {
+    onLoadTransaction(transactionId)
+  }, [transactionId, onLoadTransaction])
 
   function getTransactionTypeLabel (transactionType) {
     switch (transactionType) {
@@ -64,9 +68,17 @@ function Transaction ({
     setDetailsVisible(false)
   }
 
-  React.useEffect(() => {
-    onLoadTransaction(transactionId)
-  }, [transactionId, onLoadTransaction])
+  function shouldShowDetails () {
+    if (transactionTask.status === 'successful') {
+      return Number.isInteger(transactionTask.data.slot) ||
+        Number.isInteger(transactionTask.data.batchNum) ||
+        Number.isInteger(transactionTask.data.position) ||
+        transactionTask.data.nonce ||
+        transactionTask.data.L2Info?.nonce
+    } else {
+      return false
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -82,6 +94,7 @@ function Transaction ({
                 return <p>{transactionTask.error}</p>
               }
               case 'successful': {
+                console.log(transactionTask.data)
                 return (
                   <section>
                     <Row>
@@ -104,7 +117,7 @@ function Transaction ({
                       <Col>
                         <Col>
                           <div className={classes.status}>
-                            {transactionTask.data.batchNum === null ? 'Not yet forged' : 'Forged'}
+                            {transactionTask.data.state === 'fged' || Number.isInteger(transactionTask.data.item) ? 'Forged' : 'Not yet forged'}
                           </div>
                         </Col>
                       </Col>
@@ -225,23 +238,23 @@ function Transaction ({
                         {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>
-                    {transactionTask.data.fee
+                    {transactionTask.data.fee || transactionTask.data.L2Info?.fee
                       ? (
                         <Row>
                           <Col>
                             Fee
                           </Col>
                           <Col>
-                            {getFixedTokenAmount(transactionTask.data.fee, transactionTask.data.token.decimals)}
+                            $ {transactionTask.data.L2Info ? transactionTask.data.L2Info.historicFeeUSD.toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
                           </Col>
                         </Row>
                       ) : <></>}
                     <div className={clsx({
                       [classes.detailHidden]: true,
-                      [classes.detailVisible]: areDeailsVisible
+                      [classes.detailVisible]: areDetailsVisible
                     })}
                     >
-                      {transactionTask.data.slot
+                      {Number.isInteger(transactionTask.data.slot)
                         ? (
                           <Row>
                             <Col>
@@ -252,7 +265,7 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      {transactionTask.data.batchNum
+                      {Number.isInteger(transactionTask.data.batchNum)
                         ? (
                           <Row>
                             <Col>
@@ -263,7 +276,7 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      {transactionTask.data.position
+                      {Number.isInteger(transactionTask.data.position)
                         ? (
                           <Row>
                             <Col>
@@ -274,40 +287,46 @@ function Transaction ({
                             </Col>
                           </Row>
                         ) : <></>}
-                      {transactionTask.data.nonce
+                      {transactionTask.data.nonce || transactionTask.data.L2Info?.nonce
                         ? (
                           <Row>
                             <Col>
                               Nonce
                             </Col>
                             <Col>
-                              {transactionTask.data.nonce}
+                              {transactionTask.data.nonce || transactionTask.data.L2Info.nonce}
                             </Col>
                           </Row>
                         ) : <></>}
                     </div>
-                    <button
-                      className={clsx({
-                        [classes.detailButton]: true,
-                        [classes.detailButtonHidden]: areDeailsVisible,
-                        [classes.detailVisible]: true
-                      })}
-                      onClick={() => handleDetailClick()}
-                    >
-                        See details
-                      <AngleDown className={classes.icon} />
-                    </button>
-                    <button
-                      className={clsx({
-                        [classes.detailButton]: true,
-                        [classes.detailHidden]: true,
-                        [classes.detailVisible]: areDeailsVisible
-                      })}
-                      onClick={() => handleCloseDetailClick()}
-                    >
-                        Close details
-                      <AngleUp className={classes.icon} />
-                    </button>
+                    {
+                      shouldShowDetails() && (
+                        <div>
+                          <button
+                            className={clsx({
+                              [classes.detailButton]: true,
+                              [classes.detailButtonHidden]: areDetailsVisible,
+                              [classes.detailVisible]: true
+                            })}
+                            onClick={() => handleDetailClick()}
+                          >
+                              See details
+                            <AngleDown className={classes.icon} />
+                          </button>
+                          <button
+                            className={clsx({
+                              [classes.detailButton]: true,
+                              [classes.detailHidden]: true,
+                              [classes.detailVisible]: areDetailsVisible
+                            })}
+                            onClick={() => handleCloseDetailClick()}
+                          >
+                              Close details
+                            <AngleUp className={classes.icon} />
+                          </button>
+                        </div>
+                      )
+                    }
                   </section>
                 )
               }

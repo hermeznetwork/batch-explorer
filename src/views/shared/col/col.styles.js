@@ -5,7 +5,6 @@ const useColStyles = createUseStyles(theme => ({
     fontWeight: theme.fontWeights.medium,
     '&:last-child': {
       fontWeight: theme.fontWeights.bold,
-      maxWidth: theme.spacing(52),
       overflowWrap: 'break-word',
       lineHeight: `${theme.spacing(3)}px`,
       marginTop: theme.spacing(1.5),
@@ -18,7 +17,7 @@ const useColStyles = createUseStyles(theme => ({
   colWrapped: {
     maxWidth: `calc(100% - ${theme.spacing(11.5)}px)`,
     [theme.breakpoints.sm]: {
-      maxWidth: theme.spacing(45)
+      maxWidth: '100%'
     }
   },
   colFlex: {
@@ -26,15 +25,17 @@ const useColStyles = createUseStyles(theme => ({
     '&:first-child': {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
+      textOverflow: 'ellipsis',
+      flexGrow: 1,
+      flexBasis: 0
     },
     '&:last-child': {
-      maxWidth: theme.spacing(11),
       overflow: 'hidden',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
+      flexGrow: 1,
+      flexBasis: 0,
       [theme.breakpoints.sm]: {
-        maxWidth: theme.spacing(20),
         textAlign: 'right'
       }
     }

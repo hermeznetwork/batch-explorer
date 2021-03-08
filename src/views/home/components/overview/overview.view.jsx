@@ -31,15 +31,12 @@ function Overview ({ overview }) {
             Last 24 hrs
           </div>
         </div>
-      </div>
-
-      <div className={classes.row}>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Avg Batch Time:
+            Avg batch time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.batchFrequency.toFixed(2)}"
+            {overview.metrics.batchFrequency.toFixed(2)}s
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
@@ -47,7 +44,7 @@ function Overview ({ overview }) {
         </div>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Txs Per Second:
+            Txs per second:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.transactionsPerSecond.toFixed(2)}
@@ -56,18 +53,15 @@ function Overview ({ overview }) {
             Last 24 hrs
           </div>
         </div>
-      </div>
-
-      <div className={classes.row}>
         <div className={classes.col}>
           <div className={`${classes.row} ${classes.firstRow}`}>
-            Total Wallets:
+            Total wallets:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
             {overview.metrics.totalBJJs}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            {overview.metrics.totalAccounts} accounts
+            {overview.metrics.totalAccounts} token accounts
           </div>
         </div>
         <div className={classes.col}>

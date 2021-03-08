@@ -81,6 +81,10 @@ function Batch ({
               }
               case 'reloading':
               case 'successful': {
+                if (transactionsTask.data.transactions.length === 0) {
+                  return <p>There are no transactions for this batch</p>
+                }
+
                 return (
                   <section>
                     <InfiniteScroll

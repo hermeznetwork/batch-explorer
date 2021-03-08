@@ -9,6 +9,8 @@ import Search from '../../search/search.view'
 import { ReactComponent as Close } from '../../../images/icons/close.svg'
 import { ReactComponent as Menu } from '../../../images/icons/menu.svg'
 
+import { TESTNET_API_HOSTNAME } from '../../../constants'
+
 function Header () {
   const classes = useHeaderStyles()
   const [isMenuVisible, setMenuVisible] = React.useState()
@@ -109,7 +111,11 @@ function Header () {
             </div>
           </div>
           <div className={`${classes.row} ${classes.headline}`}>
-            <h1>Hermez Batch Explorer</h1>
+            <h1>
+              Hermez Batch Explorer
+              {process.env.REACT_APP_HERMEZ_API_URL.includes(TESTNET_API_HOSTNAME) &&
+                <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>}
+            </h1>
           </div>
           <div className={`${classes.row} ${classes.search}`}>
             <Search />

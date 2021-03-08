@@ -11,8 +11,8 @@ function Transaction ({ transactionId, amount, tokenSymbol, isToken }) {
     <div className={classes.row}>
       <div className={`${classes.col} ${classes.link}`}>
         <Link to={`/transaction/${transactionId}`}>
-          <span className={classes.shortenedAddress}>{getPartiallyHiddenAddress(transactionId)}</span>
-          <span className={classes.notShortenedAddress}>{transactionId}</span>
+          <span className={classes.shortAddress}>{getPartiallyHiddenAddress(transactionId)}</span>
+          <span className={classes.mediumAddress}>{transactionId}</span>
         </Link>
       </div>
       {
