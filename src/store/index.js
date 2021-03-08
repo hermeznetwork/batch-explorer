@@ -10,6 +10,7 @@ import userAccountReducer from './user-account/user-account.reducer'
 import transactionReducer from './transaction/transaction.reducer'
 import slotReducer from './slot/slot.reducer'
 import tokenAccountReducer from './token-account/token-account.reducer'
+import tokensReducer from './tokens/tokens.reducer'
 
 function createRootReducer (history) {
   return combineReducers({
@@ -20,6 +21,7 @@ function createRootReducer (history) {
     transaction: transactionReducer,
     slot: slotReducer,
     tokenAccount: tokenAccountReducer,
+    tokens: tokensReducer,
     router: connectRouter(history)
   })
 }
