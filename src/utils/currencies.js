@@ -14,6 +14,13 @@ function getFixedTokenAmount (amount, decimals) {
   return (Number(balanceWithDecimals.toFixed(MAX_TOKEN_DECIMALS))).toString()
 }
 
+/**
+ * Converts a fee index to USD
+ * @param {Number} feeIndex - The fee index from the Hermez protocol
+ * @param {BigInt} amount - Amount in BigInt string value
+ * @param {Object} token - Token object
+ * @returns {String} Amount in USD
+ */
 function getFeeInUsd (feeIndex, amount, token) {
   const feeFactor = feeFactors[feeIndex]
   const amountFloat = Number(getTokenAmountString(amount, token.decimals))
