@@ -90,15 +90,30 @@ function Header () {
                 [classes.show]: true
               })}
               >
-                {/* TODO: uncomment once Wallet is live */}
-                {/* <a
-                  href=''
+                <a
+                  href='http://hermez.io/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={classes.link}
+                >
+                  Go to hermez.io
+                </a>
+                <a
+                  href='https://wallet.testnet.hermez.io/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className={classes.link}
                 >
                   Hermez wallet
-                </a> */}
+                </a>
+                <a
+                  href=''
+                  target='_self'
+                  rel='noopener noreferrer'
+                  className={classes.link}
+                >
+                  Registered Tokens
+                </a>
                 <a
                   href='https://twitter.com/hermez_network'
                   target='_blank'
