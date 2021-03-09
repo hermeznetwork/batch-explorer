@@ -58,7 +58,8 @@ function Tokens ({
                       onLoadNextPage={(fromItem) => {
                         if (tokensTask.status === 'successful') {
                           onLoadTokens(
-                            // TODO add id,
+                            undefined,
+                            undefined,
                             fromItem
                           )
                         }
