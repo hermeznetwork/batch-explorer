@@ -14,7 +14,7 @@ function loadTokens () {
 function loadTokensSuccess (tokens) {
   return {
     type: tokensActionTypes.LOAD_TOKENS_SUCCESS,
-    tokens
+    data: tokens
   }
 }
 

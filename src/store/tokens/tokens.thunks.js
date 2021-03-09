@@ -5,11 +5,11 @@ import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
  * Fetches the tokens
  * @returns {void}
  */
-function fetchTokens (address, fromItem) {
+function fetchTokens (fromItem) {
   return (dispatch) => {
     dispatch(tokensActionTypes.loadTokens())
 
-    return CoordinatorAPI.getTransactions(address, undefined, undefined, undefined, fromItem)
+    return CoordinatorAPI.getTokens(undefined, undefined, fromItem)
       .then(res => {
         if (res.tokens.length > 0) {
           dispatch(tokensActionTypes.loadTokensSuccess(res))

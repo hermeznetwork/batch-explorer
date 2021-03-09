@@ -9,6 +9,9 @@ import { fetchTokens } from '../../store/tokens/tokens.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import { resetState } from '../../store/user-account/user-account.actions'
 import Title from '../shared/title/title'
+import TokensList from './components/tokens-list/tokens-list.view'
+import Row from '../shared/row/row'
+import Col from '../shared/col/col'
 
 function Tokens ({
   onLoadTokens,
@@ -40,20 +43,40 @@ function Tokens ({
               case 'reloading':
               case 'successful': {
                 return (
-                  <InfiniteScroll
-                    asyncTaskStatus={tokensTask.status}
-                    paginationData={tokensTask.data.pagination}
-                    onLoadNextPage={(fromItem) => {
-                      if (tokensTask.status === 'successful') {
-                        onLoadTokens(
-                          // TODO add id,
-                          fromItem
-                        )
-                      }
-                    }}
-                  >
-                        TEST: {tokensTask.data.tokens}
-                  </InfiniteScroll>
+                  <>
+                    <Row flex>
+                      <Col flex>
+                        Token
+                      </Col>
+                      <Col flex>
+                        Total Amount
+                      </Col>
+                    </Row>
+                    <InfiniteScroll
+                      asyncTaskStatus={tokensTask.status}
+                      paginationData={tokensTask.data.pagination}
+                      onLoadNextPage={(fromItem) => {
+                        if (tokensTask.status === 'successful') {
+                          onLoadTokens(
+                            // TODO add id,
+                            fromItem
+                          )
+                        }
+                      }}
+                    >
+                      <TokensList
+                        tokens={tokensTask.data.tokens}
+                      />
+                    </InfiniteScroll>
+                    <a
+                      href='/'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className={classes.addTokenButton}
+                    >
+                      Request to add a token
+                    </a>
+                  </>
                 )
               }
               default: {
