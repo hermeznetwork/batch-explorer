@@ -17,7 +17,7 @@ function Token ({ usd, symbol }) {
         </Link>
       </Col>
       <Col flex>
-        {usd}
+        {usd} USD
       </Col>
     </Row>
   )
