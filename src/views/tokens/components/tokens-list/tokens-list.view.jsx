@@ -11,6 +11,7 @@ function TokensList ({ tokens }) {
           <Token
             usd={token.USD}
             symbol={token.symbol}
+            ethereumAddress={token.ethereumAddress}
           />
         </div>
       )}
