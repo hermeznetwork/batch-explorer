@@ -14,7 +14,7 @@ function fetchTokens (fromItem) {
         if (res.tokens.length > 0) {
           dispatch(tokensActionTypes.loadTokensSuccess(res))
         } else {
-          dispatch(tokensActionTypes.loadTokensFailure())
+          dispatch(tokensActionTypes.loadTokensSuccess())
         }
       })
       .catch(err => dispatch(tokensActionTypes.loadTokensFailure(err)))

@@ -44,33 +44,36 @@ function Tokens ({
               case 'successful': {
                 return (
                   <>
-                    <Row flex>
-                      <Col flex>
-                        Token
-                      </Col>
-                      <Col flex>
-                        Total Amount
-                      </Col>
-                    </Row>
-                    <InfiniteScroll
-                      asyncTaskStatus={tokensTask.status}
-                      paginationData={tokensTask.data.pagination}
-                      onLoadNextPage={(fromItem) => {
-                        if (tokensTask.status === 'successful') {
-                          onLoadTokens(
-                            undefined,
-                            undefined,
-                            fromItem
-                          )
-                        }
-                      }}
-                    >
-                      <TokensList
-                        tokens={tokensTask.data.tokens}
-                      />
-                    </InfiniteScroll>
+                    {tokensTask.data.length === 0 
+                      ? <p>There are no tokens in the system.</p>
+                      : <>
+                          <Row flex>
+                            <Col flex>
+                              Token
+                            </Col>
+                            <Col flex>
+                              Total Amount
+                            </Col>
+                          </Row>
+                          <InfiniteScroll
+                            asyncTaskStatus={tokensTask.status}
+                            paginationData={tokensTask.data.pagination}
+                            onLoadNextPage={(fromItem) => {
+                              if (tokensTask.status === 'successful') {
+                                onLoadTokens(
+                                  fromItem
+                                )
+                              }
+                            }}
+                          >
+                            <TokensList
+                              tokens={tokensTask.data.tokens}
+                            />
+                          </InfiniteScroll>
+                        </>
+                    }
                     <a
-                      href='/'
+                      href='https://bit.ly/hermez-token-list-request'
                       target='_blank'
                       rel='noopener noreferrer'
                       className={classes.addTokenButton}
