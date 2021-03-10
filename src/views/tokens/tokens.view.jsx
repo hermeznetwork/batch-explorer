@@ -44,7 +44,7 @@ function Tokens ({
               case 'successful': {
                 return (
                   <>
-                    {tokensTask.data.length === 0 
+                    {tokensTask.data.tokens.length === 0 
                       ? <p>There are no registered tokens in the network.</p>
                       : <>
                           <Row flex>
