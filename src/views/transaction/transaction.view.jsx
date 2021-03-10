@@ -117,7 +117,7 @@ function Transaction ({
                       <Col>
                         <Col>
                           <div className={classes.status}>
-                            {transactionTask.data.batchNum === null ? 'Not yet forged' : 'Forged'}
+                            {transactionTask.data.state === 'fged' || Number.isInteger(transactionTask.data.item) ? 'Forged' : 'Not yet forged'}
                           </div>
                         </Col>
                       </Col>
