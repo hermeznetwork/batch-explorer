@@ -10,13 +10,7 @@ function fetchTokens (fromItem) {
     dispatch(tokensActionTypes.loadTokens())
 
     return CoordinatorAPI.getTokens(undefined, undefined, fromItem)
-      .then(res => {
-        if (res.tokens.length > 0) {
-          dispatch(tokensActionTypes.loadTokensSuccess(res))
-        } else {
-          dispatch(tokensActionTypes.loadTokensSuccess())
-        }
-      })
+      .then(res => dispatch(tokensActionTypes.loadTokensSuccess(res)))
       .catch(err => dispatch(tokensActionTypes.loadTokensFailure(err)))
   }
 }
