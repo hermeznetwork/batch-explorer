@@ -35,9 +35,7 @@ const useColStyles = createUseStyles(theme => ({
       textOverflow: 'ellipsis',
       flexGrow: 1,
       flexBasis: 0,
-      [theme.breakpoints.sm]: {
-        textAlign: 'right'
-      }
+      textAlign: 'right'
     }
   },
   link: {
