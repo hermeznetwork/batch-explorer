@@ -94,7 +94,6 @@ function Transaction ({
                 return <p>{transactionTask.error}</p>
               }
               case 'successful': {
-                console.log(transactionTask.data)
                 return (
                   <section>
                     <Row>
@@ -116,9 +115,9 @@ function Transaction ({
                       </Col>
                       <Col>
                         <Col>
-                          <div className={classes.status}>
-                            {transactionTask.data.state === 'fged' || Number.isInteger(transactionTask.data.item) ? 'Forged' : 'Not yet forged'}
-                          </div>
+                          {transactionTask.data.state === 'fged' || Number.isInteger(transactionTask.data.item)
+                            ? <div className={`${classes.status} ${classes.completed}`}>Completed</div>
+                            : <div className={`${classes.status} ${classes.pending}`}>Pending</div>}
                         </Col>
                       </Col>
                     </Row>

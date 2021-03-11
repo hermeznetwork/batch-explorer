@@ -11,6 +11,7 @@ const theme = {
       dark: '#f6e9d3'
     },
     secondary: {
+      veryLight: 'rgba(216,133,59,0.1)',
       light: '#fef5ed',
       main: '#e75a2b',
       dark: '#d8853b'
