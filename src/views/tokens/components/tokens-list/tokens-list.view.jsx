@@ -9,7 +9,7 @@ function TokensList ({ tokens }) {
       {tokens.map((token) =>
         <div key={token.id}>
           <Token
-            usd={token.USD}
+            name={token.name}
             symbol={token.symbol}
             ethereumAddress={token.ethereumAddress}
           />

@@ -52,7 +52,6 @@ function Tokens ({
                               Token
                             </Col>
                             <Col flex>
-                              Total Amount
                             </Col>
                           </Row>
                           <InfiniteScroll

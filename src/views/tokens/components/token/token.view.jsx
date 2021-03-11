@@ -3,7 +3,7 @@ import React from 'react'
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 
-function Token ({ usd, symbol, ethereumAddress }) {
+function Token ({ name, symbol, ethereumAddress }) {
   return (
 
     <Row flex>
@@ -17,7 +17,7 @@ function Token ({ usd, symbol, ethereumAddress }) {
         </a>
       </Col>
       <Col flex>
-        {usd} USD
+        {name}
       </Col>
     </Row>
   )
