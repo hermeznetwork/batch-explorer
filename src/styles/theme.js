@@ -11,6 +11,7 @@ const theme = {
       dark: '#f6e9d3'
     },
     secondary: {
+      veryLight: 'rgba(216,133,59,0.1)',
       light: '#fef5ed',
       main: '#e75a2b',
       dark: '#d8853b'
@@ -24,7 +25,10 @@ const theme = {
       main: '#888baa',
       dark: '#7a7c89'
     },
-    red: '#ff4b40',
+    red: {
+      veryLight: 'rgba(255,75,64,0.1)',
+      main: '#ff4b40'
+    },
     orange: {
       main: '#ffa600',
       dark: '#d44d20'
