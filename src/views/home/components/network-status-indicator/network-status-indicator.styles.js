@@ -9,15 +9,15 @@ const useNetworkStatusIndicatorStyles = createUseStyles(theme => ({
     borderRadius: 14,
     width: 'fit-content'
   },
-  stopped: {
+  unavailable: {
     background: theme.palette.red.veryLight,
     color: theme.palette.red.main
   },
-  congested: {
+  degraded: {
     background: theme.palette.secondary.veryLight,
     color: theme.palette.secondary.dark
   },
-  operative: {
+  operational: {
     background: theme.palette.green.light,
     color: theme.palette.green.main
   }

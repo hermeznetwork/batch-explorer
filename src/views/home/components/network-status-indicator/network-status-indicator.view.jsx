@@ -8,21 +8,21 @@ function NetworkStatusIndicator () {
   const classes = useNetworkStatusIndicatorStyles()
 
   // NETWORK_STATUS_INDICATOR can have following values (translated to network operational status)
-  // 1 - Operative
-  // 2 - Congested/withdraw delayed
-  // 3 - Network stopped
+  // 1 - Operational
+  // 2 - Degraded Performance
+  // 3 - Network Unavailable
 
   if (NETWORK_STATUS_INDICATOR === 3) {
     return (
-      <div className={`${classes.status} ${classes.stopped}`}>Network stopped</div>
+      <div className={`${classes.status} ${classes.unavailable}`}>Network Unavailable</div>
     )
   } else if (NETWORK_STATUS_INDICATOR === 2) {
     return (
-      <div className={`${classes.status} ${classes.congested}`}>Congested/withdraw delayed</div>
+      <div className={`${classes.status} ${classes.degraded}`}>Degraded Performance</div>
     )
   } else {
     return (
-      <div className={`${classes.status} ${classes.operative}`}>Operative</div>
+      <div className={`${classes.status} ${classes.operational}`}>Operational</div>
     )
   }
 }
