@@ -115,7 +115,7 @@ function Transaction ({
                       </Col>
                       <Col>
                         <Col>
-                          {transactionTask.data.state === 'fged' || Number.isInteger(transactionTask.data.item)
+                          {transactionTask.data.batchNum
                             ? <div className={`${classes.status} ${classes.completed}`}>Completed</div>
                             : <div className={`${classes.status} ${classes.pending}`}>Pending</div>}
                         </Col>
