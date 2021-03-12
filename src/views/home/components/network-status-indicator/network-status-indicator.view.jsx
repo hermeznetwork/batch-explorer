@@ -1,22 +1,41 @@
 import React from 'react'
 
-import { NETWORK_STATUS_INDICATOR } from '../../../../constants'
-
 import useNetworkStatusIndicatorStyles from './network-status-indicator.styles'
 
 function NetworkStatusIndicator () {
   const classes = useNetworkStatusIndicatorStyles()
 
-  // NETWORK_STATUS_INDICATOR can have following values (translated to network operational status)
+  // Network status indicator can have following values
   // 1 - Operational
   // 2 - Degraded Performance
   // 3 - Network Unavailable
 
-  if (NETWORK_STATUS_INDICATOR === 3) {
+  const [networkStatusIndicator, setData] = React.useState([])
+
+  const getData = () => {
+    fetch('http://localhost:8000/network-status.json',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
+      })
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (data) {
+        setData(data.networkStatusIndicator)
+      })
+  }
+  React.useEffect(() => {
+    getData()
+  }, [])
+
+  if (networkStatusIndicator === 3) {
     return (
       <div className={`${classes.status} ${classes.unavailable}`}>Network Unavailable</div>
     )
-  } else if (NETWORK_STATUS_INDICATOR === 2) {
+  } else if (networkStatusIndicator === 2) {
     return (
       <div className={`${classes.status} ${classes.degraded}`}>Degraded Performance</div>
     )
