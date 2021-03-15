@@ -26,7 +26,6 @@ function NetworkStatusIndicator () {
         return response.json()
       })
       .then(function (data) {
-        console.log('data: ', data)
         setData(data.networkStatusIndicator)
       })
   }
