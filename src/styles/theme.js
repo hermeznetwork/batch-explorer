@@ -25,7 +25,10 @@ const theme = {
       main: '#888baa',
       dark: '#7a7c89'
     },
-    red: '#ff4b40',
+    red: {
+      veryLight: 'rgba(255,75,64,0.1)',
+      main: '#ff4b40'
+    },
     orange: {
       main: '#ffa600',
       dark: '#d44d20'
