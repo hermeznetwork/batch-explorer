@@ -36,13 +36,19 @@ const useTransactionStyles = createUseStyles(theme => ({
   },
   status: {
     fontWeight: theme.fontWeights.medium,
-    background: theme.palette.green.light,
     borderRadius: '8px',
-    color: theme.palette.green.main,
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
     margin: `-${theme.spacing(0.5)}px`,
     textAlign: 'center',
     width: 'fit-content'
+  },
+  completed: {
+    background: theme.palette.green.light,
+    color: theme.palette.green.main
+  },
+  pending: {
+    background: theme.palette.secondary.veryLight,
+    color: theme.palette.secondary.dark
   }
 }))
 
