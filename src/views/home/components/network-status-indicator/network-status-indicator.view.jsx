@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { WEBSITE_URL } from '../../../../constants'
+
 import useNetworkStatusIndicatorStyles from './network-status-indicator.styles'
 
 function NetworkStatusIndicator () {
@@ -13,7 +15,7 @@ function NetworkStatusIndicator () {
   const [networkStatusIndicator, setData] = React.useState([])
 
   const getData = () => {
-    fetch('http://localhost:8000/network-status.json',
+    fetch(WEBSITE_URL + 'network-status.json',
       {
         headers: {
           'Content-Type': 'application/json',
