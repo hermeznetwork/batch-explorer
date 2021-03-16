@@ -14,7 +14,7 @@ function App () {
   // 0 - NOT under maintenance
   // 1 - under maintenance
 
-  const [underMaintenanceIndicator, setData] = React.useState([])
+  const [isBatchExplorerUnderMaintenance, setData] = React.useState([])
 
   const getData = () => {
     fetch(WEBSITE_URL + 'network-status.json',
@@ -27,7 +27,7 @@ function App () {
         return response.json()
       })
       .then(function (data) {
-        setData(data.underMaintenanceIndicator)
+        setData(data.isBatchExplorerUnderMaintenance)
       })
   }
   React.useEffect(() => {
@@ -41,8 +41,8 @@ function App () {
   return (
     <>
       <Route>
-        <Layout displayHeadlineAndSearch={Number.isInteger(underMaintenanceIndicator) && underMaintenanceIndicator !== 0 ? false : true}>
-          {Number.isInteger(underMaintenanceIndicator) && underMaintenanceIndicator !== 0
+        <Layout displayHeadlineAndSearch={Number.isInteger(isBatchExplorerUnderMaintenance) && isBatchExplorerUnderMaintenance !== 0 ? false : true}>
+          {Number.isInteger(isBatchExplorerUnderMaintenance) && isBatchExplorerUnderMaintenance !== 0
           ?
           <>
             <Route path={routes[0].path} component={routes[0].component}/>
