@@ -1,6 +1,7 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import hermez from '@hermeznetwork/hermezjs'
+import { WEBSITE_URL } from '../constants'
 
 import Layout from './shared/layout/layout.view'
 import routes from '../routing/routes'
@@ -9,6 +10,30 @@ import useAppStyles from './app.styles'
 function App () {
   useAppStyles()
 
+  // Under maintenance indicator can have the following values:
+  // 0 - NOT under maintenance
+  // 1 - under maintenance
+
+  const [underMaintenanceIndicator, setData] = React.useState([])
+
+  const getData = () => {
+    fetch(WEBSITE_URL + 'network-status.json',
+      {
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (data) {
+        setData(data.underMaintenanceIndicator)
+      })
+  }
+  React.useEffect(() => {
+    getData()
+  }, [])
+
   React.useLayoutEffect(() => {
     hermez.CoordinatorAPI.setBaseApiUrl(process.env.REACT_APP_HERMEZ_API_URL)
   }, [])
@@ -16,7 +41,14 @@ function App () {
   return (
     <>
       <Route>
-        <Layout>
+        <Layout displayHeadlineAndSearch={Number.isInteger(underMaintenanceIndicator) && underMaintenanceIndicator !== 0 ? false : true}>
+          {Number.isInteger(underMaintenanceIndicator) && underMaintenanceIndicator !== 0
+          ?
+          <>
+            <Route path={routes[0].path} component={routes[0].component}/>
+            <Redirect to={routes[0].path} />
+          </>
+          : 
           <Switch>
             {routes.map(route =>
               <Route
@@ -27,6 +59,7 @@ function App () {
               />
             )}
           </Switch>
+          }
         </Layout>
       </Route>
     </>

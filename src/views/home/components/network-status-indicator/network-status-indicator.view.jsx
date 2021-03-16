@@ -18,7 +18,6 @@ function NetworkStatusIndicator () {
     fetch(WEBSITE_URL + 'network-status.json',
       {
         headers: {
-          'Content-Type': 'application/json',
           Accept: 'application/json'
         }
       })

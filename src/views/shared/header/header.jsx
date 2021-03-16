@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 import useHeaderStyles from './header.styles'
@@ -11,7 +10,7 @@ import { ReactComponent as Menu } from '../../../images/icons/menu.svg'
 
 import { TESTNET_API_HOSTNAME } from '../../../constants'
 
-function Header () {
+function Header ({ displayHeadlineAndSearch }) {
   const classes = useHeaderStyles()
   const [isMenuVisible, setMenuVisible] = React.useState()
 
@@ -49,11 +48,13 @@ function Header () {
               [classes.notActive]: isMenuVisible
             })}
             >
-              <Link
-                to='/'
+              <a
+                href='/'
+                target='_self'
+                rel='noopener noreferrer'
               >
                 <Logo />
-              </Link>
+              </a>
             </div>
             <div className={clsx({
               [classes.linksWrapper]: isMenuVisible
@@ -125,16 +126,21 @@ function Header () {
               </div>
             </div>
           </div>
-          <div className={`${classes.row} ${classes.headline}`}>
-            <h1>
-              Hermez Batch Explorer
-              {process.env.REACT_APP_HERMEZ_API_URL.includes(TESTNET_API_HOSTNAME) &&
-                <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>}
-            </h1>
-          </div>
-          <div className={`${classes.row} ${classes.search}`}>
-            <Search />
-          </div>
+          {displayHeadlineAndSearch 
+          ?
+          <>
+            <div className={`${classes.row} ${classes.headline}`}>
+              <h1>
+                Hermez Batch Explorer
+                {process.env.REACT_APP_HERMEZ_API_URL.includes(TESTNET_API_HOSTNAME) &&
+                  <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>}
+              </h1>
+            </div>
+            <div className={`${classes.row} ${classes.search}`}>
+              <Search />
+            </div>
+          </>
+          : <></>}
         </div>
       </Container>
     </header>
