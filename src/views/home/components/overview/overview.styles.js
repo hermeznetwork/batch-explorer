@@ -10,18 +10,28 @@ const useOverviewStyles = createUseStyles(theme => ({
     fontSize: theme.spacing(1.75),
     color: theme.palette.grey.main,
     marginBottom: theme.spacing(3),
+    paddingLeft: theme.spacing(0.75),
+    position: 'relative',
     '&::before': {
       content: '""',
       background: theme.palette.orange.main,
-      marginRight: theme.spacing(0.75),
       borderRadius: theme.spacing(1),
       width: '3px',
-      height: theme.spacing(2)
+      height: theme.spacing(2),
+      position: 'absolute',
+      left: 0
     }
   },
   secondRow: {
     fontSize: theme.spacing(5),
-    fontWeight: theme.fontWeights.bold
+    fontWeight: theme.fontWeights.bold,
+    display: 'inline'
+  },
+  batchFrequencyDecimalsOnly: {
+    display: 'none',
+    [theme.breakpoints.sm]: {
+      display: 'inline'
+    }
   },
   col: {
     display: 'flex',
