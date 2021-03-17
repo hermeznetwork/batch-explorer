@@ -48,13 +48,16 @@ function Header ({ displaySearchAndNavigation }) {
               [classes.notActive]: isMenuVisible
             })}
             >
-              <a
-                href='/'
-                target='_self'
-                rel='noopener noreferrer'
-              >
-                <Logo />
-              </a>
+              {displaySearchAndNavigation 
+              ? <a
+                  href='/'
+                  target='_self'
+                  rel='noopener noreferrer'
+                >
+                  <Logo />
+                </a>
+              : <Logo />
+              }
             </div>
             <div className={clsx({
               [classes.linksWrapper]: isMenuVisible,

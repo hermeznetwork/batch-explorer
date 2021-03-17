@@ -30,52 +30,45 @@ function App ({
 
   return (
     <>
-          {(() => {
-            switch (maintenanceStatusTask.status) {
-              case 'loading': {
-                return <Spinner />
-              }
-              case 'failed': {
-                return <p>{maintenanceStatusTask.error}</p>
-              }
-              case 'reloading':
-              case 'successful': {
-                // isBatchExplorerUnderMaintenance can have the following values:
-                // 0 - NOT under maintenance
-                // 1 - under maintenance
-                const underMaintenance = Number.isInteger(maintenanceStatusTask.isBatchExplorerUnderMaintenance) && maintenanceStatusTask.isBatchExplorerUnderMaintenance !== 0;
-                return (
-                  <>
-                    <Route>
-                      <Layout displaySearchAndNavigation={underMaintenance ? false : true}>
-                        {underMaintenance
-                        ?
-                        <>
-                          <Route path={routes[0].path} component={routes[0].component}/>
-                          <Redirect to={routes[0].path} />
-                        </>
-                        : 
-                        <Switch>
-                          {routes.map(route =>
-                            <Route
-                              exact
-                              key={route.path}
-                              path={route.path}
-                              component={route.component}
-                            />
-                          )}
-                        </Switch>
-                        }
-                      </Layout>
-                    </Route>
-                  </>
-                )
-              }
-              default: {
-                return <></>
-              }
-            }
-          })()}
+      {(() => {
+        switch (maintenanceStatusTask.status) {
+          case 'loading': {
+            return <Spinner />
+          }
+          case 'failed': {
+            return <p>{maintenanceStatusTask.error}</p>
+          }
+          case 'reloading':
+          case 'successful': {
+            // isBatchExplorerUnderMaintenance can have the following values:
+            // 0 - NOT under maintenance
+            // 1 - under maintenance
+            const isUnderMaintenance = Number.isInteger(maintenanceStatusTask.isBatchExplorerUnderMaintenance) && maintenanceStatusTask.isBatchExplorerUnderMaintenance !== 0
+            return (
+              <>
+                <Route>
+                  <Layout displaySearchAndNavigation={isUnderMaintenance ? false : true}>
+                    <Switch>
+                      {routes.map(route =>
+                        <Route
+                          exact
+                          key={route.path}
+                          path={route.path}
+                          component={route.component}
+                        />
+                      )}
+                    </Switch>
+                    {isUnderMaintenance && <Redirect to='/under-maintenance' />}
+                  </Layout>
+                </Route>
+              </>
+            )
+          }
+          default: {
+            return <></>
+          }
+        }
+      })()}
     </>
   )
 }
