@@ -244,7 +244,7 @@ function Transaction ({
                             Fee
                           </Col>
                           <Col>
-                            $ {transactionTask.data.L2Info ? transactionTask.data.L2Info.historicFeeUSD.toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
+                            $ {transactionTask.data.L2Info ? Number(transactionTask.data.L2Info.historicFeeUSD).toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
                           </Col>
                         </Row>
                       ) : <></>}
