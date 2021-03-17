@@ -12,13 +12,17 @@ const useUnderMaintenanceStyles = createUseStyles(theme => ({
         width: '100%'
     },
     image: {
-        marginTop: theme.spacing(21),
+        marginTop: theme.spacing(8),
+        [theme.breakpoints.sm]: {
+            marginTop: theme.spacing(21)
+        }
     },
     text: {
         marginTop: theme.spacing(5),
-        fontWeight: theme.fontWeights.extraBold,
+        fontWeight: theme.fontWeights.bold,
         fontSize: theme.spacing(2.5),
-        lineHeight: `${theme.spacing(4)}px`
+        lineHeight: `${theme.spacing(4)}px`,
+        textAlign: 'center'
     }
 }))
 

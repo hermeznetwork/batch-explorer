@@ -10,7 +10,7 @@ import { ReactComponent as Menu } from '../../../images/icons/menu.svg'
 
 import { TESTNET_API_HOSTNAME } from '../../../constants'
 
-function Header ({ displayHeadlineAndSearch }) {
+function Header ({ displaySearchAndNavigation }) {
   const classes = useHeaderStyles()
   const [isMenuVisible, setMenuVisible] = React.useState()
 
@@ -57,32 +57,37 @@ function Header ({ displayHeadlineAndSearch }) {
               </a>
             </div>
             <div className={clsx({
-              [classes.linksWrapper]: isMenuVisible
+              [classes.linksWrapper]: isMenuVisible,
+              [classes.menuButtons]: true
             })}
             >
-              <button
-                className={clsx({
-                  [classes.menuButton]: true,
-                  [classes.active]: true,
-                  [classes.notActive]: isMenuVisible,
-                  [classes.hide]: true
-                })}
-                onClick={() => handleOpenMenuClick()}
-              >
-                <Menu className={classes.icon} />
-              </button>
-              <button
-                className={clsx({
-                  [classes.menuButton]: true,
-                  [classes.closeMenuButton]: true,
-                  [classes.active]: isMenuVisible,
-                  [classes.notActive]: !isMenuVisible,
-                  [classes.hide]: true
-                })}
-                onClick={() => handleCloseMenuClick()}
-              >
-                <Close className={classes.icon} />
-              </button>
+              {displaySearchAndNavigation ? 
+              <>
+                <button
+                  className={clsx({
+                    [classes.menuButton]: true,
+                    [classes.active]: true,
+                    [classes.notActive]: isMenuVisible,
+                    [classes.hide]: true
+                  })}
+                  onClick={() => handleOpenMenuClick()}
+                >
+                  <Menu className={classes.icon} />
+                </button>
+                <button
+                  className={clsx({
+                    [classes.menuButton]: true,
+                    [classes.closeMenuButton]: true,
+                    [classes.active]: isMenuVisible,
+                    [classes.notActive]: !isMenuVisible,
+                    [classes.hide]: true
+                  })}
+                  onClick={() => handleCloseMenuClick()}
+                >
+                  <Close className={classes.icon} />
+                </button>
+              </>
+              : <></>}
 
               <div className={clsx({
                 [classes.links]: true,
@@ -126,16 +131,16 @@ function Header ({ displayHeadlineAndSearch }) {
               </div>
             </div>
           </div>
-          {displayHeadlineAndSearch 
+          <div className={`${classes.row} ${classes.headline}`}>
+            <h1>
+              Hermez Batch Explorer
+              {process.env.REACT_APP_HERMEZ_API_URL.includes(TESTNET_API_HOSTNAME) &&
+                <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>}
+            </h1>
+          </div>
+          {displaySearchAndNavigation 
           ?
           <>
-            <div className={`${classes.row} ${classes.headline}`}>
-              <h1>
-                Hermez Batch Explorer
-                {process.env.REACT_APP_HERMEZ_API_URL.includes(TESTNET_API_HOSTNAME) &&
-                  <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>}
-              </h1>
-            </div>
             <div className={`${classes.row} ${classes.search}`}>
               <Search />
             </div>
