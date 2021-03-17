@@ -7,7 +7,8 @@ const useNetworkStatusIndicatorStyles = createUseStyles(theme => ({
     marginTop: theme.spacing(3.5),
     marginBottom: theme.spacing(1),
     borderRadius: 14,
-    width: 'fit-content'
+    width: 'fit-content',
+    display: 'inline-block'
   },
   unavailable: {
     background: theme.palette.red.veryLight,

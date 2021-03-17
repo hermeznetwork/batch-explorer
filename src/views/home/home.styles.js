@@ -8,6 +8,10 @@ const useHomeStyles = createUseStyles(theme => ({
   },
   wrapper: {
     width: '100%'
+  },
+  networkStatusTitle: {
+    display: 'inline-block',
+    marginRight: theme.spacing(2)
   }
 }))
 

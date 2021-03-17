@@ -35,7 +35,9 @@ function Home ({
     <div className={classes.root}>
       <Container backgroundColor={theme.palette.primary.main} disableTopGutter>
         <div className={classes.wrapper}>
-          <Title>Network status</Title>
+          <div className={classes.networkStatusTitle}>
+            <Title>Network status:</Title>
+          </div>
           <NetworkStatusIndicator />
 
           <Title>Overview</Title>
