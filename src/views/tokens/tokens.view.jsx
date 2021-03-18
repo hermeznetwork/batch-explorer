@@ -71,14 +71,15 @@ function Tokens ({
                           </InfiniteScroll>
                         </>
                     }
-                    <a
+                    {/* TODO uncomment for the mainnet */}
+                    {/* <a
                       href='https://bit.ly/hermez-token-list-request'
                       target='_blank'
                       rel='noopener noreferrer'
                       className={classes.addTokenButton}
                     >
                       Request to add a token
-                    </a>
+                    </a> */}
                   </>
                 )
               }
