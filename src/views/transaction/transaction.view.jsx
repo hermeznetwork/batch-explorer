@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
-import { TxType } from '@hermeznetwork/hermezjs/src/enums'
+import { TxType, TxState } from '@hermeznetwork/hermezjs/src/enums'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -94,7 +94,6 @@ function Transaction ({
                 return <p>{transactionTask.error}</p>
               }
               case 'successful': {
-                console.log(transactionTask.data)
                 return (
                   <section>
                     <Row>
@@ -116,9 +115,9 @@ function Transaction ({
                       </Col>
                       <Col>
                         <Col>
-                          <div className={classes.status}>
-                            {transactionTask.data.state === 'fged' || Number.isInteger(transactionTask.data.item) ? 'Forged' : 'Not yet forged'}
-                          </div>
+                          {transactionTask.data.batchNum || transactionTask.data.state === TxState.Forged
+                            ? <div className={`${classes.status} ${classes.completed}`}>Completed</div>
+                            : <div className={`${classes.status} ${classes.pending}`}>Pending</div>}
                         </Col>
                       </Col>
                     </Row>
@@ -245,7 +244,7 @@ function Transaction ({
                             Fee
                           </Col>
                           <Col>
-                            $ {transactionTask.data.L2Info ? transactionTask.data.L2Info.historicFeeUSD.toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
+                            $ {transactionTask.data.L2Info ? Number(transactionTask.data.L2Info.historicFeeUSD).toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
                           </Col>
                         </Row>
                       ) : <></>}

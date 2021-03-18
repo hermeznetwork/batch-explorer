@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 import useHeaderStyles from './header.styles'
@@ -11,7 +10,7 @@ import { ReactComponent as Menu } from '../../../images/icons/menu.svg'
 
 import { TESTNET_API_HOSTNAME } from '../../../constants'
 
-function Header () {
+function Header ({ displaySearchAndNavigation }) {
   const classes = useHeaderStyles()
   const [isMenuVisible, setMenuVisible] = React.useState()
 
@@ -49,39 +48,49 @@ function Header () {
               [classes.notActive]: isMenuVisible
             })}
             >
-              <Link
-                to='/'
-              >
-                <Logo />
-              </Link>
+              {displaySearchAndNavigation 
+              ? <a
+                  href='/'
+                  target='_self'
+                  rel='noopener noreferrer'
+                >
+                  <Logo />
+                </a>
+              : <Logo />
+              }
             </div>
             <div className={clsx({
-              [classes.linksWrapper]: isMenuVisible
+              [classes.linksWrapper]: isMenuVisible,
+              [classes.menuButtons]: true
             })}
             >
-              <button
-                className={clsx({
-                  [classes.menuButton]: true,
-                  [classes.active]: true,
-                  [classes.notActive]: isMenuVisible,
-                  [classes.hide]: true
-                })}
-                onClick={() => handleOpenMenuClick()}
-              >
-                <Menu className={classes.icon} />
-              </button>
-              <button
-                className={clsx({
-                  [classes.menuButton]: true,
-                  [classes.closeMenuButton]: true,
-                  [classes.active]: isMenuVisible,
-                  [classes.notActive]: !isMenuVisible,
-                  [classes.hide]: true
-                })}
-                onClick={() => handleCloseMenuClick()}
-              >
-                <Close className={classes.icon} />
-              </button>
+              {displaySearchAndNavigation ? 
+              <>
+                <button
+                  className={clsx({
+                    [classes.menuButton]: true,
+                    [classes.active]: true,
+                    [classes.notActive]: isMenuVisible,
+                    [classes.hide]: true
+                  })}
+                  onClick={() => handleOpenMenuClick()}
+                >
+                  <Menu className={classes.icon} />
+                </button>
+                <button
+                  className={clsx({
+                    [classes.menuButton]: true,
+                    [classes.closeMenuButton]: true,
+                    [classes.active]: isMenuVisible,
+                    [classes.notActive]: !isMenuVisible,
+                    [classes.hide]: true
+                  })}
+                  onClick={() => handleCloseMenuClick()}
+                >
+                  <Close className={classes.icon} />
+                </button>
+              </>
+              : <></>}
 
               <div className={clsx({
                 [classes.links]: true,
@@ -90,15 +99,30 @@ function Header () {
                 [classes.show]: true
               })}
               >
-                {/* TODO: uncomment once Wallet is live */}
-                {/* <a
-                  href=''
+                <a
+                  href='http://hermez.io/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={classes.link}
+                >
+                  Go to hermez.io
+                </a>
+                <a
+                  href='https://wallet.testnet.hermez.io/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className={classes.link}
                 >
                   Hermez wallet
-                </a> */}
+                </a>
+                <a
+                  href='/tokens'
+                  target='_self'
+                  rel='noopener noreferrer'
+                  className={classes.link}
+                >
+                  Registered Tokens
+                </a>
                 <a
                   href='https://twitter.com/hermez_network'
                   target='_blank'
@@ -117,9 +141,14 @@ function Header () {
                 <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>}
             </h1>
           </div>
-          <div className={`${classes.row} ${classes.search}`}>
-            <Search />
-          </div>
+          {displaySearchAndNavigation 
+          ?
+          <>
+            <div className={`${classes.row} ${classes.search}`}>
+              <Search />
+            </div>
+          </>
+          : <></>}
         </div>
       </Container>
     </header>

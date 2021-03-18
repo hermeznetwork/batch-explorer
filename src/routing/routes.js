@@ -6,8 +6,14 @@ import Transaction from '../views/transaction/transaction.view'
 import Slot from '../views/slot/slot.view'
 import TokenAccount from '../views/token-account/token-account.view'
 import SearchError from '../views/search-error/search-error.view'
+import Tokens from '../views/tokens/tokens.view'
+import UnderMaintenance from '../views/under-maintenance/under-maintenance.view'
 
 const routes = [
+  {
+    path: '/under-maintenance',
+    component: UnderMaintenance
+  },
   {
     path: '/',
     label: 'Home',
@@ -40,6 +46,11 @@ const routes = [
   {
     path: '/search-error/:searchTerm',
     component: SearchError
+  },
+  {
+    path: '/tokens',
+    component: Tokens
+
   }
 ]
 

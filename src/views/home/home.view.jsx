@@ -8,6 +8,7 @@ import Spinner from '../shared/spinner/spinner.view'
 import Container from '../shared/container/container.view'
 import BatchesList from './components/batches-list/batches-list.view'
 import Overview from './components/overview/overview.view'
+import NetworkStatusIndicator from './components/network-status-indicator/network-status-indicator.view'
 import { fetchBatches, fetchOverview } from '../../store/home/home.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import { resetState } from '../../store/home/home.actions'
@@ -34,6 +35,11 @@ function Home ({
     <div className={classes.root}>
       <Container backgroundColor={theme.palette.primary.main} disableTopGutter>
         <div className={classes.wrapper}>
+          <div className={classes.networkStatusTitle}>
+            <Title>Network status:</Title>
+          </div>
+          <NetworkStatusIndicator />
+
           <Title>Overview</Title>
           {(() => {
             switch (overviewTask.status) {

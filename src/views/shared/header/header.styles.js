@@ -12,7 +12,10 @@ const useMainHeaderStyles = createUseStyles(theme => ({
   row: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(2.5),
+    [theme.breakpoints.sm]: {
+      marginTop: theme.spacing(3)
+    }
   },
   headline: {
     fontWeight: theme.fontWeights.extraBold,
@@ -27,6 +30,12 @@ const useMainHeaderStyles = createUseStyles(theme => ({
   search: {
     marginBottom: theme.spacing(2)
   },
+  menuButtons: {
+    marginTop: theme.spacing(1.5),
+    [theme.breakpoints.sm]: {
+      marginTop: 0
+    }
+  },
   linksWrapper: {
     width: '100vw',
     height: '100vh',
@@ -37,7 +46,8 @@ const useMainHeaderStyles = createUseStyles(theme => ({
   },
   links: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: theme.spacing(1.5)
   },
   link: {
     display: 'flex',

@@ -36,7 +36,9 @@ function Overview ({ overview }) {
             Avg batch time:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.batchFrequency.toFixed(2)}s
+            {overview.metrics.batchFrequency.toFixed(0)}
+            <span className={classes.batchFrequencyDecimalsOnly}>.{overview.metrics.batchFrequency.toFixed(2).slice(-2)}</span>
+            s
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
             Last 24 hrs
