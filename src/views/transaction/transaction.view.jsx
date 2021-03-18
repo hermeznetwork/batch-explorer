@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
-import { TxType } from '@hermeznetwork/hermezjs/src/enums'
+import { TxType, TxState } from '@hermeznetwork/hermezjs/src/enums'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -115,7 +115,7 @@ function Transaction ({
                       </Col>
                       <Col>
                         <Col>
-                          {transactionTask.data.batchNum
+                          {transactionTask.data.batchNum || transactionTask.data.state === TxState.Forged
                             ? <div className={`${classes.status} ${classes.completed}`}>Completed</div>
                             : <div className={`${classes.status} ${classes.pending}`}>Pending</div>}
                         </Col>
