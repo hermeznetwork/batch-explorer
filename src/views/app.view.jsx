@@ -1,90 +1,77 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import hermez from '@hermeznetwork/hermezjs'
+import { WEBSITE_URL } from '../constants'
 
 import Layout from './shared/layout/layout.view'
 import routes from '../routing/routes'
-import Spinner from '../views/shared/spinner/spinner.view'
 import useAppStyles from './app.styles'
-import { fetchMaintenanceStatus } from '../store/global/global.thunks'
-import { resetState } from '../store/global/global.actions'
 
-function App ({
-  onLoadMaintenanceStatus,
-  maintenanceStatusTask,
-  onCleanup
-}) {
+function App () {
   useAppStyles()
 
-  React.useEffect(() => {
-    onLoadMaintenanceStatus()
-  }, [onLoadMaintenanceStatus])
+  // Under maintenance indicator can have the following values:
+  // 0 - NOT under maintenance
+  // 1 - under maintenance
 
-  React.useEffect(() => onCleanup, [onCleanup])
+  const [isBatchExplorerUnderMaintenance, setData] = React.useState([])
+
+  const getData = () => {
+    fetch(WEBSITE_URL + 'network-status.json',
+      {
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (data) {
+        setData(data.isBatchExplorerUnderMaintenance)
+      })
+      .catch(() => {
+        console.error(
+          'Cannot obtain network status.'
+        )
+      })
+  }
+
+  React.useEffect(() => {
+    getData()
+  }, [])
 
   React.useLayoutEffect(() => {
     hermez.CoordinatorAPI.setBaseApiUrl(process.env.REACT_APP_HERMEZ_API_URL)
   }, [])
 
+  const underMaintenance = Number.isInteger(isBatchExplorerUnderMaintenance) && isBatchExplorerUnderMaintenance !== 0
+
   return (
     <>
-      {(() => {
-        switch (maintenanceStatusTask.status) {
-          case 'loading': {
-            return <Spinner />
+      <Route>
+        <Layout displaySearchAndNavigation={underMaintenance ? false : true}>
+          {underMaintenance
+          ?
+          <>
+            <Route path={routes[0].path} component={routes[0].component}/>
+            <Redirect to={routes[0].path} />
+          </>
+          : 
+          <Switch>
+            {routes.map(route =>
+              <Route
+                exact
+                key={route.path}
+                path={route.path}
+                component={route.component}
+              />
+            )}
+          </Switch>
           }
-          case 'failed': {
-            return <p>{maintenanceStatusTask.error}</p>
-          }
-          case 'reloading':
-          case 'successful': {
-            // isBatchExplorerUnderMaintenance can have the following values:
-            // 0 - NOT under maintenance
-            // 1 - under maintenance
-            const isUnderMaintenance = Number.isInteger(maintenanceStatusTask.isBatchExplorerUnderMaintenance) && maintenanceStatusTask.isBatchExplorerUnderMaintenance !== 0
-            return (
-              <>
-                <Route>
-                  <Layout displaySearchAndNavigation={isUnderMaintenance ? false : true}>
-                    <Switch>
-                      {routes.map(route =>
-                        <Route
-                          exact
-                          key={route.path}
-                          path={route.path}
-                          component={route.component}
-                        />
-                      )}
-                    </Switch>
-                    {isUnderMaintenance && <Redirect to='/under-maintenance' />}
-                  </Layout>
-                </Route>
-              </>
-            )
-          }
-          default: {
-            return <></>
-          }
-        }
-      })()}
+        </Layout>
+      </Route>
     </>
   )
 }
 
-App.propTypes = {
-  onLoadMaintenanceStatus: PropTypes.func.isRequired,
-  maintenanceStatusTask: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
-  maintenanceStatusTask: state.global.maintenanceStatusTask
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadMaintenanceStatus: () => dispatch(fetchMaintenanceStatus()),
-  onCleanup: () => dispatch(resetState())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

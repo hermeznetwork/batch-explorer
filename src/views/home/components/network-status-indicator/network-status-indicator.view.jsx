@@ -27,7 +27,13 @@ function NetworkStatusIndicator () {
       .then(function (data) {
         setData(data.networkStatusIndicator)
       })
+      .catch(() => {
+        console.error(
+          'Cannot obtain network status.'
+        )
+      })
   }
+
   React.useEffect(() => {
     getData()
   }, [])
