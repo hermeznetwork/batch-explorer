@@ -115,14 +115,17 @@ function Header ({ displaySearchAndNavigation }) {
                 >
                   Hermez wallet
                 </a>
-                <a
-                  href='/tokens'
-                  target='_self'
-                  rel='noopener noreferrer'
-                  className={classes.link}
-                >
-                  Registered Tokens
-                </a>
+                {displaySearchAndNavigation 
+                ? <a
+                    href='/tokens'
+                    target='_self'
+                    rel='noopener noreferrer'
+                    className={classes.link}
+                  >
+                    Registered Tokens
+                  </a>
+                : <></>
+                }
                 <a
                   href='https://twitter.com/hermez_network'
                   target='_blank'
@@ -143,11 +146,9 @@ function Header ({ displaySearchAndNavigation }) {
           </div>
           {displaySearchAndNavigation 
           ?
-          <>
-            <div className={`${classes.row} ${classes.search}`}>
-              <Search />
-            </div>
-          </>
+          <div className={`${classes.row} ${classes.search}`}>
+            <Search />
+          </div>
           : <></>}
         </div>
       </Container>
