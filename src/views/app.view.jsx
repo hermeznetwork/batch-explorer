@@ -29,7 +29,13 @@ function App () {
       .then(function (data) {
         setData(data.isBatchExplorerUnderMaintenance)
       })
+      .catch(() => {
+        console.error(
+          'Cannot obtain network status.'
+        )
+      })
   }
+
   React.useEffect(() => {
     getData()
   }, [])
