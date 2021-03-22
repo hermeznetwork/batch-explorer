@@ -12,7 +12,7 @@
     "lint:fix": "standard --fix"
   },
   "dependencies": {
-    "@hermeznetwork/hermezjs": "hermeznetwork/hermezjs#9830666c75a6ff6f371ba636c2dc4d3e0cf43cc0",
+    "@hermeznetwork/hermezjs": "1.0.0-beta.17",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -28,7 +28,7 @@
     "react-jss": "^10.3.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.2",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "standard": "^14.3.4"
+    "standard": "^16.0.3"
   },
   "engines": {
     "node": ">=14"
