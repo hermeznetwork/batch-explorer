@@ -60,10 +60,10 @@ function Overview ({ overview }) {
             Total wallets:
           </div>
           <div className={`${classes.row} ${classes.secondRow}`}>
-            {overview.metrics.totalBJJs}
+            {overview.metrics.wallets}
           </div>
           <div className={`${classes.row} ${classes.thirdRow}`}>
-            {overview.metrics.totalAccounts} token accounts
+            {overview.metrics.tokenAccounts} token accounts
           </div>
         </div>
         <div className={classes.col}>
