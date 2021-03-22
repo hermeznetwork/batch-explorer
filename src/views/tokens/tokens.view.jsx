@@ -12,6 +12,7 @@ import Title from '../shared/title/title'
 import TokensList from './components/tokens-list/tokens-list.view'
 import Row from '../shared/row/row'
 import Col from '../shared/col/col'
+import { MAINNET_API_HOSTNAME } from '../../constants'
 
 function Tokens ({
   onLoadTokens,
@@ -71,15 +72,16 @@ function Tokens ({
                           </InfiniteScroll>
                         </>
                     }
-                    {/* TODO uncomment for the mainnet */}
-                    {/* <a
+                    {process.env.REACT_APP_HERMEZ_API_URL.includes(MAINNET_API_HOSTNAME) &&
+                    <a
                       href='https://bit.ly/hermez-token-list-request'
                       target='_blank'
                       rel='noopener noreferrer'
                       className={classes.addTokenButton}
                     >
                       Request to add a token
-                    </a> */}
+                    </a>
+                    }
                   </>
                 )
               }
