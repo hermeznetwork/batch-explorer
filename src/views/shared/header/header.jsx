@@ -8,7 +8,7 @@ import Search from '../../search/search.view'
 import { ReactComponent as Close } from '../../../images/icons/close.svg'
 import { ReactComponent as Menu } from '../../../images/icons/menu.svg'
 
-import { TESTNET_API_HOSTNAME } from '../../../constants'
+import { TESTNET_API_HOSTNAME, MAINNET_API_HOSTNAME } from '../../../constants'
 
 function Header ({ displaySearchAndNavigation }) {
   const classes = useHeaderStyles()
@@ -108,7 +108,10 @@ function Header ({ displaySearchAndNavigation }) {
                   Go to hermez.io
                 </a>
                 <a
-                  href='https://wallet.testnet.hermez.io/'
+                  href={
+                    process.env.REACT_APP_HERMEZ_API_URL.includes(MAINNET_API_HOSTNAME) 
+                    ? 'https://wallet.hermez.io/'
+                    : 'https://wallet.testnet.hermez.io/'}
                   target='_blank'
                   rel='noopener noreferrer'
                   className={classes.link}

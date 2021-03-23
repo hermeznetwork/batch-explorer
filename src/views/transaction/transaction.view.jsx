@@ -41,7 +41,9 @@ function Transaction ({
       case TxType.ForceExit: {
         return 'Withdraw'
       }
-      case TxType.Transfer: {
+      case TxType.Transfer:
+      case TxType.TransferToEthAddr:
+      case TxType.TransferToBJJ: {
         return 'Transfer'
       }
       default: {
@@ -152,7 +154,8 @@ function Transaction ({
                             </Row>
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromBjj
                       ? (
                         <Row>
@@ -168,7 +171,8 @@ function Transaction ({
                             </Row>
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     {!transactionTask.data.fromHezEthereumAddress && !transactionTask.data.fromBjj && transactionTask.data.fromAccountIndex
                       ? (
                         <Row>
@@ -182,7 +186,8 @@ function Transaction ({
                             </Row>
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     {transactionTask.data.toHezEthereumAddress
                       ? (
                         <Row>
@@ -198,7 +203,8 @@ function Transaction ({
                             </Row>
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
                       ? (
                         <Row>
@@ -214,7 +220,8 @@ function Transaction ({
                             </Row>
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     {!transactionTask.data.toHezEthereumAddress && !transactionTask.data.toBjj && transactionTask.data.toAccountIndex
                       ? (
                         <Row>
@@ -228,7 +235,8 @@ function Transaction ({
                             </Row>
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     <Row>
                       <Col>
                         Amount
@@ -244,10 +252,11 @@ function Transaction ({
                             Fee
                           </Col>
                           <Col>
-                            $ {transactionTask.data.L2Info ? Number(transactionTask.data.L2Info.historicFeeUSD).toFixed(2) : getFeeInUsd(transactionTask.data.fee, transactionTask.data.amount, transactionTask.data.token)}
+                            $ {transactionTask.data.L2Info?.historicFeeUSD ? Number(transactionTask.data.L2Info.historicFeeUSD).toFixed(2) : getFeeInUsd(transactionTask.data.fee || transactionTask.data.L2Info?.fee, transactionTask.data.amount, transactionTask.data.token)}
                           </Col>
                         </Row>
-                      ) : <></>}
+                        )
+                      : <></>}
                     <div className={clsx({
                       [classes.detailHidden]: true,
                       [classes.detailVisible]: areDetailsVisible
@@ -263,7 +272,8 @@ function Transaction ({
                               <Link to={`/slot/${transactionTask.data.slot}`}>{transactionTask.data.slot}</Link>
                             </Col>
                           </Row>
-                        ) : <></>}
+                          )
+                        : <></>}
                       {Number.isInteger(transactionTask.data.batchNum)
                         ? (
                           <Row>
@@ -274,7 +284,8 @@ function Transaction ({
                               <Link to={`/batch/${transactionTask.data.batchNum}`}>{transactionTask.data.batchNum}</Link>
                             </Col>
                           </Row>
-                        ) : <></>}
+                          )
+                        : <></>}
                       {Number.isInteger(transactionTask.data.position)
                         ? (
                           <Row>
@@ -285,7 +296,8 @@ function Transaction ({
                               {transactionTask.data.position}
                             </Col>
                           </Row>
-                        ) : <></>}
+                          )
+                        : <></>}
                       {transactionTask.data.nonce || transactionTask.data.L2Info?.nonce
                         ? (
                           <Row>
@@ -296,7 +308,8 @@ function Transaction ({
                               {transactionTask.data.nonce || transactionTask.data.L2Info.nonce}
                             </Col>
                           </Row>
-                        ) : <></>}
+                          )
+                        : <></>}
                     </div>
                     {
                       shouldShowDetails() && (
@@ -309,7 +322,7 @@ function Transaction ({
                             })}
                             onClick={() => handleDetailClick()}
                           >
-                              See details
+                            See details
                             <AngleDown className={classes.icon} />
                           </button>
                           <button
@@ -320,7 +333,7 @@ function Transaction ({
                             })}
                             onClick={() => handleCloseDetailClick()}
                           >
-                              Close details
+                            Close details
                             <AngleUp className={classes.icon} />
                           </button>
                         </div>
