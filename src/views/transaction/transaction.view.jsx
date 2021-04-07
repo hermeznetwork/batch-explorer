@@ -156,16 +156,16 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {!transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromBjj
+                    {!transactionTask.data.fromHezEthereumAddress && (transactionTask.data.fromBjj || transactionTask.data.fromBJJ)
                       ? (
                         <Row>
                           <Col>From</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.fromBjj} />
+                              <CopyToClipboardButton content={transactionTask.data.fromBjj ? transactionTask.data.fromBjj : transactionTask.data.fromBJJ} />
                               <Col wrapped>
-                                <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
-                                  {transactionTask.data.fromBjj}
+                                <Link to={`/user-account/${transactionTask.data.fromBjj ? transactionTask.data.fromBjj : transactionTask.data.fromBJJ}`}>
+                                  {transactionTask.data.fromBjj ? transactionTask.data.fromBjj : transactionTask.data.fromBJJ}
                                 </Link>
                               </Col>
                             </Row>
@@ -190,16 +190,16 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {!transactionTask.data.toHezEthereumAddress && transactionTask.data.toBjj
+                    {!transactionTask.data.toHezEthereumAddress && (transactionTask.data.toBjj || transactionTask.data.toBJJ)
                       ? (
                         <Row>
                           <Col>To</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.toBjj} />
+                              <CopyToClipboardButton content={transactionTask.data.toBjj ? transactionTask.data.toBjj : transactionTask.data.toBJJ} />
                               <Col wrapped>
-                                <Link to={`/user-account/${transactionTask.data.toBjj}`}>
-                                  {transactionTask.data.toBjj}
+                                <Link to={`/user-account/${transactionTask.data.toBjj ? transactionTask.data.toBjj : transactionTask.data.toBJJ}`}>
+                                  {transactionTask.data.toBjj ? transactionTask.data.toBjj : transactionTask.data.toBJJ}
                                 </Link>
                               </Col>
                             </Row>
