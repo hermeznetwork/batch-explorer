@@ -145,10 +145,10 @@ function Transaction ({
                           <Col>From</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.fromAccountIndex} />
+                              <CopyToClipboardButton content={transactionTask.data.fromHezEthereumAddress} />
                               <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.fromHezEthereumAddress}`}>
-                                  {transactionTask.data.fromAccountIndex}
+                                  {transactionTask.data.fromHezEthereumAddress}
                                 </Link>
                               </Col>
                             </Row>
@@ -162,26 +162,11 @@ function Transaction ({
                           <Col>From</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.fromAccountIndex} />
+                              <CopyToClipboardButton content={transactionTask.data.fromBjj} />
                               <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.fromBjj}`}>
-                                  {transactionTask.data.fromAccountIndex}
+                                  {transactionTask.data.fromBjj}
                                 </Link>
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-                        )
-                      : <></>}
-                    {!transactionTask.data.fromHezEthereumAddress && !transactionTask.data.fromBjj && transactionTask.data.fromAccountIndex
-                      ? (
-                        <Row>
-                          <Col>From</Col>
-                          <Col>
-                            <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.fromAccountIndex} />
-                              <Col wrapped>
-                                {transactionTask.data.fromAccountIndex}
                               </Col>
                             </Row>
                           </Col>
@@ -194,10 +179,10 @@ function Transaction ({
                           <Col>To</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toHezEthereumAddress} />
+                              <CopyToClipboardButton content={transactionTask.data.toHezEthereumAddress} />
                               <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toHezEthereumAddress}`}>
-                                  {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toHezEthereumAddress}
+                                  {transactionTask.data.toHezEthereumAddress}
                                 </Link>
                               </Col>
                             </Row>
@@ -211,26 +196,11 @@ function Transaction ({
                           <Col>To</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj} />
+                              <CopyToClipboardButton content={transactionTask.data.toBjj} />
                               <Col wrapped>
                                 <Link to={`/user-account/${transactionTask.data.toBjj}`}>
-                                  {transactionTask.data.type === 'Exit' ? transactionTask.data.toAccountIndex : transactionTask.data.toBjj}
+                                  {transactionTask.data.toBjj}
                                 </Link>
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-                        )
-                      : <></>}
-                    {!transactionTask.data.toHezEthereumAddress && !transactionTask.data.toBjj && transactionTask.data.toAccountIndex
-                      ? (
-                        <Row>
-                          <Col>To</Col>
-                          <Col>
-                            <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.toAccountIndex} />
-                              <Col wrapped>
-                                {transactionTask.data.toAccountIndex}
                               </Col>
                             </Row>
                           </Col>
