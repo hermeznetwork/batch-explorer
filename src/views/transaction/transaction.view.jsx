@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { TxType, TxState } from '@hermeznetwork/hermezjs/src/enums'
+import { INTERNAL_ACCOUNT_ETH_ADDR } from '@hermeznetwork/hermezjs/src/constants'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -139,7 +140,7 @@ function Transaction ({
                         {getTransactionTypeLabel(transactionTask.data.type)}
                       </Col>
                     </Row>
-                    {transactionTask.data.fromHezEthereumAddress
+                    {transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromHezEthereumAddress !== INTERNAL_ACCOUNT_ETH_ADDR
                       ? (
                         <Row>
                           <Col>From</Col>
@@ -173,7 +174,7 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {transactionTask.data.toHezEthereumAddress
+                    {transactionTask.data.toHezEthereumAddress && transactionTask.data.toHezEthereumAddress !== INTERNAL_ACCOUNT_ETH_ADDR
                       ? (
                         <Row>
                           <Col>To</Col>
