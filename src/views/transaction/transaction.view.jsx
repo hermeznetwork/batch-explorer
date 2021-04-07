@@ -83,6 +83,8 @@ function Transaction ({
     }
   }
 
+  console.log('transactionTask.data: ', transactionTask.data)
+
   return (
     <div className={classes.root}>
       <Container disableTopGutter>
@@ -157,7 +159,7 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {!transactionTask.data.fromHezEthereumAddress && (transactionTask.data.fromBjj || transactionTask.data.fromBJJ)
+                    {(!transactionTask.data.fromHezEthereumAddress || transactionTask.data.fromHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.fromBjj || transactionTask.data.fromBJJ)
                       ? (
                         <Row>
                           <Col>From</Col>
@@ -191,7 +193,7 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {!transactionTask.data.toHezEthereumAddress && (transactionTask.data.toBjj || transactionTask.data.toBJJ)
+                    {(!transactionTask.data.toHezEthereumAddress || transactionTask.data.toHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.toBjj || transactionTask.data.toBJJ)
                       ? (
                         <Row>
                           <Col>To</Col>
