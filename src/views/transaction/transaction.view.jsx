@@ -83,8 +83,6 @@ function Transaction ({
     }
   }
 
-  console.log('transactionTask.data: ', transactionTask.data)
-
   return (
     <div className={classes.root}>
       <Container disableTopGutter>
@@ -165,10 +163,10 @@ function Transaction ({
                           <Col>From</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.fromBjj ? transactionTask.data.fromBjj : transactionTask.data.fromBJJ} />
+                              <CopyToClipboardButton content={transactionTask.data.fromBjj || transactionTask.data.fromBJJ} />
                               <Col wrapped>
-                                <Link to={`/user-account/${transactionTask.data.fromBjj ? transactionTask.data.fromBjj : transactionTask.data.fromBJJ}`}>
-                                  {transactionTask.data.fromBjj ? transactionTask.data.fromBjj : transactionTask.data.fromBJJ}
+                                <Link to={`/user-account/${transactionTask.data.fromBjj || transactionTask.data.fromBJJ}`}>
+                                  {transactionTask.data.fromBjj || transactionTask.data.fromBJJ}
                                 </Link>
                               </Col>
                             </Row>
@@ -199,10 +197,10 @@ function Transaction ({
                           <Col>To</Col>
                           <Col link>
                             <Row wrapped>
-                              <CopyToClipboardButton content={transactionTask.data.toBjj ? transactionTask.data.toBjj : transactionTask.data.toBJJ} />
+                              <CopyToClipboardButton content={transactionTask.data.toBjj || transactionTask.data.toBJJ} />
                               <Col wrapped>
-                                <Link to={`/user-account/${transactionTask.data.toBjj ? transactionTask.data.toBjj : transactionTask.data.toBJJ}`}>
-                                  {transactionTask.data.toBjj ? transactionTask.data.toBjj : transactionTask.data.toBJJ}
+                                <Link to={`/user-account/${transactionTask.data.toBjj || transactionTask.data.toBJJ}`}>
+                                  {transactionTask.data.toBjj || transactionTask.data.toBJJ}
                                 </Link>
                               </Col>
                             </Row>
