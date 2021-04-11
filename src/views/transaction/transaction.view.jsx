@@ -71,6 +71,20 @@ function Transaction ({
     setDetailsVisible(false)
   }
 
+  /**
+   * Handles if BJJ address should be shown in from/to fields
+   * @param {string} tyep - Type 'from' or 'to'
+   * @returns {boolean}
+   */
+  function showBJJ (type) {
+    if (type === 'from') {
+      return (!transactionTask.data.fromHezEthereumAddress || transactionTask.data.fromHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.fromBjj || transactionTask.data.fromBJJ)
+    }
+    if (type === 'to') {
+      return (!transactionTask.data.toHezEthereumAddress || transactionTask.data.toHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.toBjj || transactionTask.data.toBJJ)
+    }
+  }
+
   function shouldShowDetails () {
     if (transactionTask.status === 'successful') {
       return Number.isInteger(transactionTask.data.slot) ||
@@ -157,7 +171,7 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {(!transactionTask.data.fromHezEthereumAddress || transactionTask.data.fromHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.fromBjj || transactionTask.data.fromBJJ)
+                    {showBJJ('from')
                       ? (
                         <Row>
                           <Col>From</Col>
@@ -191,7 +205,7 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {(!transactionTask.data.toHezEthereumAddress || transactionTask.data.toHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.toBjj || transactionTask.data.toBJJ)
+                    {showBJJ('to')
                       ? (
                         <Row>
                           <Col>To</Col>
