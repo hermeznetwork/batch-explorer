@@ -51,11 +51,10 @@ function UserAccount ({
   }
 
   React.useEffect(() => {
+    onCleanup()
     onLoadAccounts(address)
     onLoadTransactions(address)
-  }, [address, onLoadAccounts, onLoadTransactions])
-
-  React.useEffect(() => onCleanup, [onCleanup])
+  }, [address, onCleanup, onLoadAccounts, onLoadTransactions])
 
   return (
     <div className={classes.root}>
