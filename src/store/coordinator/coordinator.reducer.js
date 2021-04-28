@@ -84,7 +84,8 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
     case coordinatorActionTypes.LOAD_BIDS_SUCCESS: {
       const bids = state.bidsTask.status === 'reloading'
         ? [...state.bidsTask.data.bids, ...action.data.bids]
-        : action.data.bids
+        // We need to reverse the txs to match the order of the txs from the history (DESC)
+        : action.data.bids.reverse()
       const pagination = getPaginationData(action.data.pendingItems, bids)
       const totalNumberOfBidsInSlot = action.data.bids.length + action.data.pendingItems
 

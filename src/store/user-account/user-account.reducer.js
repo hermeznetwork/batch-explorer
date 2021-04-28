@@ -54,7 +54,8 @@ function userAccountReducer (state = initialUserAccountState, action) {
     case userAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS: {
       const transactions = state.transactionsTask.status === 'reloading'
         ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
-        : action.data.transactions
+        // We need to reverse the txs to match the order of the txs from the history (DESC)
+        : action.data.transactions.reverse()
       const pagination = getPaginationData(action.data.pendingItems, transactions)
 
       return {
