@@ -25,7 +25,7 @@ function fetchTransactions (batchNum, fromItem) {
   return (dispatch) => {
     dispatch(batchActions.loadTransactions())
 
-    return CoordinatorAPI.getTransactions(undefined, undefined, batchNum, undefined, fromItem)
+    return CoordinatorAPI.getTransactions(undefined, undefined, batchNum, undefined, fromItem, CoordinatorAPI.PaginationOrder.DESC)
       .then(res => dispatch(batchActions.loadTransactionsSuccess(res)))
       .catch(() => dispatch(batchActions.loadTransactionsFailure('An error occurred loading the transactions.')))
   }

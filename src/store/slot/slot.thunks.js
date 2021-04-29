@@ -26,7 +26,7 @@ function fetchBids (slotNum, bidderAddr, fromItem) {
   return (dispatch) => {
     dispatch(slotActions.loadBids())
 
-    return CoordinatorAPI.getBids(slotNum, bidderAddr, fromItem)
+    return CoordinatorAPI.getBids(slotNum, bidderAddr, fromItem, CoordinatorAPI.PaginationOrder.DESC)
       .then(res => dispatch(slotActions.loadBidsSuccess(res)))
       .catch(err => dispatch(slotActions.loadBidsFailure(err)))
   }

@@ -25,7 +25,7 @@ function fetchTransactions (accountIndex, fromItem) {
   return (dispatch) => {
     dispatch(tokenAccountActionTypes.loadTransactions())
 
-    return CoordinatorAPI.getTransactions(undefined, undefined, undefined, accountIndex, fromItem)
+    return CoordinatorAPI.getTransactions(undefined, undefined, undefined, accountIndex, fromItem, CoordinatorAPI.PaginationOrder.DESC)
       .then(res => {
         if (res.transactions.length > 0) {
           dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res))
