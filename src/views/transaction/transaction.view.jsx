@@ -143,7 +143,7 @@ function Transaction ({
                         Timestamp
                       </Col>
                       <Col>
-                        {new Date(transactionTask.data.timestamp).toLocaleString()}
+                        {new Date(transactionTask.data.timestamp).toLocaleString('en-US', { timeZone: 'GMT' })}
                       </Col>
                     </Row>
                     <Row>

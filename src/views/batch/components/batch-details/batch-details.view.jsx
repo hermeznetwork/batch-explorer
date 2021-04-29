@@ -65,7 +65,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Timestamp</Col>
-        <Col>{new Date(batch.timestamp).toLocaleString()}</Col>
+        <Col>{new Date(batch.timestamp).toLocaleString('en-US', { timeZone: 'GMT' })} :OVDE</Col>
       </Row>
       <Row>
         <Col>Fees Collected</Col>
