@@ -105,7 +105,7 @@ function UserAccount ({
                           Token accounts
                         </Col>
                         <Col>
-                          {accountsTask.data.accounts.length}
+                          {accountsTask.data.pagination.totalItems}
                         </Col>
                       </Row>
                     </section>
