@@ -111,7 +111,9 @@ function Transaction ({
                 return <p>{transactionTask.error}</p>
               }
               case 'successful': {
-                const date = new Date(transactionTask.data.timestamp).toLocaleString() + ' (GMT +' + new Date().getTimezoneOffset() / -60 + ')'
+                const timeZoneOffsetInHours = -(new Date().getTimezoneOffset() / 60)
+                const timeZoneOffset = timeZoneOffsetInHours >= 0 ? '+' + timeZoneOffsetInHours : timeZoneOffsetInHours
+                const date = new Date(transactionTask.data.timestamp).toLocaleString() + ' (GMT ' + timeZoneOffset + ')'
                 
                 return (
                   <section>
