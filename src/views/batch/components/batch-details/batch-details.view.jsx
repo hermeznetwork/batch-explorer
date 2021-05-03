@@ -13,7 +13,9 @@ import Col from '../../../shared/col/col'
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
-  const date = new Date(batch.timestamp).toLocaleString() + ' (GMT +' + new Date().getTimezoneOffset() / -60 + ')'
+  const timeZoneOffsetInHours = -(new Date().getTimezoneOffset() / 60)
+  const timeZoneOffset = timeZoneOffsetInHours >= 0 ? '+' + timeZoneOffsetInHours : timeZoneOffsetInHours
+  const date = new Date(batch.timestamp).toLocaleString() + ' (GMT ' + timeZoneOffset + ')'
 
   /**
    * Handles detail button click, shows additional rows with data
