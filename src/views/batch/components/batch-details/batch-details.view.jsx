@@ -13,6 +13,7 @@ import Col from '../../../shared/col/col'
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
+  const date = new Date(batch.timestamp).toLocaleString() + ' (GMT +' + new Date().getTimezoneOffset() / -60 + ')'
 
   /**
    * Handles detail button click, shows additional rows with data
@@ -65,7 +66,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Timestamp</Col>
-        <Col>{new Date(batch.timestamp).toLocaleString('en-US', { timeZone: 'GMT' })} :OVDE</Col>
+        <Col>{date}</Col>
       </Row>
       <Row>
         <Col>Fees Collected</Col>
