@@ -31,7 +31,7 @@ function fetchTransactions (address, fromItem) {
   return (dispatch) => {
     dispatch(userAccountActionTypes.loadTransactions())
 
-    return CoordinatorAPI.getTransactions(address, undefined, undefined, undefined, fromItem)
+    return CoordinatorAPI.getTransactions(address, undefined, undefined, undefined, fromItem, CoordinatorAPI.PaginationOrder.DESC)
       .then(res => {
         if (res.transactions.length > 0) {
           dispatch(userAccountActionTypes.loadTransactionsSuccess(res))

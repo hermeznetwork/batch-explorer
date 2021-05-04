@@ -6,15 +6,17 @@ import { PaginationOrder } from '@hermeznetwork/hermezjs/src/api'
  * @returns {Object} - Pagination information for the next request
  */
 function getPaginationData (pendingItems, items, order = PaginationOrder.ASC) {
+  const totalItems = pendingItems + items.length
+
   if (pendingItems === 0) {
-    return { hasMoreItems: false }
+    return { hasMoreItems: false, totalItems }
   }
 
   const fromItem = order === PaginationOrder.ASC
     ? items[items.length - 1].itemId + 1
     : items[items.length - 1].itemId - 1
 
-  return { hasMoreItems: true, fromItem }
+  return { hasMoreItems: true, fromItem, totalItems }
 }
 
 export {
