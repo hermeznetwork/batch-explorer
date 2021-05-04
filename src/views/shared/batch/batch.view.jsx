@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import getTimeAgo from '../../../utils/time-converter'
+import { getTimeAgo } from '../../../utils/date'
 
 import Row from '../../shared/row/row'
 import Col from '../../shared/col/col'

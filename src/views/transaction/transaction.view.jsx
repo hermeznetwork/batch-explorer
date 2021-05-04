@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { TxType, TxState } from '@hermeznetwork/hermezjs/src/enums'
 import { INTERNAL_ACCOUNT_ETH_ADDR } from '@hermeznetwork/hermezjs/src/constants'
+import { getTimeZoneTimestamp } from '../../utils/date'
 
 import useTransactionStyles from './transaction.styles'
 import Spinner from '../shared/spinner/spinner.view'
@@ -143,7 +144,7 @@ function Transaction ({
                         Timestamp
                       </Col>
                       <Col>
-                        {new Date(transactionTask.data.timestamp).toLocaleString()}
+                        {getTimeZoneTimestamp(transactionTask.data.timestamp)}
                       </Col>
                     </Row>
                     <Row>

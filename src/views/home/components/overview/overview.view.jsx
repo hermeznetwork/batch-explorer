@@ -1,5 +1,5 @@
 import React from 'react'
-import getTimeAgo from '../../../../utils/time-converter'
+import { getTimeAgo } from '../../../../utils/date'
 
 import useOverviewStyles from './overview.styles'
 

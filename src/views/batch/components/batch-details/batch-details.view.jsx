@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
+import { getTimeZoneTimestamp } from '../../../../utils/date'
 
 import useBatchDetailsStyles from './batch-details.styles'
 import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
@@ -65,7 +66,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Timestamp</Col>
-        <Col>{new Date(batch.timestamp).toLocaleString()}</Col>
+        <Col>{getTimeZoneTimestamp(batch.timestamp)}</Col>
       </Row>
       <Row>
         <Col>Fees Collected</Col>

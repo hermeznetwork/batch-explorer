@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import getPartiallyHiddenAddress from '../../../../utils/address-shortener'
-import getTimeAgo from '../../../../utils/time-converter'
+import { getTimeAgo } from '../../../../utils/date'
 
 import useBatchStyles from './batch.styles'
 
