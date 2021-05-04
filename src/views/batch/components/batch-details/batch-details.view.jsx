@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
+import { getTimeZoneTimestamp } from '../../../../utils/date'
 
 import useBatchDetailsStyles from './batch-details.styles'
 import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
@@ -13,9 +14,6 @@ import Col from '../../../shared/col/col'
 function BatchDetails ({ batch }) {
   const classes = useBatchDetailsStyles()
   const [areDeailsVisible, setDetailsVisible] = React.useState()
-  const timeZoneOffsetInHours = -(new Date().getTimezoneOffset() / 60)
-  const timeZoneOffset = timeZoneOffsetInHours >= 0 ? '+' + timeZoneOffsetInHours : timeZoneOffsetInHours
-  const date = new Date(batch.timestamp).toLocaleString() + ' (GMT ' + timeZoneOffset + ')'
 
   /**
    * Handles detail button click, shows additional rows with data
@@ -68,7 +66,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Timestamp</Col>
-        <Col>{date}</Col>
+        <Col>{getTimeZoneTimestamp(batch.timestamp)}</Col>
       </Row>
       <Row>
         <Col>Fees Collected</Col>
