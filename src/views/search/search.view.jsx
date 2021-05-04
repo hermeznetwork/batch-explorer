@@ -41,7 +41,9 @@ function Search ({
     } else if (accountIndexPattern.test(searchTerm)) {
       changeRoute(`/token-account/${searchTerm}`)
     } else {
-      changeRoute(`/search-error/${searchTerm}`)
+      if(searchTerm.length) {
+        changeRoute(`/search-error/${searchTerm}`)
+      }
     }
     setSearchTerm('')
   }
