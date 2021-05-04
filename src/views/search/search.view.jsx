@@ -51,6 +51,7 @@ function Search ({
       <input
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value.trim())}
+        onKeyUp={e => e.keyCode === 13 && handleSearch()}
         type='text'
         placeholder='Search for a transaction, an address, or a batch'
         className={classes.input}
