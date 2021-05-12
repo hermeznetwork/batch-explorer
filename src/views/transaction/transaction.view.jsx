@@ -183,6 +183,7 @@ function Transaction ({
                                 <Link to={`/user-account/${transactionTask.data.fromBjj || transactionTask.data.fromBJJ}`}>
                                   {transactionTask.data.fromBjj || transactionTask.data.fromBJJ}
                                 </Link>
+                                <p className={classes.bjjAddressDescription}>(Hermez internal address)</p>
                               </Col>
                             </Row>
                           </Col>
@@ -217,6 +218,7 @@ function Transaction ({
                                 <Link to={`/user-account/${transactionTask.data.toBjj || transactionTask.data.toBJJ}`}>
                                   {transactionTask.data.toBjj || transactionTask.data.toBJJ}
                                 </Link>
+                                <p className={classes.bjjAddressDescription}>(Hermez internal address)</p>
                               </Col>
                             </Row>
                           </Col>
