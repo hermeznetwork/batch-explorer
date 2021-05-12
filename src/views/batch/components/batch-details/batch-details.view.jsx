@@ -48,6 +48,28 @@ function BatchDetails ({ batch }) {
           </Row>
         </Col>
       </Row>
+      {batch.ethTxHash
+          ? (
+            <Row>
+            <Col>
+              Eth Transaction Hash
+            </Col>
+            <Col>
+              <Row wrapped>
+                <CopyToClipboardButton content={batch.ethTxHash} />
+                <Col link>
+                  <a
+                    href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethTxHash}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {batch.ethTxHash}
+                  </a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          ) : <></>}
       <Row>
         <Col>Eth Block Number</Col>
         <Col link>
