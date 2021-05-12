@@ -60,7 +60,6 @@ function UserAccount ({
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
-          <Title>User Address</Title>
           {(() => {
             switch (accountsTask.status) {
               case 'loading': {
@@ -74,6 +73,32 @@ function UserAccount ({
                 return (
                   <>
                     <section>
+                      <Title>Account address</Title>
+                      <Row>
+                        <Col>
+                          Ethereum address
+                        </Col>
+                        <Col>
+                          {accountsTask.data.accounts[0].hezEthereumAddress
+                            ? (
+                              <Row wrapped>
+                                <CopyToClipboardButton content={accountsTask.data.accounts[0].hezEthereumAddress} />
+                                <Col wrapped>
+                                  {accountsTask.data.accounts[0].hezEthereumAddress}
+                                </Col>
+                              </Row>
+                              )
+                            : (
+                              <Row wrapped>
+                                <Col wrapped>
+                                  was not created
+                                </Col>
+                              </Row>
+                              )}
+                        </Col>
+                      </Row>
+
+                      <Title>Related addresses</Title>
                       <Row>
                         <Col>
                           Hermez address
@@ -83,19 +108,6 @@ function UserAccount ({
                             <Col wrapped>
                               <CopyToClipboardButton content={accountsTask.data.accounts[0].bjj} />
                               {accountsTask.data.accounts[0].bjj}
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
-                          Ethereum address
-                        </Col>
-                        <Col>
-                          <Row wrapped>
-                            <CopyToClipboardButton content={accountsTask.data.accounts[0].hezEthereumAddress} />
-                            <Col wrapped>
-                              {accountsTask.data.accounts[0].hezEthereumAddress}
                             </Col>
                           </Row>
                         </Col>
