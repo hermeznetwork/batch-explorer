@@ -1,14 +1,6 @@
-<!-- 🎉 Thank you for the PR!!! 🎉 -->
+### List of PRs
 
-Fixes #<issue number>. _in case of a bug fix, this should point to a bug or any other related issue(s)_
-
-### Bug description
-
-<!-- Describe the bug here -->
-
-### Solution
-
-<!-- Quickly description about how the bug was solved -->
+<!-- List of PRs made to develop included in this PR -->
 
 ## Checklist
 
