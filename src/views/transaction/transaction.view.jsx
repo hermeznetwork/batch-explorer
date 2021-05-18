@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { TxType, TxState } from '@hermeznetwork/hermezjs/src/enums'
-import { INTERNAL_ACCOUNT_ETH_ADDR } from '@hermeznetwork/hermezjs/src/constants'
+import { INTERNAL_ACCOUNT_ETH_ADDR, EMPTY_BJJ_ETH_ADDR } from '@hermeznetwork/hermezjs/src/constants'
 import { getTimeZoneTimestamp } from '../../utils/date'
 
 import useTransactionStyles from './transaction.styles'
@@ -74,15 +74,29 @@ function Transaction ({
 
   /**
    * Handles if BJJ address should be shown in from/to fields
-   * @param {string} tyep - Type 'from' or 'to'
+   * @param {string} type - Type 'from' or 'to'
    * @returns {boolean}
    */
   function showBJJ (type) {
     if (type === 'from') {
-      return (!transactionTask.data.fromHezEthereumAddress || transactionTask.data.fromHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.fromBjj || transactionTask.data.fromBJJ)
+      return (transactionTask.data.fromBjj && transactionTask.data.fromBjj !== EMPTY_BJJ_ETH_ADDR) || (transactionTask.data.fromBJJ && transactionTask.data.fromBJJ !== EMPTY_BJJ_ETH_ADDR)
     }
     if (type === 'to') {
-      return (!transactionTask.data.toHezEthereumAddress || transactionTask.data.toHezEthereumAddress === INTERNAL_ACCOUNT_ETH_ADDR) && (transactionTask.data.toBjj || transactionTask.data.toBJJ)
+      return (transactionTask.data.toBjj && transactionTask.data.toBjj !== EMPTY_BJJ_ETH_ADDR) || (transactionTask.data.toBJJ && transactionTask.data.toBJJ !== EMPTY_BJJ_ETH_ADDR)
+    }
+  }
+
+  /**
+   * Handles if HezEthereumAddress address should be shown in from/to fields
+   * @param {string} type - Type 'from' or 'to'
+   * @returns {boolean}
+   */
+  function showHezEthereumAddress (type) {
+    if (type === 'from') {
+      return (transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromHezEthereumAddress !== INTERNAL_ACCOUNT_ETH_ADDR) && !showBJJ('from')
+    }
+    if (type === 'to') {
+      return (transactionTask.data.toHezEthereumAddress && transactionTask.data.toHezEthereumAddress !== INTERNAL_ACCOUNT_ETH_ADDR) && !showBJJ('to')
     }
   }
 
@@ -155,7 +169,7 @@ function Transaction ({
                         {getTransactionTypeLabel(transactionTask.data.type)}
                       </Col>
                     </Row>
-                    {transactionTask.data.fromHezEthereumAddress && transactionTask.data.fromHezEthereumAddress !== INTERNAL_ACCOUNT_ETH_ADDR
+                    {showHezEthereumAddress('from')
                       ? (
                         <Row>
                           <Col>From</Col>
@@ -190,7 +204,7 @@ function Transaction ({
                         </Row>
                         )
                       : <></>}
-                    {transactionTask.data.toHezEthereumAddress && transactionTask.data.toHezEthereumAddress !== INTERNAL_ACCOUNT_ETH_ADDR
+                    {showHezEthereumAddress('to')
                       ? (
                         <Row>
                           <Col>To</Col>
