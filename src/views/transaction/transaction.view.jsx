@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import clsx from 'clsx'
 import { TxType, TxState } from '@hermeznetwork/hermezjs/src/enums'
-import { INTERNAL_ACCOUNT_ETH_ADDR, EMPTY_BJJ_ETH_ADDR } from '@hermeznetwork/hermezjs/src/constants'
+import { INTERNAL_ACCOUNT_ETH_ADDR, EMPTY_BJJ_ADDR } from '@hermeznetwork/hermezjs/src/constants'
 import { getTimeZoneTimestamp } from '../../utils/date'
 
 import useTransactionStyles from './transaction.styles'
@@ -79,10 +79,10 @@ function Transaction ({
    */
   function showBJJ (type) {
     if (type === 'from') {
-      return (transactionTask.data.fromBjj && transactionTask.data.fromBjj !== EMPTY_BJJ_ETH_ADDR) || (transactionTask.data.fromBJJ && transactionTask.data.fromBJJ !== EMPTY_BJJ_ETH_ADDR)
+      return (transactionTask.data.fromBjj && transactionTask.data.fromBjj !== EMPTY_BJJ_ADDR) || (transactionTask.data.fromBJJ && transactionTask.data.fromBJJ !== EMPTY_BJJ_ADDR)
     }
     if (type === 'to') {
-      return (transactionTask.data.toBjj && transactionTask.data.toBjj !== EMPTY_BJJ_ETH_ADDR) || (transactionTask.data.toBJJ && transactionTask.data.toBJJ !== EMPTY_BJJ_ETH_ADDR)
+      return (transactionTask.data.toBjj && transactionTask.data.toBjj !== EMPTY_BJJ_ADDR) || (transactionTask.data.toBJJ && transactionTask.data.toBJJ !== EMPTY_BJJ_ADDR)
     }
   }
 
