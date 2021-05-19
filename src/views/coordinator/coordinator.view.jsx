@@ -180,7 +180,6 @@ function Coordinator ({
                     >
                       <BidsList
                         bids={bidsTask.data.bids}
-                        totalNumberOfBidsInSlot={bidsTask.data.totalNumberOfBidsInSlot}
                       />
                     </InfiniteScroll>
                   </div>

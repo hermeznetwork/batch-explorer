@@ -51,17 +51,15 @@ function UserAccount ({
   }
 
   React.useEffect(() => {
+    onCleanup()
     onLoadAccounts(address)
     onLoadTransactions(address)
-  }, [address, onLoadAccounts, onLoadTransactions])
-
-  React.useEffect(() => onCleanup, [onCleanup])
+  }, [address, onCleanup, onLoadAccounts, onLoadTransactions])
 
   return (
     <div className={classes.root}>
       <Container disableTopGutter>
         <div className={classes.wrapper}>
-          <Title>User Address</Title>
           {(() => {
             switch (accountsTask.status) {
               case 'loading': {
@@ -75,6 +73,32 @@ function UserAccount ({
                 return (
                   <>
                     <section>
+                      <Title>Account address</Title>
+                      <Row>
+                        <Col>
+                          Ethereum address
+                        </Col>
+                        <Col>
+                          {accountsTask.data.accounts[0].hezEthereumAddress
+                            ? (
+                              <Row wrapped>
+                                <CopyToClipboardButton content={accountsTask.data.accounts[0].hezEthereumAddress} />
+                                <Col wrapped>
+                                  {accountsTask.data.accounts[0].hezEthereumAddress}
+                                </Col>
+                              </Row>
+                              )
+                            : (
+                              <Row wrapped>
+                                <Col wrapped>
+                                  was not created
+                                </Col>
+                              </Row>
+                              )}
+                        </Col>
+                      </Row>
+
+                      <Title>Related addresses</Title>
                       <Row>
                         <Col>
                           Hermez address
@@ -90,23 +114,10 @@ function UserAccount ({
                       </Row>
                       <Row>
                         <Col>
-                          Ethereum address
-                        </Col>
-                        <Col>
-                          <Row wrapped>
-                            <CopyToClipboardButton content={accountsTask.data.accounts[0].hezEthereumAddress} />
-                            <Col wrapped>
-                              {accountsTask.data.accounts[0].hezEthereumAddress}
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col>
                           Token accounts
                         </Col>
                         <Col>
-                          {accountsTask.data.accounts.length}
+                          {accountsTask.data.pagination.totalItems}
                         </Col>
                       </Row>
                     </section>

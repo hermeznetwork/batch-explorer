@@ -28,10 +28,7 @@ const useOverviewStyles = createUseStyles(theme => ({
     display: 'inline'
   },
   batchFrequencyDecimalsOnly: {
-    display: 'none',
-    [theme.breakpoints.sm]: {
-      display: 'inline'
-    }
+    display: 'none'
   },
   col: {
     display: 'flex',

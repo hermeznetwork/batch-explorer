@@ -41,7 +41,9 @@ function Search ({
     } else if (accountIndexPattern.test(searchTerm)) {
       changeRoute(`/token-account/${searchTerm}`)
     } else {
-      changeRoute(`/search-error/${searchTerm}`)
+      if(searchTerm.length) {
+        changeRoute(`/search-error/${searchTerm}`)
+      }
     }
     setSearchTerm('')
   }
@@ -51,6 +53,7 @@ function Search ({
       <input
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value.trim())}
+        onKeyUp={e => e.keyCode === 13 && handleSearch()}
         type='text'
         placeholder='Search for a transaction, an address, or a batch'
         className={classes.input}

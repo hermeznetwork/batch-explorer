@@ -38,7 +38,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         coordinatorTask: {
           status: 'failed',
-          error: 'An error ocurred. Coordinator does not exist or cannot be loaded.'
+          error: 'An error occurred. Coordinator does not exist or cannot be loaded.'
         }
       }
     }
@@ -69,7 +69,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error ocurred. Batches do not exist or cannot be loaded.'
+          error: 'An error occurred. Batches do not exist or cannot be loaded.'
         }
       }
     }
@@ -86,13 +86,12 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ? [...state.bidsTask.data.bids, ...action.data.bids]
         : action.data.bids
       const pagination = getPaginationData(action.data.pendingItems, bids)
-      const totalNumberOfBidsInSlot = action.data.bids.length + action.data.pendingItems
 
       return {
         ...state,
         bidsTask: {
           status: 'successful',
-          data: { bids, pagination, totalNumberOfBidsInSlot }
+          data: { bids, pagination }
         }
       }
     }
@@ -101,7 +100,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         bidsTask: {
           status: 'failed',
-          error: 'An error ocurred. Bids do not exist or cannot be loaded.'
+          error: 'An error occurred. Bids do not exist or cannot be loaded.'
         }
       }
     }

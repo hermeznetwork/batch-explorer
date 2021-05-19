@@ -49,6 +49,10 @@ const useTransactionStyles = createUseStyles(theme => ({
   pending: {
     background: theme.palette.secondary.veryLight,
     color: theme.palette.secondary.dark
+  },
+  bjjAddressDescription: {
+    color: theme.palette.grey.main,
+    fontWeight: theme.fontWeights.medium
   }
 }))
 

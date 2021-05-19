@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
+import { getTimeZoneTimestamp } from '../../../../utils/date'
 
 import useBatchDetailsStyles from './batch-details.styles'
 import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
@@ -47,6 +48,28 @@ function BatchDetails ({ batch }) {
           </Row>
         </Col>
       </Row>
+      {batch.ethTxHash
+          ? (
+            <Row>
+            <Col>
+              Eth Transaction Hash
+            </Col>
+            <Col>
+              <Row wrapped>
+                <CopyToClipboardButton content={batch.ethTxHash} />
+                <Col link>
+                  <a
+                    href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethTxHash}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {batch.ethTxHash}
+                  </a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          ) : <></>}
       <Row>
         <Col>Eth Block Number</Col>
         <Col link>
@@ -65,7 +88,7 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Timestamp</Col>
-        <Col>{new Date(batch.timestamp).toLocaleString()}</Col>
+        <Col>{getTimeZoneTimestamp(batch.timestamp)}</Col>
       </Row>
       <Row>
         <Col>Fees Collected</Col>
