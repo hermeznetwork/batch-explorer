@@ -18,7 +18,7 @@ import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
 import { getFixedTokenAmount, getFeeInUsd } from '../../utils/currencies'
-import { getTransactionAmount } from '../../utils/transactions'
+import { getTransactionAmount, getTransactionDepositAmount } from '../../utils/transactions'
 
 function Transaction ({
   onLoadTransaction,
@@ -111,6 +111,8 @@ function Transaction ({
       return false
     }
   }
+
+  console.log('transactionTask.data: ', transactionTask.data?.type)
 
   return (
     <div className={classes.root}>
@@ -254,7 +256,7 @@ function Transaction ({
                             Deposit Amount
                           </Col>
                           <Col>
-                            {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
+                            {getFixedTokenAmount(getTransactionDepositAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                           </Col>
                         </Row>
                         )
