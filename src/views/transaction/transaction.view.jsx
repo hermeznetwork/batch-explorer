@@ -247,6 +247,18 @@ function Transaction ({
                         {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>
+                    {transactionTask.data.type === 'CreateAccountDepositTransfer' || transactionTask.data.type === 'DepositTransfer'
+                      ? (
+                        <Row>
+                          <Col>
+                            Deposit Amount
+                          </Col>
+                          <Col>
+                            {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
+                          </Col>
+                        </Row>
+                        )
+                      : <></>}
                     {transactionTask.data.fee || transactionTask.data.L2Info?.fee
                       ? (
                         <Row>
