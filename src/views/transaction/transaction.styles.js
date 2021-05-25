@@ -53,6 +53,9 @@ const useTransactionStyles = createUseStyles(theme => ({
   bjjAddressDescription: {
     color: theme.palette.grey.main,
     fontWeight: theme.fontWeights.medium
+  },
+  exitAdditionalMessage: {
+    color: theme.palette.grey.main
   }
 }))
 

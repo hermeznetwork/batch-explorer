@@ -41,7 +41,7 @@ function Transaction ({
       case TxType.Withdraw:
       case TxType.Exit:
       case TxType.ForceExit: {
-        return 'Withdraw'
+        return (<>Exit (Initiate withdraw) <p className={classes.exitAdditionalMessage}>(Withdrawal step 1 of 2 was completed)</p></>)
       }
       case TxType.Transfer:
       case TxType.TransferToEthAddr:
