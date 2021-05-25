@@ -112,8 +112,6 @@ function Transaction ({
     }
   }
 
-  console.log('transactionTask.data: ', transactionTask.data?.type)
-
   return (
     <div className={classes.root}>
       <Container disableTopGutter>
@@ -249,7 +247,7 @@ function Transaction ({
                         {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>
-                    {transactionTask.data.type === 'CreateAccountDepositTransfer' || transactionTask.data.type === 'DepositTransfer'
+                    {transactionTask.data.type === TxType.CreateAccountDepositTransfer || transactionTask.data.type === TxType.DepositTransfer
                       ? (
                         <Row>
                           <Col>
