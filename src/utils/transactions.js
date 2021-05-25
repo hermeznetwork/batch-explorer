@@ -8,7 +8,8 @@ function getTransactionAmount (transaction) {
   if (!transaction.L1Info) {
     return transaction.amount
   } else {
-    if (transaction.type === TxType.Deposit || transaction.type === TxType.CreateAccountDeposit) {
+    if (transaction.type === TxType.Deposit ||
+      transaction.type === TxType.CreateAccountDeposit) {
       return transaction.L1Info.depositAmount
     } else {
       return transaction.amount
@@ -16,6 +17,18 @@ function getTransactionAmount (transaction) {
   }
 }
 
+function getTransactionDepositAmount (transaction) {
+  if (!transaction) {
+    return undefined
+  }
+
+  if (transaction.type === TxType.CreateAccountDepositTransfer ||
+    transaction.type === TxType.DepositTransfer) {
+    return transaction.L1Info?.depositAmount
+  }
+}
+
 export {
-  getTransactionAmount
+  getTransactionAmount,
+  getTransactionDepositAmount
 }

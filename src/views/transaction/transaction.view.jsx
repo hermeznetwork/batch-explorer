@@ -18,7 +18,7 @@ import Row from '../shared/row/row'
 import Col from '../shared/col/col'
 import Title from '../shared/title/title'
 import { getFixedTokenAmount, getFeeInUsd } from '../../utils/currencies'
-import { getTransactionAmount } from '../../utils/transactions'
+import { getTransactionAmount, getTransactionDepositAmount } from '../../utils/transactions'
 
 function Transaction ({
   onLoadTransaction,
@@ -247,6 +247,18 @@ function Transaction ({
                         {getFixedTokenAmount(getTransactionAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
                       </Col>
                     </Row>
+                    {transactionTask.data.type === TxType.CreateAccountDepositTransfer || transactionTask.data.type === TxType.DepositTransfer
+                      ? (
+                        <Row>
+                          <Col>
+                            Deposit Amount
+                          </Col>
+                          <Col>
+                            {getFixedTokenAmount(getTransactionDepositAmount(transactionTask.data), transactionTask.data.token.decimals)} {transactionTask.data.token.symbol}
+                          </Col>
+                        </Row>
+                        )
+                      : <></>}
                     {transactionTask.data.fee || transactionTask.data.L2Info?.fee
                       ? (
                         <Row>
