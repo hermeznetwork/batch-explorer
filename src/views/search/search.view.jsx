@@ -3,20 +3,24 @@ import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { fetchCoordinator } from '../../store/coordinator/coordinator.thunks'
 import useSearchStyles from './search.styles'
 import { ReactComponent as MagnifyingGlass } from '../../images/icons/magnifying-glass.svg'
 
 function Search ({
-  changeRoute
+  changeRoute,
+  onLoadCoordinator,
+  coordinatorTask
 }) {
   const classes = useSearchStyles()
   const [searchTerm, setSearchTerm] = useState('')
-  const ethereumAddressPattern = new RegExp('^0x[a-fA-F0-9]{40}$')
-  const hezEthereumAddressPattern = new RegExp('^hez:0x[a-fA-F0-9]{40}$')
-  const bjjAddressPattern = new RegExp('^hez:[A-Za-z0-9_-]{44}$')
-  const batchNumPattern = new RegExp('^[0-4]?\\d{0,9}$')
-  const transactionIdPattern = new RegExp('^0x00[a-fA-F0-9]{64}|^0x01[a-fA-F0-9]{64}|^0x02[a-fA-F0-9]{64}$')
-  const accountIndexPattern = new RegExp('^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$')
+  const ethereumAddressPattern = '^0x[a-fA-F0-9]{40}$'
+  const hezEthereumAddressPattern = '^hez:0x[a-fA-F0-9]{40}$'
+  const bjjAddressPattern = '^hez:[A-Za-z0-9_-]{44}$'
+  const batchNumPattern = '^[0-4]?\\d{0,9}$'
+  const transactionIdPattern = '^0x00[a-fA-F0-9]{64}|^0x01[a-fA-F0-9]{64}|^0x02[a-fA-F0-9]{64}$'
+  const accountIndexPattern = '^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$'
+  const coordinatorId = searchTerm
 
   /**
    * Handles route change based on a pattern recognition
@@ -37,16 +41,29 @@ function Search ({
     } else if (transactionIdPattern.test(searchTerm)) {
       changeRoute(`/transaction/${searchTerm}`)
     } else if (ethereumAddressPattern.test(searchTerm)) {
-      changeRoute(`/coordinator/${searchTerm}`)
+      switch (coordinatorTask.status) {
+        case 'successful':
+          changeRoute(`/coordinator/${searchTerm}`)
+          break
+        case 'failed':
+          changeRoute(`/user-account/${searchTerm}`)
+          break
+        default:
+          setSearchTerm('')
+      }
     } else if (accountIndexPattern.test(searchTerm)) {
       changeRoute(`/token-account/${searchTerm}`)
     } else {
-      if(searchTerm.length) {
+      if (searchTerm.length) {
         changeRoute(`/search-error/${searchTerm}`)
       }
     }
     setSearchTerm('')
   }
+
+  React.useEffect(() => {
+    onLoadCoordinator(coordinatorId)
+  }, [coordinatorId, onLoadCoordinator])
 
   return (
     <div className={classes.root}>
@@ -69,11 +86,18 @@ function Search ({
 }
 
 Search.propTypes = {
-  changeRoute: PropTypes.func.isRequired
+  changeRoute: PropTypes.func.isRequired,
+  onLoadCoordinator: PropTypes.func.isRequired,
+  coordinatorTask: PropTypes.object.isRequired
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  changeRoute: (route) => dispatch(push(route))
+const mapStateToProps = (state) => ({
+  coordinatorTask: state.coordinator.coordinatorTask
 })
 
-export default connect(null, mapDispatchToProps)(Search)
+const mapDispatchToProps = (dispatch) => ({
+  changeRoute: (route) => dispatch(push(route)),
+  onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
