@@ -74,6 +74,7 @@ function UserAccount ({
                   <>
                     <section>
                       <Title>Account address</Title>
+                      <Row />
                       <Row>
                         <Col>
                           Ethereum address
@@ -99,6 +100,7 @@ function UserAccount ({
                       </Row>
 
                       <Title>Related addresses</Title>
+                      <Row />
                       <Row>
                         <Col>
                           Hermez address
