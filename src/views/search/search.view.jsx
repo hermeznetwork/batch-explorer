@@ -14,12 +14,12 @@ function Search ({
 }) {
   const classes = useSearchStyles()
   const [searchTerm, setSearchTerm] = useState('')
-  const ethereumAddressPattern = '^0x[a-fA-F0-9]{40}$'
-  const hezEthereumAddressPattern = '^hez:0x[a-fA-F0-9]{40}$'
-  const bjjAddressPattern = '^hez:[A-Za-z0-9_-]{44}$'
-  const batchNumPattern = '^[0-4]?\\d{0,9}$'
-  const transactionIdPattern = '^0x00[a-fA-F0-9]{64}|^0x01[a-fA-F0-9]{64}|^0x02[a-fA-F0-9]{64}$'
-  const accountIndexPattern = '^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$'
+  const ethereumAddressPattern = new RegExp('^0x[a-fA-F0-9]{40}$')
+  const hezEthereumAddressPattern = new RegExp('^hez:0x[a-fA-F0-9]{40}$')
+  const bjjAddressPattern = new RegExp('^hez:[A-Za-z0-9_-]{44}$')
+  const batchNumPattern = new RegExp('^[0-4]?\\d{0,9}$')
+  const transactionIdPattern = new RegExp('^0x00[a-fA-F0-9]{64}|^0x01[a-fA-F0-9]{64}|^0x02[a-fA-F0-9]{64}$')
+  const accountIndexPattern = new RegExp('^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$')
   const coordinatorId = searchTerm
 
   /**
@@ -42,19 +42,19 @@ function Search ({
       changeRoute(`/transaction/${searchTerm}`)
     } else if (ethereumAddressPattern.test(searchTerm)) {
       switch (coordinatorTask.status) {
-        case 'successful':
+        case 'successful': 
           changeRoute(`/coordinator/${searchTerm}`)
           break
-        case 'failed':
+        case 'failed': 
           changeRoute(`/user-account/${searchTerm}`)
           break
-        default:
+        default: 
           setSearchTerm('')
       }
     } else if (accountIndexPattern.test(searchTerm)) {
       changeRoute(`/token-account/${searchTerm}`)
     } else {
-      if (searchTerm.length) {
+      if(searchTerm.length) {
         changeRoute(`/search-error/${searchTerm}`)
       }
     }
