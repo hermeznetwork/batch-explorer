@@ -55,4 +55,18 @@ function fetchBids (slotNum, bidderAddr, fromItem) {
   }
 }
 
-export { fetchCoordinator, fetchBatches, fetchBids }
+/**
+ * Fetches coordinator version
+ * @returns {void}
+ */
+function fetchCoordinatorVersion () {
+  return (dispatch) => {
+    dispatch(coordinatorActions.loadCoordinatorVersion())
+
+    return CoordinatorAPI.getHealth()
+      .then(res => dispatch(coordinatorActions.loadCoordinatorVersionSuccess(res)))
+      .catch(err => dispatch(coordinatorActions.loadCoordinatorVersionFailure(err)))
+  }
+}
+
+export { fetchCoordinator, fetchBatches, fetchBids, fetchCoordinatorVersion }
