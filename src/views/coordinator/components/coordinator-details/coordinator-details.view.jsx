@@ -35,6 +35,14 @@ function CoordinatorDetails ({ coordinator, version }) {
       </Row>
       <Row>
         <Col>
+          Coordinator Version
+        </Col>
+        <Col>
+          {version}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           URL
         </Col>
         <Col link>
@@ -45,14 +53,6 @@ function CoordinatorDetails ({ coordinator, version }) {
           >
             {coordinator.URL}
           </a>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          Coordinator Version
-        </Col>
-        <Col>
-          {version}
         </Col>
       </Row>
     </section>
