@@ -40,7 +40,7 @@ function homeReducer (state = initialHomeState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error occurred. Batches do not exist or cannot be loaded.'
+          error: 'Batches do not exist or cannot be loaded.'
         }
       }
     }
@@ -66,7 +66,7 @@ function homeReducer (state = initialHomeState, action) {
         ...state,
         overviewTask: {
           status: 'failed',
-          error: 'An error occurred. Stats and metrics cannot be loaded.'
+          error: 'Stats and metrics cannot be loaded.'
         }
       }
     }

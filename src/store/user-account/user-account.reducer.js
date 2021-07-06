@@ -39,7 +39,7 @@ function userAccountReducer (state = initialUserAccountState, action) {
         ...state,
         accountsTask: {
           status: 'failed',
-          error: 'An error occurred. Account does not exist or cannot be loaded.'
+          error: 'Account does not exist or cannot be loaded.'
         }
       }
     }
@@ -70,7 +70,7 @@ function userAccountReducer (state = initialUserAccountState, action) {
         ...state,
         transactionsTask: {
           status: 'failed',
-          error: 'An error occurred. Transactions do not exist or cannot be loaded.'
+          error: 'Transactions do not exist or cannot be loaded.'
         }
       }
     }
