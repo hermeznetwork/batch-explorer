@@ -41,7 +41,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         coordinatorTask: {
           status: 'failed',
-          error: 'An error occurred. Coordinator does not exist or cannot be loaded.'
+          error: 'Coordinator does not exist or cannot be loaded.'
         }
       }
     }
@@ -98,7 +98,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error occurred. Batches do not exist or cannot be loaded.'
+          error: 'Batches do not exist or cannot be loaded.'
         }
       }
     }
@@ -129,7 +129,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         bidsTask: {
           status: 'failed',
-          error: 'An error occurred. Bids do not exist or cannot be loaded.'
+          error: 'Bids do not exist or cannot be loaded.'
         }
       }
     }
