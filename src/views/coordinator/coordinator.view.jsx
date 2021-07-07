@@ -10,7 +10,7 @@ import Container from '../shared/container/container.view'
 import CoordinatorDetails from './components/coordinator-details/coordinator-details.view'
 import BatchesList from '../shared/batches-list/batches-list.view'
 import BidsList from '../shared/bids-list/bids-list.view'
-import { fetchBatches, fetchCoordinator, fetchBids } from '../../store/coordinator/coordinator.thunks'
+import { fetchBatches, fetchCoordinator, fetchCoordinatorVersion, fetchBids } from '../../store/coordinator/coordinator.thunks'
 import InfiniteScroll from '../shared/infinite-scroll/infinite-scroll.view'
 import { resetState } from '../../store/coordinator/coordinator.actions'
 import Title from '../shared/title/title'
@@ -19,7 +19,9 @@ function Coordinator ({
   onLoadBatches,
   batchesTask,
   onLoadCoordinator,
+  onLoadCoordinatorVersion,
   coordinatorTask,
+  coordinatorVersionTask,
   onLoadBids,
   bidsTask,
   onCleanup
@@ -52,8 +54,9 @@ function Coordinator ({
   React.useEffect(() => {
     onLoadBatches(coordinatorId)
     onLoadCoordinator(coordinatorId)
+    onLoadCoordinatorVersion()
     onLoadBids(coordinatorId)
-  }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadBids])
+  }, [coordinatorId, onLoadBatches, onLoadCoordinator, onLoadCoordinatorVersion, onLoadBids])
 
   React.useEffect(() => onCleanup, [onCleanup])
 
@@ -75,6 +78,7 @@ function Coordinator ({
                   <section>
                     <CoordinatorDetails
                       coordinator={coordinatorTask.data}
+                      version={coordinatorVersionTask.status === 'successful' ? coordinatorVersionTask.data : ''}
                     />
                   </section>
                 )
@@ -200,7 +204,9 @@ Coordinator.propTypes = {
   onLoadBatches: PropTypes.func.isRequired,
   batchesTask: PropTypes.object.isRequired,
   onLoadCoordinator: PropTypes.func.isRequired,
+  onLoadCoordinatorVersion: PropTypes.func.isRequired,
   coordinatorTask: PropTypes.object.isRequired,
+  coordinatorVersionTask: PropTypes.object.isRequired,
   onLoadBids: PropTypes.func.isRequired,
   bidsTask: PropTypes.object.isRequired
 }
@@ -208,12 +214,14 @@ Coordinator.propTypes = {
 const mapStateToProps = (state) => ({
   batchesTask: state.coordinator.batchesTask,
   coordinatorTask: state.coordinator.coordinatorTask,
+  coordinatorVersionTask: state.coordinator.coordinatorVersionTask,
   bidsTask: state.coordinator.bidsTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadBatches: (coordinatorId, fromItem) => dispatch(fetchBatches(coordinatorId, fromItem)),
   onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId)),
+  onLoadCoordinatorVersion: () => dispatch(fetchCoordinatorVersion()),
   onLoadBids: (coordinatorId, fromItem) => dispatch(fetchBids(undefined, coordinatorId, fromItem)),
   onCleanup: () => dispatch(resetState())
 })

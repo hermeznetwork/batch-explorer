@@ -4,7 +4,7 @@ import CopyToClipboardButton from '../../../shared/copy-to-clipboard-button/copy
 import Row from '../../../shared/row/row'
 import Col from '../../../shared/col/col'
 
-function CoordinatorDetails ({ coordinator }) {
+function CoordinatorDetails ({ coordinator, version }) {
   return (
     <section>
       <Row>
@@ -31,6 +31,14 @@ function CoordinatorDetails ({ coordinator }) {
               {coordinator.bidderAddr}
             </Col>
           </Row>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          Coordinator Version
+        </Col>
+        <Col>
+          {version}
         </Col>
       </Row>
       <Row>
