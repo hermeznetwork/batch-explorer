@@ -99,11 +99,11 @@ function UserAccount ({
                         </Col>
                       </Row>
 
-                      <Title>Related addresses</Title>
+                      {/* <Title>Related addresses</Title>
                       <Row />
                       <Row>
                         <Col>
-                          Hermez address
+                          BabyJubJub address
                         </Col>
                         <Col>
                           <Row wrapped>
@@ -113,7 +113,7 @@ function UserAccount ({
                             </Col>
                           </Row>
                         </Col>
-                      </Row>
+                      </Row> */}
                       <Row>
                         <Col>
                           Token accounts
