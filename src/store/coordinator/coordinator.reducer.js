@@ -6,6 +6,9 @@ const initialCoordinatorState = {
   coordinatorTask: {
     status: 'pending'
   },
+  coordinatorVersionTask: {
+    status: 'pending'
+  },
   batchesTask: {
     status: 'pending'
   },
@@ -34,6 +37,32 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
       }
     }
     case coordinatorActionTypes.LOAD_COORDINATOR_FAILURE: {
+      return {
+        ...state,
+        coordinatorTask: {
+          status: 'failed',
+          error: 'Coordinator does not exist or cannot be loaded.'
+        }
+      }
+    }
+    case coordinatorActionTypes.LOAD_COORDINATOR_VERSION: {
+      return {
+        ...state,
+        coordinatorTask: {
+          status: 'loading'
+        }
+      }
+    }
+    case coordinatorActionTypes.LOAD_COORDINATOR_VERSION_SUCCESS: {
+      return {
+        ...state,
+        coordinatorVersionTask: {
+          status: 'successful',
+          data: action.data.version
+        }
+      }
+    }
+    case coordinatorActionTypes.LOAD_COORDINATOR_VERSION_FAILURE: {
       return {
         ...state,
         coordinatorTask: {
@@ -69,7 +98,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         batchesTask: {
           status: 'failed',
-          error: 'An error occurred. Batches do not exist or cannot be loaded.'
+          error: 'Batches do not exist or cannot be loaded.'
         }
       }
     }
@@ -100,7 +129,7 @@ function coordinatorReducer (state = initialCoordinatorState, action) {
         ...state,
         bidsTask: {
           status: 'failed',
-          error: 'An error occurred. Bids do not exist or cannot be loaded.'
+          error: 'Bids do not exist or cannot be loaded.'
         }
       }
     }

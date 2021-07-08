@@ -36,7 +36,7 @@ function tokensReducer (state = initialTokensState, action) {
         ...state,
         tokensTask: {
           status: 'failed',
-          error: 'An error occurred. Tokens do not exist or cannot be loaded.'
+          error: 'Tokens do not exist or cannot be loaded.'
         }
       }
     }

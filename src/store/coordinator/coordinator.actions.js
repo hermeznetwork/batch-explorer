@@ -2,6 +2,9 @@ export const coordinatorActionTypes = {
   LOAD_COORDINATOR: '[COORDINATOR] LOAD COORDINATOR',
   LOAD_COORDINATOR_SUCCESS: '[COORDINATOR] LOAD COORDINATOR SUCCESS',
   LOAD_COORDINATOR_FAILURE: '[COORDINATOR] LOAD COORDINATOR FAILURE',
+  LOAD_COORDINATOR_VERSION: '[COORDINATOR] LOAD COORDINATOR VERSION',
+  LOAD_COORDINATOR_VERSION_SUCCESS: '[COORDINATOR] LOAD COORDINATOR VERSION SUCCESS',
+  LOAD_COORDINATOR_VERSION_FAILURE: '[COORDINATOR] LOAD COORDINATOR VERSION FAILURE',
   LOAD_BATCHES: '[COORDINATOR] LOAD BATCHES',
   LOAD_BATCHES_SUCCESS: '[COORDINATOR] LOAD BATCHES SUCCESS',
   LOAD_BATCHES_FAILURE: '[COORDINATOR] LOAD BATCHES FAILURE',
@@ -27,6 +30,25 @@ function loadCoordinatorSuccess (coordinator) {
 function loadCoordinatorFailure () {
   return {
     type: coordinatorActionTypes.LOAD_COORDINATOR_FAILURE
+  }
+}
+
+function loadCoordinatorVersion () {
+  return {
+    type: coordinatorActionTypes.LOAD_COORDINATOR_VERSION
+  }
+}
+
+function loadCoordinatorVersionSuccess (data) {
+  return {
+    type: coordinatorActionTypes.LOAD_COORDINATOR_VERSION_SUCCESS,
+    data
+  }
+}
+
+function loadCoordinatorVersionFailure () {
+  return {
+    type: coordinatorActionTypes.LOAD_COORDINATOR_VERSION_FAILURE
   }
 }
 
@@ -78,6 +100,9 @@ export {
   loadCoordinator,
   loadCoordinatorSuccess,
   loadCoordinatorFailure,
+  loadCoordinatorVersion,
+  loadCoordinatorVersionSuccess,
+  loadCoordinatorVersionFailure,
   loadBatches,
   loadBatchesSuccess,
   loadBatchesFailure,
