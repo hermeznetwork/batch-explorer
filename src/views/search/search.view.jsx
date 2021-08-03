@@ -3,7 +3,7 @@ import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { fetchCoordinator } from '../../store/coordinator/coordinator.thunks'
+import { fetchCoordinator } from '../../store/search/search.thunks'
 import useSearchStyles from './search.styles'
 import { ReactComponent as MagnifyingGlass } from '../../images/icons/magnifying-glass.svg'
 
@@ -92,7 +92,7 @@ Search.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  coordinatorTask: state.coordinator.coordinatorTask
+  coordinatorTask: state.search.coordinatorTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
