@@ -23,4 +23,19 @@ function fetchCoordinator (forgerAddr) {
   }
 }
 
-export { fetchCoordinator }
+/**
+ * Fetches the account details for the specified account index
+ * @param {string} accountIndex - Account index
+ * @returns {void}
+ */
+ function fetchAccount (accountIndex) {
+    return (dispatch) => {
+      dispatch(searchActions.loadAccount())
+  
+      return CoordinatorAPI.getAccount(accountIndex)
+        .then(res => dispatch(searchActions.loadAccountSuccess(res)))
+        .catch(err => dispatch(searchActions.loadAccountFailure(err)))
+    }
+  }
+
+export { fetchCoordinator, fetchAccount }

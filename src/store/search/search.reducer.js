@@ -3,6 +3,9 @@ import { searchActionTypes } from './search.actions'
 const initialSearchState = {
   coordinatorTask: {
     status: 'pending'
+  },
+  accountTask: {
+    status: 'pending'
   }
 }
 
@@ -34,6 +37,32 @@ function searchReducer (state = initialSearchState, action) {
         }
       }
     }
+    case searchActionTypes.LOAD_ACCOUNT: {
+        return {
+          ...state,
+          accountTask: {
+            status: 'loading'
+          }
+        }
+      }
+      case searchActionTypes.LOAD_ACCOUNT_SUCCESS: {
+        return {
+          ...state,
+          accountTask: {
+            status: 'successful',
+            data: action.account
+          }
+        }
+      }
+      case searchActionTypes.LOAD_ACCOUNT_FAILURE: {
+        return {
+          ...state,
+          accountTask: {
+            status: 'failed',
+            error: 'Account does not exist or cannot be loaded.'
+          }
+        }
+      }
     case searchActionTypes.RESET_STATE: {
       return initialSearchState
     }

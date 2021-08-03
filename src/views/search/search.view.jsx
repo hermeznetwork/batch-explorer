@@ -3,14 +3,16 @@ import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { fetchCoordinator } from '../../store/search/search.thunks'
+import { fetchCoordinator, fetchAccount } from '../../store/search/search.thunks'
 import useSearchStyles from './search.styles'
 import { ReactComponent as MagnifyingGlass } from '../../images/icons/magnifying-glass.svg'
 
 function Search ({
   changeRoute,
   onLoadCoordinator,
-  coordinatorTask
+  coordinatorTask,
+  onLoadAccount,
+  accountTask
 }) {
   const classes = useSearchStyles()
   const [searchTerm, setSearchTerm] = useState('')
@@ -20,7 +22,7 @@ function Search ({
   const batchNumPattern = new RegExp('^[0-4]?\\d{0,9}$')
   const transactionIdPattern = new RegExp('^0x00[a-fA-F0-9]{64}|^0x01[a-fA-F0-9]{64}|^0x02[a-fA-F0-9]{64}$')
   const accountIndexPattern = new RegExp('^hez:[a-zA-Z0-9]{2,6}:[0-9]{0,9}$')
-  const coordinatorId = searchTerm
+  const coordinatorOrAccount = searchTerm
 
   /**
    * Handles route change based on a pattern recognition
@@ -46,7 +48,16 @@ function Search ({
           changeRoute(`/coordinator/${searchTerm}`)
           break
         case 'failed': 
-          changeRoute(`/user-account/${searchTerm}`)
+          switch (accountTask.status) {
+            case 'successful': 
+              changeRoute(`/user-account/${searchTerm}`)
+              break
+            case 'failed': 
+              changeRoute(`/search-error/${searchTerm}`)
+              break
+            default: 
+              setSearchTerm('')
+          }
           break
         default: 
           setSearchTerm('')
@@ -62,8 +73,9 @@ function Search ({
   }
 
   React.useEffect(() => {
-    onLoadCoordinator(coordinatorId)
-  }, [coordinatorId, onLoadCoordinator])
+    onLoadCoordinator(coordinatorOrAccount)
+    onLoadAccount(coordinatorOrAccount)
+  }, [coordinatorOrAccount, onLoadCoordinator, onLoadAccount])
 
   return (
     <div className={classes.root}>
@@ -88,16 +100,20 @@ function Search ({
 Search.propTypes = {
   changeRoute: PropTypes.func.isRequired,
   onLoadCoordinator: PropTypes.func.isRequired,
-  coordinatorTask: PropTypes.object.isRequired
+  coordinatorTask: PropTypes.object.isRequired,
+  onLoadAccount: PropTypes.func.isRequired,
+  accountTask: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  coordinatorTask: state.search.coordinatorTask
+  coordinatorTask: state.search.coordinatorTask,
+  accountTask: state.search.accountTask
 })
 
 const mapDispatchToProps = (dispatch) => ({
   changeRoute: (route) => dispatch(push(route)),
-  onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId))
+  onLoadCoordinator: (coordinatorId) => dispatch(fetchCoordinator(coordinatorId)),
+  onLoadAccount: (accountIndex) => dispatch(fetchAccount(accountIndex))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)
