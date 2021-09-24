@@ -1,6 +1,6 @@
 {
-  "short_name": "Hermez Batch Explorer",
-  "name": "Hermez Batch Explorer",
+  "short_name": "Polygon Hermez Batch Explorer",
+  "name": "Polygon Hermez Batch Explorer",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
