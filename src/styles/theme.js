@@ -7,13 +7,13 @@ const theme = {
   },
   palette: {
     primary: {
-      main: '#faf4ea',
+      main: '#f6f7fa',
       dark: '#f6e9d3'
     },
     secondary: {
       veryLight: 'rgba(216,133,59,0.1)',
       light: '#fef5ed',
-      main: '#e75a2b',
+      main: '#8248e5',
       dark: '#d8853b'
     },
     white: '#ffffff',
@@ -32,6 +32,10 @@ const theme = {
     orange: {
       main: '#ffa600',
       dark: '#d44d20'
+    },
+    purple: {
+      main: '#8248e5',
+      dark: '#6d00f1'
     },
     green: {
       light: 'rgba(33,150,83,0.1)',

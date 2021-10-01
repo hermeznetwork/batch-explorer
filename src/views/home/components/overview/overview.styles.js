@@ -14,7 +14,7 @@ const useOverviewStyles = createUseStyles(theme => ({
     position: 'relative',
     '&::before': {
       content: '""',
-      background: theme.palette.orange.main,
+      background: theme.palette.purple.main,
       borderRadius: theme.spacing(1),
       width: '3px',
       height: theme.spacing(2),

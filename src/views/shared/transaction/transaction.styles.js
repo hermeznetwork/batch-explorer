@@ -30,7 +30,7 @@ const useTransactionsListItemStyles = createUseStyles(theme => ({
   link: {
     color: theme.palette.secondary.main,
     '&:hover': {
-      color: theme.palette.orange.dark,
+      color: theme.palette.purple.dark,
       textDecoration: 'underline'
     }
   },
