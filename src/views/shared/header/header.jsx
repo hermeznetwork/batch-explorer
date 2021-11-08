@@ -130,7 +130,7 @@ function Header ({ displaySearchAndNavigation }) {
                 : <></>
                 }
                 <a
-                  href='https://twitter.com/hermez_network'
+                  href='https://twitter.com/0xPolygonHermez'
                   target='_blank'
                   rel='noopener noreferrer'
                   className={classes.link}
