@@ -1,12 +1,12 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useBatchStyles = createUseStyles(theme => ({
+const useBatchStyles = createUseStyles(() => ({
   root: {
-    width: '100%'
+    width: "100%",
   },
   wrapper: {
-    width: '100%'
-  }
-}))
+    width: "100%",
+  },
+}));
 
-export default useBatchStyles
+export default useBatchStyles;

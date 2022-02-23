@@ -1,12 +1,12 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useTitleStyles = createUseStyles(theme => ({
+const useTitleStyles = createUseStyles((theme) => ({
   title: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(5),
     fontWeight: theme.fontWeights.extraBold,
-    fontSize: theme.spacing(3)
-  }
-}))
+    fontSize: theme.spacing(3),
+  },
+}));
 
-export default useTitleStyles
+export default useTitleStyles;

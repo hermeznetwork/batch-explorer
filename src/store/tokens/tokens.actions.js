@@ -1,38 +1,33 @@
 export const tokensActionTypes = {
-  LOAD_TOKENS: '[TOKENS] LOAD TOKENS',
-  LOAD_TOKENS_SUCCESS: '[TOKENS] LOAD TOKENS SUCCESS',
-  LOAD_TOKENS_FAILURE: '[TOKENS] LOAD TOKENS FAILURE',
-  RESET_STATE: '[TOKENS] RESET STATE'
-}
+  LOAD_TOKENS: "[TOKENS] LOAD TOKENS",
+  LOAD_TOKENS_SUCCESS: "[TOKENS] LOAD TOKENS SUCCESS",
+  LOAD_TOKENS_FAILURE: "[TOKENS] LOAD TOKENS FAILURE",
+  RESET_STATE: "[TOKENS] RESET STATE",
+};
 
-function loadTokens () {
+function loadTokens() {
   return {
-    type: tokensActionTypes.LOAD_TOKENS
-  }
+    type: tokensActionTypes.LOAD_TOKENS,
+  };
 }
 
-function loadTokensSuccess (tokens) {
+function loadTokensSuccess(tokens) {
   return {
     type: tokensActionTypes.LOAD_TOKENS_SUCCESS,
-    data: tokens
-  }
+    data: tokens,
+  };
 }
 
-function loadTokensFailure () {
+function loadTokensFailure() {
   return {
-    type: tokensActionTypes.LOAD_TOKENS_FAILURE
-  }
+    type: tokensActionTypes.LOAD_TOKENS_FAILURE,
+  };
 }
 
-function resetState () {
+function resetState() {
   return {
-    type: tokensActionTypes.RESET_STATE
-  }
+    type: tokensActionTypes.RESET_STATE,
+  };
 }
 
-export {
-  loadTokens,
-  loadTokensSuccess,
-  loadTokensFailure,
-  resetState
-}
+export { loadTokens, loadTokensSuccess, loadTokensFailure, resetState };

@@ -11,5 +11,8 @@ node_modules/
 # Artifacts
 build/
 
+# linting and formatting
+.eslintcache
+
 # System files
 **/.DS_Store

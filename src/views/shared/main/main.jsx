@@ -1,10 +1,9 @@
-import React from 'react'
-import useMainStyles from './main.styles'
+import useMainStyles from "./main.styles";
 
-function Main ({ children }) {
-  const classes = useMainStyles()
+function Main({ children }) {
+  const classes = useMainStyles();
 
-  return <main className={classes.main}>{children}</main>
+  return <main className={classes.main}>{children}</main>;
 }
 
-export default Main
+export default Main;

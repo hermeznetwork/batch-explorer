@@ -1,19 +1,19 @@
-import * as tokenAccountActionTypes from './token-account.actions'
-import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
+import * as tokenAccountActionTypes from "./token-account.actions";
+import { CoordinatorAPI } from "@hermeznetwork/hermezjs";
 
 /**
  * Fetches the account details for the specified account index
  * @param {string} accountIndex - Account index
  * @returns {void}
  */
-function fetchAccount (accountIndex) {
+function fetchAccount(accountIndex) {
   return (dispatch) => {
-    dispatch(tokenAccountActionTypes.loadAccount())
+    dispatch(tokenAccountActionTypes.loadAccount());
 
     return CoordinatorAPI.getAccount(accountIndex)
-      .then(res => dispatch(tokenAccountActionTypes.loadAccountSuccess(res)))
-      .catch(err => dispatch(tokenAccountActionTypes.loadAccountFailure(err)))
-  }
+      .then((res) => dispatch(tokenAccountActionTypes.loadAccountSuccess(res)))
+      .catch((err) => dispatch(tokenAccountActionTypes.loadAccountFailure(err)));
+  };
 }
 
 /**
@@ -21,20 +21,27 @@ function fetchAccount (accountIndex) {
  * @param {string} accountIndex - Account index
  * @returns {void}
  */
-function fetchTransactions (accountIndex, fromItem) {
+function fetchTransactions(accountIndex, fromItem) {
   return (dispatch) => {
-    dispatch(tokenAccountActionTypes.loadTransactions())
+    dispatch(tokenAccountActionTypes.loadTransactions());
 
-    return CoordinatorAPI.getTransactions(undefined, undefined, undefined, accountIndex, fromItem, CoordinatorAPI.PaginationOrder.DESC)
-      .then(res => {
+    return CoordinatorAPI.getTransactions(
+      undefined,
+      undefined,
+      undefined,
+      accountIndex,
+      fromItem,
+      CoordinatorAPI.PaginationOrder.DESC
+    )
+      .then((res) => {
         if (res.transactions.length > 0) {
-          dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res))
+          dispatch(tokenAccountActionTypes.loadTransactionsSuccess(res));
         } else {
-          dispatch(tokenAccountActionTypes.loadTransactionsFailure())
+          dispatch(tokenAccountActionTypes.loadTransactionsFailure());
         }
       })
-      .catch(err => dispatch(tokenAccountActionTypes.loadTransactionsFailure(err)))
-  }
+      .catch((err) => dispatch(tokenAccountActionTypes.loadTransactionsFailure(err)));
+  };
 }
 
-export { fetchAccount, fetchTransactions }
+export { fetchAccount, fetchTransactions };

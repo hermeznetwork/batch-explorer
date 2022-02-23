@@ -1,27 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import clsx from 'clsx'
-import { getTimeZoneTimestamp } from '../../../../utils/date'
+import React from "react";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
+import { getTimeZoneTimestamp } from "../../../../utils/date";
 
-import useBatchDetailsStyles from './batch-details.styles'
-import { ReactComponent as AngleDown } from '../../../../images/icons/angle-down.svg'
-import { ReactComponent as AngleUp } from '../../../../images/icons/angle-up.svg'
-import CopyToClipboardButton from '../../../shared/copy-to-clipboard-button/copy-to-clipboard-button.view'
-import getPartiallyHiddenAddress from '../../../../utils/address-shortener'
-import Row from '../../../shared/row/row'
-import Col from '../../../shared/col/col'
+import useBatchDetailsStyles from "./batch-details.styles";
+import { ReactComponent as AngleDown } from "../../../../images/icons/angle-down.svg";
+import { ReactComponent as AngleUp } from "../../../../images/icons/angle-up.svg";
+import CopyToClipboardButton from "../../../shared/copy-to-clipboard-button/copy-to-clipboard-button.view";
+import getPartiallyHiddenAddress from "../../../../utils/address-shortener";
+import Row from "../../../shared/row/row";
+import Col from "../../../shared/col/col";
 
-function BatchDetails ({ batch }) {
-  const classes = useBatchDetailsStyles()
-  const [areDeailsVisible, setDetailsVisible] = React.useState()
+function BatchDetails({ batch }) {
+  const classes = useBatchDetailsStyles();
+  const [areDeailsVisible, setDetailsVisible] = React.useState();
 
   /**
    * Handles detail button click, shows additional rows with data
    *
    * @returns {void}
    */
-  function handleDetailClick () {
-    setDetailsVisible(true)
+  function handleDetailClick() {
+    setDetailsVisible(true);
   }
 
   /**
@@ -29,54 +29,49 @@ function BatchDetails ({ batch }) {
    *
    * @returns {void}
    */
-  function handleCloseDetailClick () {
-    setDetailsVisible(false)
+  function handleCloseDetailClick() {
+    setDetailsVisible(false);
   }
 
   return (
     <div>
       <Row>
-        <Col>
-          Eth Block Hash
-        </Col>
+        <Col>Eth Block Hash</Col>
         <Col>
           <Row wrapped>
             <CopyToClipboardButton content={batch.ethereumBlockHash} />
-            <Col wrapped>
-              {batch.ethereumBlockHash}
-            </Col>
+            <Col wrapped>{batch.ethereumBlockHash}</Col>
           </Row>
         </Col>
       </Row>
-      {batch.ethTxHash
-          ? (
-            <Row>
-            <Col>
-              Eth Transaction Hash
-            </Col>
-            <Col>
-              <Row wrapped>
-                <CopyToClipboardButton content={batch.ethTxHash} />
-                <Col link>
-                  <a
-                    href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethTxHash}`}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    {batch.ethTxHash}
-                  </a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          ) : <></>}
+      {batch.ethTxHash ? (
+        <Row>
+          <Col>Eth Transaction Hash</Col>
+          <Col>
+            <Row wrapped>
+              <CopyToClipboardButton content={batch.ethTxHash} />
+              <Col link>
+                <a
+                  href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethTxHash}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {batch.ethTxHash}
+                </a>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row>
         <Col>Eth Block Number</Col>
         <Col link>
           <a
             href={`${process.env.REACT_APP_ETHERSCAN_URL}/block/${batch.ethereumBlockNum}`}
-            target='_blank'
-            rel='noopener noreferrer'
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {batch.ethereumBlockNum}
           </a>
@@ -84,7 +79,9 @@ function BatchDetails ({ batch }) {
       </Row>
       <Row>
         <Col>Status</Col>
-        <Col><div className={classes.status}>Completed</div></Col>
+        <Col>
+          <div className={classes.status}>Completed</div>
+        </Col>
       </Row>
       <Row>
         <Col>Timestamp</Col>
@@ -105,30 +102,32 @@ function BatchDetails ({ batch }) {
           </Row>
         </Col>
       </Row>
-      <div className={clsx({
-        [classes.detailHidden]: true,
-        [classes.detailVisible]: areDeailsVisible
-      })}
+      <div
+        className={clsx({
+          [classes.detailHidden]: true,
+          [classes.detailVisible]: areDeailsVisible,
+        })}
       >
-        {batch.forgedTransactions
-          ? (
-            <Row>
-              <Col>Number of txs</Col>
-              <Col>{batch.forgedTransactions}</Col>
-            </Row>
-          ) : <></>}
+        {batch.forgedTransactions ? (
+          <Row>
+            <Col>Number of txs</Col>
+            <Col>{batch.forgedTransactions}</Col>
+          </Row>
+        ) : (
+          <></>
+        )}
         <Row>
           <Col>Slot</Col>
-          <Col link><Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link></Col>
+          <Col link>
+            <Link to={`/slot/${batch.slotNum}`}>{batch.slotNum}</Link>
+          </Col>
         </Row>
         <Row>
           <Col>State root</Col>
           <Col>
             <Row wrapped>
               <CopyToClipboardButton content={batch.stateRoot} />
-              <Col wrapped>
-                {getPartiallyHiddenAddress(batch.stateRoot)}
-              </Col>
+              <Col wrapped>{getPartiallyHiddenAddress(batch.stateRoot)}</Col>
             </Row>
           </Col>
         </Row>
@@ -137,9 +136,7 @@ function BatchDetails ({ batch }) {
           <Col>
             <Row wrapped>
               <CopyToClipboardButton content={batch.exitRoot} />
-              <Col wrapped>
-                {batch.exitRoot}
-              </Col>
+              <Col wrapped>{batch.exitRoot}</Col>
             </Row>
           </Col>
         </Row>
@@ -148,7 +145,7 @@ function BatchDetails ({ batch }) {
         className={clsx({
           [classes.detailButton]: true,
           [classes.detailButtonHidden]: areDeailsVisible,
-          [classes.detailVisible]: true
+          [classes.detailVisible]: true,
         })}
         onClick={() => handleDetailClick()}
       >
@@ -159,7 +156,7 @@ function BatchDetails ({ batch }) {
         className={clsx({
           [classes.detailButton]: true,
           [classes.detailHidden]: true,
-          [classes.detailVisible]: areDeailsVisible
+          [classes.detailVisible]: areDeailsVisible,
         })}
         onClick={() => handleCloseDetailClick()}
       >
@@ -167,7 +164,7 @@ function BatchDetails ({ batch }) {
         <AngleUp className={classes.icon} />
       </button>
     </div>
-  )
+  );
 }
 
-export default BatchDetails
+export default BatchDetails;

@@ -1,21 +1,21 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useButtonStyles = createUseStyles(theme => ({
+const useButtonStyles = createUseStyles((theme) => ({
   root: {
-    border: 'none',
+    border: "none",
     padding: theme.spacing(0.75),
     borderRadius: 50,
     background: theme.palette.grey.veryLight,
-    cursor: 'pointer',
+    cursor: "pointer",
     lineHeight: `${theme.spacing(1)}px`,
     marginRight: theme.spacing(0.5),
-    '&:focus': {
-      outline: 'none'
+    "&:focus": {
+      outline: "none",
     },
-    '&:hover': {
-      background: theme.palette.grey.light
-    }
-  }
-}))
+    "&:hover": {
+      background: theme.palette.grey.light,
+    },
+  },
+}));
 
-export default useButtonStyles
+export default useButtonStyles;

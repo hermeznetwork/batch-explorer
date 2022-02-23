@@ -1,55 +1,55 @@
 export const tokenAccountActionTypes = {
-  LOAD_ACCOUNT: '[TOKEN ACCOUNT] LOAD ACCOUNT',
-  LOAD_ACCOUNT_SUCCESS: '[TOKEN ACCOUNT] LOAD ACCOUNT SUCCESS',
-  LOAD_ACCOUNT_FAILURE: '[TOKEN ACCOUNT] LOAD ACCOUNT FAILURE',
-  LOAD_TRANSACTIONS: '[TOKEN ACCOUNT] LOAD TRANSACTIONS',
-  LOAD_TRANSACTIONS_SUCCESS: '[TOKEN ACCOUNT] LOAD TRANSACTIONS SUCCESS',
-  LOAD_TRANSACTIONS_FAILURE: '[TOKEN ACCOUNT] LOAD TRANSACTIONS FAILURE',
-  RESET_STATE: '[TOKEN ACCOUNT] RESET STATE'
-}
+  LOAD_ACCOUNT: "[TOKEN ACCOUNT] LOAD ACCOUNT",
+  LOAD_ACCOUNT_SUCCESS: "[TOKEN ACCOUNT] LOAD ACCOUNT SUCCESS",
+  LOAD_ACCOUNT_FAILURE: "[TOKEN ACCOUNT] LOAD ACCOUNT FAILURE",
+  LOAD_TRANSACTIONS: "[TOKEN ACCOUNT] LOAD TRANSACTIONS",
+  LOAD_TRANSACTIONS_SUCCESS: "[TOKEN ACCOUNT] LOAD TRANSACTIONS SUCCESS",
+  LOAD_TRANSACTIONS_FAILURE: "[TOKEN ACCOUNT] LOAD TRANSACTIONS FAILURE",
+  RESET_STATE: "[TOKEN ACCOUNT] RESET STATE",
+};
 
-function loadAccount () {
+function loadAccount() {
   return {
-    type: tokenAccountActionTypes.LOAD_ACCOUNT
-  }
+    type: tokenAccountActionTypes.LOAD_ACCOUNT,
+  };
 }
 
-function loadAccountSuccess (account) {
+function loadAccountSuccess(account) {
   return {
     type: tokenAccountActionTypes.LOAD_ACCOUNT_SUCCESS,
-    account
-  }
+    account,
+  };
 }
 
-function loadAccountFailure () {
+function loadAccountFailure() {
   return {
-    type: tokenAccountActionTypes.LOAD_ACCOUNT_FAILURE
-  }
+    type: tokenAccountActionTypes.LOAD_ACCOUNT_FAILURE,
+  };
 }
 
-function loadTransactions () {
+function loadTransactions() {
   return {
-    type: tokenAccountActionTypes.LOAD_TRANSACTIONS
-  }
+    type: tokenAccountActionTypes.LOAD_TRANSACTIONS,
+  };
 }
 
-function loadTransactionsSuccess (transactions) {
+function loadTransactionsSuccess(transactions) {
   return {
     type: tokenAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS,
-    data: transactions
-  }
+    data: transactions,
+  };
 }
 
-function loadTransactionsFailure () {
+function loadTransactionsFailure() {
   return {
-    type: tokenAccountActionTypes.LOAD_TRANSACTIONS_FAILURE
-  }
+    type: tokenAccountActionTypes.LOAD_TRANSACTIONS_FAILURE,
+  };
 }
 
-function resetState () {
+function resetState() {
   return {
-    type: tokenAccountActionTypes.RESET_STATE
-  }
+    type: tokenAccountActionTypes.RESET_STATE,
+  };
 }
 
 export {
@@ -59,5 +59,5 @@ export {
   loadTransactions,
   loadTransactionsSuccess,
   loadTransactionsFailure,
-  resetState
-}
+  resetState,
+};

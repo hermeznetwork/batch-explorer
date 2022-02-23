@@ -1,11 +1,11 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useBatchStyles = createUseStyles(theme => ({
+const useBatchStyles = createUseStyles(() => ({
   row: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap'
-  }
-}))
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
+}));
 
-export default useBatchStyles
+export default useBatchStyles;

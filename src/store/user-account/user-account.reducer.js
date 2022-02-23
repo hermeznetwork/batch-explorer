@@ -1,86 +1,90 @@
-import { userAccountActionTypes } from './user-account.actions'
-import { getPaginationData } from '../../utils/api'
+import { userAccountActionTypes } from "./user-account.actions";
+import { getPaginationData } from "../../utils/api";
 
 const initialUserAccountState = {
   accountsTask: {
-    status: 'pending'
+    status: "pending",
   },
   transactionsTask: {
-    status: 'pending'
-  }
-}
+    status: "pending",
+  },
+};
 
-function userAccountReducer (state = initialUserAccountState, action) {
+function userAccountReducer(state = initialUserAccountState, action) {
   switch (action.type) {
     case userAccountActionTypes.LOAD_ACCOUNT: {
       return {
         ...state,
-        accountsTask: state.accountsTask.status === 'pending'
-          ? { status: 'loading' }
-          : { status: 'reloading', data: state.accountsTask.data }
-      }
+        accountsTask:
+          state.accountsTask.status === "pending"
+            ? { status: "loading" }
+            : { status: "reloading", data: state.accountsTask.data },
+      };
     }
     case userAccountActionTypes.LOAD_ACCOUNT_SUCCESS: {
-      const accounts = state.accountsTask.status === 'reloading'
-        ? [...state.accountsTask.data.accounts, ...action.data.accounts]
-        : action.data.accounts
-      const pagination = getPaginationData(action.data.pendingItems, accounts)
+      const accounts =
+        state.accountsTask.status === "reloading"
+          ? [...state.accountsTask.data.accounts, ...action.data.accounts]
+          : action.data.accounts;
+      const pagination = getPaginationData(action.data.pendingItems, accounts);
 
       return {
         ...state,
         accountsTask: {
-          status: 'successful',
-          data: { accounts, pagination }
-        }
-      }
+          status: "successful",
+          data: { accounts, pagination },
+        },
+      };
     }
     case userAccountActionTypes.LOAD_ACCOUNT_FAILURE: {
       return {
         ...state,
         accountsTask: {
-          status: 'failed',
-          error: 'Account does not exist or cannot be loaded.'
-        }
-      }
+          status: "failed",
+          error: "Account does not exist or cannot be loaded.",
+        },
+      };
     }
     case userAccountActionTypes.LOAD_TRANSACTIONS: {
       return {
         ...state,
-        transactionsTask: state.transactionsTask.status === 'successful'
-          ? { status: 'reloading', data: state.transactionsTask.data }
-          : { status: 'loading' }
-      }
+        transactionsTask:
+          state.transactionsTask.status === "successful"
+            ? { status: "reloading", data: state.transactionsTask.data }
+            : { status: "loading" },
+      };
     }
     case userAccountActionTypes.LOAD_TRANSACTIONS_SUCCESS: {
-      const transactions = state.transactionsTask.status === 'reloading'
-        ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
-        : action.data.transactions
-      const pagination = getPaginationData(action.data.pendingItems, transactions)
+      const transactions =
+        state.transactionsTask.status === "reloading"
+          ? [...state.transactionsTask.data.transactions, ...action.data.transactions]
+          : action.data.transactions;
+      const pagination = getPaginationData(action.data.pendingItems, transactions);
 
       return {
         ...state,
         transactionsTask: {
-          status: 'successful',
-          data: { transactions, pagination }
-        }
-      }
+          status: "successful",
+          data: { transactions, pagination },
+        },
+      };
     }
     case userAccountActionTypes.LOAD_TRANSACTIONS_FAILURE: {
       return {
         ...state,
         transactionsTask: {
-          status: 'failed',
-          error: 'Transactions do not exist or cannot be loaded.'
-        }
-      }
+          status: "failed",
+          error: "Transactions do not exist or cannot be loaded.",
+        },
+      };
     }
     case userAccountActionTypes.RESET_STATE: {
-      return initialUserAccountState
+      return initialUserAccountState;
     }
     default: {
-      return state
+      return state;
     }
   }
 }
 
-export default userAccountReducer
+export default userAccountReducer;
