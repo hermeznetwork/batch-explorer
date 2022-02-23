@@ -9,7 +9,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write .",
-    "lint": "eslint --cache --fix --ext .js,.jsx ."
+    "lint": "eslint --cache --fix --ext .js,.jsx .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hermeznetwork/hermezjs": "1.1.8",
@@ -70,11 +71,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{jsx,js}": "prettier --write"
