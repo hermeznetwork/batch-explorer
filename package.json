@@ -49,17 +49,6 @@
   "engines": {
     "node": ">=14"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "env": [
-      "browser",
-      "jest"
-    ],
-    "ignore": [
-      "/build/",
-      "/public/"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -73,6 +62,6 @@
     ]
   },
   "lint-staged": {
-    "*.{jsx,js}": "prettier --write"
+    "*.{jsx,js}": ["eslint --fix", "prettier --write"]
   }
 }
