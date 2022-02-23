@@ -4,6 +4,3 @@
 # Except these files
 !src
 !*.json
-
-# Ignore contract types
-src/types/contracts
