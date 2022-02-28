@@ -1,11 +1,11 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useTransactionStyles = createUseStyles(theme => ({
+const useTransactionStyles = createUseStyles((theme) => ({
   wrapper: {
-    width: '100%'
+    width: "100%",
   },
   icon: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
   },
   detailButton: {
     fontWeight: theme.fontWeights.bold,
@@ -13,50 +13,50 @@ const useTransactionStyles = createUseStyles(theme => ({
     borderRadius: 16,
     color: theme.palette.grey.main,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2.5)}px`,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: theme.spacing(3),
-    width: 'fit-content',
+    width: "fit-content",
     border: 0,
-    cursor: 'pointer',
-    '&:hover': {
-      background: theme.palette.grey.light
+    cursor: "pointer",
+    "&:hover": {
+      background: theme.palette.grey.light,
     },
-    '&:focus': {
-      outline: 'none'
-    }
+    "&:focus": {
+      outline: "none",
+    },
   },
   detailHidden: {
-    display: 'none'
+    display: "none",
   },
   detailVisible: {
-    display: 'block'
+    display: "block",
   },
   detailButtonHidden: {
-    display: 'none'
+    display: "none",
   },
   status: {
     fontWeight: theme.fontWeights.medium,
-    borderRadius: '8px',
+    borderRadius: "8px",
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
     margin: `-${theme.spacing(0.5)}px`,
-    textAlign: 'center',
-    width: 'fit-content'
+    textAlign: "center",
+    width: "fit-content",
   },
   completed: {
     background: theme.palette.green.light,
-    color: theme.palette.green.main
+    color: theme.palette.green.main,
   },
   pending: {
     background: theme.palette.secondary.veryLight,
-    color: theme.palette.secondary.dark
+    color: theme.palette.secondary.dark,
   },
   bjjAddressDescription: {
     color: theme.palette.grey.main,
-    fontWeight: theme.fontWeights.medium
+    fontWeight: theme.fontWeights.medium,
   },
   exitAdditionalMessage: {
-    color: theme.palette.grey.main
-  }
-}))
+    color: theme.palette.grey.main,
+  },
+}));
 
-export default useTransactionStyles
+export default useTransactionStyles;

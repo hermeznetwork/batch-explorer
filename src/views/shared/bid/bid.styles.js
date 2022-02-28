@@ -1,18 +1,18 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const UseBidStyles = createUseStyles(theme => ({
+const UseBidStyles = createUseStyles((theme) => ({
   shortenedAddress: {
-    display: 'block',
+    display: "block",
     [theme.breakpoints.sm]: {
-      display: 'none'
-    }
+      display: "none",
+    },
   },
   notShortenedAddress: {
-    display: 'none',
+    display: "none",
     [theme.breakpoints.sm]: {
-      display: 'block'
-    }
-  }
-}))
+      display: "block",
+    },
+  },
+}));
 
-export default UseBidStyles
+export default UseBidStyles;

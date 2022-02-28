@@ -1,8 +1,8 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useBatchDetailsStyles = createUseStyles(theme => ({
+const useBatchDetailsStyles = createUseStyles((theme) => ({
   icon: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
   },
   detailButton: {
     fontWeight: theme.fontWeights.bold,
@@ -10,37 +10,37 @@ const useBatchDetailsStyles = createUseStyles(theme => ({
     borderRadius: 16,
     color: theme.palette.grey.main,
     padding: `${theme.spacing(1.5)}px ${theme.spacing(2.5)}px`,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: theme.spacing(3),
-    width: 'fit-content',
+    width: "fit-content",
     border: 0,
-    cursor: 'pointer',
-    '&:hover': {
-      background: theme.palette.grey.light
+    cursor: "pointer",
+    "&:hover": {
+      background: theme.palette.grey.light,
     },
-    '&:focus': {
-      outline: 'none'
-    }
+    "&:focus": {
+      outline: "none",
+    },
   },
   detailHidden: {
-    display: 'none'
+    display: "none",
   },
   detailVisible: {
-    display: 'block'
+    display: "block",
   },
   detailButtonHidden: {
-    display: 'none'
+    display: "none",
   },
   status: {
     fontWeight: theme.fontWeights.medium,
     background: theme.palette.green.light,
-    borderRadius: '8px',
+    borderRadius: "8px",
     color: theme.palette.green.main,
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
     margin: `-${theme.spacing(0.5)}px`,
-    textAlign: 'center',
-    width: 'fit-content'
-  }
-}))
+    textAlign: "center",
+    width: "fit-content",
+  },
+}));
 
-export default useBatchDetailsStyles
+export default useBatchDetailsStyles;

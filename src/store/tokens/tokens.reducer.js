@@ -1,52 +1,54 @@
-import { tokensActionTypes } from './tokens.actions'
-import { getPaginationData } from '../../utils/api'
+import { tokensActionTypes } from "./tokens.actions";
+import { getPaginationData } from "../../utils/api";
 
 const initialTokensState = {
   tokensTask: {
-    status: 'pending'
-  }
-}
+    status: "pending",
+  },
+};
 
-function tokensReducer (state = initialTokensState, action) {
+function tokensReducer(state = initialTokensState, action) {
   switch (action.type) {
     case tokensActionTypes.LOAD_TOKENS: {
       return {
         ...state,
-        tokensTask: state.tokensTask.status === 'successful'
-          ? { status: 'reloading', data: state.tokensTask.data }
-          : { status: 'loading' }
-      }
+        tokensTask:
+          state.tokensTask.status === "successful"
+            ? { status: "reloading", data: state.tokensTask.data }
+            : { status: "loading" },
+      };
     }
     case tokensActionTypes.LOAD_TOKENS_SUCCESS: {
-      const tokens = state.tokensTask.status === 'reloading'
-        ? [...state.tokensTask.data.tokens, ...action.data.tokens]
-        : action.data.tokens
-      const pagination = getPaginationData(action.data.pendingItems, tokens)
+      const tokens =
+        state.tokensTask.status === "reloading"
+          ? [...state.tokensTask.data.tokens, ...action.data.tokens]
+          : action.data.tokens;
+      const pagination = getPaginationData(action.data.pendingItems, tokens);
 
       return {
         ...state,
         tokensTask: {
-          status: 'successful',
-          data: { tokens, pagination }
-        }
-      }
+          status: "successful",
+          data: { tokens, pagination },
+        },
+      };
     }
     case tokensActionTypes.LOAD_TOKENS_FAILURE: {
       return {
         ...state,
         tokensTask: {
-          status: 'failed',
-          error: 'Tokens do not exist or cannot be loaded.'
-        }
-      }
+          status: "failed",
+          error: "Tokens do not exist or cannot be loaded.",
+        },
+      };
     }
     case tokensActionTypes.RESET_STATE: {
-      return initialTokensState
+      return initialTokensState;
     }
     default: {
-      return state
+      return state;
     }
   }
 }
 
-export default tokensReducer
+export default tokensReducer;

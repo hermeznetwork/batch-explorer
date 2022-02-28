@@ -1,12 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import getPartiallyHiddenAddress from '../../../../utils/address-shortener'
-import { getTimeAgo } from '../../../../utils/date'
+import { Link } from "react-router-dom";
+import getPartiallyHiddenAddress from "../../../../utils/address-shortener";
+import { getTimeAgo } from "../../../../utils/date";
 
-import useBatchStyles from './batch.styles'
+import useBatchStyles from "./batch.styles";
 
-function Batch ({ batch }) {
-  const classes = useBatchStyles()
+function Batch({ batch }) {
+  const classes = useBatchStyles();
 
   return (
     <div className={classes.col}>
@@ -16,19 +15,19 @@ function Batch ({ batch }) {
         </Link>
       </div>
       <div className={classes.transaction}>
-          Transactions: <span className={classes.transactionNumber}>{batch.forgedTransactions}</span>
+        Transactions: <span className={classes.transactionNumber}>{batch.forgedTransactions}</span>
       </div>
       <div className={classes.coordinator}>
         Coordinator:
         <span className={classes.coordinatorLink}>
-          <Link to={`/coordinator/${batch.forgerAddr}`}>{getPartiallyHiddenAddress(batch.forgerAddr)}</Link>
+          <Link to={`/coordinator/${batch.forgerAddr}`}>
+            {getPartiallyHiddenAddress(batch.forgerAddr)}
+          </Link>
         </span>
       </div>
-      <div className={classes.time}>
-        {getTimeAgo(batch.timestamp)}
-      </div>
+      <div className={classes.time}>{getTimeAgo(batch.timestamp)}</div>
     </div>
-  )
+  );
 }
 
-export default Batch
+export default Batch;

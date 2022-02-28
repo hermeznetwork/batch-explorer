@@ -1,19 +1,19 @@
-import * as slotActions from './slot.actions'
-import { CoordinatorAPI } from '@hermeznetwork/hermezjs'
+import * as slotActions from "./slot.actions";
+import { CoordinatorAPI } from "@hermeznetwork/hermezjs";
 
 /**
  * Fetches slot details for the specified slot number
  * @param {string} slotNum - Slot number
  * @returns {void}
  */
-function fetchSlot (slotNum) {
+function fetchSlot(slotNum) {
   return (dispatch) => {
-    dispatch(slotActions.loadSlot())
+    dispatch(slotActions.loadSlot());
 
     return CoordinatorAPI.getSlot(slotNum)
-      .then(res => dispatch(slotActions.loadSlotSuccess(res)))
-      .catch(err => dispatch(slotActions.loadSlotFailure(err)))
-  }
+      .then((res) => dispatch(slotActions.loadSlotSuccess(res)))
+      .catch((err) => dispatch(slotActions.loadSlotFailure(err)));
+  };
 }
 
 /**
@@ -22,14 +22,19 @@ function fetchSlot (slotNum) {
  * @param {string} slotNum - Slot number
  * @returns {void}
  */
-function fetchBids (slotNum, bidderAddr, fromItem) {
+function fetchBids(slotNum, bidderAddr, fromItem) {
   return (dispatch) => {
-    dispatch(slotActions.loadBids())
+    dispatch(slotActions.loadBids());
 
-    return CoordinatorAPI.getBids(slotNum, bidderAddr, fromItem, CoordinatorAPI.PaginationOrder.DESC)
-      .then(res => dispatch(slotActions.loadBidsSuccess(res)))
-      .catch(err => dispatch(slotActions.loadBidsFailure(err)))
-  }
+    return CoordinatorAPI.getBids(
+      slotNum,
+      bidderAddr,
+      fromItem,
+      CoordinatorAPI.PaginationOrder.DESC
+    )
+      .then((res) => dispatch(slotActions.loadBidsSuccess(res)))
+      .catch((err) => dispatch(slotActions.loadBidsFailure(err)));
+  };
 }
 
 /**
@@ -38,14 +43,14 @@ function fetchBids (slotNum, bidderAddr, fromItem) {
  * @param {string} slotNum - Slot number
  * @returns {void}
  */
-function fetchBatches (forgerAddr, slotNum, fromItem) {
+function fetchBatches(forgerAddr, slotNum, fromItem) {
   return (dispatch) => {
-    dispatch(slotActions.loadBatches())
+    dispatch(slotActions.loadBatches());
 
     return CoordinatorAPI.getBatches(forgerAddr, slotNum, fromItem)
-      .then(res => dispatch(slotActions.loadBatchesSuccess(res)))
-      .catch(err => dispatch(slotActions.loadBatchesFailure(err)))
-  }
+      .then((res) => dispatch(slotActions.loadBatchesSuccess(res)))
+      .catch((err) => dispatch(slotActions.loadBatchesFailure(err)));
+  };
 }
 
-export { fetchSlot, fetchBids, fetchBatches }
+export { fetchSlot, fetchBids, fetchBatches };

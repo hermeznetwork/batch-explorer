@@ -1,11 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import getPartiallyHiddenAddress from '../../../utils/address-shortener'
+import { Link } from "react-router-dom";
+import getPartiallyHiddenAddress from "../../../utils/address-shortener";
 
-import useTransactionStyles from './transaction.styles'
+import useTransactionStyles from "./transaction.styles";
 
-function Transaction ({ transactionId, amount, tokenSymbol, isToken }) {
-  const classes = useTransactionStyles()
+function Transaction({ transactionId, amount, tokenSymbol, isToken }) {
+  const classes = useTransactionStyles();
 
   return (
     <div className={classes.row}>
@@ -15,14 +14,10 @@ function Transaction ({ transactionId, amount, tokenSymbol, isToken }) {
           <span className={classes.mediumAddress}>{transactionId}</span>
         </Link>
       </div>
-      {
-        isToken
-          ? <></>
-          : <div className={classes.col}>{tokenSymbol}</div>
-      }
+      {isToken ? <></> : <div className={classes.col}>{tokenSymbol}</div>}
       <div className={classes.col}>{amount}</div>
     </div>
-  )
+  );
 }
 
-export default Transaction
+export default Transaction;

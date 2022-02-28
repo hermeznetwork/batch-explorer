@@ -1,20 +1,16 @@
-import React from 'react'
+import useLayoutStyles from "./layout.styles";
+import Header from "../header/header";
+import Main from "../main/main";
 
-import useLayoutStyles from './layout.styles'
-import Header from '../header/header'
-import Main from '../main/main'
-
-function Layout ({ children, displaySearchAndNavigation }) {
-  const classes = useLayoutStyles()
+function Layout({ children, displaySearchAndNavigation }) {
+  const classes = useLayoutStyles();
 
   return (
     <div className={classes.root}>
       <Header displaySearchAndNavigation={displaySearchAndNavigation} />
-      <Main>
-        {children}
-      </Main>
+      <Main>{children}</Main>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

@@ -1,82 +1,84 @@
-import { homeActionTypes } from './home.actions'
-import { getPaginationData } from '../../utils/api'
-import { PaginationOrder } from '@hermeznetwork/hermezjs/src/api'
+import { homeActionTypes } from "./home.actions";
+import { getPaginationData } from "../../utils/api";
+import { PaginationOrder } from "@hermeznetwork/hermezjs/src/api";
 
 const initialHomeState = {
   batchesTask: {
-    status: 'pending'
+    status: "pending",
   },
   overviewTask: {
-    status: 'pending'
-  }
-}
+    status: "pending",
+  },
+};
 
-function homeReducer (state = initialHomeState, action) {
+function homeReducer(state = initialHomeState, action) {
   switch (action.type) {
     case homeActionTypes.LOAD_BATCHES: {
       return {
         ...state,
-        batchesTask: state.batchesTask.status === 'pending'
-          ? { status: 'loading' }
-          : { status: 'reloading', data: state.batchesTask.data }
-      }
+        batchesTask:
+          state.batchesTask.status === "pending"
+            ? { status: "loading" }
+            : { status: "reloading", data: state.batchesTask.data },
+      };
     }
     case homeActionTypes.LOAD_BATCHES_SUCCESS: {
-      const batches = state.batchesTask.status === 'reloading'
-        ? [...state.batchesTask.data.batches, ...action.data.batches]
-        : action.data.batches
-      const pagination = getPaginationData(action.data.pendingItems, batches, PaginationOrder.DESC)
+      const batches =
+        state.batchesTask.status === "reloading"
+          ? [...state.batchesTask.data.batches, ...action.data.batches]
+          : action.data.batches;
+      const pagination = getPaginationData(action.data.pendingItems, batches, PaginationOrder.DESC);
 
       return {
         ...state,
         batchesTask: {
-          status: 'successful',
-          data: { batches, pagination }
-        }
-      }
+          status: "successful",
+          data: { batches, pagination },
+        },
+      };
     }
     case homeActionTypes.LOAD_BATCHES_FAILURE: {
       return {
         ...state,
         batchesTask: {
-          status: 'failed',
-          error: 'Batches do not exist or cannot be loaded.'
-        }
-      }
+          status: "failed",
+          error: "Batches do not exist or cannot be loaded.",
+        },
+      };
     }
     case homeActionTypes.LOAD_OVERVIEW: {
       return {
         ...state,
         overviewTask: {
-          status: 'loading'
-        }
-      }
+          status: "loading",
+        },
+      };
     }
     case homeActionTypes.LOAD_OVERVIEW_SUCCESS: {
       return {
         ...state,
         overviewTask: {
-          status: 'successful',
-          data: action.overview
-        }
-      }
+          status: "successful",
+          data: action.overview,
+        },
+      };
     }
     case homeActionTypes.LOAD_OVERVIEW_FAILURE: {
       return {
         ...state,
         overviewTask: {
-          status: 'failed',
-          error: 'Stats and metrics cannot be loaded.'
-        }
-      }
+          status: "failed",
+          error: "Stats and metrics cannot be loaded.",
+        },
+      };
     }
     case homeActionTypes.RESET_STATE: {
-      return initialHomeState
+      return initialHomeState;
     }
     default: {
-      return state
+      return state;
     }
   }
 }
 
-export default homeReducer
+export default homeReducer;

@@ -1,10 +1,10 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useLayoutStyles = createUseStyles(theme => ({
+const useLayoutStyles = createUseStyles(() => ({
   root: {
-    width: '100%',
-    height: '100%'
-  }
-}))
+    width: "100%",
+    height: "100%",
+  },
+}));
 
-export default useLayoutStyles
+export default useLayoutStyles;
