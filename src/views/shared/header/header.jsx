@@ -146,7 +146,7 @@ function Header({ displaySearchAndNavigation }) {
           </div>
           <div className={`${classes.row} ${classes.headline}`}>
             <h1>
-              Hermez Batch Explorer
+              Polygon Hermez Batch Explorer
               {process.env.REACT_APP_HERMEZ_API_URL.includes(TESTNET_API_HOSTNAME) && (
                 <span className={classes.headerTestnetAddon}>Rinkeby Testnet</span>
               )}
