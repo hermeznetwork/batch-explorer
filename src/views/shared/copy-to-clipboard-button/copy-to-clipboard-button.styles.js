@@ -1,9 +1,9 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
 const useCopyToClipboardButtonStyles = createUseStyles({
   buttonWrapper: {
-    display: 'inline'
-  }
-})
+    display: "inline",
+  },
+});
 
-export default useCopyToClipboardButtonStyles
+export default useCopyToClipboardButtonStyles;

@@ -1,10 +1,10 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useMainStyles = createUseStyles(theme => ({
+const useMainStyles = createUseStyles({
   main: {
-    width: '100%',
-    height: '100%'
-  }
-}))
+    width: "100%",
+    height: "100%",
+  },
+});
 
-export default useMainStyles
+export default useMainStyles;

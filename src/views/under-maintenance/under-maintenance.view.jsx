@@ -1,12 +1,10 @@
-import React from 'react'
+import Container from "../shared/container/container.view";
+import { ReactComponent as MaitenanceLogo } from "../../images/icons/maintenance-logo.svg";
 
-import Container from '../shared/container/container.view'
-import { ReactComponent as MaitenanceLogo } from '../../images/icons/maintenance-logo.svg'
+import useUnderMaintenanceStyles from "./under-maintenance.styles";
 
-import useUnderMaintenanceStyles from './under-maintenance.styles'
-
-function UnderMaintenance () {
-  const classes = useUnderMaintenanceStyles()
+function UnderMaintenance() {
+  const classes = useUnderMaintenanceStyles();
 
   return (
     <div className={classes.root}>
@@ -15,11 +13,13 @@ function UnderMaintenance () {
           <div className={classes.image}>
             <MaitenanceLogo />
           </div>
-          <p className={classes.text}>Hermez is currently under maintenance. Please, try to access it again later.</p>
+          <p className={classes.text}>
+            Hermez is currently under maintenance. Please, try to access it again later.
+          </p>
         </div>
       </Container>
     </div>
-  )
+  );
 }
 
-export default UnderMaintenance
+export default UnderMaintenance;

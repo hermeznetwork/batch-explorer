@@ -1,17 +1,17 @@
-import { getFeeValue } from '@hermeznetwork/hermezjs/src/tx-utils'
-import { getTokenAmountString } from '@hermeznetwork/hermezjs/src/utils'
+import { getFeeValue } from "@hermeznetwork/hermezjs/src/tx-utils";
+import { getTokenAmountString } from "@hermeznetwork/hermezjs/src/utils";
 
-import { MAX_TOKEN_DECIMALS } from '../constants'
+import { MAX_TOKEN_DECIMALS } from "../constants";
 
-function getFixedTokenAmount (amount, decimals) {
+function getFixedTokenAmount(amount, decimals) {
   if (amount === undefined || decimals === undefined) {
-    return undefined
+    return undefined;
   }
 
   // We can lose precision as there will never be more than MAX_DECIMALS_UNTIL_ZERO_AMOUNT significant digits
-  const balanceWithDecimals = Number(amount) / Math.pow(10, decimals)
+  const balanceWithDecimals = Number(amount) / Math.pow(10, decimals);
 
-  return (Number(balanceWithDecimals.toFixed(MAX_TOKEN_DECIMALS))).toString()
+  return Number(balanceWithDecimals.toFixed(MAX_TOKEN_DECIMALS)).toString();
 }
 
 /**
@@ -21,16 +21,13 @@ function getFixedTokenAmount (amount, decimals) {
  * @param {Object} token - Token object
  * @returns {String} Amount in USD
  */
-function getFeeInUsd (feeIndex, amount, token) {
+function getFeeInUsd(feeIndex, amount, token) {
   if (!feeIndex) {
-    return '-'
+    return "-";
   }
-  const feeInToken = Number(getTokenAmountString(getFeeValue(feeIndex, amount), token.decimals))
-  const feeInFiat = feeInToken * token.USD
-  return feeInFiat.toFixed(2)
+  const feeInToken = Number(getTokenAmountString(getFeeValue(feeIndex, amount), token.decimals));
+  const feeInFiat = feeInToken * token.USD;
+  return feeInFiat.toFixed(2);
 }
 
-export {
-  getFixedTokenAmount,
-  getFeeInUsd
-}
+export { getFixedTokenAmount, getFeeInUsd };

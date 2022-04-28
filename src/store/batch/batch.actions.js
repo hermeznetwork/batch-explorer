@@ -1,56 +1,56 @@
 export const batchActionTypes = {
-  LOAD_BATCH: '[BATCH] LOAD BATCH',
-  LOAD_BATCH_SUCCESS: '[BATCH] LOAD BATCH SUCCESS',
-  LOAD_BATCH_FAILURE: '[BATCH] LOAD BATCH FAILURE',
-  LOAD_TRANSACTIONS: '[BATCH] LOAD TRANSACTIONS',
-  LOAD_TRANSACTIONS_SUCCESS: '[BATCH] LOAD TRANSACTIONS SUCCESS',
-  LOAD_TRANSACTIONS_FAILURE: '[BATCH] LOAD TRANSACTIONS FAILURE',
-  RESET_STATE: '[BATCH] RESET STATE'
-}
+  LOAD_BATCH: "[BATCH] LOAD BATCH",
+  LOAD_BATCH_SUCCESS: "[BATCH] LOAD BATCH SUCCESS",
+  LOAD_BATCH_FAILURE: "[BATCH] LOAD BATCH FAILURE",
+  LOAD_TRANSACTIONS: "[BATCH] LOAD TRANSACTIONS",
+  LOAD_TRANSACTIONS_SUCCESS: "[BATCH] LOAD TRANSACTIONS SUCCESS",
+  LOAD_TRANSACTIONS_FAILURE: "[BATCH] LOAD TRANSACTIONS FAILURE",
+  RESET_STATE: "[BATCH] RESET STATE",
+};
 
-function loadBatch () {
+function loadBatch() {
   return {
-    type: batchActionTypes.LOAD_BATCH
-  }
+    type: batchActionTypes.LOAD_BATCH,
+  };
 }
 
-function loadBatchSuccess (batch) {
+function loadBatchSuccess(batch) {
   return {
     type: batchActionTypes.LOAD_BATCH_SUCCESS,
-    batch
-  }
+    batch,
+  };
 }
 
-function loadBatchFailure () {
+function loadBatchFailure() {
   return {
-    type: batchActionTypes.LOAD_BATCH_FAILURE
-  }
+    type: batchActionTypes.LOAD_BATCH_FAILURE,
+  };
 }
 
-function loadTransactions () {
+function loadTransactions() {
   return {
-    type: batchActionTypes.LOAD_TRANSACTIONS
-  }
+    type: batchActionTypes.LOAD_TRANSACTIONS,
+  };
 }
 
-function loadTransactionsSuccess (transactions) {
+function loadTransactionsSuccess(transactions) {
   return {
     type: batchActionTypes.LOAD_TRANSACTIONS_SUCCESS,
-    data: transactions
-  }
+    data: transactions,
+  };
 }
 
-function loadTransactionsFailure (err) {
+function loadTransactionsFailure(err) {
   return {
     type: batchActionTypes.LOAD_TRANSACTIONS_FAILURE,
-    err: err
-  }
+    err: err,
+  };
 }
 
-function resetState () {
+function resetState() {
   return {
-    type: batchActionTypes.RESET_STATE
-  }
+    type: batchActionTypes.RESET_STATE,
+  };
 }
 
 export {
@@ -60,5 +60,5 @@ export {
   loadTransactions,
   loadTransactionsSuccess,
   loadTransactionsFailure,
-  resetState
-}
+  resetState,
+};

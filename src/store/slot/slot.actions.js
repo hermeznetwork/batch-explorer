@@ -1,77 +1,77 @@
 export const slotActionTypes = {
-  LOAD_SLOT: '[SLOT] LOAD SLOT',
-  LOAD_SLOT_SUCCESS: '[SLOT] LOAD SLOT SUCCESS',
-  LOAD_SLOT_FAILURE: '[SLOT] LOAD SLOT FAILURE',
-  LOAD_BIDS: '[SLOT] LOAD BIDS',
-  LOAD_BIDS_SUCCESS: '[SLOT] LOAD BIDS SUCCESS',
-  LOAD_BIDS_FAILURE: '[SLOT] LOAD BIDS FAILURE',
-  LOAD_BATCHES: '[SLOT] LOAD BATCHES',
-  LOAD_BATCHES_SUCCESS: '[SLOT] LOAD BATCHES SUCCESS',
-  LOAD_BATCHES_FAILURE: '[SLOT] LOAD BATCHES FAILURE',
-  RESET_STATE: '[SLOT] RESET STATE'
-}
+  LOAD_SLOT: "[SLOT] LOAD SLOT",
+  LOAD_SLOT_SUCCESS: "[SLOT] LOAD SLOT SUCCESS",
+  LOAD_SLOT_FAILURE: "[SLOT] LOAD SLOT FAILURE",
+  LOAD_BIDS: "[SLOT] LOAD BIDS",
+  LOAD_BIDS_SUCCESS: "[SLOT] LOAD BIDS SUCCESS",
+  LOAD_BIDS_FAILURE: "[SLOT] LOAD BIDS FAILURE",
+  LOAD_BATCHES: "[SLOT] LOAD BATCHES",
+  LOAD_BATCHES_SUCCESS: "[SLOT] LOAD BATCHES SUCCESS",
+  LOAD_BATCHES_FAILURE: "[SLOT] LOAD BATCHES FAILURE",
+  RESET_STATE: "[SLOT] RESET STATE",
+};
 
-function loadSlot () {
+function loadSlot() {
   return {
-    type: slotActionTypes.LOAD_SLOT
-  }
+    type: slotActionTypes.LOAD_SLOT,
+  };
 }
 
-function loadSlotSuccess (slot) {
+function loadSlotSuccess(slot) {
   return {
     type: slotActionTypes.LOAD_SLOT_SUCCESS,
-    slot
-  }
+    slot,
+  };
 }
 
-function loadSlotFailure () {
+function loadSlotFailure() {
   return {
-    type: slotActionTypes.LOAD_SLOT_FAILURE
-  }
+    type: slotActionTypes.LOAD_SLOT_FAILURE,
+  };
 }
 
-function loadBids () {
+function loadBids() {
   return {
-    type: slotActionTypes.LOAD_BIDS
-  }
+    type: slotActionTypes.LOAD_BIDS,
+  };
 }
 
-function loadBidsSuccess (bids) {
+function loadBidsSuccess(bids) {
   return {
     type: slotActionTypes.LOAD_BIDS_SUCCESS,
-    data: bids
-  }
+    data: bids,
+  };
 }
 
-function loadBidsFailure () {
+function loadBidsFailure() {
   return {
-    type: slotActionTypes.LOAD_BIDS_FAILURE
-  }
+    type: slotActionTypes.LOAD_BIDS_FAILURE,
+  };
 }
 
-function loadBatches () {
+function loadBatches() {
   return {
-    type: slotActionTypes.LOAD_BATCHES
-  }
+    type: slotActionTypes.LOAD_BATCHES,
+  };
 }
 
-function loadBatchesSuccess (batches) {
+function loadBatchesSuccess(batches) {
   return {
     type: slotActionTypes.LOAD_BATCHES_SUCCESS,
-    data: batches
-  }
+    data: batches,
+  };
 }
 
-function loadBatchesFailure () {
+function loadBatchesFailure() {
   return {
-    type: slotActionTypes.LOAD_BATCHES_FAILURE
-  }
+    type: slotActionTypes.LOAD_BATCHES_FAILURE,
+  };
 }
 
-function resetState () {
+function resetState() {
   return {
-    type: slotActionTypes.RESET_STATE
-  }
+    type: slotActionTypes.RESET_STATE,
+  };
 }
 
 export {
@@ -84,5 +84,5 @@ export {
   loadBatches,
   loadBatchesSuccess,
   loadBatchesFailure,
-  resetState
-}
+  resetState,
+};

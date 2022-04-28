@@ -1,50 +1,50 @@
-import { createUseStyles } from 'react-jss'
+import { createUseStyles } from "react-jss";
 
-const useColStyles = createUseStyles(theme => ({
+const useColStyles = createUseStyles((theme) => ({
   col: {
     fontWeight: theme.fontWeights.medium,
-    '&:last-child': {
+    "&:last-child": {
       fontWeight: theme.fontWeights.bold,
-      overflowWrap: 'break-word',
+      overflowWrap: "break-word",
       lineHeight: `${theme.spacing(3)}px`,
       marginTop: theme.spacing(1.5),
       [theme.breakpoints.sm]: {
-        textAlign: 'right',
-        marginTop: 0
-      }
-    }
+        textAlign: "right",
+        marginTop: 0,
+      },
+    },
   },
   colWrapped: {
     maxWidth: `calc(100% - ${theme.spacing(11.5)}px)`,
     [theme.breakpoints.sm]: {
-      maxWidth: '100%'
-    }
+      maxWidth: "100%",
+    },
   },
   colFlex: {
     fontWeight: theme.fontWeights.bold,
-    '&:first-child': {
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-      flexGrow: 1,
-      flexBasis: 0
-    },
-    '&:last-child': {
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+    "&:first-child": {
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
       flexGrow: 1,
       flexBasis: 0,
-      textAlign: 'right'
-    }
+    },
+    "&:last-child": {
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
+      flexGrow: 1,
+      flexBasis: 0,
+      textAlign: "right",
+    },
   },
   link: {
     color: theme.palette.secondary.main,
-    '&:hover': {
+    "&:hover": {
       color: theme.palette.purple.dark,
-      textDecoration: 'underline'
-    }
-  }
-}))
+      textDecoration: "underline",
+    },
+  },
+}));
 
-export default useColStyles
+export default useColStyles;
