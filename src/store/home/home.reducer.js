@@ -6,9 +6,6 @@ const initialHomeState = {
   batchesTask: {
     status: "pending",
   },
-  overviewTask: {
-    status: "pending",
-  },
 };
 
 function homeReducer(state = initialHomeState, action) {
@@ -43,32 +40,6 @@ function homeReducer(state = initialHomeState, action) {
         batchesTask: {
           status: "failed",
           error: "Batches do not exist or cannot be loaded.",
-        },
-      };
-    }
-    case homeActionTypes.LOAD_OVERVIEW: {
-      return {
-        ...state,
-        overviewTask: {
-          status: "loading",
-        },
-      };
-    }
-    case homeActionTypes.LOAD_OVERVIEW_SUCCESS: {
-      return {
-        ...state,
-        overviewTask: {
-          status: "successful",
-          data: action.overview,
-        },
-      };
-    }
-    case homeActionTypes.LOAD_OVERVIEW_FAILURE: {
-      return {
-        ...state,
-        overviewTask: {
-          status: "failed",
-          error: "Stats and metrics cannot be loaded.",
         },
       };
     }

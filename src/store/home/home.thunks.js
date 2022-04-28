@@ -18,19 +18,4 @@ function fetchBatches(fromItem) {
   };
 }
 
-/**
- * Fetches information that represents the current state of the network, metrics and statistics.
- *
- * @returns {void}
- */
-function fetchOverview() {
-  return (dispatch) => {
-    dispatch(homeActions.loadOverview());
-
-    return CoordinatorAPI.getState()
-      .then((res) => dispatch(homeActions.loadOverviewSuccess(res)))
-      .catch((err) => dispatch(homeActions.loadOverviewFailure(err)));
-  };
-}
-
-export { fetchBatches, fetchOverview };
+export { fetchBatches };
