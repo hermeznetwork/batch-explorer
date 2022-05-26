@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "react-jss";
 import { createBrowserHistory } from "history";
-import { ConnectedRouter } from "connected-react-router";
+import { ReduxRouter } from "@lagunovsky/redux-react-router";
 import "normalize.css/normalize.css";
 
 import * as serviceWorker from "./serviceWorker";
@@ -15,11 +15,11 @@ const store = configureStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <ReduxRouter history={history} store={store}>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-    </ConnectedRouter>
+    </ReduxRouter>
   </Provider>,
   document.getElementById("root")
 );

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import thunk from "redux-thunk";
-import { connectRouter, routerMiddleware } from "connected-react-router";
+import { createRouterReducer, createRouterMiddleware } from "@lagunovsky/redux-react-router";
 
 import homeReducer from "./home/home.reducer";
 import batchReducer from "./batch/batch.reducer";
@@ -24,12 +24,12 @@ function createRootReducer(history) {
     tokenAccount: tokenAccountReducer,
     tokens: tokensReducer,
     search: searchReducer,
-    router: connectRouter(history),
+    router: createRouterReducer(history),
   });
 }
 
 function configureStore(history) {
-  const middlewares = [thunk, routerMiddleware(history)];
+  const middlewares = [thunk, createRouterMiddleware(history)];
   const middlewareEnhancer = applyMiddleware(...middlewares);
   const enhancers = [middlewareEnhancer];
   const composedEnhancers = composeWithDevTools(...enhancers);

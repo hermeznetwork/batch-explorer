@@ -1,11 +1,12 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import hermez from "@hermeznetwork/hermezjs";
 import { WEBSITE_URL } from "../constants";
 
 import Layout from "./shared/layout/layout.view";
 import routes from "../routing/routes";
 import useAppStyles from "./app.styles";
+import UnderMaintenance from "./under-maintenance/under-maintenance.view";
 
 function App() {
   useAppStyles();
@@ -13,8 +14,7 @@ function App() {
   // Under maintenance indicator can have the following values:
   // 0 - NOT under maintenance
   // 1 - under maintenance
-
-  const [isBatchExplorerUnderMaintenance, setData] = React.useState([]);
+  const [isHermezUnderMaintenance, setIsHermezUnderMaintenance] = React.useState();
 
   const getData = () => {
     fetch(WEBSITE_URL + "network-status.json", {
@@ -26,7 +26,7 @@ function App() {
         return response.json();
       })
       .then(function (data) {
-        setData(data.isBatchExplorerUnderMaintenance);
+        setIsHermezUnderMaintenance(data.isBatchExplorerUnderMaintenance === 1);
       })
       .catch(() => {
         console.error("Cannot obtain network status.");
@@ -41,28 +41,26 @@ function App() {
     hermez.CoordinatorAPI.setBaseApiUrl(process.env.REACT_APP_HERMEZ_API_URL);
   }, []);
 
-  const underMaintenance =
-    Number.isInteger(isBatchExplorerUnderMaintenance) && isBatchExplorerUnderMaintenance !== 0;
+  if (isHermezUnderMaintenance === undefined) {
+    return null;
+  }
 
   return (
-    <>
-      <Route>
-        <Layout displaySearchAndNavigation={!underMaintenance}>
-          {underMaintenance ? (
-            <>
-              <Route path={routes[0].path} component={routes[0].component} />
-              <Redirect to={routes[0].path} />
-            </>
-          ) : (
-            <Switch>
-              {routes.map((route) => (
-                <Route exact key={route.path} path={route.path} component={route.component} />
-              ))}
-            </Switch>
-          )}
-        </Layout>
-      </Route>
-    </>
+    <Layout displaySearchAndNavigation={!isHermezUnderMaintenance}>
+      {isHermezUnderMaintenance ? (
+        <Routes>
+          <Route path="/under-maintenance" element={<UnderMaintenance />} />
+          <Route path="*" element={<Navigate to="/under-maintenance" />} />
+        </Routes>
+      ) : (
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={<route.Component />} />
+          ))}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      )}
+    </Layout>
   );
 }
 
