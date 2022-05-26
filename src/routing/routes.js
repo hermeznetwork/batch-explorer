@@ -7,49 +7,44 @@ import Slot from "../views/slot/slot.view";
 import TokenAccount from "../views/token-account/token-account.view";
 import SearchError from "../views/search-error/search-error.view";
 import Tokens from "../views/tokens/tokens.view";
-import UnderMaintenance from "../views/under-maintenance/under-maintenance.view";
 
 const routes = [
   {
-    path: "/under-maintenance",
-    component: UnderMaintenance,
-  },
-  {
     path: "/",
     label: "Home",
-    component: Home,
+    Component: Home,
   },
   {
     path: "/batch/:batchNum",
-    component: Batch,
+    Component: Batch,
   },
   {
     path: "/coordinator/:coordinatorId",
-    component: Coordinator,
+    Component: Coordinator,
   },
   {
     path: "/user-account/:address",
-    component: UserAccount,
+    Component: UserAccount,
   },
   {
     path: "/transaction/:transactionId",
-    component: Transaction,
+    Component: Transaction,
   },
   {
     path: "/slot/:slotNum",
-    component: Slot,
+    Component: Slot,
   },
   {
     path: "/token-account/:accountIndex",
-    component: TokenAccount,
+    Component: TokenAccount,
   },
   {
     path: "/search-error/:searchTerm",
-    component: SearchError,
+    Component: SearchError,
   },
   {
     path: "/tokens",
-    component: Tokens,
+    Component: Tokens,
   },
 ];
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { push } from "connected-react-router";
+import { push } from "@lagunovsky/redux-react-router";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
