@@ -7,30 +7,31 @@ import useHomeStyles from "./home.styles";
 import Spinner from "../shared/spinner/spinner.view";
 import Container from "../shared/container/container.view";
 import BatchesList from "./components/batches-list/batches-list.view";
-import NetworkStatusIndicator from "./components/network-status-indicator/network-status-indicator.view";
 import { fetchBatches } from "../../store/home/home.thunks";
 import InfiniteScroll from "../shared/infinite-scroll/infinite-scroll.view";
 import { resetState } from "../../store/home/home.actions";
 import Title from "../shared/title/title";
 
 function Home({ onLoadBatches, batchesTask, onCleanup }) {
+  const theme = useTheme();
+  const classes = useHomeStyles();
+
   React.useEffect(() => {
     onLoadBatches();
   }, [onLoadBatches]);
 
   React.useEffect(() => onCleanup, [onCleanup]);
 
-  const theme = useTheme();
-  const classes = useHomeStyles();
-
   return (
     <div className={classes.root}>
       <Container backgroundColor={theme.palette.primary.main} disableTopGutter>
         <div className={classes.wrapper}>
-          <div className={classes.networkStatusTitle}>
-            <Title>Network Status:</Title>
+          <div className={classes.networkStatusRow}>
+            <div className={classes.networkStatusTitle}>
+              <Title>Network Status:</Title>
+            </div>
+            <div className={classes.networkStatus}>Operational</div>
           </div>
-          <NetworkStatusIndicator />
           <Title>Batches</Title>
           {(() => {
             switch (batchesTask.status) {

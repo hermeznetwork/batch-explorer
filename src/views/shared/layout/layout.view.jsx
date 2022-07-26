@@ -2,12 +2,12 @@ import useLayoutStyles from "./layout.styles";
 import Header from "../header/header";
 import Main from "../main/main";
 
-function Layout({ children, displaySearchAndNavigation }) {
+function Layout({ children }) {
   const classes = useLayoutStyles();
 
   return (
     <div className={classes.root}>
-      <Header displaySearchAndNavigation={displaySearchAndNavigation} />
+      <Header />
       <Main>{children}</Main>
     </div>
   );
