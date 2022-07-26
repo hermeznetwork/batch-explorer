@@ -10,7 +10,7 @@ import { ReactComponent as Menu } from "../../../images/icons/menu.svg";
 
 import { TESTNET_API_HOSTNAME, MAINNET_API_HOSTNAME } from "../../../constants";
 
-function Header({ displaySearchAndNavigation }) {
+function Header() {
   const classes = useHeaderStyles();
   const [isMenuVisible, setMenuVisible] = React.useState();
 
@@ -49,13 +49,9 @@ function Header({ displaySearchAndNavigation }) {
                 [classes.notActive]: isMenuVisible,
               })}
             >
-              {displaySearchAndNavigation ? (
-                <a href="/" target="_self" rel="noopener noreferrer">
-                  <Logo />
-                </a>
-              ) : (
+              <a href="/" target="_self" rel="noopener noreferrer">
                 <Logo />
-              )}
+              </a>
             </div>
             <div
               className={clsx({
@@ -63,36 +59,29 @@ function Header({ displaySearchAndNavigation }) {
                 [classes.menuButtons]: true,
               })}
             >
-              {displaySearchAndNavigation ? (
-                <>
-                  <button
-                    className={clsx({
-                      [classes.menuButton]: true,
-                      [classes.active]: true,
-                      [classes.notActive]: isMenuVisible,
-                      [classes.hide]: true,
-                    })}
-                    onClick={() => handleOpenMenuClick()}
-                  >
-                    <Menu className={classes.icon} />
-                  </button>
-                  <button
-                    className={clsx({
-                      [classes.menuButton]: true,
-                      [classes.closeMenuButton]: true,
-                      [classes.active]: isMenuVisible,
-                      [classes.notActive]: !isMenuVisible,
-                      [classes.hide]: true,
-                    })}
-                    onClick={() => handleCloseMenuClick()}
-                  >
-                    <Close className={classes.icon} />
-                  </button>
-                </>
-              ) : (
-                <></>
-              )}
-
+              <button
+                className={clsx({
+                  [classes.menuButton]: true,
+                  [classes.active]: true,
+                  [classes.notActive]: isMenuVisible,
+                  [classes.hide]: true,
+                })}
+                onClick={() => handleOpenMenuClick()}
+              >
+                <Menu className={classes.icon} />
+              </button>
+              <button
+                className={clsx({
+                  [classes.menuButton]: true,
+                  [classes.closeMenuButton]: true,
+                  [classes.active]: isMenuVisible,
+                  [classes.notActive]: !isMenuVisible,
+                  [classes.hide]: true,
+                })}
+                onClick={() => handleCloseMenuClick()}
+              >
+                <Close className={classes.icon} />
+              </button>
               <div
                 className={clsx({
                   [classes.links]: true,
@@ -121,18 +110,9 @@ function Header({ displaySearchAndNavigation }) {
                 >
                   Hermez wallet
                 </a>
-                {displaySearchAndNavigation ? (
-                  <a
-                    href="/tokens"
-                    target="_self"
-                    rel="noopener noreferrer"
-                    className={classes.link}
-                  >
-                    Registered Tokens
-                  </a>
-                ) : (
-                  <></>
-                )}
+                <a href="/tokens" target="_self" rel="noopener noreferrer" className={classes.link}>
+                  Registered Tokens
+                </a>
                 <a
                   href="https://twitter.com/0xPolygonHermez"
                   target="_blank"
@@ -152,13 +132,9 @@ function Header({ displaySearchAndNavigation }) {
               )}
             </h1>
           </div>
-          {displaySearchAndNavigation ? (
-            <div className={`${classes.row} ${classes.search}`}>
-              <Search />
-            </div>
-          ) : (
-            <></>
-          )}
+          <div className={`${classes.row} ${classes.search}`}>
+            <Search />
+          </div>
         </div>
       </Container>
     </header>
