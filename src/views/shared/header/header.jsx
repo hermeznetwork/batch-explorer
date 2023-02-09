@@ -101,7 +101,7 @@ function Header() {
                   rel="noopener noreferrer"
                   className={classes.link}
                 >
-                  Polygon zkEVM website
+                  Hermez website
                 </a>
                 <a
                   href={
