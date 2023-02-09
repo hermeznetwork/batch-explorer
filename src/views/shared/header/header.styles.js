@@ -31,6 +31,8 @@ const useMainHeaderStyles = createUseStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   menuButtons: {
+    display: "flex",
+    alignItems: "center",
     marginTop: theme.spacing(1.5),
     [theme.breakpoints.sm]: {
       marginTop: 0,
@@ -47,7 +49,6 @@ const useMainHeaderStyles = createUseStyles((theme) => ({
   links: {
     display: "flex",
     alignItems: "center",
-    marginTop: theme.spacing(1.5),
   },
   link: {
     display: "flex",

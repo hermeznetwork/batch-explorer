@@ -8,7 +8,12 @@ import Search from "../../search/search.view";
 import { ReactComponent as Close } from "../../../images/icons/close.svg";
 import { ReactComponent as Menu } from "../../../images/icons/menu.svg";
 
-import { TESTNET_API_HOSTNAME, MAINNET_API_HOSTNAME } from "../../../constants";
+import {
+  TESTNET_API_HOSTNAME,
+  MAINNET_API_HOSTNAME,
+  WEBSITE_URL,
+  TWITTER_URL,
+} from "../../../constants";
 
 function Header() {
   const classes = useHeaderStyles();
@@ -91,12 +96,12 @@ function Header() {
                 })}
               >
                 <a
-                  href="http://hermez.io/"
+                  href={WEBSITE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={classes.link}
                 >
-                  Go to hermez.io
+                  Polygon zkEVM website
                 </a>
                 <a
                   href={
@@ -114,7 +119,7 @@ function Header() {
                   Registered Tokens
                 </a>
                 <a
-                  href="https://twitter.com/0xPolygonHermez"
+                  href={TWITTER_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={classes.link}
